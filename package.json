@@ -7,12 +7,16 @@
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "css-loader": "1.0.1",
     "next": "8.1.0",
     "next-compose-plugins": "^2.2.0",
     "next-routes": "^1.4.2",
     "prismic-javascript": "^2.0.3",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "style-loader": "^0.23.1",
     "webpack": "^4.31.0"
   },
   "devDependencies": {
