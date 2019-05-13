@@ -12,8 +12,12 @@ module.exports = {
         },
         'sass-loader'
       ]
-    })
+    });
 
     return config
   }
-}
+};
+
+module.exports = {
+  target: 'serverless'
+};
