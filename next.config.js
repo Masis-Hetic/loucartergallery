@@ -1,7 +1,7 @@
 module.exports = {
   webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({
-      test: /\.scss$/,
+      test: [ /\.scss$/, /\.(sa|c)ss$/ ],
       use: [
         defaultLoaders.babel,
         {
