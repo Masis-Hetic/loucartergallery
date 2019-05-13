@@ -1,7 +1,30 @@
+const withSass = require('@zeit/next-sass');
+const withPlugins = require('next-compose-plugins');
+const webpack = require('webpack');
+
+const nextConfiguration = {
+  webpack: config => {
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        PC: JSON.stringify('pc')
+      })
+    );
+    return config;
+  },
+};
+
+const sassConfig = {
+  cssModules: true,
+  cssLoaderOptions: {
+    importLoaders: 1,
+    localIdentName: '[local]___[name]___[hash:base64:5]'
+  }
+};
+
 module.exports = {
   webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({
-      test: [ /\.scss$/, /\.(sa|c)ss$/ ],
+      test: /\.scss$/,
       use: [
         defaultLoaders.babel,
         {
@@ -21,3 +44,7 @@ module.exports = {
 module.exports = {
   target: 'serverless'
 };
+
+module.exports = withPlugins([
+  [withSass, sassConfig]
+], nextConfiguration);
