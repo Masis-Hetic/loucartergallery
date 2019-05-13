@@ -2,9 +2,20 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "now-build": "next build",
-    "start": "next start"
+    "start": "next start -p $PORT"
   },
+  "engines": {
+    "node": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/loucarter.git"
+  },
+  "keywords": [
+    "react",
+    "ssr",
+    "server-side-rendering"
+  ],
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "babel-plugin-module-resolver": "^3.2.0",
