@@ -59,17 +59,6 @@ module.exports = {
   target: 'serverless'
 };
 
-
-
-
-
-
-
-
-
-
-
-
 const path = require( "path" );
 const glob = require( "glob" );
 
