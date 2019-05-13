@@ -1,0 +1,2 @@
+- https://github.com/fridays/next-routes/blob/master/README.md
+- https://nextjs.org/docs
