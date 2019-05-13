@@ -41,6 +41,10 @@ module.exports = {
   }
 };
 
+module.exports = {
+  target: 'serverless'
+};
+
 module.exports = withPlugins([
   [withSass, sassConfig]
 ], nextConfiguration);
