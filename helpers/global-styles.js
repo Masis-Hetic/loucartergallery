@@ -6,7 +6,7 @@ const GlobalStyle = `
   padding: 0;
 }
 body {
-  background: deeppink;
+  background: rgba(0, 0, 0, .85);
   font-family: sans-serif;
   font-size: 1rem;
 }

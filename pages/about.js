@@ -7,13 +7,13 @@ import AboutPage from '../Components/Pages/AboutPage';
 import Prismic from 'prismic-javascript';
 import { PRISMIC_API} from "../config";
 
-const About = ({}) => (
+const About = ({result}) => (
   <Fragment>
     <Head>
       <title>Lou Carter Gallery - about</title>
     </Head>
 
-    <AboutPage />
+    <AboutPage result={result} />
 
     <style jsx>{styles}</style>
   </Fragment>
@@ -22,7 +22,11 @@ const About = ({}) => (
 About.getInitialProps = async ({}) => {
   const API = await Prismic.api( PRISMIC_API );
 
-  return {}
+  const result = await API.query(
+    Prismic.Predicates.at( 'document.type', 'about' ), { lang: 'fr-FR'}
+  );
+
+  return { result: result.results[0] }
 };
 
 export default About;

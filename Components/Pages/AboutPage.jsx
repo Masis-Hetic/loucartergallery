@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AboutPage = ({}) => (
+const AboutPage = ({result}) => (
   <div>
-    <p>Welcome to AboutPage</p>
+    <p>Welcome to AboutPage {JSON.stringify(result)}</p>
   </div>
 );
 
