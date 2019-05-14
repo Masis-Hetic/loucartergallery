@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Link from "next/link";
 
-const HomePage = ({ result }) => (
-  <div>
-    <p>Welcome to HomePage { JSON.stringify(result) }</p>
-  </div>
+const HomePage = ( { result } ) => (
+  <Fragment>
+    <p>
+      Welcome to HomePage
+    </p>
+    <Link href={ '/about' }>
+      <a>About</a>
+    </Link>
+  </Fragment>
 );
 
 export default HomePage;

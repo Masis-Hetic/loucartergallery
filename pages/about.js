@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import styles from '../styles/style.scss';
+import '../styles/style.scss';
 import Head from 'next/head';
 
 import AboutPage from '../Components/Pages/AboutPage';
 
 import Prismic from 'prismic-javascript';
 import { PRISMIC_API} from "../config";
+import MainComponent from "../Components/Main/Main";
 
 const About = ({result}) => (
   <Fragment>
@@ -13,9 +14,9 @@ const About = ({result}) => (
       <title>Lou Carter Gallery - about</title>
     </Head>
 
-    <AboutPage result={result} />
-
-    <style jsx>{styles}</style>
+    <MainComponent>
+      <AboutPage result={result} />
+    </MainComponent>
   </Fragment>
 );
 

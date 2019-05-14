@@ -12,7 +12,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <style>{ GlobalStyle }</style>
+          <style>{GlobalStyle}</style>
         </Head>
         <body className="custom_class">
         <Main/>

@@ -10,6 +10,10 @@ body {
   font-family: sans-serif;
   font-size: 1rem;
 }
+main {
+  width: 100%;
+  height: 100vh;
+}
 `;
 
 export default GlobalStyle;

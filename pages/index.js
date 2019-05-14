@@ -1,22 +1,23 @@
-import React from 'react';
-import styles from '../styles/style.scss'
+import React, { Fragment } from 'react';
+import '../styles/style.scss'
 import Head from 'next/head';
 
 import HomePage from '../Components/Pages/HomePage';
 
 import Prismic from 'prismic-javascript';
 import { PRISMIC_API } from '../config';
+import MainComponent from "../Components/Main/Main";
 
 const Index = ({result}) => (
-  <div>
+  <Fragment>
     <Head>
       <title>Lou Carter Gallery - accueil</title>
     </Head>
 
-    <HomePage result={result} />
-
-    <style jsx>{styles}</style>
-  </div>
+    <MainComponent>
+      <HomePage result={result} />
+    </MainComponent>
+  </Fragment>
 );
 
 Index.getInitialProps = async ({}) => {
