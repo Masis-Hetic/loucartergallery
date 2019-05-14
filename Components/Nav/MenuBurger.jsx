@@ -27,6 +27,16 @@ class MenuBurger extends Component {
             </svg>
           </div>
 
+          <div className="logo">
+            <span>
+              lou <br/>
+              carter <br/>
+            </span>
+            <span>
+              gallery
+            </span>
+          </div>
+
           <ul>
             <li>SS19</li>
             <li>FW 19/20</li>
