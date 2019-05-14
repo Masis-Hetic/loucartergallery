@@ -1,0 +1,40 @@
+header {
+  display : none;
+  top     : 0;
+  right   : 0;
+
+  @media (min-width : 576px) {
+    width   : 50vw;
+    float   : right;
+    display : block;
+  }
+
+  @media (min-width : 768px) {
+    width : 40vw;
+  }
+
+  @media (min-width : 992px) {
+    width : 30vw;
+  }
+
+  p {
+    text-align     : right;
+    text-transform : uppercase;
+    font-family    : 'Raleway', sans-serif;
+    font-weight    : 300;
+    font-size      : 15px;
+    letter-spacing : 1px;
+  }
+
+  .nav-links {
+    margin-top  : 2rem;
+    font-family : 'Montserrat', sans-serif;
+    font-weight : 300;
+    font-size   : 13px;
+
+    ul {
+      display         : flex;
+      justify-content : space-between;
+    }
+  }
+}

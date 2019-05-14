@@ -1,7 +1,9 @@
 import React from "react";
+import Nav from "../Nav/Nav";
 
 const MainComponent = props => (
-  <main>
+  <main className="clearfix">
+    <Nav />
     {props.children}
   </main>
 );
