@@ -13,7 +13,6 @@ const GlobalStyle = `
   content: " ";
   display: table;
 }
-
 .clearfix:after {
   clear: both;
 }
@@ -25,7 +24,7 @@ body {
 }
 main {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 2rem;
   position: relative;
 }
