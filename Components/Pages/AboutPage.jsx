@@ -8,7 +8,7 @@ const AboutPage = ( { result } ) => (
     </p>
 
     <Link href={'/'}>
-      <a>Home</a>
+      <a>Page Accueil</a>
     </Link>
   </Fragment>
 );

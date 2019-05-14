@@ -6,8 +6,9 @@ const HomePage = ( { result } ) => (
     <p>
       Welcome to HomePage
     </p>
+
     <Link href={ '/about' }>
-      <a>About</a>
+      <a>Page About</a>
     </Link>
   </Fragment>
 );
