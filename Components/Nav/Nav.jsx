@@ -6,8 +6,8 @@ const Nav = () => (
     <p>Collections</p>
     <nav className="nav-links">
       <ul>
-        <li>SS19</li>
-        <li>FW19/20</li>
+        <li>SS 19</li>
+        <li>FW 19/20</li>
         <li>Artistes</li>
         <li>Archives</li>
         <li>

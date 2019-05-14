@@ -1,7 +1,52 @@
-.burger-menu {
-  float: right;
+@import "../variables/variables";
 
-  @media (min-width: 576px) {
-    display: none;
+.burger-menu {
+  float : right;
+
+  @media (min-width : 576px) {
+    display : none;
+  }
+
+  .open-icon {
+    text-align : right;
+    cursor     : pointer;
+  }
+
+  nav {
+    background : $darkblue;
+    position   : fixed;
+    top        : 0;
+    left       : 0;
+    width      : 100vw;
+    height     : 100vh;
+    padding    : 2rem;
+
+    &.close {
+      display : none;
+    }
+
+    &.open {
+      display : block;
+    }
+
+    .close-icon {
+      float : right;
+    }
+
+    ul {
+      width       : 100%;
+      text-align  : center;
+      line-height : 3;
+      display     : table;
+      position    : relative;
+      top         : 50%;
+      transform   : translateY(-50%);
+      font-family : 'Montserrat', sans-serif;
+      font-weight : 300;
+
+      li {
+        font-size : 1.5rem;
+      }
+    }
   }
 }
