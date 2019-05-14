@@ -15,6 +15,7 @@
   nav {
     background : $darkblue;
     position   : fixed;
+    z-index    : 10;
     top        : 0;
     left       : 0;
     width      : 100vw;
@@ -45,7 +46,7 @@
       font-weight : 300;
 
       li {
-        font-size : 1.5rem;
+        font-size : 1.3rem;
       }
     }
   }

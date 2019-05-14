@@ -24,8 +24,8 @@ body {
 }
 main {
   width: 100%;
-  height: 100%;
-  padding: 2rem;
+  height: 100vh;
+  max-height: 100vh;
   position: relative;
 }
 ul {

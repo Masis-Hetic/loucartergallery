@@ -2,10 +2,27 @@ import React from "react";
 import Nav from "../Nav/Nav";
 import MenuBurger from "../Nav/MenuBurger";
 
+// TODO remplacer le texte "lou carter gallery" par un logo
+
 const MainComponent = props => (
   <main className="clearfix">
-    <MenuBurger />
-    <Nav />
+
+    <div className="head-wrapper clearfix">
+      <div className="logo">
+        <span>
+          lou <br/>
+          carter <br/>
+        </span>
+        <span>
+          gallery
+        </span>
+      </div>
+
+      <MenuBurger />
+
+      <Nav />
+    </div>
+
     {props.children}
   </main>
 );
