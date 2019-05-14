@@ -6,6 +6,11 @@
     height  : 9rem;
     padding : 1rem;
   }
+
+  @media (max-height : 850px) {
+    height  : 9rem;
+    padding : .7rem;
+  }
 }
 
 .logo {

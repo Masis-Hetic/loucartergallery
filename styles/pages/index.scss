@@ -12,6 +12,10 @@
     max-width : 700px;
   }
 
+  @media (max-height: 850px) {
+    max-height: 450px;
+  }
+
   img {
     display    : block;
     max-width  : 100%;
