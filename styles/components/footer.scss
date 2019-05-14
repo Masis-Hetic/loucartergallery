@@ -1,9 +1,13 @@
 .footer {
+  bottom         : 40px;
   position       : absolute;
-  bottom         : 0;
   width          : 100%;
   left           : 0;
   padding-bottom : 1rem;
+
+  @media (min-width : 576px) {
+    bottom : 0;
+  }
 
   nav {
     display         : flex;
@@ -26,7 +30,11 @@
 
       img {
         display : block;
-        width   : 25px;
+        width   : 35px;
+
+        @media (min-width : 576px) {
+          width : 30px;
+        }
       }
     }
   }
