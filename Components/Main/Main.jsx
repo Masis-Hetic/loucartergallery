@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../Nav/Nav";
 import MenuBurger from "../Nav/MenuBurger";
+import Footer from "../Footer/Footer";
 
 // TODO remplacer le texte "lou carter gallery" par un logo
 
@@ -24,6 +25,8 @@ const MainComponent = props => (
     </div>
 
     {props.children}
+
+    <Footer />
   </main>
 );
 

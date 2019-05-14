@@ -1,0 +1,33 @@
+.footer {
+  position       : absolute;
+  bottom         : 0;
+  width          : 100%;
+  left           : 0;
+  padding-bottom : 1rem;
+
+  nav {
+    display         : flex;
+    justify-content : flex-end;
+  }
+
+  ul {
+    display         : flex;
+    width           : 100vw;
+    justify-content : center;
+    line-height     : 2;
+
+    @media (min-width : 768px) {
+      width           : 30vw;
+      justify-content : flex-end;
+    }
+
+    li {
+      margin : 0 1.5rem;
+
+      img {
+        display : block;
+        width   : 25px;
+      }
+    }
+  }
+}
