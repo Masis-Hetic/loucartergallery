@@ -12,28 +12,6 @@ const carousel = [
   }
 ];
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", position: 'fixed', right: '1vw' }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", position: 'fixed', left: '1vw' }}
-      onClick={onClick}
-    />
-  );
-}
-
 class HomePage extends Component {
   state = {
     visible: 0
@@ -56,8 +34,6 @@ class HomePage extends Component {
     }
     this.setState( { visible: visible - 1 } );
   };
-
-
 
   render() {
 
