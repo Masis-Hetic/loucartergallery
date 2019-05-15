@@ -69,14 +69,14 @@ class HomePage extends Component {
       slidesToScroll: 1,
       arrows: true,
       fade: true,
-      swipeToSlide: false,
+      swipe: false,
       responsive: [
         {
           breakpoint: 700,
           settings: {
             arrows: false,
             autoplay: true,
-            autoplaySpeed: 3000
+            autoplaySpeed: 2500
           }
         }
       ]
