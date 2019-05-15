@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import COLORS from '../../helpers/colors';
+import Slider from "react-slick";
 
 const carousel = [
   {
@@ -7,19 +7,37 @@ const carousel = [
     alt: ''
   },
   {
-    src: 'http://placehold.jp/1000x1000.png',
+    src: '../../static/images/homepage-lou.jpg',
     alt: ''
   }
 ];
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", position: 'fixed', right: '1vw' }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", position: 'fixed', left: '1vw' }}
+      onClick={onClick}
+    />
+  );
+}
 
 class HomePage extends Component {
   state = {
     visible: 0
   };
-
-  componentDidMount() { setInterval(() => this.incrementFunction(), 7000); }
-
-  componentWillMount() { clearInterval(this.incrementFunction); }
 
   incrementFunction = () => {
     const { visible } = this.state;
@@ -36,40 +54,61 @@ class HomePage extends Component {
       this.setState( { visible: carousel.length - 1 } );
       return;
     }
-    this.setState({ visible: visible - 1});
+    this.setState( { visible: visible - 1 } );
   };
 
+
+
   render() {
-    const { visible } = this.state;
+
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      fade: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
+      responsive: [
+        {
+          breakpoint: 576,
+          settings: {
+            fade: false,
+            swipeToSlide: true,
+            arrows: false
+          }
+        },
+        {
+          breakpoint: 770,
+          settings: {
+            arrows: false
+          }
+        }
+      ]
+    };
 
     return (
       <Fragment>
 
         <div className="home-image-wrapper">
-          <div className="button left-btn" onClick={ this.decrementFunction  }>
-            <svg style={{width:35, height: 35}} viewBox="0 0 24 24">
-              <path fill={`${COLORS.lightGrey}`} d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
-            </svg>
-          </div>
 
           <div className="image-wrapper">
+            <Slider { ...settings }>
             { carousel.map( ( img, i ) => (
-              <div key={ i }>
+              <div key={ i } style={{ position: 'relative' }}>
                 <img
-                  key={ i }
-                  className={ i === visible ? 'isActive' : '' }
                   src={ img.src }
                   alt=""
                 />
               </div>
             ) ) }
+            </Slider>
           </div>
 
-          <div className="button right-btn" onClick={ this.incrementFunction }>
-            <svg style={{width: 35, height: 35}} viewBox="0 0 24 24">
-              <path fill={COLORS.lightGrey} d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-            </svg>
-          </div>
         </div>
 
       </Fragment>
