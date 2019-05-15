@@ -1,10 +1,12 @@
-import React from 'react';
-import App, { Container } from 'next/app';
+import React   from 'react';
+import Prismic from 'prismic-javascript';
+import App, { Container }    from 'next/app';
+import { Provider } from 'react-redux';
+import withReduxStore from '../lib/with-redux-store';
 
-import Prismic from "prismic-javascript";
-import { PRISMIC_API } from "../config";
+import { PRISMIC_API }       from '../config';
 
-class MyApp extends App {
+class LouCarter extends App {
   /**
    *
    * @param Component
@@ -17,27 +19,29 @@ class MyApp extends App {
    */
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-
+    
     const API = await Prismic.api(PRISMIC_API);
-
-    const links = await API.query( Prismic.Predicates.at("document.type", "links"), {} );
-
+    
+    const links = await API.query(Prismic.Predicates.at('document.type', 'links'), {});
+    
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({...ctx});
+      pageProps = await Component.getInitialProps({ ...ctx });
     }
-
-    return { pageProps: {...pageProps}, links };
+    
+    return { pageProps: { ...pageProps }, links };
   }
-
+  
   render() {
-    const { Component, pageProps, links } = this.props;
-
+    const { Component, pageProps, links, reduxStore } = this.props;
+    
     return (
       <Container>
-        <Component {...pageProps} {...links} />
+        <Provider store={ reduxStore }>
+          <Component { ...pageProps } { ...links } />
+        </Provider>
       </Container>
     );
   }
 }
 
-export default MyApp;
+export default withReduxStore(LouCarter);
