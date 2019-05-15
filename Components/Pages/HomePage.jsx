@@ -12,28 +12,6 @@ const carousel = [
   }
 ];
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", position: 'fixed', right: '1vw' }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", position: 'fixed', left: '1vw' }}
-      onClick={onClick}
-    />
-  );
-}
-
 class HomePage extends Component {
   state = {
     visible: 0
@@ -57,8 +35,6 @@ class HomePage extends Component {
     this.setState( { visible: visible - 1 } );
   };
 
-
-
   render() {
 
     const settings = {
@@ -69,23 +45,14 @@ class HomePage extends Component {
       slidesToScroll: 1,
       arrows: true,
       fade: true,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
+      swipe: false,
       responsive: [
         {
-          breakpoint: 576,
+          breakpoint: 700,
           settings: {
-            fade: false,
-            swipeToSlide: true,
-            arrows: false
-          }
-        },
-        {
-          breakpoint: 770,
-          settings: {
-            arrows: false
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 2500
           }
         }
       ]
