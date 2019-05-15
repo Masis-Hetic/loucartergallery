@@ -1,0 +1,28 @@
+div.about-container {
+  //position   : absolute;
+  //top        : 0;
+  //left       : 50%;
+  //transform  : translateX(-50%);
+  margin     : 0 auto;
+  width      : 25%;
+  //height     : 100vh;
+  height     : 85vh;
+  overflow-y : scroll;
+  div.about-block {
+    margin : 20px auto;
+    &:first-of-type {
+      //margin-top : 30%;
+    }
+    &:last-of-type {
+      margin-bottom : 50px;
+    }
+    div.about-item-block {
+      h2, h3, p {
+        margin : 20px auto;
+      }
+      h2, h3 {
+        text-align : center;
+      }
+    }
+  }
+}
