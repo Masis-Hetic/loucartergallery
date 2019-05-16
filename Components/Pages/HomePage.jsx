@@ -17,7 +17,7 @@ const carousel = [
 class HomePage extends Component {
   state = {
     visible: 0,
-    isDragging: false
+    isDragging: true
   };
 
   incrementFunction = () => {
@@ -41,9 +41,10 @@ class HomePage extends Component {
   toggleDragging = () => this.setState({isDragging: !this.state.isDragging});
 
   onClickHandler = (event) => {
-    if (this.props.isDragging) {
+    if (this.state.isDragging) {
       event.preventDefault();
     } else {
+      this.setState({isDragging: !this.state.isDragging});
       Router.push('/about');
     }
   };
@@ -80,7 +81,7 @@ class HomePage extends Component {
           <div className="image-wrapper">
             <Slider { ...settings }>
             { carousel.map( ( img, i ) => (
-              <div key={ i } style={{ position: 'relative' }} isDragging={this.state.isDragging} onClick={this.onClickHandler}>
+              <div key={ i } style={{ position: 'relative' }} onClick={this.onClickHandler(this.state.isDragging)}>
                 <div>
                   <img
                     src={ img.src }
