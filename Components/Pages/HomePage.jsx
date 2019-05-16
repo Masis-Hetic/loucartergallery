@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Slider from "react-slick";
+import Link from "next/link";
 
 const carousel = [
   {
@@ -45,7 +46,7 @@ class HomePage extends Component {
       slidesToScroll: 1,
       arrows: true,
       fade: true,
-      swipe: false,
+      swipe: true,
       responsive: [
         {
           breakpoint: 700,
@@ -67,10 +68,12 @@ class HomePage extends Component {
             <Slider { ...settings }>
             { carousel.map( ( img, i ) => (
               <div key={ i } style={{ position: 'relative' }}>
+                <Link href={'/about'}>
                 <img
                   src={ img.src }
                   alt=""
                 />
+                </Link>
               </div>
             ) ) }
             </Slider>
