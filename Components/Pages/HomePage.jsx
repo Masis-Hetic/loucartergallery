@@ -69,10 +69,12 @@ class HomePage extends Component {
             { carousel.map( ( img, i ) => (
               <div key={ i } style={{ position: 'relative' }}>
                 <Link href={'/about'}>
-                <img
-                  src={ img.src }
-                  alt=""
-                />
+                  <a>
+                    <img
+                      src={ img.src }
+                      alt=""
+                    />
+                  </a>
                 </Link>
               </div>
             ) ) }
