@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Slider from "react-slick";
 import Link from "next/link";
+import Router from "next/router";
 
 const carousel = [
   {
@@ -37,7 +38,7 @@ class HomePage extends Component {
   };
 
   render() {
-
+// https://github.com/akiran/react-slick/issues/1160
     const settings = {
       dots: false,
       infinite: true,
@@ -46,14 +47,15 @@ class HomePage extends Component {
       slidesToScroll: 1,
       arrows: true,
       fade: true,
-      swipe: true,
+      swipe: false,
       responsive: [
         {
           breakpoint: 700,
           settings: {
             arrows: false,
             autoplay: true,
-            autoplaySpeed: 2500
+            autoplaySpeed: 2500,
+            swipe: true,
           }
         }
       ]
@@ -68,14 +70,12 @@ class HomePage extends Component {
             <Slider { ...settings }>
             { carousel.map( ( img, i ) => (
               <div key={ i } style={{ position: 'relative' }}>
-                <Link href={'/about'}>
-                  <a>
-                    <img
-                      src={ img.src }
-                      alt=""
-                    />
-                  </a>
-                </Link>
+                <div onClick={() => Router.push('/about')}>
+                  <img
+                    src={ img.src }
+                    alt=""
+                  />
+                </div>
               </div>
             ) ) }
             </Slider>
