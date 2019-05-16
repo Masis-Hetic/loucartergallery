@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Slider from "react-slick";
-import Link from "next/link";
-import Router from "next/router";
 
 const carousel = [
   {
@@ -16,8 +14,7 @@ const carousel = [
 
 class HomePage extends Component {
   state = {
-    visible: 0,
-    isDragging: true
+    visible: 0
   };
 
   incrementFunction = () => {
@@ -36,17 +33,6 @@ class HomePage extends Component {
       return;
     }
     this.setState( { visible: visible - 1 } );
-  };
-
-  toggleDragging = () => this.setState({isDragging: !this.state.isDragging});
-
-  onClickHandler = (event) => {
-    if (this.state.isDragging) {
-      event.preventDefault();
-    } else {
-      this.setState({isDragging: !this.state.isDragging});
-      Router.push('/about');
-    }
   };
 
   render() {
@@ -81,7 +67,10 @@ class HomePage extends Component {
           <div className="image-wrapper">
             <Slider { ...settings }>
             { carousel.map( ( img, i ) => (
-              <div key={ i } style={{ position: 'relative' }} onClick={this.onClickHandler(this.state.isDragging)}>
+              <div
+                key={ i }
+                style={{ position: 'relative' }}
+              >
                 <div>
                   <img
                     src={ img.src }
