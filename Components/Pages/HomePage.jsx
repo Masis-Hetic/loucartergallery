@@ -70,7 +70,7 @@ class HomePage extends Component {
             <Slider { ...settings }>
             { carousel.map( ( img, i ) => (
               <div key={ i } style={{ position: 'relative' }}>
-                <div onTouchMoveCapture={() => Router.push('/about')} onClick={() => Router.push('/about')}>
+                <div onTouchEnd={() => Router.push('/about')} onClick={() => Router.push('/about')}>
                   <img
                     src={ img.src }
                     alt=""
