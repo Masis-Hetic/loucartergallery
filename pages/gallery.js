@@ -11,7 +11,7 @@ import MainComponent   from '../Components/Main/Main';
 const Gallery = ({ body }) => (
   <Fragment>
     <Head>
-      <title>Lou Carter Gallery - about</title>
+      <title>Lou Carter Gallery - Galerie</title>
     </Head>
     
     <MainComponent>
