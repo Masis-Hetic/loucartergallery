@@ -17,7 +17,8 @@ const GlobalStyle = `
   clear: both;
 }
 body {
-  background: #282c37;
+  background: #252525;
+  // background: #282c37;
   font-family: Montserrat, sans-serif;
   font-weight: 300;
   font-size: 1rem;

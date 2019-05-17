@@ -1,14 +1,13 @@
-import React, { Fragment } from 'react';
-import Link                from 'next/link';
+import React from 'react';
 
-const AboutPage = ({ result }) => (
-  <div className="about-container">
+const GalleryPage = ({ result }) => (
+  <div className="gallery-container">
+    <div className="opacity-text-block"/>
     { result.map((datas, i) => (
-      <div key={ i } className="about-block">
-        { console.log({ datas }) }
+      <div key={ i } className="gallery-block">
         <div className={ `${ datas.slice_type }` }>
           { datas.items.map((item, j) => (
-            <div key={ j } className="about-item-block">
+            <div key={ j } className="gallery-item-block">
               { item.block_title && item.block_title[ 0 ] &&
                 <h2>{ item.block_title[ 0 ].text }</h2>
               }
@@ -26,4 +25,4 @@ const AboutPage = ({ result }) => (
   </div>
 );
 
-export default AboutPage;
+export default GalleryPage;

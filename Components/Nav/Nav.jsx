@@ -11,8 +11,8 @@ const Nav = () => (
         <li>Artistes</li>
         <li>Archives</li>
         <li>
-          <Link href={'/about'}>
-            <a>About</a>
+          <Link href={'/gallery'}>
+            <a>Gallery</a>
           </Link>
         </li>
       </ul>

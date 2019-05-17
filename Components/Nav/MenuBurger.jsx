@@ -43,8 +43,8 @@ class MenuBurger extends Component {
             <li>Artistes</li>
             <li>Collections</li>
             <li>
-              <Link href={ '/about' }>
-                <a>About</a>
+              <Link href={ '/gallery' }>
+                <a>Gallery</a>
               </Link>
             </li>
           </ul>

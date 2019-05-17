@@ -1,0 +1,44 @@
+div.gallery-container {
+  position           : absolute;
+  top                : 0;
+  left               : 50%;
+  transform          : translateX(-50%);
+  margin             : 0 auto;
+  width              : 40%;
+  height             : 100vh;
+  //height     : 85vh;
+  overflow-y         : scroll;
+  overflow           : -moz-scrollbars-none;
+  -ms-overflow-style : none;
+  &::-webkit-scrollbar { width : 0 !important }
+  div.opacity-text-block {
+    position   : sticky;
+    top        : 0;
+    width      : 100%;
+    height     : 25%;
+    background : linear-gradient(to bottom,
+        rgb(37, 37, 37) 25%, // TODO Couleur theme by global variable
+        rgba(255, 255, 255, 0) 75%
+    );
+  }
+  div.gallery-block {
+    z-index  : -1;
+    position : absolute;
+    top      : 125px;
+    margin   : 0 auto 20px;
+    &:first-of-type {
+      margin-top : 30%;
+    }
+    &:last-of-type {
+      margin-bottom : 50px;
+    }
+    div.gallery-item-block {
+      h2, h3, p {
+        margin : 20px auto;
+      }
+      h2, h3 {
+        text-align : center;
+      }
+    }
+  }
+}

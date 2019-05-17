@@ -5,3 +5,17 @@
   * desktop: 992px
   * tablet: 768px
   * phone: 576px
+
+
+acceuille photo en pleine page
+carousselle sur 3 photos
+
+TODO trois point en menu en bas 'media'.
+
+event ecoute activité user
+
+interligne interlettre plus grand 
+
+Séparer les fenetres
+
+
