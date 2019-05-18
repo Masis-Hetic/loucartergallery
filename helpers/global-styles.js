@@ -21,6 +21,7 @@ body {
   font-family: sans-serif;
   font-size: 1rem;
   color: #d9e1e8;
+  height: calc(var(--vh, 1vh) * 100);
 }
 main {
   width: 100%;
