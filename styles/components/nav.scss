@@ -1,40 +1,52 @@
 header {
-  display : none;
-  top     : 0;
-  right   : 0;
+  display    : none;
+  position   : absolute;
+  top        : 0;
+  left       : -30%;
+  width      : 30%;
+  height     : 100vh;
+  z-index    : 10;
+  background : rgba(0, 0, 0, .8);
+  transition : .3s ease-in-out;
 
   @media (min-width : 576px) {
-    width   : 50vw;
-    float   : right;
     display : block;
   }
 
-  @media (min-width : 768px) {
-    width   : 40vw;
-  }
 
-  @media (min-width : 992px) {
-    width : 30vw;
-  }
+  &.open {
+    display    : block;
+    left       : 0;
+    transition : .3s ease-in-out;
+    width      : 50vw;
 
-  p {
-    text-align     : right;
-    text-transform : uppercase;
-    font-family    : 'Raleway', sans-serif;
-    font-weight    : 300;
-    font-size      : 15px;
-    letter-spacing : 1px;
+    @media (min-width : 1280px) {
+      width : 30vw;
+    }
   }
 
   .nav-links {
-    margin-top  : 2rem;
     font-family : 'Montserrat', sans-serif;
     font-weight : 300;
     font-size   : 13px;
 
     ul {
       display         : flex;
+      flex-direction  : column;
       justify-content : space-between;
     }
+  }
+}
+
+.menu-desktop {
+  position  : absolute;
+  top       : 50%;
+  right     : -50px;
+  transform : translateY(-50%) rotate(90deg);
+  z-index   : 1;
+  cursor    : pointer;
+
+  @media (min-width : 576px) {
+    display : block;
   }
 }

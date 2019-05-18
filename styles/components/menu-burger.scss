@@ -1,7 +1,10 @@
 @import "../variables/variables";
 
 .burger-menu {
-  float : right;
+  position : absolute;
+  bottom   : 20px;
+  right    : 20px;
+  z-index  : 10;
 
   @media (min-width : 576px) {
     display : none;
