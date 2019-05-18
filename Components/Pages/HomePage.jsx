@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Swipe from 'react-easy-swipe';
+import Link from "next/link";
 
 const carousel = [
   {
@@ -49,18 +50,22 @@ class HomePage extends Component {
 
           <div className="image-wrapper">
             <Swipe
-              onSwipeEnd={this.onSwipeEnd}
-              allowMouseEvents={true}
+              onSwipeEnd={ this.onSwipeEnd }
+              allowMouseEvents={ true }
             >
               { carousel.map( ( img, i ) => (
                 <div
-                  className={`swipe-wrapper ${visible === i && 'visible'}`}
+                  className={ `swipe-wrapper ${ visible === i && 'visible' }` }
                   key={ i }
                 >
-                  <img
-                    src={ img.src }
-                    alt=""
-                  />
+                  <Link href={ '/about' }>
+                    <a>
+                      <img
+                        src={ img.src }
+                        alt=""
+                      />
+                    </a>
+                  </Link>
                 </div>
               ) ) }
             </Swipe>
@@ -74,10 +79,6 @@ class HomePage extends Component {
 }
 
 export default HomePage;
-
-
-
-
 
 
 // import React, { Component, Fragment } from 'react';
