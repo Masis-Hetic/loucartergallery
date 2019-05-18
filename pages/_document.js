@@ -14,6 +14,7 @@ class MyDocument extends Document {
     // Then we set the value in the --vh custom property to the root of the document
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     document.querySelector('body').style.height = 'calc(var(--vh, 1vh) * 100)';
+    document.querySelector('body').style.height = 'calc(var(--vh, 1%) * 100)';
   }
 
   render() {
