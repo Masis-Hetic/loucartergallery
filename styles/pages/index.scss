@@ -33,11 +33,11 @@
     top      : 0;
     left     : 0;
     opacity  : 0;
-    transition: .3s;
+    transition: .3s ease-in-out;
 
     &.visible {
       opacity : 1;
-      transition: .3s;
+      transition: .3s ease-in-out;
     }
 
     img {

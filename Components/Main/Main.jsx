@@ -8,7 +8,7 @@ import Footer     from '../Footer/Footer';
 
 const MainComponent = props => (
   <main className="clearfix">
-    
+
     <div className="head-wrapper clearfix">
       <div className="logo">
         <span>
@@ -19,15 +19,14 @@ const MainComponent = props => (
           gallery
         </span>
       </div>
-      
+
       <MenuBurger/>
-      
+
       <Nav/>
     </div>
-    
+
     { props.children }
-    
-    <Footer/>
+
   </main>
 );
 

@@ -15,10 +15,23 @@ const carousel = [
 
 class HomePage extends Component {
   state = {
-    visible: 0
+    visible: 0,
+    interval: null,
+    firstSlide: null,
+    mouseMoving: 0
   };
 
+  componentDidMount() {
+    const firstSlide = setTimeout(() => this.handleMouseMoving(), 3500);
+    const interval = setInterval(this.handleMouseMoving, 3500);
+    this.setState({interval, firstSlide});
+  };
+
+  componentWillUnmount() { clearInterval(this.state.interval); clearInterval(this.state.firstSlide); };
+
   incrementFunction = () => {
+    this.setState({ firstSlide: null });
+
     const { visible } = this.state;
     if (visible >= carousel.length - 1) {
       this.setState( { visible: 0 } );
@@ -27,34 +40,34 @@ class HomePage extends Component {
     this.setState( { visible: visible + 1 } );
   };
 
-  decrementFunction = () => {
-    const { visible } = this.state;
-    if (visible <= 0) {
-      this.setState( { visible: carousel.length - 1 } );
-      return;
-    }
-    this.setState( { visible: visible - 1 } );
+  onSwipeEnd = () => this.incrementFunction();
+
+  handleMouseMoving = () => {
+    const { mouseMoving } = this.state;
+
+    this.setState({ mouseMoving: mouseMoving + 1, visible: mouseMoving });
+    mouseMoving >= carousel.length - 1 && this.setState({ mouseMoving: 0 });
   };
 
-  onSwipeEnd = () => {
-    this.incrementFunction();
-  };
+  clearMouseMoving = () => this.setState({ mouseMoving: 0});
 
   render() {
-    const { visible } = this.state;
+    const { visible, mouseMoving } = this.state;
 
     return (
       <Fragment>
 
         <div className="home-image-wrapper">
 
-          <div className="image-wrapper">
+          <div
+            className="image-wrapper"
+          >
             <Swipe
               onSwipeEnd={ this.onSwipeEnd }
-              allowMouseEvents={ true }
             >
               { carousel.map( ( img, i ) => (
                 <div
+                  onMouseMove={this.clearMouseMoving}
                   className={ `swipe-wrapper ${ visible === i && 'visible' }` }
                   key={ i }
                 >
