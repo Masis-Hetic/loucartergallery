@@ -22,7 +22,7 @@ const Gallery = ({ body }) => (
 
 Gallery.getInitialProps = async({}) => {
   const API = await Prismic.api(PRISMIC_API);
-  const response = await API.query(Prismic.Predicates.at('document.type', 'about'), { lang: 'fr-FR' });
+  const response = await API.query(Prismic.Predicates.at('document.type', 'gallery'), { lang: 'fr-FR' });
   const { body } = response.results[ 0 ].data;
   return { body };
 };
