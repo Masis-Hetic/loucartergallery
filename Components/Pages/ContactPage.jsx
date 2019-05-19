@@ -1,22 +1,19 @@
 import React from 'react';
 
-const FounderPage = ({ result }) => (
-  <div className="founder-container">
+const ContactPage = ({ result }) => (
+  <div className="contact-container">
     <div className="opacity-text-block"/>
-    { result.map((datas, i) => (
-      <div key={ i } className="founder-block">
+    { result.body.map((datas, i) => (
+      <div key={ i } className="contact-block">
+        { result.title && result.title[ i ] && <h1>{ result.title[ i ].text }</h1> }
         <div className={ `${ datas.slice_type }` }>
           { datas.items.map((item, j) => (
-            <div key={ j } className="founder-item-block">
-              { item.block_title && item.block_title[ 0 ] &&
-                <h2>{ item.block_title[ 0 ].text }</h2>
-              }
-              { item.sub_title && item.sub_title[ 0 ] &&
-                <h3>{ item.sub_title[ 0 ].text }</h3>
-              }
-              { item.description && item.description[ 0 ] &&
-                <p>{ item.description[ 0 ].text }</p>
-              }
+            <div key={ j } className="contact-item-block">
+              { item.name && item.name[ 0 ] && <h3>{ item.name[ 0 ].text }</h3> }
+              { item.role && item.role[ 0 ] && <p>{ item.role[ 0 ].text }</p> }
+              { item.phone && item.phone[ 0 ] && <p>{ item.phone[ 0 ].text }</p> }
+              { item.email && item.email[ 0 ] && <p>{ item.email[ 0 ].text }</p> }
+              { item.address && item.address[ 0 ] && <p>{ item.address[ 0 ].text }</p> }
             </div>
           )) }
         </div>
@@ -25,4 +22,4 @@ const FounderPage = ({ result }) => (
   </div>
 );
 
-export default FounderPage;
+export default ContactPage;

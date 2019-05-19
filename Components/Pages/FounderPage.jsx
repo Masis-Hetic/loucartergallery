@@ -1,22 +1,16 @@
 import React from 'react';
 
-const ContactPage = ({ result }) => (
-  <div className="contact-container">
+const FounderPage = ({ result }) => (
+  <div className="founder-container">
     <div className="opacity-text-block"/>
     { result.map((datas, i) => (
-      <div key={ i } className="contact-block">
+      <div key={ i } className="founder-block">
         <div className={ `${ datas.slice_type }` }>
           { datas.items.map((item, j) => (
-            <div key={ j } className="contact-item-block">
-              { item.block_title && item.block_title[ 0 ] &&
-                <h2>{ item.block_title[ 0 ].text }</h2>
-              }
-              { item.sub_title && item.sub_title[ 0 ] &&
-                <h3>{ item.sub_title[ 0 ].text }</h3>
-              }
-              { item.description && item.description[ 0 ] &&
-                <p>{ item.description[ 0 ].text }</p>
-              }
+            <div key={ j } className="founder-item-block">
+              { item.block_title && item.block_title[ 0 ] && <h2>{ item.block_title[ 0 ].text }</h2> }
+              { item.sub_title && item.sub_title[ 0 ] && <h3>{ item.sub_title[ 0 ].text }</h3> }
+              { item.description && item.description[ 0 ] && <p>{ item.description[ 0 ].text }</p> }
             </div>
           )) }
         </div>
@@ -25,4 +19,4 @@ const ContactPage = ({ result }) => (
   </div>
 );
 
-export default ContactPage;
+export default FounderPage;
