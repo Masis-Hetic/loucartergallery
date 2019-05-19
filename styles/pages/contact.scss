@@ -6,7 +6,7 @@ div.contact-container {
   margin             : 0 auto;
   width              : 40%;
   height             : 100vh;
-  //height     : 85vh;
+  text-align         : center;
   overflow-y         : scroll;
   overflow           : -moz-scrollbars-none;
   -ms-overflow-style : none;
@@ -22,10 +22,12 @@ div.contact-container {
     );
   }
   div.contact-block {
-    z-index  : -1;
-    position : absolute;
-    top      : 125px;
-    margin   : 0 auto 20px;
+    width      : 100%;
+    z-index    : -1;
+    position   : absolute;
+    text-align : center;
+    top        : 125px;
+    margin     : 50px auto 20px;
     &:first-of-type {
       margin-top : 30%;
     }
@@ -33,8 +35,9 @@ div.contact-container {
       margin-bottom : 50px;
     }
     div.contact-item-block {
+      margin : 100px 0;
       h2, h3, p {
-        margin : 20px auto;
+        margin : 0 auto;
       }
       h2, h3 {
         text-align : center;

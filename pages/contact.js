@@ -5,26 +5,26 @@ import Prismic             from 'prismic-javascript';
 import '../styles/style.scss';
 
 import { PRISMIC_API } from '../config';
-import ContactPage       from '../Components/Pages/ContactPage';
+import ContactPage     from '../Components/Pages/ContactPage';
 import MainComponent   from '../Components/Main/Main';
 
-const Contact = ({ body }) => (
+const Contact = ({ data }) => (
   <Fragment>
     <Head>
       <title>Lou Carter Gallery - Contact</title>
     </Head>
     
     <MainComponent>
-      <ContactPage result={ body }/>
+      <ContactPage result={ data }/>
     </MainComponent>
   </Fragment>
 );
 
 Contact.getInitialProps = async({}) => {
   const API = await Prismic.api(PRISMIC_API);
-  const response = await API.query(Prismic.Predicates.at('document.type', 'founder'), { lang: 'fr-FR' });
-  const { body } = response.results[ 0 ].data;
-  return { body };
+  const response = await API.query(Prismic.Predicates.at('document.type', 'contact'), { lang: 'fr-FR' });
+  const { data } = response.results[ 0 ];
+  return { data };
 };
 
 export default Contact;
