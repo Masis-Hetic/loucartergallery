@@ -78,7 +78,7 @@ class HomePage extends Component {
                   className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
                   key={ i }
                 >
-                  <Link href={ '/about' }>
+                  <Link href={ '/gallery' }>
                     <a>
                       <img src={ img.src } alt="" onMouseMove={this.clearMouseMoving} />
                     </a>
