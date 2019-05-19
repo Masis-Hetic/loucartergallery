@@ -92,6 +92,10 @@ const Nav = ( { nav } ) => {
           opacity: 1;
           transition: .5s ease;
         }
+        
+        .nav-links ul > li ul a {
+          pointer-events: none;
+        }
       `}</style>
 
     </Fragment>
