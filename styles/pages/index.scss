@@ -13,58 +13,49 @@
     -o-transform      : translateY(-50%);
     transform         : translateY(-50%);
     cursor            : pointer;
-
-    @media (min-width : 768px) {
-      display : unset;
-    }
   }
 }
 
 .image-wrapper {
-  width          : 100%;
-  max-height     : 650px;
-  position       : relative;
-  padding-bottom : 100%;
-  height         : 0;
+  width    : 100vw;
+  height   : 100vh;
+  position : relative;
+  top      : 0;
+  left     : 0;
 
-  .slick-track, .slick-slider, .slick-list, .slick-slide {
-    height         : 0;
-    min-height     : fit-content;
-    max-height     : 650px;
-    position       : relative;
-    padding-bottom : 100%;
-  }
+  .swipe-wrapper {
+    position : absolute;
+    width    : 100%;
+    height   : 100%;
+    top      : 0;
+    left     : 0;
+    opacity  : 0;
+    z-index  : 0;
 
-  .slick-list {
-    min-height : 650px;
-    min-width  : inherit;
-  }
+    &.visible {
+      opacity    : 1;
+      transition : .3s ease-in-out;
+    }
 
-  .slick-next, .slick-prev {
-    position          : fixed;
-    top               : 50%;
-    -webkit-transform : translateY(-50%);
-    -moz-transform    : translateY(-50%);
-    -ms-transform     : translateY(-50%);
-    -o-transform      : translateY(-50%);
-    transform         : translateY(-50%);
-  }
+    a {
+      position : absolute;
+      top      : 0;
+      left     : 0;
+      width    : 100%;
+      height   : 100vh;
+    }
 
-  .slick-next {
-    right : 1vw;
-  }
-
-  .slick-prev {
-    left : 1vw;
-  }
-
-  @media (min-width : 576px) {
-    max-width : 700px;
-  }
-
-  img {
-    display : block;
-    width   : 100%;
-    height  : 100%;
+    img {
+      display         : block;
+      width           : 100%;
+      height          : 100%;
+      object-fit      : cover;
+      object-position : center;
+      position        : absolute;
+      top             : 50%;
+      left            : 50%;
+      transform       : translate(-50%, -50%);
+      z-index         : 1;
+    }
   }
 }

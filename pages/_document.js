@@ -8,12 +8,19 @@ class MyDocument extends Document {
     return { ...initialProps }
   }
 
+  componentDidMount() {
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.querySelector('body').style.height = 'calc(var(--vh, 1vh) * 100)';
+    document.querySelector('body').style.height = 'calc(var(--vh, 1%) * 100)';
+  }
+
   render() {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
           <style>{GlobalStyle}</style>
         </Head>
         <body className="custom_class">
