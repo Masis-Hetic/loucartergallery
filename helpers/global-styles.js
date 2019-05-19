@@ -26,6 +26,9 @@ body {
   height: calc(var(--vh, 1vh) * 100);
   height: 100%;
   overflow: hidden;
+  font-smooth: subpixel-antialiased;
+  font-smooth: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 main {
   width: 100%;

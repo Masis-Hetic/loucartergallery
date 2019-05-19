@@ -5,13 +5,14 @@ import { Provider } from 'react-redux';
 import withReduxStore from '../lib/with-redux-store';
 
 import { PRISMIC_API }       from '../config';
+import { getNavDatas } from "../store/actions/nav.action";
 
 class LouCarter extends App {
   /**
    *
    * @param Component
    * @param ctx
-   * @returns {Promise<{links: ApiSearchResponse, pageProps: {}}>}
+   * @returns {Promise<{pageProps: {}, myLinks: *}>}
    *
    * Ici on appelle les éléments qu'on va afficher sur toutes les pages, pour faire l'appelle qu'une seule fois
    *
@@ -19,25 +20,27 @@ class LouCarter extends App {
    */
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-    
+
     const API = await Prismic.api(PRISMIC_API);
-    
-    const links = await API.query(Prismic.Predicates.at('document.type', 'links'), {});
-    
+
+    const links = await API.query(Prismic.Predicates.at('document.type', 'link'),
+      { orderings : '[my.link.order]' });
+    const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
+
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ...ctx });
     }
-    
-    return { pageProps: { ...pageProps }, links };
+
+    return { pageProps: { ...pageProps }, myLinks };
   }
-  
+
   render() {
-    const { Component, pageProps, links, reduxStore } = this.props;
-    
+    const { Component, pageProps, myLinks, reduxStore } = this.props;
+
     return (
       <Container>
         <Provider store={ reduxStore }>
-          <Component { ...pageProps } { ...links } />
+          <Component { ...pageProps } { ...myLinks } />
         </Provider>
       </Container>
     );
