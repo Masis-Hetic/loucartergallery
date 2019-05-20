@@ -13,7 +13,6 @@ const Gallery = ({ body }) => (
     <Head>
       <title>Lou Carter Gallery - Galerie</title>
     </Head>
-    
     <MainComponent>
       <GalleryPage result={ body }/>
     </MainComponent>
