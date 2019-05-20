@@ -13,7 +13,6 @@ const Contact = ({ data }) => (
     <Head>
       <title>Lou Carter Gallery - Contact</title>
     </Head>
-    
     <MainComponent>
       <ContactPage result={ data }/>
     </MainComponent>

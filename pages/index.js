@@ -13,7 +13,6 @@ const Index = ({result}) => (
     <Head>
       <title>Lou Carter Gallery - accueil</title>
     </Head>
-
     <MainComponent>
       <HomePage result={result} />
     </MainComponent>
