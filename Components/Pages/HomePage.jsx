@@ -10,10 +10,6 @@ const carousel = [
   {
     src: '../../static/images/bg-dark.jpg',
     alt: ''
-  },
-  {
-    src: '../../static/images/homepage-lou.jpg',
-    alt: ''
   }
 ];
 
@@ -81,6 +77,7 @@ class HomePage extends Component {
                   <Link href={ '/gallery' }>
                     <a>
                       <img src={ img.src } alt="" onMouseMove={this.clearMouseMoving} />
+                      <h1>LA GALLERIE</h1>
                     </a>
                   </Link>
                 </div>
