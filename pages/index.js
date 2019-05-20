@@ -11,7 +11,7 @@ import MainComponent from "../Components/Main/Main";
 const Index = ({result}) => (
   <Fragment>
     <Head>
-      <title>Lou Carter Gallery - accueil</title>
+      <title>{result.data.description[0].text}</title>
     </Head>
 
     <MainComponent>

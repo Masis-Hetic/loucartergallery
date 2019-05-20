@@ -1,17 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Swipe from 'react-easy-swipe';
 import Link from "next/link";
 
-const carousel = [
-  {
-    src: '../../static/images/bg-ss19.jpg',
-    alt: ''
-  },
-  {
-    src: '../../static/images/bg-dark.jpg',
-    alt: ''
-  }
-];
+import SanitizedHTML from 'react-sanitized-html';
 
 class HomePage extends Component {
   state = {
@@ -40,7 +31,8 @@ class HomePage extends Component {
     this.setState({ firstSlide: null });
 
     const { visible } = this.state;
-    if (visible >= carousel.length - 1) {
+    // noinspection JSUnresolvedVariable
+    if (visible >= this.props.result.data.home_bg.length - 1) {
       this.setState( { visible: 0 } );
       return;
     }
@@ -51,44 +43,45 @@ class HomePage extends Component {
 
   handleMouseMoving = () => {
     const { mouseMoving } = this.state;
-
     this.setState({ mouseMoving: mouseMoving + 1, visible: mouseMoving });
-    mouseMoving >= carousel.length - 1 && this.setState({ mouseMoving: 0 });
+    // noinspection JSUnresolvedVariable
+    mouseMoving >= this.props.result.data.home_bg.length - 1 && this.setState({ mouseMoving: 0 });
   };
 
   clearMouseMoving = () => this.setState( { mouseMoving: this.state.visible } );
 
   render() {
     const { visible } = this.state;
+    const { result } = this.props;
 
+    // noinspection JSUnresolvedVariable
     return (
-      <Fragment>
+      <div className="home-image-wrapper">
+        <div className="image-wrapper">
 
-        <div className="home-image-wrapper">
-          <div className="image-wrapper">
+          <Swipe onSwipeEnd={ this.onSwipeEnd }>
 
-            <Swipe onSwipeEnd={ this.onSwipeEnd }>
+            {result.data.home_bg.map((bg, i) =>
+              <div
+                key={ i }
+                className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
+              >
+                <Link href={ `/${ bg.link_to.uid }` }>
+                  <a onMouseMove={ this.clearMouseMoving }>
+                    <img src={ bg.background_img.url } alt=""/>
+                    <h1>{ bg.title_img[ 0 ].text }</h1>
+                    <h2>
+                      <SanitizedHTML html={bg.text[0] && bg.text[0].text} />
+                    </h2>
+                  </a>
+                </Link>
+              </div>
+            )}
 
-              { carousel.map( ( img, i ) => (
-                <div
-                  className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
-                  key={ i }
-                >
-                  <Link href={ '/gallery' }>
-                    <a>
-                      <img src={ img.src } alt="" onMouseMove={this.clearMouseMoving} />
-                      <h1>LA GALLERIE</h1>
-                    </a>
-                  </Link>
-                </div>
-              ) ) }
+          </Swipe>
 
-            </Swipe>
-
-          </div>
         </div>
-
-      </Fragment>
+      </div>
     );
   }
 }

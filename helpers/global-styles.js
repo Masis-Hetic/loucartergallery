@@ -30,6 +30,9 @@ body {
   font-smooth: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
 }
+body * {
+  letter-spacing: 4px;
+}
 main {
   width: 100%;
   height: 100vh;
