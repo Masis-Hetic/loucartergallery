@@ -29,7 +29,7 @@ const Nav = ( { nav } ) => {
 
           <ul>
             { nav.map( ( link, i ) =>
-              <li key={ i }>
+              <li key={ i } className={isListOpen ? 'open' : 'close'}>
                 { link.data.link_one_href[ 0 ].text
                   ? (
                     <Link href={ link.data.link_one_href[ 0 ].text }>
@@ -38,7 +38,7 @@ const Nav = ( { nav } ) => {
                   : (
                     <Fragment>
                       <p id={ i } onClick={() => toggleList(i)}>{ link.data.link_one[ 0 ].text }</p>
-                      <ul className={ isListOpen ? isList : '' }>
+                      <ul className={ isListOpen ? `${isList} test` : '' }>
                         { link.data.body.map( ( sublink, i ) =>
                           sublink.primary.link_two_href[ 0 ].text
                             ? (
@@ -50,12 +50,12 @@ const Nav = ( { nav } ) => {
                             )
                             : (
                               <Fragment key={ i }>
-                                <p>{ sublink.primary.link_two[ 0 ].text }</p>
-                                <ul>
+                                <p style={{ fontFamily: 'Raleway' }}>{ sublink.primary.link_two[ 0 ].text }</p>
+                                <ul className={`third-step ${isListOpen ? 'open' : 'close'}`}>
                                   { sublink.items.map( ( thirdLink, i ) =>
                                     <li style={ { paddingLeft: 40 } } key={ i }>
                                       <Link href={ thirdLink.link_three_href[ 0 ].text }>
-                                        <a>{ thirdLink.link_three[ 0 ].text }</a>
+                                        <a style={{ fontFamily: 'Raleway' }}>{ thirdLink.link_three[ 0 ].text }</a>
                                       </Link>
                                     </li>
                                   ) }
@@ -84,13 +84,13 @@ const Nav = ( { nav } ) => {
         .nav-links ul > li ul {
           height: 0;
           opacity: 0;
-          transition: .5s ease;
+          transition: .1s ease-in-out;
         }
         
         .nav-links ul > li:nth-of-type(${isListOpen && isList !== null && isList + 1}) ul {
           height: unset;
           opacity: 1;
-          transition: .5s ease;
+          transition: .4s ease-in-out;
         }
         
         .nav-links ul > li ul a {
