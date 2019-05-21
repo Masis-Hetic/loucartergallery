@@ -1,8 +1,8 @@
 import React from 'react';
 
+// noinspection JSUnresolvedVariable
 const GalleryPage = ({ result }) => (
   <div className="gallery-container">
-    <div className="opacity-text-block"/>
     { result.map((datas, i) => (
       <div key={ i } className="gallery-block">
         <div className={ `${ datas.slice_type }` }>
