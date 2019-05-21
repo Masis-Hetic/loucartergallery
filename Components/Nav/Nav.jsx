@@ -29,33 +29,34 @@ const Nav = ( { nav } ) => {
 
           <ul>
             { nav.map( ( link, i ) =>
-              <li key={ i } className={isListOpen ? 'open' : 'close'}>
-                { link.data.link_one_href[ 0 ].text
+              <li key={ i } className={ isListOpen ? 'open' : 'close' }>
+                { link.data.link_to.uid
                   ? (
-                    <Link href={ link.data.link_one_href[ 0 ].text }>
+                    <Link href={ `/${ link.data.link_to.uid }` }>
                       <a>{ link.data.link_one[ 0 ].text }</a>
-                    </Link> )
+                    </Link>
+                  )
                   : (
                     <Fragment>
-                      <p id={ i } onClick={() => toggleList(i)}>{ link.data.link_one[ 0 ].text }</p>
-                      <ul className={ isListOpen ? `${isList} test` : '' }>
+                      <p id={ i } onClick={ () => toggleList( i ) }>{ link.data.link_one[ 0 ].text }</p>
+                      <ul className={ isListOpen ? `${ isList } test` : '' }>
                         { link.data.body.map( ( sublink, i ) =>
-                          sublink.primary.link_two_href[ 0 ].text
+                          sublink.primary.link_to_level_two.uid
                             ? (
                               <li key={ i }>
-                                <Link href={ sublink.primary.link_two_href[ 0 ].text }>
+                                <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
                                   <a>{ sublink.primary.link_two[ 0 ].text }</a>
                                 </Link>
                               </li>
                             )
                             : (
                               <Fragment key={ i }>
-                                <p style={{ fontFamily: 'Raleway' }}>{ sublink.primary.link_two[ 0 ].text }</p>
-                                <ul className={`third-step ${isListOpen ? 'open' : 'close'}`}>
+                                <p style={ { fontFamily: 'Raleway' } }>{ sublink.primary.link_two[ 0 ].text }</p>
+                                <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
-                                    <li style={ { paddingLeft: 40 } } key={ i }>
-                                      <Link href={ thirdLink.link_three_href[ 0 ].text }>
-                                        <a style={{ fontFamily: 'Raleway' }}>{ thirdLink.link_three[ 0 ].text }</a>
+                                    <li key={ i } style={ { paddingLeft: 40 } }>
+                                      <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
+                                        <a style={ { fontFamily: 'Raleway' } }>{ thirdLink.link_three[ 0 ].text }</a>
                                       </Link>
                                     </li>
                                   ) }
@@ -91,10 +92,6 @@ const Nav = ( { nav } ) => {
           height: unset;
           opacity: 1;
           transition: .4s ease-in-out;
-        }
-        
-        .nav-links ul > li ul a {
-          pointer-events: none;
         }
       `}</style>
 
