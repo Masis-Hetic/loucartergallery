@@ -9,6 +9,7 @@ div.gallery-container {
   overflow           : -moz-scrollbars-none;
   -ms-overflow-style : none;
   -webkit-mask-image : -webkit-gradient(linear, left 20%, left top, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+  transition         : 1s ease;
   &::-webkit-scrollbar { width : 0 !important }
   div.opacity-text-block {
     position : sticky;
@@ -27,7 +28,7 @@ div.gallery-container {
     &:first-of-type { padding-top : 25%; }
     &:last-of-type { margin-bottom : 50px; }
     div.gallery-item-block {
-      h2, h3, p { margin : 20px auto; }
+      h2, h3, p { margin : 45px auto; }
       h2, h3 { font-family : 'Raleway', sans-serif; }
       h3 { text-align : center; }
       p { font-family : 'Montserrat', sans-serif; }
