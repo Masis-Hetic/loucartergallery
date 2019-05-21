@@ -13,12 +13,13 @@ const Gallery = ({ body }) => (
     <Head>
       <title>Lou Carter Gallery - Galerie</title>
     </Head>
+
     <MainComponent>
       <GalleryPage result={ body }/>
     </MainComponent>
   </Fragment>
 );
-
+// -webkit-mask-image: -webkit-gradient(linear, left 50%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
 Gallery.getInitialProps = async({}) => {
   const API = await Prismic.api(PRISMIC_API);
   const response = await API.query(Prismic.Predicates.at('document.type', 'gallery'), { lang: 'fr-FR' });
