@@ -12,10 +12,9 @@ header {
   transition : .4s ease-in-out;
   box-shadow : 0 0 3px 1px #282c37;
 
-  &.close { display : unset; }
-
   @media (min-width : 576px) {
     display : block;
+    &.close { display : unset; }
   }
 
   &.open {
