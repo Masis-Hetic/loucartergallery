@@ -24,7 +24,7 @@ header {
   .menu-desktop {
     position   : absolute;
     top        : 50%;
-    right      : 90vw;
+    left       : -10vw;
     transform  : translateY(-50%) rotate(90deg);
     z-index    : 1;
     cursor     : pointer;
