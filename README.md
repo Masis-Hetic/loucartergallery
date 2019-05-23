@@ -7,15 +7,18 @@
   * phone: 576px
 
 
-acceuille photo en pleine page
-carousselle sur 3 photos
+event ecoute activité user a corriger
 
-TODO trois point en menu en bas 'media'.
+interligne interlettre plus grand !!! (200)
+typo
 
-event ecoute activité user
+5219*2880
 
-interligne interlettre plus grand 
+nouvelle regles pour les grand ecrans
+comming soon (pour le eshop)
+partager => logo media + pressroom + (bulle qui donne des docs) 
+user activity
+noir 97%
 
-Séparer les fenetres
-
+artiste 
 

@@ -24,7 +24,7 @@ div.gallery-container {
     padding   : 0 5px;
     left      : 50%;
     transform : translateX(-50%);
-    width     : 80%;
+    width     : 60%;
     &:first-of-type { padding-top : 25%; }
     &:last-of-type { margin-bottom : 50px; }
     div.gallery-item-block {
@@ -36,19 +36,19 @@ div.gallery-container {
   }
   @media (min-width : 576px) {
     div.gallery-block {
-      width : 70%;
+      width : 50%;
       &:first-of-type { padding-top : 20%; }
     }
   }
   @media (min-width : 768px) {
     div.gallery-block {
-      width : 60%;
+      width : 40%;
       &:first-of-type { padding-top : 15%; }
     }
   }
   @media (min-width : 1280px) {
     div.gallery-block {
-      width : 50%;
+      width : 30%;
       &:first-of-type { padding-top : 10%; }
     }
   }
