@@ -17,8 +17,7 @@ const GlobalStyle = `
   clear: both;
 }
 body {
-  background: #252525;
-  // background: #282c37;
+  background: #080808;
   font-family: Montserrat, sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -31,7 +30,7 @@ body {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 body * {
-  letter-spacing: 4px;
+  letter-spacing: 5px;
 }
 main {
   width: 100%;
@@ -47,6 +46,12 @@ ul {
 a{
   text-decoration: none;
   color: #DEDEDE;
+}
+p:not(.except) {
+  line-height: 1.7
+}
+h3 {
+  line-height: 2.7
 }
 `;
 

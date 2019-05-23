@@ -38,7 +38,7 @@ const Nav = ( { nav } ) => {
                   )
                   : (
                     <Fragment>
-                      <p id={ i } onClick={ () => toggleList( i ) }>{ link.data.link_one[ 0 ].text }</p>
+                      <p id={ i } className="except" onClick={ () => toggleList( i ) }>{ link.data.link_one[ 0 ].text }</p>
                       <ul className={ isListOpen ? `${ isList } test` : '' }>
                         { link.data.body.map( ( sublink, i ) =>
                           sublink.primary.link_to_level_two.uid
@@ -51,7 +51,7 @@ const Nav = ( { nav } ) => {
                             )
                             : (
                               <Fragment key={ i }>
-                                <p style={ { fontFamily: 'Raleway' } }>{ sublink.primary.link_two[ 0 ].text }</p>
+                                <p className="except" style={ { fontFamily: 'Raleway' } }>{ sublink.primary.link_two[ 0 ].text }</p>
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
                                     <li key={ i }>
@@ -74,10 +74,8 @@ const Nav = ( { nav } ) => {
 
         </nav>
 
-        <div className="menu-desktop" onClick={ toggleMenu }>
-          <svg style={ { width: 34, height: 34 } } viewBox="0 0 24 24">
-            <path fill="#d9e1e8" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
-          </svg>
+        <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
+          <span className="burger"/>
         </div>
       </header>
 

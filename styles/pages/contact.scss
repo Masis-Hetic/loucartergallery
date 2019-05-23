@@ -26,14 +26,15 @@ div.contact-container {
     padding    : 0 5px;
     left       : 50%;
     transform  : translateX(-50%);
-    width      : 80%;
+    width      : 60%;
     &:last-of-type { margin-bottom : 50px; }
     h1 {
+      margin-top : 30%;
       overflow      : hidden;
       text-overflow : ellipsis;
     }
     div.contact-item-block {
-      margin : 70px 0;
+      margin : 45% 0;
       h2, h3, p { margin : 0 auto; }
       h2, h3 { font-family : 'Raleway', sans-serif; }
       h3 { text-align : center; }
@@ -44,13 +45,13 @@ div.contact-container {
       }
     }
     @media (min-width : 576px) {
-      div.founder-block { width : 70%; }
+      div.founder-block { width : 50%; }
     }
     @media (min-width : 768px) {
-      div.founder-block { width : 60%; }
+      div.founder-block { width : 40%; }
     }
     @media (min-width : 1280px) {
-      div.founder-block { width : 50%; }
+      div.founder-block { width : 30%; }
     }
   }
 }
