@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from '../../routes';
+
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
@@ -55,7 +57,7 @@ const Nav = ( { nav } ) => {
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
                                     <li key={ i }>
-                                      <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
+                                      <Link route={`/${ thirdLink.link_three_href[0].text }/${ thirdLink.link_to_level_three.uid }`}>
                                         <a style={ { fontFamily: 'Raleway' } }>{ thirdLink.link_three[ 0 ].text }</a>
                                       </Link>
                                     </li>
