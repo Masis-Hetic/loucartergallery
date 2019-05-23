@@ -8,7 +8,7 @@ header {
   right      : -85vw;
   z-index    : 30;
   transition : .4s ease-in-out;
-  background : rgba(0, 0, 0, .8);
+  background : rgba(0, 0, 0, .9);
 
   &.open {
     right      : 0;
@@ -32,6 +32,7 @@ header {
 
     @media (min-width : 576px) {
       display : block;
+      background : rgba(0, 0, 0, .8);
     }
   }
 
