@@ -46,6 +46,7 @@ header {
 
     .menu-desktop {
       right      : -3vw;
+      left       : unset;
       transition : .4s ease-in-out;
     }
 
@@ -70,13 +71,23 @@ header {
 }
 
 .nav-links {
-  font-family : 'Montserrat', sans-serif;
-  font-weight : 300;
-  font-size   : 13px;
-  position    : absolute;
-  top         : 50%;
-  left        : 20px;
-  transform   : translateY(-50%);
+  font-family   : 'Montserrat', sans-serif;
+  font-weight   : 300;
+  font-size     : 13px;
+  position      : absolute;
+  top           : 50%;
+  width         : 100%;
+  transform     : translateY(-50%);
+  left          : 0;
+  padding-right : 20px;
+  text-align    : right;
+
+  @media (min-width : 576px) {
+    padding-right : unset;
+    left          : 20px;
+    width         : unset;
+    text-align    : left;
+  }
 
   > ul {
     display         : flex;
@@ -116,7 +127,12 @@ header {
       }
 
       > ul {
-        padding-left : 40px;
+        padding-right : 40px;
+
+        @media (min-width : 576px) {
+          padding-right : 0;
+          padding-left  : 40px;
+        }
 
         > li {
           line-height : 2.5;
@@ -158,6 +174,12 @@ header {
 
   .third-step {
     margin-bottom : .5rem;
+    padding-right : 40px;
+
+    @media (min-width : 576px) {
+      padding-right : 0;
+      padding-left  : 40px;
+    }
 
     &.close {
       opacity : 0;
