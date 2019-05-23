@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const GlobalStyle = `
 * {
@@ -30,7 +30,7 @@ body {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 body * {
-  letter-spacing: 5px;
+  letter-spacing: 4px;
 }
 main {
   width: 100%;

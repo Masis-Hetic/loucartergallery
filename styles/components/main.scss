@@ -1,3 +1,9 @@
+body * {
+  @media (min-width : 576px) {
+    letter-spacing : 5px;
+  }
+}
+
 .logo {
   position : absolute;
   top      : 20px;
