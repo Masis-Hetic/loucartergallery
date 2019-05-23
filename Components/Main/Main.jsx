@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MenuBurger from '../Nav/MenuBurger';
+// import MenuBurger from '../Nav/MenuBurger';
 import Link from "next/link";
 import Nav from "../Nav/Nav";
 
@@ -24,7 +24,7 @@ const MainComponent = props => (
 
       <Nav />
 
-      <MenuBurger/>
+      {/*<MenuBurger/>*/}
 
     </div>
 

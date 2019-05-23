@@ -1,33 +1,22 @@
 @import "../variables/variables";
 
 header {
-  display    : none;
   position   : absolute;
-  top        : 0;
-  left       : -30%;
-  width      : 30%;
   height     : 100vh;
-  z-index    : 10;
-  background : rgba(0, 0, 0, .8);
+  width      : 85vw;
+  top        : 0;
+  right      : -85vw;
+  z-index    : 30;
   transition : .4s ease-in-out;
-  box-shadow : 0 0 3px 1px #282c37;
-
-  @media (min-width : 576px) {
-    display : block;
-    &.close { display : unset; }
-  }
+  background : rgba(0, 0, 0, .9);
 
   &.open {
-    left       : 0;
+    right      : 0;
     transition : .4s ease-in-out;
-    width      : 50vw;
-
-    @media (min-width : 1280px) {
-      width : 30vw;
-    }
+    width      : 85vw;
 
     .menu-desktop {
-      right      : 20px;
+      right      : 90vw;
       transition : .4s ease-in-out;
     }
   }
@@ -35,7 +24,7 @@ header {
   .menu-desktop {
     position   : absolute;
     top        : 50%;
-    right      : -50px;
+    left       : -10vw;
     transform  : translateY(-50%) rotate(90deg);
     z-index    : 1;
     cursor     : pointer;
@@ -43,18 +32,63 @@ header {
 
     @media (min-width : 576px) {
       display : block;
+      background : rgba(0, 0, 0, .8);
     }
+  }
+
+  @media (min-width : 576px) {
+    display    : block;
+    top        : 0;
+    left       : -30vw;
+    width      : 30vw;
+    height     : 100vh;
+    z-index    : 10;
+    transition : .4s ease-in-out;
+
+    .menu-desktop {
+      right      : -3vw;
+      left       : unset;
+      transition : .4s ease-in-out;
+    }
+
+    &.open {
+      left       : 0;
+      transition : .4s ease-in-out;
+      width      : 50vw;
+      box-shadow : 0 0 3px 1px #282c37;
+
+      @media (min-width : 1280px) {
+        width : 30vw;
+      }
+
+      .menu-desktop {
+        right      : 20px;
+        transition : .4s ease-in-out;
+      }
+    }
+
+    &.close { display : unset; }
   }
 }
 
 .nav-links {
-  font-family : 'Montserrat', sans-serif;
-  font-weight : 300;
-  font-size   : 13px;
-  position    : absolute;
-  top         : 50%;
-  left        : 20px;
-  transform   : translateY(-50%);
+  font-family   : 'Montserrat', sans-serif;
+  font-weight   : 300;
+  font-size     : 13px;
+  position      : absolute;
+  top           : 50%;
+  width         : 100%;
+  transform     : translateY(-50%);
+  left          : 0;
+  padding-right : 20px;
+  text-align    : right;
+
+  @media (min-width : 576px) {
+    padding-right : unset;
+    left          : 20px;
+    width         : unset;
+    text-align    : left;
+  }
 
   > ul {
     display         : flex;
@@ -94,7 +128,12 @@ header {
       }
 
       > ul {
-        padding-left : 40px;
+        padding-right : 40px;
+
+        @media (min-width : 576px) {
+          padding-right : 0;
+          padding-left  : 40px;
+        }
 
         > li {
           line-height : 2.5;
@@ -136,21 +175,27 @@ header {
 
   .third-step {
     margin-bottom : .5rem;
+    padding-right : 40px;
+
+    @media (min-width : 576px) {
+      padding-right : 0;
+      padding-left  : 40px;
+    }
 
     &.close {
-      opacity       : 0;
-      height        : 0;
+      opacity : 0;
+      height  : 0;
     }
 
     &.open {
-      height     : unset;
-      opacity    : 1;
+      height  : unset;
+      opacity : 1;
     }
 
     li {
       line-height : 2;
 
-      a { text-transform: initial; }
+      a { text-transform : initial; }
     }
   }
 }

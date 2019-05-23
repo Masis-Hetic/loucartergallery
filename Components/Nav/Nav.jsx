@@ -54,7 +54,7 @@ const Nav = ( { nav } ) => {
                                 <p style={ { fontFamily: 'Raleway' } }>{ sublink.primary.link_two[ 0 ].text }</p>
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
-                                    <li key={ i } style={ { paddingLeft: 40 } }>
+                                    <li key={ i }>
                                       <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
                                         <a style={ { fontFamily: 'Raleway' } }>{ thirdLink.link_three[ 0 ].text }</a>
                                       </Link>
