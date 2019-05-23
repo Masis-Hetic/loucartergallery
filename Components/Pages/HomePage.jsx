@@ -17,8 +17,8 @@ class HomePage extends Component {
    * and then, play slider every 3500ms
    */
   componentDidMount() {
-    const firstSlide = setTimeout(() => this.handleMouseMoving(), 4000);
-    const interval = setInterval(this.handleMouseMoving, 4000);
+    const firstSlide = setTimeout(() => this.handleMouseMoving(), 5000);
+    const interval = setInterval(this.handleMouseMoving, 5000);
     this.setState({interval, firstSlide});
   };
 
@@ -65,9 +65,10 @@ class HomePage extends Component {
               <div
                 key={ i }
                 className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
+                onMouseMove={ this.clearMouseMoving }
               >
                 <Link href={ `/${ bg.link_to.uid }` }>
-                  <a onMouseMove={ this.clearMouseMoving }>
+                  <a>
                     <img src={ bg.background_img.url } alt=""/>
                     <h1>{ bg.title_img[ 0 ].text }</h1>
                     <h2>
