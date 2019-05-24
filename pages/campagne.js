@@ -8,4 +8,7 @@ const Campagne = () => {
   )
 };
 
+Campagne.getInitialProps = async({}) => {
+};
+
 export default Campagne;
