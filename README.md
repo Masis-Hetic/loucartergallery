@@ -6,18 +6,13 @@
   * tablet: 768px
   * phone: 576px
 
-
-event ecoute activité user a corriger
-
-interligne interlettre plus grand !!! (200)
-typo
-
 5219*2880
 
 nouvelle regles pour les grand ecrans
 comming soon (pour le eshop)
 partager => logo media + pressroom + (bulle qui donne des docs) 
-user activity
-noir 97%
 
 artiste 
+
+
+transition navigation

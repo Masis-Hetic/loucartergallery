@@ -7,7 +7,6 @@ div.founder-container {
   overflow-y         : scroll;
   overflow           : -moz-scrollbars-none;
   -ms-overflow-style : none;
-  -webkit-mask-image : -webkit-gradient(linear, left 10%, left top, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
   transition         : 1s ease;
   &::-webkit-scrollbar { width : 0 !important }
   div.opacity-text-block {
@@ -20,8 +19,7 @@ div.founder-container {
     z-index   : -1;
     position  : absolute;
     top       : 125px;
-    margin    : 0 auto 20px;
-    padding   : 0 5px;
+    margin    : 5% auto;
     left      : 50%;
     transform : translateX(-50%);
     width     : 60%;
@@ -32,7 +30,7 @@ div.founder-container {
       h3 { text-align : center; }
       p { font-family : 'Montserrat', sans-serif; }
       h {
-        line-height: 1.4;
+        line-height : 1.4;
       }
     }
   }

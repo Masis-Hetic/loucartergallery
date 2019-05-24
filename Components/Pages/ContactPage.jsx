@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ContactPage = ({ result }) => (
-  <div className="contact-container">
+  <div className="contact-container text-gradiant">
     { result.body.map((datas, i) => (
       <div key={ i } className="contact-block">
         { result.title && result.title[ i ] && <h1>{ result.title[ i ].text }</h1> }

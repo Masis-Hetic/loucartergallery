@@ -8,7 +8,6 @@ div.contact-container {
   overflow-y         : scroll;
   overflow           : -moz-scrollbars-none;
   -ms-overflow-style : none;
-  -webkit-mask-image : -webkit-gradient(linear, left 10%, left top, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
   transition         : 1s ease;
   &::-webkit-scrollbar { width : 0 !important }
   div.opacity-text-block {
@@ -27,18 +26,14 @@ div.contact-container {
     transform  : translateX(-50%);
     width      : 80%;
     @media (min-width : 576px) {
-      div.contact-block {
-        width : 70%;
-      }
+      width : 70%;
     }
     @media (min-width : 768px) {
-      div.contact-block { width : 50%; }
+      width : 50%;
     }
     @media (min-width : 1280px) {
-      div.contact-block {
-        padding : 0 5px;
-         width   : 30%;
-      }
+      padding : 0 5px;
+      width   : 30%;
     }
     &:last-of-type { margin-bottom : 50px; }
     h1 {
