@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import Link from "next/link";
+
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
@@ -10,14 +11,17 @@ const mapStateToProps = state => {
 
 const Nav = ( { nav } ) => {
   const [ isOpen, openMenu ] = useState( false );
-  const toggleMenu = () => openMenu( !isOpen );
+  const toggleMenu = () => {
+    openMenu( !isOpen );
+    openOrNot(false);
+  };
 
   const [ isList, openList ] = useState( null );
   const [ isListOpen, openOrNot ] = useState( false );
-  const toggleList = (id) => {
-    openOrNot(true);
-    if (id !== isList) openOrNot(true);
-    if (id === isList) openOrNot(!isListOpen);
+  const toggleList = ( id ) => {
+    openOrNot( true );
+    if (id !== isList) openOrNot( true );
+    if (id === isList) openOrNot( !isListOpen );
     openList( id );
   };
 
@@ -51,13 +55,25 @@ const Nav = ( { nav } ) => {
                             )
                             : (
                               <Fragment key={ i }>
-                                <p className="except" style={ { fontFamily: 'Raleway' } }>{ sublink.primary.link_two[ 0 ].text }</p>
+                                <p className="except">{ sublink.primary.link_two[ 0 ].text }</p>
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
                                     <li key={ i }>
-                                      <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
-                                        <a style={ { fontFamily: 'Raleway' } }>{ thirdLink.link_three[ 0 ].text }</a>
-                                      </Link>
+                                      {thirdLink.link_three_href[0].text !== ''
+                                        ? (
+                                          <Link
+                                            href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
+                                            as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
+                                          >
+                                            <a>{ thirdLink.link_three[ 0 ].text }</a>
+                                          </Link>
+                                          )
+                                        : (
+                                          <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
+                                            <a>{ thirdLink.link_three[ 0 ].text }</a>
+                                          </Link>
+                                        )
+                                      }
                                     </li>
                                   ) }
                                 </ul>
@@ -86,7 +102,7 @@ const Nav = ( { nav } ) => {
           transition: .1s ease-in-out;
         }
         
-        .nav-links ul > li:nth-of-type(${isListOpen && isList !== null && isList + 1}) ul {
+        .nav-links ul > li:nth-of-type(${ isListOpen && isList !== null && isList + 1 }) ul {
           height: unset;
           opacity: 1;
           transition: .4s ease-in-out;
