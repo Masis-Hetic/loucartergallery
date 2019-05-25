@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import Link from "next/link";
-import {Link as LinkR} from '../../routes';
 
 import { connect } from "react-redux";
 
@@ -12,7 +11,10 @@ const mapStateToProps = state => {
 
 const Nav = ( { nav } ) => {
   const [ isOpen, openMenu ] = useState( false );
-  const toggleMenu = () => openMenu( !isOpen );
+  const toggleMenu = () => {
+    openMenu( !isOpen );
+    openOrNot(false);
+  };
 
   const [ isList, openList ] = useState( null );
   const [ isListOpen, openOrNot ] = useState( false );
