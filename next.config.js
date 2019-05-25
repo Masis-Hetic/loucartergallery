@@ -1,3 +1,5 @@
+const Prismic = require("prismic-javascript");
+
 const withSass = require('@zeit/next-sass');
 const withPlugins = require('next-compose-plugins');
 const webpack = require('webpack');
@@ -137,7 +139,6 @@ module.exports = {
   }
 };
 
-
 const getRoutes = require('./routes');
 module.exports = withSass( {
   webpack: function ( config ) {
@@ -155,6 +156,64 @@ module.exports = withSass( {
     } );
     return config
   },
-  exportPathMap: getRoutes,
+  async exportPathMap () {
+    // we fetch our list of posts, this allow us to dynamically generate the exported pages
+    const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
+
+    const campaign = await API.query(
+      Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
+    );
+
+    const campaignList = await campaign.json();
+
+    // tranform the list of posts into a map of pages with the pathname `/post/:id`
+    const campaigns = campaignList.reduce(
+      (campaigns, campaign) =>
+        Object.assign({}, campaign, {
+          [`/campagnes/${campaign.slug}`]: {
+            page: '/campagnes',
+            query: { slug: campaign.slug }
+          }
+        }),
+      {}
+    );
+
+    // combine the map of post pages with the home
+    return Object.assign({}, campaigns, {
+      '/': { page: '/' },
+      '/campagnes:slug': { page: '/campagnes' }
+    })
+  }
 } );
 
+
+// module.exports = {
+//   async exportPathMap () {
+//     // we fetch our list of posts, this allow us to dynamically generate the exported pages
+//     const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
+//
+//     const campaign = await API.query(
+//       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
+//     );
+//
+//     const campaignList = await campaign.json();
+//
+//     // tranform the list of posts into a map of pages with the pathname `/post/:id`
+//     const campaigns = campaignList.reduce(
+//       (campaigns, campaign) =>
+//         Object.assign({}, campaign, {
+//           [`/campagnes/${campaign.slug}`]: {
+//             page: '/campagnes',
+//             query: { slug: campaign.slug }
+//           }
+//         }),
+//       {}
+//     );
+//
+//     // combine the map of post pages with the home
+//     return Object.assign({}, campaigns, {
+//       '/': { page: '/' },
+//       '/campagnes:slug': { page: '/campagnes' }
+//     })
+//   }
+// };
