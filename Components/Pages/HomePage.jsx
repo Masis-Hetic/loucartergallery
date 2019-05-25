@@ -70,7 +70,11 @@ class HomePage extends Component {
                 <Link href={ `/${ bg.link_to.uid }` }>
                   <a>
                     <img src={ bg.background_img.url } alt=""/>
-                    <h1>{ bg.title_img[ 0 ].text }</h1>
+                    <h1>
+                      <span>
+                        { bg.title_img[ 0 ].text }
+                      </span>
+                    </h1>
                     <h2>
                       <SanitizedHTML html={bg.text[0] && bg.text[0].text} />
                     </h2>
