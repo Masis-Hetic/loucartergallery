@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
+    "heroku-postbuild": "npm run build",
     "start": "next start -p $PORT",
     "test": "next build && NODE_ENV=production node server.js"
   },
