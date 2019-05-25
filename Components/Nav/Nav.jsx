@@ -58,7 +58,7 @@ const Nav = ( { nav } ) => {
                             )
                             : (
                               <Fragment key={ i }>
-                                <p style={ { fontFamily: 'Raleway' } }>{ sublink.primary.link_two[ 0 ].text }</p>
+                                <p>{ sublink.primary.link_two[ 0 ].text }</p>
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
                                     <li key={ i }>
@@ -68,12 +68,12 @@ const Nav = ( { nav } ) => {
                                             href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
                                             as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
                                           >
-                                            <a style={ { fontFamily: 'Raleway' } }>{ thirdLink.link_three[ 0 ].text }</a>
+                                            <a>{ thirdLink.link_three[ 0 ].text }</a>
                                           </Link>
                                           )
                                         : (
                                           <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
-                                            <a style={ { fontFamily: 'Raleway' } }>{ thirdLink.link_three[ 0 ].text }</a>
+                                            <a>{ thirdLink.link_three[ 0 ].text }</a>
                                           </Link>
                                         )
                                       }

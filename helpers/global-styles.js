@@ -19,7 +19,7 @@ const GlobalStyle = `
 body {
   background: #252525;
   // background: #282c37;
-  font-family: Montserrat, sans-serif;
+  font-family: Aileron-Thin, sans-serif;
   font-weight: 300;
   font-size: 1rem;
   color: #d9e1e8;
