@@ -34,12 +34,18 @@ div.gallery-container {
     @media (min-width : 1280px) {
       width : 30%;
     }
+    div.gallery-item-parent {
+      overflow : hidden;
+    }
     div.gallery-item-block {
       &:first-of-type {
         margin-top : 0;
         & > h2 {
           margin-top : 50%;
         }
+      }
+      &:last-of-type {
+        margin-bottom : 50%;
       }
       h2 {
         margin : 100% auto 30%;

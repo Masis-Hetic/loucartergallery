@@ -5,7 +5,7 @@ const GalleryPage = ({ result }) => (
   <div className="gallery-container text-gradiant">
     { result.map((datas, i) => (
       <div key={ i } className="gallery-block">
-        <div className={ `${ datas.slice_type }` }>
+        <div className={ `${ datas.slice_type } gallery-item-parent` }>
           { datas.items.map((item, j) => (
             <div key={ j } className="gallery-item-block">
               { item.block_title && item.block_title[ 0 ] && <h2>{ item.block_title[ 0 ].text }</h2> }
