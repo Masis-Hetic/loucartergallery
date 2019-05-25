@@ -157,7 +157,7 @@ module.exports = withSass( {
     return config
   },
   async exportPathMap () {
-    // we fetch our list of posts, this allow us to dynamically generate the exported pages
+    // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
     const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
 
     const campaignList = await API.query(
@@ -166,7 +166,7 @@ module.exports = withSass( {
 
     const campaignResult = campaignList.results;
 
-    // tranform the list of posts into a map of pages with the pathname `/post/:id`
+    // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
     const campaigns = campaignResult.reduce(
       (campaigns, campaign) =>
         Object.assign({}, campaign, {
@@ -181,7 +181,7 @@ module.exports = withSass( {
     // combine the map of post pages with the home
     return Object.assign({}, campaigns, {
       '/': { page: '/' },
-      '/campagnes:slug': { page: '/campagnes' }
+      '/campagnes/:slug': { page: '/campagnes' }
     })
   }
 } );
