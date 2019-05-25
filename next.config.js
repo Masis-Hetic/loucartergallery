@@ -137,6 +137,11 @@ module.exports = {
   }
 };
 
+const getRoutes = require('./routes');
+module.exports = withSass({
+  exportPathMap: getRoutes
+});
+
 module.exports = withSass( {
   webpack: function ( config ) {
     config.module.rules.push( {

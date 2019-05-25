@@ -61,7 +61,7 @@ const Nav = ( { nav } ) => {
                                 <p>{ sublink.primary.link_two[ 0 ].text }</p>
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
-                                    <li key={ i }>
+                                    <li key={ i } onClick={ toggleMenu }>
                                       {thirdLink.link_three_href[0].text !== ''
                                         ? (
                                           <Link
