@@ -66,19 +66,18 @@
         text-transform    : uppercase;
         letter-spacing    : 3px;
 
-
         @media (min-width : 576px) {
           font-size         : 1.3rem;
-          width             : unset;
-          text-align        : unset;
-          right             : 5vw;
-          top               : 50%;
+          width             : 100vh;
+          right             : 3vw;
+          top               : 0;
           left              : unset;
-          -webkit-transform : translate(0, -50%);
-          -moz-transform    : translate(0, -50%);
-          -ms-transform     : translate(0, -50%);
-          -o-transform      : translate(0, -50%);
-          transform         : translate(0, -50%);
+          -webkit-transform : translate(0, 0) rotate(-90deg);
+          -moz-transform    : translate(0, 0) rotate(-90deg);
+          -ms-transform     : translate(0, 0) rotate(-90deg);
+          -o-transform      : translate(0, 0) rotate(-90deg);
+          transform         : translate(0, 0) rotate(-90deg);
+          transform-origin  : right;
         }
       }
 
