@@ -160,14 +160,14 @@ module.exports = withSass( {
     // we fetch our list of posts, this allow us to dynamically generate the exported pages
     const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
 
-    const campaign = await API.query(
+    const campaignList = await API.query(
       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
     );
 
-    const campaignList = await campaign.json();
+    console.log('campaignList', campaignList.results);
 
     // tranform the list of posts into a map of pages with the pathname `/post/:id`
-    const campaigns = campaignList.reduce(
+    const campaigns = campaignList.results.reduce(
       (campaigns, campaign) =>
         Object.assign({}, campaign, {
           [`/campagnes/${campaign.slug}`]: {
@@ -185,35 +185,3 @@ module.exports = withSass( {
     })
   }
 } );
-
-
-// module.exports = {
-//   async exportPathMap () {
-//     // we fetch our list of posts, this allow us to dynamically generate the exported pages
-//     const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
-//
-//     const campaign = await API.query(
-//       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
-//     );
-//
-//     const campaignList = await campaign.json();
-//
-//     // tranform the list of posts into a map of pages with the pathname `/post/:id`
-//     const campaigns = campaignList.reduce(
-//       (campaigns, campaign) =>
-//         Object.assign({}, campaign, {
-//           [`/campagnes/${campaign.slug}`]: {
-//             page: '/campagnes',
-//             query: { slug: campaign.slug }
-//           }
-//         }),
-//       {}
-//     );
-//
-//     // combine the map of post pages with the home
-//     return Object.assign({}, campaigns, {
-//       '/': { page: '/' },
-//       '/campagnes:slug': { page: '/campagnes' }
-//     })
-//   }
-// };
