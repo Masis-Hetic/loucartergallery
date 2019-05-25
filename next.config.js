@@ -137,11 +137,8 @@ module.exports = {
   }
 };
 
-const getRoutes = require('./routes');
-module.exports = withSass({
-  exportPathMap: getRoutes
-});
 
+const getRoutes = require('./routes');
 module.exports = withSass( {
   webpack: function ( config ) {
     config.module.rules.push( {
@@ -157,6 +154,7 @@ module.exports = withSass( {
       }
     } );
     return config
-  }
+  },
+  exportPathMap: getRoutes,
 } );
 
