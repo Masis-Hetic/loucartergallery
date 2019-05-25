@@ -48,10 +48,7 @@ const Nav = ( { nav } ) => {
                           sublink.primary.link_to_level_two.uid
                             ? (
                               <li key={ i }>
-                                <Link
-                                  prefetch
-                                  href={ `/${ sublink.primary.link_to_level_two.uid }` }
-                                >
+                                <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
                                   <a>{ sublink.primary.link_two[ 0 ].text }</a>
                                 </Link>
                               </li>
@@ -98,7 +95,7 @@ const Nav = ( { nav } ) => {
         </div>
       </header>
 
-      <style jsx>{ `
+      <style jsx>{`
         .nav-links ul > li ul {
           height: 0;
           opacity: 0;
@@ -110,7 +107,7 @@ const Nav = ( { nav } ) => {
           opacity: 1;
           transition: .4s ease-in-out;
         }
-      ` }</style>
+      `}</style>
 
     </Fragment>
   )
