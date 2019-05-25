@@ -1,8 +1,7 @@
 {
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
-    "heroku-postbuild": "npm run build",
+    "build": "next build && NODE_ENV=production node server.js",
     "start": "next start -p $PORT",
     "test": "next build && NODE_ENV=production node server.js"
   },
@@ -28,7 +27,6 @@
     "next": "8.1.0",
     "next-compose-plugins": "^2.2.0",
     "next-routes": "^1.4.2",
-    "path-match": "^1.2.4",
     "prismic-javascript": "^2.0.3",
     "react": "16.8.6",
     "react-dom": "16.8.6",
