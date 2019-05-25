@@ -76,6 +76,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: '/node_modules/',
         use: [
           {loader: "style-loader"},
           {loader: "css-loader", options: { minimize: true }}
@@ -94,14 +95,15 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        exclude: '/node_modules/',
         use: [{
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'fonts/'
+            ouputPath: 'fonts/'
           }
         }]
-      }, //
+      },
       {
         test: /\.(css|scss)/,
         loader: "emit-file-loader",
@@ -139,11 +141,13 @@ module.exports = withSass( {
   webpack: function ( config ) {
     config.module.rules.push( {
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+      exclude: '/node_modules/',
       use: {
         loader: 'url-loader',
         options: {
           limit: 100000,
-          name: '[name].[ext]'
+          name: '[name].[ext]',
+          ouputPath: 'fonts/'
         }
       }
     } );
