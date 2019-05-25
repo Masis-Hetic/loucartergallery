@@ -164,15 +164,15 @@ module.exports = withSass( {
       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
     );
 
-    console.log('campaignList', campaignList.results);
+    const campaignResult = campaignList.results;
 
     // tranform the list of posts into a map of pages with the pathname `/post/:id`
-    const campaigns = campaignList.results.reduce(
+    const campaigns = campaignResult.reduce(
       (campaigns, campaign) =>
         Object.assign({}, campaign, {
-          [`/campagnes/${campaign.slug}`]: {
+          [`/campagnes/${campaign.uid}`]: {
             page: '/campagnes',
-            query: { slug: campaign.slug }
+            query: { slug: campaign.uid }
           }
         }),
       {}

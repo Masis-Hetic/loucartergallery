@@ -20,6 +20,7 @@ Campagnes.getInitialProps = async ( { query: { slug } } ) => {
   const campaign = await API.query(
     Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
   );
+  console.log(campaign.results);
 
   return { campaign, slug: slug ? slug : null }
 };
