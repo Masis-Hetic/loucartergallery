@@ -8,7 +8,7 @@ import { PRISMIC_API } from '../config';
 import FounderPage     from '../Components/Pages/FounderPage';
 import MainComponent   from '../Components/Main/Main';
 
-const Founder = ({ body }) => (
+const LaFondatrice = ( { body }) => (
   <Fragment>
     <Head>
       <title>Lou Carter Gallery - La fondatrice</title>
@@ -19,11 +19,11 @@ const Founder = ({ body }) => (
   </Fragment>
 );
 
-Founder.getInitialProps = async({}) => {
+LaFondatrice.getInitialProps = async( {}) => {
   const API = await Prismic.api(PRISMIC_API);
   const response = await API.query(Prismic.Predicates.at('document.type', 'la_fondatrice'), { lang: 'fr-FR' });
   const { body } = response.results[ 0 ].data;
   return { body };
 };
 
-export default Founder;
+export default LaFondatrice;
