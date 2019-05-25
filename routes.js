@@ -2,8 +2,9 @@ const routes = require('next-routes')();
 
 routes
   .add('index', '/', 'index')
-  .add('gallery', '/gallery', 'gallery')
+  .add('campagnes', '/campagnes/:slug', 'campagnes')
+  .add('galerie', '/galerie', 'galerie')
   .add('contact', '/contact', 'contact')
-  .add('founder', '/founder', 'founder');
+  .add('la-fondatrice', '/la-fondatrice', 'fondatrice');
 
 module.exports = routes;

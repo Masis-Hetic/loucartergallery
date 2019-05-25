@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "test": "next build && NODE_ENV=production node server.js"
   },
   "engines": {
     "node": "10"
@@ -21,6 +22,7 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "css-loader": "1.0.1",
+    "express": "^4.17.0",
     "fstream": "^1.0.12",
     "next": "8.1.0",
     "next-compose-plugins": "^2.2.0",
