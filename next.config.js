@@ -181,7 +181,7 @@ module.exports = withSass( {
     // combine the map of post pages with the home
     return Object.assign({}, campaigns, {
       '/': { page: '/' },
-      '/campagnes/:slug': { page: '/campagnes' }
+      '/campagnes/:slug': { page: '/campagnes', query: { slug: request.query } }
     })
   }
 } );
