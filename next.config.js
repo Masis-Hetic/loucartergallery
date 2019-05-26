@@ -164,7 +164,7 @@ module.exports = withSass( {
 
     // // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
     const campaigns = campaignList.results.reduce(
-      ( base, current ) => ( Object.assign( {}, {
+      ( base, current ) => ( Object.assign( {}, base, {
         [ `/campagnes/${ current.uid }` ]: {
           page: '/campagnes',
           query: { slug: current.uid }
@@ -172,11 +172,7 @@ module.exports = withSass( {
       } ) ), {}
     );
 
-    return Object.assign( {}, campaigns, {
-      '/': { page: '/' },
-      '/campagnes/:slug': { page: '/campagnes' },
-      '/galerie': { page: '/galerie' }
-    } );
+  return  Object.assign({}, campaigns, { '/': { page: '/' } });
   }
 } );
 // module.exports = {
