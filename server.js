@@ -3,7 +3,12 @@ const routes = require('./routes');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dir: '.', dev });
-const handler = routes.getRequestHandler(app);
+// const handler = routes.getRequestHandler(app);
+const handler = routes.getRequestHandler(app, ({req, res, route, query}) => {
+  console.log(query);
+  console.log(req);
+  app.render(req, res, route.page, query)
+});
 
 const { createServer } = require('http');
 

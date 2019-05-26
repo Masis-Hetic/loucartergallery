@@ -14,14 +14,32 @@ const Campagnes = ({slug}) => {
   )
 };
 
-Campagnes.getInitialProps = async ( { query: { slug } } ) => {
+
+Campagnes.getInitialProps = async ( {query, req} ) => {
   const API = await Prismic.api( PRISMIC_API );
 
   const campaign = await API.query(
     Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
   );
 
-  return { campaign, slug: slug ? slug : null }
+  console.log({req});
+  console.log({query});
+
+  return { campaign, slug: query.slug ? query.slug : null }
 };
+
+
+// Campagnes.getInitialProps = async ( { query: { slug } }, query, req ) => {
+//   const API = await Prismic.api( PRISMIC_API );
+//
+//   const campaign = await API.query(
+//     Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
+//   );
+//
+//   console.log({req});
+//   console.log({query});
+//
+//   return { campaign, slug: slug ? slug : null }
+// };
 
 export default Campagnes;

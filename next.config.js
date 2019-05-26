@@ -177,7 +177,7 @@ module.exports = withSass( {
         }),
       {}
     );
-
+    console.log('ok', campaigns);
     // combine the map of post pages with the home
     return Object.assign({}, campaigns, {
       '/': { page: '/' },
