@@ -17,9 +17,17 @@ div.gallery-container {
     width   : 33%;
     div.gallery-item-parent {
       &.major {
-        text-align : center;
+        text-align      : center;
+        min-height      : 30vh;
+        display         : flex;
+        flex-direction  : column;
+        justify-content : flex-start;
+        line-height     : 3;
+        h2 { font-weight : 600; }
+        h3 { margin-top : 50px; }
       }
       &.minor {
+        line-height        : 2;
         height             : 100vh;
         overflow-y         : scroll;
         overflow           : -moz-scrollbars-none;
