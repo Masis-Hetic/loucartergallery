@@ -11,7 +11,6 @@ div.gallery-container {
   //-ms-overflow-style : none;
   //&::-webkit-scrollbar { width : 0 !important }
   div.gallery-wrapper {
-    z-index  : -1;
     display  : flex;
     margin   : auto;
     height   : 100%;
@@ -19,17 +18,22 @@ div.gallery-container {
     overflow : hidden;
   }
   div.gallery-block {
-    z-index : -1;
     display : flex;
     margin  : auto;
-    &:nth-of-type(2) {
-      height             : 100vh;
-      overflow-y         : scroll;
-      overflow           : -moz-scrollbars-none;
-      -ms-overflow-style : none;
-      &::-webkit-scrollbar { width : 0 !important }
-    }
     div.gallery-item-parent {
+      &.major {
+        text-align : center;
+      }
+      &.minor {
+        height             : 100vh;
+        overflow-y         : scroll;
+        overflow           : -moz-scrollbars-none;
+        -ms-overflow-style : none;
+        &::-webkit-scrollbar { width : 0 !important }
+        &> div.gallery-item-block {
+          z-index: -1;
+        }
+      }
     }
     div.gallery-item-block {
       margin : 50px;
