@@ -157,31 +157,49 @@ module.exports = withSass( {
     return config
   },
   async exportPathMap () {
-    // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
-    const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
-
-    const campaignList = await API.query(
-      Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
-    );
-
-    const campaignResult = campaignList.results;
-
-    // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
-    const campaigns = campaignResult.reduce(
-      (campaigns, campaign) =>
-        Object.assign({}, campaign, {
-          [`/campagnes/${campaign.uid}`]: {
-            page: '/campagnes',
-            query: { slug: campaign.uid }
-          }
-        }),
-      {}
-    );
-
-    // combine the map of post pages with the home
-    return Object.assign({}, campaigns, {
+    return {
       '/': { page: '/' },
-      '/campagnes/:slug': { page: '/campagnes', query: { slug: request.params.slug } }
-    })
+      '/campagnes/ss-19': { page: '/campagnes', query: {slug: 'ss19'} },
+      '/campagnes/ff19-20': { page: '/campagnes', query: {slug: 'ff19-20'} }
+    }
+
+    // // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
+    // const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
+    //
+    // const campaignList = await API.query(
+    //   Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
+    // );
+    //
+    // const campaignResult = campaignList.results;
+    //
+    // // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
+    // const campaigns = campaignResult.reduce(
+    //   (campaigns, campaign) =>
+    //     Object.assign({}, campaign, {
+    //       [`/campagnes/${campaign.uid}`]: {
+    //         page: '/campagnes',
+    //         query: { slug: campaign.uid }
+    //       }
+    //     }),
+    //   {}
+    // );
+    //
+    // // combine the map of post pages with the home
+    // return Object.assign({}, campaigns, {
+    //   '/': { page: '/' },
+    //   '/campagnes/:slug': { page: '/campagnes' }
+    // })
   }
 } );
+// module.exports = {
+//   exportPathMap: async function() {
+//     return {
+//       '/': { page: '/' },
+//       '/about': { page: '/about' },
+//       '/readme.md': { page: '/readme' },
+//       '/p/hello-nextjs': { page: '/post', query: { title: 'hello-nextjs' } },
+//       '/p/learn-nextjs': { page: '/post', query: { title: 'learn-nextjs' } },
+//       '/p/deploy-nextjs': { page: '/post', query: { title: 'deploy-nextjs' } }
+//     }
+//   }
+// }
