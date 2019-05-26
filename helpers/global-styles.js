@@ -49,25 +49,29 @@ a{
 }
 p:not(.except) {
   line-height: 1.7
+    font-weight: 300;
 }
 h1:not(.except) {
   line-height: 2.7
   font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
 h2:not(.except) {
   line-height: 2.7
   font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
 h3:not(.except) {
   line-height: 2.7
   font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
 .text-gradiant {
   background : -moz-linear-gradient(top, rgba(8, 8, 8, 1) 3%, rgba(8, 8, 8, 0.95) 5%, rgba(8, 8, 8, 0) 20%, rgba(8, 8, 8, 0) 100%);
   background : -webkit-linear-gradient(top, rgba(8, 8, 8, 1) 3%, rgba(8, 8, 8, 0.95) 5%, rgba(8, 8, 8, 0) 20%, rgba(8, 8, 8, 0) 100%);
   background : linear-gradient(to bottom, rgba(8, 8, 8, 1) 3%, rgba(8, 8, 8, 0.95) 5%, rgba(8, 8, 8, 0) 20%, rgba(8, 8, 8, 0) 100%);
   filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#080808', endColorstr='#00080808', GradientType=0);
-  }
+}
 `;
 
 export default GlobalStyle;
