@@ -12,8 +12,6 @@ class Campagnes extends Component {
       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR' }
     );
 
-    console.log( 'query', query );
-
     return { campaign, slug: query.slug }
   };
 
@@ -59,19 +57,5 @@ export default Campagnes;
 //
 //   return { campaign, slug: query.slug }
 // };
-//
-//
-// // Campagnes.getInitialProps = async ( { query: { slug } }, query, req ) => {
-// //   const API = await Prismic.api( PRISMIC_API );
-// //
-// //   const campaign = await API.query(
-// //     Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
-// //   );
-// //
-// //   console.log({req});
-// //   console.log({query});
-// //
-// //   return { campaign, slug: slug ? slug : null }
-// // };
 //
 // export default Campagnes;
