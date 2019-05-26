@@ -3,8 +3,7 @@
     "dev": "node server.js",
     "build": "next build && next export",
     "start": "next start -p $PORT",
-    "test": "next build && NODE_ENV=production node server.js",
-    "export": "next export"
+    "test": "next build && NODE_ENV=production node server.js"
   },
   "engines": {
     "node": "10"
