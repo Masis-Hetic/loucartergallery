@@ -3,6 +3,7 @@ import MainComponent from "../Components/Main/Main";
 
 import Prismic from 'prismic-javascript';
 import { PRISMIC_API } from "../config";
+import Campaign from "../Components/Pages/Campaign";
 
 class Campagnes extends Component {
   static async getInitialProps({ query }) {
@@ -16,13 +17,10 @@ class Campagnes extends Component {
   };
 
   render() {
-    const { slug } = this.props;
+    const { campaign } = this.props;
     return (
       <MainComponent>
-        <div>
-          { slug }
-          {console.log(this.props.campaign)}
-        </div>
+        <Campaign campaign={campaign} />
       </MainComponent>
     );
   }

@@ -159,7 +159,7 @@ module.exports = withSass( {
   async exportPathMap () {
     return {
       '/': { page: '/' },
-      '/campagnes/ss-19': { page: '/campagnes', query: {slug: 'ss19'} },
+      '/campagnes/ss19': { page: '/campagnes', query: {slug: 'ss19'} },
       '/campagnes/ff19-20': { page: '/campagnes', query: {slug: 'ff19-20'} }
     }
 
