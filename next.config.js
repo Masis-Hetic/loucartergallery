@@ -154,15 +154,14 @@ module.exports = withSass( {
     return config;
   },
   async exportPathMap() {
-    // // we fetch our list of campaigns, this allow us to dynamically generate the exported
-    // pages
+    // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
     const API = await Prismic.api( 'https://loucarter.cdn.prismic.io/api/v2' );
 
     const campaignList = await API.query(
       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR' }
     );
 
-    // // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
+    // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
     const campaigns = campaignList.results.reduce(
       ( base, current ) => ( Object.assign( {}, base, {
         [ `/campagnes/${ current.uid }` ]: {
@@ -180,15 +179,3 @@ module.exports = withSass( {
     });
   }
 } );
-// module.exports = {
-//   exportPathMap: async function() {
-//     return {
-//       '/': { page: '/' },
-//       '/about': { page: '/about' },
-//       '/readme.md': { page: '/readme' },
-//       '/p/hello-nextjs': { page: '/post', query: { title: 'hello-nextjs' } },
-//       '/p/learn-nextjs': { page: '/post', query: { title: 'learn-nextjs' } },
-//       '/p/deploy-nextjs': { page: '/post', query: { title: 'deploy-nextjs' } }
-//     }
-//   }
-// }
