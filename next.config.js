@@ -172,7 +172,12 @@ module.exports = withSass( {
       } ) ), {}
     );
 
-  return  Object.assign({}, campaigns, { '/': { page: '/' } });
+    return  Object.assign({}, campaigns, {
+      '/'              : { page: '/' },
+      '/galerie'       : { page: '/galerie' },
+      '/contact'       : { page: '/contact' },
+      '/la-fondatrice' : { page: '/la-fondatrice' }
+    });
   }
 } );
 // module.exports = {
