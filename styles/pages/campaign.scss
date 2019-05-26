@@ -19,7 +19,6 @@
   overflow-x : scroll;
   height     : 100%;
   position   : relative;
-  right      : -95vw;
 }
 
 .slides {
@@ -36,6 +35,8 @@
     display         : flex;
     justify-content : space-between;
     overflow        : scroll;
+    position        : relative;
+    right           : -95vw;
 
     &::-webkit-scrollbar {
       display : none;
