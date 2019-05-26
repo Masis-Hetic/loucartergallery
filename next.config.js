@@ -139,7 +139,7 @@ module.exports = {
   }
 };
 
-const getRoutes = require('./routes');
+// const getRoutes = require('./routes');
 module.exports = withSass( {
   webpack: function ( config ) {
     config.module.rules.push( {
@@ -156,50 +156,85 @@ module.exports = withSass( {
     } );
     return config
   },
-  async exportPathMap () {
-    return {
-      '/': { page: '/' },
-      '/campagnes/ss19': { page: '/campagnes', query: {slug: 'ss19'} },
-      '/campagnes/ff19-20': { page: '/campagnes', query: {slug: 'ff19-20'} }
-    }
+  async exportPathMap() {
+    // // we fetch our list of campaigns, this allow us to dynamically generate the exported
+    // pages
+    const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
 
-    // // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
-    // const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
+    const campaignList = await API.query(
+      Prismic.Predicates.at('document.type', 'campaign'), { lang: 'fr-FR' }
+    );
     //
-    // const campaignList = await API.query(
-    //   Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR'}
-    // );
-    //
-    // const campaignResult = campaignList.results;
+    const campaignResult = campaignList.results;
     //
     // // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
-    // const campaigns = campaignResult.reduce(
-    //   (campaigns, campaign) =>
-    //     Object.assign({}, campaign, {
-    //       [`/campagnes/${campaign.uid}`]: {
-    //         page: '/campagnes',
-    //         query: { slug: campaign.uid }
-    //       }
-    //     }),
-    //   {}
-    // );
-    //
-    // // combine the map of post pages with the home
-    // return Object.assign({}, campaigns, {
-    //   '/': { page: '/' },
-    //   '/campagnes/:slug': { page: '/campagnes' }
-    // })
+    const campaigns = campaignResult.reduce(
+      (base, current) => {
+        base = Object.assign({}, {
+          [ `/campagnes/${ current.uid }` ]: {
+            page : '/campagnes',
+            query: { slug: current.uid }
+          }
+        });
+        return base;
+      }, {}
+    );
+
+    return Object.assign({}, campaigns, { '/': { page: '/' }, '/campagnes/:slug': { page: '/campagnes' }
+    })
   }
+  // async exportPathMap () {
+  //   // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
+  //   const API = await Prismic.api('https://loucarter.cdn.prismic.io/api/v2');
+  //   const campaignList = await API.query( Prismic.Predicates.at( 'document.type', 'campaign' ), {} );
+  //
+  //   // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
+  //   const pages = await campaignList.results.reduce(
+  //     ( pages, campagnes ) => {
+  //       pages = Object.assign( {}, pages,
+  //         {
+  //           [ `/campagnes/${ campagnes.uid }` ]: {
+  //             page: '/campagnes',
+  //             query: { slug: campagnes.uid }
+  //           }
+  //         } );
+  //       console.log({pages});
+  //       return pages;
+  //     },
+  //     {}
+  //   );
+  //
+  //   console.log( 'wesh ', Object.assign( {}, pages, {
+  //     '/': { page: '/' },
+  //     '/campagnes/:slug': { page: '/campagnes' }
+  //   } ) );
+  //
+  //   return {
+  //     '/campagnes/ss19': { page: '/campagnes', query: {slug: 'ss19'} },
+  //     '/campagnes/ff19-20': { page: '/campagnes', query: {slug: 'ff19-20'} }
+  //   };
+  // }
+
+
+
+
+
+  //   // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
+  //   const campaigns = campaignResult.reduce(
+  //     (campaigns, campaign) =>
+  //       Object.assign({}, campaign, {
+  //         [`/campagnes/${campaign.uid}`]: {
+  //           page: '/campagnes',
+  //           query: { slug: campaign.uid }
+  //         }
+  //       }),
+  //     {}
+  //   );
+  //
+  //   // combine the map of post pages with the home
+  //   return Object.assign({}, campaigns, {
+  //     '/': { page: '/' },
+  //     '/campagnes/:slug': { page: '/campagnes' }
+  //   })
+  // }
 } );
-// module.exports = {
-//   exportPathMap: async function() {
-//     return {
-//       '/': { page: '/' },
-//       '/about': { page: '/about' },
-//       '/readme.md': { page: '/readme' },
-//       '/p/hello-nextjs': { page: '/post', query: { title: 'hello-nextjs' } },
-//       '/p/learn-nextjs': { page: '/post', query: { title: 'learn-nextjs' } },
-//       '/p/deploy-nextjs': { page: '/post', query: { title: 'deploy-nextjs' } }
-//     }
-//   }
-// }

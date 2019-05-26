@@ -9,6 +9,11 @@ body * {
   }
 }
 
+.head-wrapper {
+  position : relative;
+  z-index  : 20;
+}
+
 .logo {
   position : absolute;
   top      : 20px;
