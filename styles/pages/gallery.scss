@@ -1,8 +1,6 @@
 @import "../variables/variables";
 div.gallery-container {
   transition : 1s ease;
-  position   : absolute;
-  top        : 0;
   margin     : 0 auto;
   width      : 100%;
   height     : 100vh;
@@ -18,9 +16,14 @@ div.gallery-container {
     overflow : hidden;
   }
   div.gallery-block {
-    display : flex;
-    margin  : auto;
+    position : relative;
+    display  : flex;
+    margin   : 0 auto;
+    width    : 33%;
     div.gallery-item-parent {
+      position  : absolute;
+      top       : 50%;
+      transform : translateY(-50%);
       &.major {
         text-align : center;
       }
@@ -30,13 +33,13 @@ div.gallery-container {
         overflow           : -moz-scrollbars-none;
         -ms-overflow-style : none;
         &::-webkit-scrollbar { width : 0 !important }
-        &> div.gallery-item-block {
-          z-index: -1;
+        & > div.gallery-item-block {
+          z-index : -1;
         }
       }
     }
     div.gallery-item-block {
-      margin : 50px;
+      margin : 50px 10px;
       &:first-of-type > p {
         margin-top : 50%;
       }
