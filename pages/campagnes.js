@@ -9,10 +9,10 @@ class Campagnes extends Component {
     const API = await Prismic.api( PRISMIC_API );
 
     const campaign = await API.query(
-      Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR' }
+      Prismic.Predicates.at( 'my.campaign.uid', query.slug ), { lang: 'fr-FR' }
     );
 
-    return { campaign, slug: query.slug }
+    return { campaign: campaign.results[0], slug: query.slug }
   };
 
   render() {
@@ -21,6 +21,7 @@ class Campagnes extends Component {
       <MainComponent>
         <div>
           { slug }
+          {console.log(this.props.campaign)}
         </div>
       </MainComponent>
     );
