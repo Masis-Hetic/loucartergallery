@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { sliceUrl } from "../../helpers/functions";
 
 class Campaign extends Component {
+
   render() {
     const { campaign } = this.props;
 
@@ -11,24 +13,11 @@ class Campaign extends Component {
           <div className="slides">
 
             <ul>
-              <li>
-                <img src="http://via.placeholder.com/2000x2000" alt=""/>
-              </li>
-              <li>
-                <img src="http://via.placeholder.com/800x750" alt=""/>
-              </li>
-              <li>
-                <img src="http://via.placeholder.com/600x800" alt=""/>
-              </li>
-              <li>
-                <img src="http://via.placeholder.com/1500x2000" alt=""/>
-              </li>
-              <li>
-                <img src="http://via.placeholder.com/2000" alt=""/>
-              </li>
-              <li>
-                <img src="http://via.placeholder.com/2000" alt=""/>
-              </li>
+              {campaign.data.images.map((img, i) =>
+                <li key={i}>
+                  <img src={img && sliceUrl(img.image.url)} alt="" />
+                </li>
+              )}
             </ul>
 
           </div>

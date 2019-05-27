@@ -53,7 +53,7 @@ Campagnes.getInitialProps = async ( { query } ) => {
     Prismic.Predicates.at( 'my.campaign.uid', query.slug ), { lang: 'fr-FR' }
   );
 
-  return { campaign, slug: query.slug }
+  return { campaign: campaign.results[0], slug: query.slug }
 };
 
 export default Campagnes;
