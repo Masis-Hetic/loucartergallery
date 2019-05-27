@@ -47,13 +47,13 @@ div.gallery-container {
         overflow-y         : scroll;
         overflow           : -moz-scrollbars-none;
         -ms-overflow-style : none;
-        padding            : 4rem 12px 0 0;
-        margin             : -4rem 0 0 0;
+        padding            : 6rem 12px 0 0;
+        margin             : -6rem 0 0 0;
         min-height         : 30vh;
         display            : flex;
         flex-direction     : column;
         justify-content    : flex-start;
-
+        scrollbar-width    : none;
         &::-webkit-scrollbar { width : 0 !important }
 
         & > div.gallery-item-block {
