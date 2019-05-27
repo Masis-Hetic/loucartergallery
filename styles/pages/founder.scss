@@ -8,6 +8,7 @@ div.founder-container {
   overflow           : -moz-scrollbars-none;
   -ms-overflow-style : none;
   transition         : 1s ease;
+  scrollbar-width    : none;
   &::-webkit-scrollbar { width : 0 !important }
   div.opacity-text-block {
     position : sticky;
