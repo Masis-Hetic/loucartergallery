@@ -39,6 +39,7 @@ header {
       margin     : auto;
       background : #FFF;
       transition : all .3s ease-in-out;
+
       &:before, &:after {
         position   : absolute;
         background : #FFF;
@@ -47,24 +48,29 @@ header {
         height     : 3px;
         transition : all .3s ease-in-out;
       }
+
       &:before {
         top : -8px;
       }
+
       &:after {
         top : 8px;
       }
     }
+
     &.active > span {
       background : transparent;
+
       &:before {
         transform : rotate(45deg) translate(5px, 6px);
       }
+
       &:after {
         transform : rotate(-45deg) translate(5px, -6px);
       }
     }
 
-  @media (min-width : 576px) { display : block; }
+    @media (min-width : 576px) { display : block; }
   }
 
   @media (min-width : 576px) {
@@ -111,12 +117,17 @@ header {
   left          : 0;
   padding-right : 20px;
   text-align    : right;
+  margin-top    : 50px;
 
   @media (min-width : 576px) {
     padding-right : unset;
     left          : 20px;
     width         : unset;
     text-align    : left;
+  }
+
+  @media (min-width : 1680px) {
+    margin-top : unset;
   }
 
   > ul {
@@ -145,6 +156,10 @@ header {
       &.open {
         line-height : 3;
         transition  : .3s ease-in-out;
+
+        @media (max-width : 1280px) {
+          line-height : 2.6;
+        }
       }
 
       p {
