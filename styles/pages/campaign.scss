@@ -60,6 +60,7 @@ div.slides-wrapper {
   overflow-y : scroll;
   height     : 100%;
   position   : relative;
+  z-index    : 29;
 }
 
 div.slides {
