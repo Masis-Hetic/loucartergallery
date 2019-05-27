@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PartagerPage = ({ result }) => (
-  <div className="partager-container text-gradiant">
+  <div className="partager-container">
     { result.map((datas, i) => (
       <div key={ i } className="partager-block">
         <div className={ `${ datas.slice_type }` }>
