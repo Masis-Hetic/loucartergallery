@@ -85,7 +85,7 @@ div.slides {
     position        : relative;
     padding         : 0;
     margin-top      : 87vh;
-    z-index         : 20;
+    z-index         : 25;
 
     @media (min-width : 576px) {
       padding-left   : 85vw;
@@ -94,8 +94,8 @@ div.slides {
       z-index        : unset;
     }
 
-    @media (min-width: 1920px) {
-      padding-left: 80vw;
+    @media (min-width : 1920px) {
+      padding-left : 80vw;
     }
 
     &::-webkit-scrollbar {
@@ -110,6 +110,7 @@ div.slides {
       height         : 0;
       margin-bottom  : 55vh;
       padding-bottom : 100%;
+      z-index        : 25;
 
       @media (min-width : 576px) {
         margin-right  : calc(100vw - 40vw);
