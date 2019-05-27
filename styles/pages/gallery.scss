@@ -17,12 +17,12 @@ div.gallery-container {
     width   : 33%;
     div.gallery-item-parent {
       &.major {
-        text-align      : center;
-        min-height      : 30vh;
-        display         : flex;
-        flex-direction  : column;
-        justify-content : flex-start;
-        line-height     : 3;
+        text-align  : center;
+        min-height  : 30vh;
+        //display         : flex;
+        //flex-direction  : column;
+        //justify-content : flex-start;
+        line-height : 3;
         h2 { font-weight : 600; }
         h3 { margin-top : 50px; }
       }
@@ -46,6 +46,11 @@ div.gallery-container {
       &:last-of-type > p {
         margin-bottom : 50%;
       }
+    }
+    @media (min-width : 576px) {}
+    @media (min-width : 768px) {}
+    @media (min-width : 1280px) {
+      width    : 90%;
     }
   }
 }
