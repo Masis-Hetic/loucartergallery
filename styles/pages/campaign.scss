@@ -54,9 +54,13 @@
 }
 
 .slides-wrapper {
-  overflow-x : scroll;
+  overflow-y: scroll;
   height     : 100%;
   position   : relative;
+
+  @media (min-width : 576px) {
+    overflow-x : scroll;
+  }
 }
 
 .slides {
