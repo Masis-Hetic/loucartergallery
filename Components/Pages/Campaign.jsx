@@ -35,11 +35,13 @@ class Campaign extends Component {
         </div>
 
         <div className="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet consectetur debitis doloremque
-          doloribus dolorum earum et fuga itaque labore magnam mollitia natus officia, optio perferendis praesentium
-          quae quasi qui quo quod repellendus saepe similique sint sit voluptatibus voluptatum. Aliquid animi cupiditate
-          doloremque dolorum explicabo harum libero nostrum nulla odio perferendis perspiciatis quia quibusdam rem
-          reprehenderit, sit tempore totam.
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias amet consectetur debitis doloremque
+            doloribus dolorum earum et fuga itaque labore magnam mollitia natus officia, optio perferendis praesentium
+            quae quasi qui quo quod repellendus saepe similique sint sit voluptatibus voluptatum. Aliquid animi cupiditate
+            doloremque dolorum explicabo harum libero nostrum nulla odio perferendis perspiciatis quia quibusdam rem
+            reprehenderit, sit tempore totam.
+          </p>
         </div>
       </div>
     );
