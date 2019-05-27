@@ -1,0 +1,148 @@
+div.wrapper {
+  width    : 100vw;
+  height   : 100vh;
+  position : relative;
+}
+
+div.text {
+  width          : 80vw;
+  height         : 70vh;
+  position       : absolute;
+  top            : 50%;
+  left           : 50%;
+  transform      : translate(-50%, -50%);
+  line-height    : 1.7;
+  overflow-y     : scroll;
+  font-size      : 0.85rem;
+  margin-top     : 20px;
+  display        : flex;
+  text-align     : justify;
+  align-items    : center;
+  pointer-events : none;
+  z-index        : 10;
+
+  @media (min-width : 576px) {
+    //height         : unset;
+    min-width      : 30vw;
+    max-width      : 40vw;
+    margin-top     : 0;
+    font-size      : 1rem;
+    padding-right  : 12px;
+    line-height    : 2;
+    pointer-events : unset;
+
+    &::-webkit-scrollbar {
+      display : none;
+    }
+  }
+
+  @media (min-width : 1280px) {
+    max-width : 35vw;
+  }
+
+  @media (min-width : 1440px) {
+    max-width   : 35vw;
+    line-height : 2.2;
+    font-size   : 1.1rem;
+  }
+
+  @media (min-width : 1680px) {
+    font-size   : 1.2rem;
+    line-height : 2.4;
+  }
+
+  p {
+    max-height : 60vh;
+  }
+}
+
+div.slides-wrapper {
+  overflow-y : scroll;
+  height     : 100%;
+  position   : relative;
+  z-index    : 29;
+}
+
+div.slides {
+  overflow        : hidden;
+  display         : flex;
+  flex-direction  : column;
+  justify-content : flex-start;
+  width           : auto;
+  position        : relative;
+  z-index         : 19;
+
+  @media (min-width : 576px) {
+    flex-direction : row;
+    top            : 50%;
+    transform      : translateY(-50%);
+    height         : 100vh;
+  }
+
+  ul {
+    display         : flex;
+    justify-content : space-between;
+    flex-direction  : column;
+    overflow        : scroll;
+    position        : relative;
+    padding         : 0;
+    margin-top      : 87vh;
+    z-index         : 25;
+
+    @media (min-width : 576px) {
+      padding-left   : 85vw;
+      flex-direction : row;
+      margin-top     : unset;
+      z-index        : unset;
+    }
+
+    @media (min-width : 1920px) {
+      padding-left : 80vw;
+    }
+
+    &::-webkit-scrollbar {
+      display : none;
+    }
+
+    li {
+      margin-right   : 0;
+      flex           : none;
+      position       : relative;
+      width          : 100vw;
+      height         : 0;
+      margin-bottom  : 55vh;
+      padding-bottom : 100%;
+      z-index        : 25;
+
+      @media (min-width : 576px) {
+        margin-right  : calc(100vw - 40vw);
+        margin-bottom : 0;
+        height        : 100vh;
+        max-width     : 60vw;
+      }
+
+      &:last-of-type {
+        margin-right  : 0;
+        margin-bottom : 0;
+      }
+
+      img {
+        display    : block;
+        width      : auto;
+        height     : auto;
+        max-width  : 100%;
+        max-height : 100%;
+        position   : absolute;
+        top        : 0;
+        left       : 50%;
+        transform  : translateX(-50%);
+
+        @media (min-width : 576px) {
+          top       : 50%;
+          left      : 50%;
+          transform : translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}
