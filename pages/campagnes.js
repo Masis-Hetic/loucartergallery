@@ -39,7 +39,6 @@ import Campaign from "../Components/Pages/Campaign";
 const Campagnes = ({ campaign }) => {
   return (
     <MainComponent>
-      {console.log(campaign)}
       <Campaign campaign={campaign} />
     </MainComponent>
   )
