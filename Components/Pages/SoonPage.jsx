@@ -2,7 +2,7 @@ import React from 'react';
 
 const SoonPage = () => (
   <div>
-    <p>Coming soon !</p>
+    <h1>Coming soon</h1>
   </div>
 );
 
