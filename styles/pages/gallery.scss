@@ -29,10 +29,12 @@ div.gallery-container {
 
   div.gallery-block {
     display : flex;
+    flex: none;
     width: 100%;
 
     @media (min-width: 576px) {
       width   : 33%;
+      flex: unset;
     }
 
     &:nth-of-type(1) { 
