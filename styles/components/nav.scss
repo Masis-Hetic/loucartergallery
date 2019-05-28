@@ -130,6 +130,16 @@ header {
     margin-top : unset;
   }
 
+  a {
+    border-bottom: 1px solid;
+    padding-bottom: 1px;
+
+    @media (min-width: 576px) {
+      border-bottom: none;
+      padding-bottom: unset;
+    }
+  }
+
   > ul {
     display         : flex;
     flex-direction  : column;

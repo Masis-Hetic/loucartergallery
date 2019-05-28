@@ -23,13 +23,20 @@ div.founder-container {
     margin    : 5% auto;
     left      : 50%;
     transform : translateX(-50%);
-    width     : 60%;
+    width     : 80%;
+    padding-bottom: 7rem;
+
+    @media (min-width: 576px) {
+      width: 60%;
+      padding-bottom: unset;
+    }
+
     &:last-of-type { margin-bottom : 50px; }
     div.founder-item-block {
       h2, h3, p { margin : 0 auto 20px; }
-      h2, h3 { font-family : 'Raleway', sans-serif; }
+      
       h3 { text-align : center; }
-      p { font-family : 'Montserrat', sans-serif; }
+      p { line-height: 2; }
     }
   }
   @media (min-width : 576px) {

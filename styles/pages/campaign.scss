@@ -6,7 +6,7 @@ div.wrapper {
 
 div.text {
   width           : 80vw;
-  height          : 70vh;
+  max-height      : 70vh;
   position        : absolute;
   top             : 50%;
   left            : 50%;
@@ -16,16 +16,18 @@ div.text {
   font-size       : 0.85rem;
   margin-top      : 20px;
   display         : flex;
+  flex-direction  : column;
   text-align      : justify;
   align-items     : center;
   pointer-events  : none;
   z-index         : 10;
   scrollbar-width : none;
 
+  div.description { margin : 1rem 0; }
 
   @media (min-width : 576px) {
     //height         : unset;
-    min-width      : 30vw;
+    min-width      : 70vw;
     max-width      : 40vw;
     margin-top     : 0;
     font-size      : 1rem;
@@ -38,23 +40,28 @@ div.text {
     }
   }
 
+  @media (min-width : 768px) {
+    min-width : 55vw;
+  }
+
   @media (min-width : 1280px) {
     max-width : 35vw;
   }
 
   @media (min-width : 1440px) {
-    max-width   : 35vw;
+    min-width   : 40vw;
+    max-width   : 40vw;
     line-height : 2.2;
     font-size   : 1.1rem;
+
+    div.description { margin : 2rem 0; }
   }
 
-  @media (min-width : 1680px) {
+  @media (min-width : 3000px) {
+    min-width   : 40vw;
+    max-width   : 40vw;
     font-size   : 1.2rem;
     line-height : 2.4;
-  }
-
-  p {
-    max-height : 60vh;
   }
 }
 

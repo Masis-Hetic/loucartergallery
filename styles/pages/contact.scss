@@ -45,12 +45,20 @@ div.contact-container {
     div.contact-item-block {
       margin : 25% 0;
       h2, h3, p { margin : 0 auto; }
-      h2, h3 { font-family : 'Raleway', sans-serif; }
-      h3 { text-align : center; }
+      h3 { 
+        text-align : center;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: .8rem;
+      }
       p {
-        font-family   : 'Montserrat', sans-serif;
         overflow      : hidden;
         text-overflow : ellipsis;
+
+        @media (max-width: 320px) {
+          font-size: .8rem;
+          letter-spacing: 3.5px;
+        }
       }
     }
   }
