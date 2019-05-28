@@ -48,8 +48,8 @@ a{
   color: #DEDEDE;
 }
 p:not(.except) {
-  line-height: 1.7
-    font-weight: 300;
+  line-height: 1.7;
+  font-weight: 300;
 }
 h1:not(.except) {
   line-height: 2.7
