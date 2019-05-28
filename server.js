@@ -10,7 +10,11 @@ app.prepare().then(() => {
   const server = express();
 
   server.get('/campagnes/:slug', (req, res) => {
-    return app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug }))
+    return app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug }));
+  });
+
+  server.get('/la-fondatrice', (req, res) => {
+    return app.render(req, res, '/la-fondatrice');
   });
 
   server.get('*', (req, res) => {
