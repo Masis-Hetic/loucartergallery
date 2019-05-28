@@ -45,11 +45,11 @@ const Nav = ( { nav } ) => {
                       <p id={ i } className="except" onClick={ () => toggleList( i ) }>{ link.data.link_one[ 0 ].text }</p>
                       <ul className={ isListOpen ? `${ isList } test` : '' }>
                         { link.data.body.map( ( sublink, i ) =>
-                          sublink.primary.link_to_level_two.uid
+                          sublink.primary.link_to_level_two && sublink.primary.link_to_level_two.uid
                             ? (
                               <li key={ i }>
                                 <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
-                                  <a>{ sublink.primary.link_two[ 0 ].text }</a>
+                                  <a>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text  }</a>
                                 </Link>
                               </li>
                             )
@@ -59,7 +59,8 @@ const Nav = ( { nav } ) => {
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
                                     <li key={ i } onClick={ toggleMenu }>
-                                      {thirdLink.link_three_href[0].text !== ''
+                                      {thirdLink.link_three[0].text === undefined ? null :
+                                        thirdLink.link_three_href[0].text !== ''
                                         ? (
                                           <Link
                                             href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
