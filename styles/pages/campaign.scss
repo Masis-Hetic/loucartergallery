@@ -221,7 +221,7 @@ div.slide-mobile {
     flex-direction  : column;
     justify-content : unset;
     overflow-y      : scroll;
-    padding-bottom  : 11rem;
+    //padding-bottom  : 11rem;
 
     li {
       padding : 10px;
@@ -243,6 +243,7 @@ div.slide-mobile {
 
   &.open {
     bottom : 0;
+    padding-bottom: 10rem;
 
     svg {
       transform : rotate(180deg);
