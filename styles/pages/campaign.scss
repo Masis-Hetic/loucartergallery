@@ -29,7 +29,7 @@ div.text {
   overflow-y     : scroll;
   line-height    : 1.7;
   font-size      : .85rem;
-  padding-bottom : 6rem;
+  padding-bottom : 8rem;
   text-align     : justify;
   display        : flex;
   align-items    : center;
@@ -257,7 +257,7 @@ div.slide-mobile {
   }
 
   &.close {
-    bottom : -55vh;
+    bottom : -60vh;
   }
 
   p {
