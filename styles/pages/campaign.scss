@@ -38,7 +38,7 @@ div.text {
   div.description { margin : 1rem 0; }
 
   p {
-    &:last-child { margin-bottom: 10rem; }
+    &:last-child { margin: 1rem 0 10rem; }
   }
 
   @media (min-width : 576px) {
