@@ -246,8 +246,10 @@ div.slide-mobile {
     bottom         : 0;
     position       : fixed;
     left           : 0;
+    top            : 0;
     width          : 100vw;
     padding-bottom : 10rem;
+    z-index        : 50;
 
     svg {
       transform : rotate(180deg);
