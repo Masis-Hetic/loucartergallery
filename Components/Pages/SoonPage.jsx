@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SoonPage = () => (
-  <div>
+  <div className="soon-container">
     <h1>Coming soon</h1>
   </div>
 );
