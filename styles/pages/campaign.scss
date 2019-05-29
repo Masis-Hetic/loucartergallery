@@ -29,13 +29,17 @@ div.text {
   overflow-y     : scroll;
   line-height    : 1.7;
   font-size      : .85rem;
-  padding-bottom : 15rem;
+  //padding-bottom : 15rem;
   text-align     : justify;
   display        : flex;
   align-items    : center;
   flex-direction : column;
 
   div.description { margin : 1rem 0; }
+
+  p {
+    &:last-child { margin-bottom: 10rem; }
+  }
 
   @media (min-width : 576px) {
     position        : absolute;
