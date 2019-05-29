@@ -3,40 +3,70 @@ import SanitizedHTML from 'react-sanitized-html';
 import { sliceUrl } from "../../helpers/functions";
 
 class Campaign extends Component {
+  state = {
+    isOpen: false
+  };
+
+  openSlider = () => this.setState({ isOpen: !this.state.isOpen });
 
   render() {
     const { campaign } = this.props;
+    const { isOpen } = this.state;
 
     // noinspection JSUnresolvedVariable
     return (
       <div className="wrapper">
-        { console.log( campaign ) }
+
+        <div className={`slide-mobile ${isOpen ? 'open' : 'close'}`}>
+          <p onClick={this.openSlider}>
+            <svg style={{width: 28, height: 28}} viewBox="0 0 24 24">
+              <path fill="#fff" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+            </svg>
+          </p>
+          {console.log(campaign.data.images.length)}
+          <ul>
+            { campaign.data.images.map( ( img, i ) =>
+              <li key={ i }>
+                <img src={ img && sliceUrl( img.image.url ) } alt=""/>
+              </li>
+            ) }
+          </ul>
+        </div>
+
         <div className="slides-wrapper">
           <div className="slides">
-
-            <ul>
-              { campaign.data.images.map( ( img, i ) =>
-                <li key={ i }>
-                  <img src={ img && sliceUrl( img.image.url ) } alt=""/>
-                </li>
-              ) }
-            </ul>
-
+            <div className="slider-wrapper">
+              <ul>
+                { campaign.data.images.map( ( img, i ) =>
+                  <li key={ i }>
+                    <img src={ img && sliceUrl( img.image.url ) } alt=""/>
+                  </li>
+                ) }
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="text">
-          <h1>{ campaign.data.title[ 0 ].text }</h1>
+        <div className="text-wrapper">
+          <div className="text">
+            <h1>{ campaign.data.title[ 0 ].text }</h1>
 
-          <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
-          <div className="description">
-            { campaign.data.description.map( ( p, i ) => <SanitizedHTML key={ i } html={ p.text }/> ) }
+            <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
+            <div className="description">
+              { campaign.data.description.map( ( p, i ) => <SanitizedHTML key={ i } html={ p.text }/> ) }
+            </div>
+
+            <p>{ campaign.data.fin_de_description[0].text && campaign.data.fin_de_description[0].text }</p>
+
+            <p>Détail des oeuvres</p>
           </div>
-
-          <p>{ campaign.data.fin_de_description[0].text && campaign.data.fin_de_description[0].text }</p>
-
-          <p>Détail des oeuvres</p>
         </div>
+
+        <style jsx>{`
+        .slides .slider-wrapper ul::before {
+          width: ${campaign.data.images.length * 100}vw;
+        }
+        `}</style>
       </div>
     );
   }
