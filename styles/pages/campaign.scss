@@ -221,11 +221,11 @@ div.slide-mobile {
     flex-direction  : column;
     justify-content : unset;
     overflow-y      : scroll;
-    padding-bottom  : 10rem;
+    padding-bottom  : 11rem;
 
     li {
-      padding       : 10px;
-      margin-bottom : 20vh;
+      padding : 10px;
+      margin  : 0 auto 20vh;
 
       &:last-of-type { margin-bottom : 0; }
 
