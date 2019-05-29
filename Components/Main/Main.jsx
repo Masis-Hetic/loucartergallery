@@ -10,17 +10,19 @@ const MainComponent = props => (
   <main className="clearfix">
 
     <div className="head-wrapper">
-      <Link href={'/'}>
-        <a className="logo">
-          <span>
-            lou <br/>
-            carter <br/>
-          </span>
-          <span>
-            gallery
-          </span>
-        </a>
-      </Link>
+      <div className="logo-wrapper">
+        <Link href={'/'}>
+          <a className="logo">
+            <span>
+              lou <br/>
+              carter <br/>
+            </span>
+            <span>
+              gallery
+            </span>
+          </a>
+        </Link>
+      </div>
 
       <Nav />
 

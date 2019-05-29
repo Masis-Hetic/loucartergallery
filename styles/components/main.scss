@@ -12,6 +12,21 @@ body * {
 .head-wrapper {
   position : relative;
   z-index  : 50;
+  height   : 7rem;
+
+  @media (min-width : 576px) {
+    height : unset;
+  }
+}
+
+.logo-wrapper {
+  height: 7rem;
+  position: static;
+
+  @media (min-width: 576px) {
+    position: unset;
+    height: auto;
+  }
 }
 
 .logo {
