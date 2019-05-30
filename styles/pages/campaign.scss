@@ -23,22 +23,22 @@ div.text {
   //pointer-events : none;
   //z-index        : 10;
 
-  width          : 80vw;
-  height         : 70vh;
-  margin         : 10px auto 0;
-  overflow-y     : scroll;
-  line-height    : 1.7;
-  font-size      : .85rem;
+  width           : 80vw;
+  height          : 70vh;
+  margin          : 10px auto 0;
+  overflow-y      : scroll;
+  line-height     : 1.7;
+  font-size       : .85rem;
   //padding-bottom : 15rem;
-  text-align     : justify;
-  display        : flex;
-  align-items    : center;
-  flex-direction : column;
+  text-align      : justify;
+  display         : flex;
+  align-items     : center;
+  flex-direction  : column;
 
   div.description { margin : 1rem 0; }
 
   p {
-    &:last-child { margin: 1rem 0 10rem; }
+    &:last-child { margin : 1rem 0 10rem; }
   }
 
   @media (min-width : 576px) {
@@ -55,7 +55,7 @@ div.text {
     line-height     : 2;
     pointer-events  : unset;
     display         : flex;
-    justify-content : center;
+    justify-content : start;
     padding-bottom  : 0;
 
     &::-webkit-scrollbar {
@@ -140,7 +140,7 @@ div.slides {
       display         : flex;
       position        : relative;
       overflow        : scroll;
-      justify-content : space-between;
+      justify-content : flex-start;
       padding-left    : 85vw;
       flex-direction  : row;
       margin-top      : unset;
@@ -154,7 +154,6 @@ div.slides {
         top        : 0;
         left       : 85vw;
         background : #080808;
-        //width: 300vw;
         height     : 100vh;
       }
     }
@@ -173,7 +172,7 @@ div.slides {
       width    : 100vw;
 
       @media (min-width : 576px) {
-        margin-right  : calc(100vw - 40vw);
+        margin-right  : 40vw;
         position      : relative;
         z-index       : 25;
         margin-bottom : 0;
@@ -200,8 +199,12 @@ div.slides {
           max-height : 100%;
           position   : absolute;
           top        : 50%;
-          left       : 50%;
-          transform  : translate(-50%, -50%);
+          left       : 0;
+          transform  : translate(0%, -50%);
+        }
+
+        @media (min-width: 3900px) {
+          width: 100%;
         }
       }
     }
