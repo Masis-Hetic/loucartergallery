@@ -19,7 +19,7 @@ const LaFondatrice = ( { body }) => (
   </Fragment>
 );
 
-LaFondatrice.getInitialProps = async( {}) => {
+LaFondatrice.getInitialProps = async( {} ) => {
   const API = await Prismic.api(PRISMIC_API);
   const response = await API.query(Prismic.Predicates.at('document.type', 'la_fondatrice'), { lang: 'fr-FR' });
   const { body } = response.results[ 0 ].data;

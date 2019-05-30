@@ -175,7 +175,9 @@ module.exports = withSass( {
       '/'              : { page: '/' },
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
-      '/la-fondatrice' : { page: '/la-fondatrice' }
+      '/la-fondatrice' : { page: '/la-fondatrice' },
+      '/soon'          : { page: '/soon' },
+      '/partager'      : { page: '/partager' },
     });
   }
 } );

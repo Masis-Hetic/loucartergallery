@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FounderPage = ({ result }) => (
-  <div className="founder-container text-gradiant">
+  <div className="founder-container">
     { result.map((datas, i) => (
       <div key={ i } className="founder-block">
         <div className={ `${ datas.slice_type }` }>

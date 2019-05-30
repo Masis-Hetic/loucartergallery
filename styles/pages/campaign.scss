@@ -30,10 +30,11 @@ div.text {
   line-height     : 1.7;
   font-size       : .85rem;
   //padding-bottom : 15rem;
-  text-align      : justify;
-  display         : flex;
-  align-items     : center;
-  flex-direction  : column;
+  text-align     : justify;
+  display        : flex;
+  align-items    : center;
+  flex-direction : column;
+  scrollbar-width : none;
 
   div.description { margin : 1rem 0; }
 

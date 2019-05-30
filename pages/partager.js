@@ -22,7 +22,7 @@ const Partager = ({ body }) => (
 Partager.getInitialProps = async({}) => {
   const API = await Prismic.api(PRISMIC_API);
   const response = await API.query(Prismic.Predicates.at('document.type', 'partager'), { lang: 'fr-FR' });
-  const { body } = response.results[ 0 ].data;
+  const body = response.results;
   return { body };
 };
 

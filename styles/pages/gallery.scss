@@ -37,7 +37,7 @@ div.gallery-container {
     }
 
     &:nth-of-type(1) {
-      @media (min-width : 576px) {
+      @media (min-width: 576px) {
         margin-right : 2rem;
       }
     }
@@ -107,6 +107,7 @@ div.gallery-container {
           display            : flex;
           flex-direction     : column;
           justify-content    : flex-start;
+          scrollbar-width    : none;
         }
 
         &::-webkit-scrollbar { width : 0 !important }
