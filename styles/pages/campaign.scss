@@ -6,34 +6,17 @@ div.wrapper {
 }
 
 div.text {
-  //width          : 80vw;
-  //max-height     : calc(100vh - 6rem);
-  //position       : absolute;
-  //top            : 0;
-  //left           : 50%;
-  //transform      : translate(-50%, 0%);
-  //line-height    : 1.7;
-  //overflow-y     : scroll;
-  //font-size      : 0.8rem;
-  ////margin-top     : 20px;
-  //display        : flex;
-  //flex-direction : column;
-  //text-align     : justify;
-  //align-items    : center;
-  //pointer-events : none;
-  //z-index        : 10;
-
   width           : 80vw;
   height          : 70vh;
   margin          : 10px auto 0;
   overflow-y      : scroll;
   line-height     : 1.7;
   font-size       : .85rem;
-  //padding-bottom : 15rem;
-  text-align      : justify;
-  display         : flex;
-  align-items     : center;
-  flex-direction  : column;
+  text-align     : justify;
+  display        : flex;
+  align-items    : center;
+  flex-direction : column;
+  scrollbar-width : none;
 
   div.description { margin : 1rem 0; }
 
@@ -90,7 +73,6 @@ div.text {
 
 div.slides-wrapper {
   position : relative;
-  //height   : 100%;
   z-index  : 29;
 
   @media (min-width : 576px) {
@@ -99,13 +81,6 @@ div.slides-wrapper {
 }
 
 div.slides {
-  //overflow        : hidden;
-  //display         : flex;
-  //flex-direction  : column;
-  //justify-content : flex-start;
-  //width           : auto;
-  //position        : relative;
-  //z-index         : 19;
   display : none;
 
   @media (min-width : 576px) {
@@ -123,18 +98,9 @@ div.slides {
   .slider-wrapper {
     overflow : scroll;
     position : relative;
-    //background      : #080808;
   }
 
   ul {
-    //display         : flex;
-    //justify-content : space-between;
-    //flex-direction  : column;
-    //overflow        : scroll;
-    //position        : relative;
-    //padding         : 0;
-    //margin-top      : 87vh;
-    //z-index         : 25;
 
     @media (min-width : 576px) {
       display         : flex;
@@ -180,16 +146,7 @@ div.slides {
         max-width     : 60vw;
       }
 
-      &:last-of-type {
-        //margin-right  : 0;
-        //margin-bottom : 0;
-      }
-
       img {
-        //position   : absolute;
-        //top        : 0;
-        //left       : 50%;
-        //transform  : translateX(-50%);
 
         @media (min-width : 576px) {
           display    : block;
@@ -228,7 +185,6 @@ div.slide-mobile {
     flex-direction  : column;
     justify-content : unset;
     overflow-y      : scroll;
-    //padding-bottom  : 11rem;
 
     li {
       padding : 10px;
@@ -239,7 +195,6 @@ div.slide-mobile {
 
       img {
         display    : block;
-        //width      : auto;
         height     : auto;
         width      : 100%;
         max-height : 100%;
