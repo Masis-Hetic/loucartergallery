@@ -33,7 +33,15 @@ const Nav = ( { nav } ) => {
       toggleModal( !newsletter );
     }
   };
-
+  
+  const [ email, setEmail ] = useState( '' );
+  const handlerEmail = email => {
+    if (true) { // TODO tester si l'email est valide
+      console.log({email});
+      setEmail( email );
+    }
+  };
+  
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
@@ -122,9 +130,9 @@ const Nav = ( { nav } ) => {
           <form>
             <div className="input-wrapper">
               <label htmlFor="mail">Adresse e-mail :</label>
-              <input id="mail" type="email" placeholder="monemail@gmail.com" />
+              <input id="mail" type="email" placeholder="monemail@mail.com" />
             </div>
-            <input type="submit" value="S'inscrire" />
+            <input type="submit" value="S'inscrire" onClick={ handlerEmail }/>
           </form>
         </div>
       </div>

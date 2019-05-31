@@ -15,13 +15,13 @@ export const news = (req, res, next) => {
     try {
       let respObj = {};
       if (response.statusCode === 200) {
-        respObj = { success: `` }
+        respObj = { success: `Subscribed using ${email}`, message: JSON.parse(response.body) };
       } else {
-        respObj = { error: `` }
+        respObj = { error: `Error trying to subscribe ${email}. Plese try again.`, message: JSON.parse(response.body) }
       }
       res.send(respObj);
     } catch (e) {
-      const respErrorObj = { error: `` }
+      const respErrorObj = { error: `There was an error with your request`, message: error.message };
       res.send(respErrorObj);
     }
   });
