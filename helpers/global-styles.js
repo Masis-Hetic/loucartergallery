@@ -52,18 +52,18 @@ p:not(.except) {
   font-weight: 300;
 }
 h1:not(.except) {
-  line-height: 2.7
-  font-family: 'Roboto', sans-serif;
+  line-height: 2.7;
+  // font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 h2:not(.except) {
-  line-height: 2.7
-  font-family: 'Montserrat', sans-serif;
+  line-height: 2.7;
+  // font-family: 'Montserrat', sans-serif;
   font-weight: 500;
 }
 h3:not(.except) {
-  line-height: 2.7
-  font-family: 'Montserrat', sans-serif;
+  line-height: 2.7;
+  // font-family: 'Montserrat', sans-serif;
   font-weight: 500;
 }
 .text-gradiant {
