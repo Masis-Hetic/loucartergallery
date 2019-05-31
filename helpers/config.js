@@ -9,4 +9,4 @@ export const LIST_ID = '0'; // TODO récupéré la mail champ list id
 export const ADDRESS = 'loucartergallery.com'; // TODO ajouter la bonne address ou verifier
 
 // export const ADD_MEMBER_URL = `https://${ADDRESS}/${MAILCHIMP_API_URL}lists/${LIST_ID}/members/`;
-export const ADD_MEMBER_URL = `${MAILCHIMP_API_URL}`;
+export const ADD_MEMBER_URL = `${MAILCHIMP_API_URL}`; // TODO trouver la bonne URL
