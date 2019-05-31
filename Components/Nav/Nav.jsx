@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import Link from "next/link";
 
 import { connect } from "react-redux";
+import COLORS from "../../helpers/colors";
 
 const mapStateToProps = state => {
   return {
@@ -174,20 +175,24 @@ const Nav = ( { nav } ) => {
       form input {
         line-height: 4;
         padding-left: 1rem;
-        border-radius: 4px;
         border: none;
         margin: 0 auto;
       }
       .newsletter-wrapper form label, form input {
         display: block; 
       }
-      input[type="email"] {
+      form input[type="email"] {
         width: 50%;
+        background: #080808;
+        border: 1px solid ${COLORS.lightGrey};
       }
-      input[type="submit"] {
+      form input[type="submit"] {
         margin-top: 1rem;
         padding: 0 1rem;
         display: table;
+        background: #080808;
+        color: ${COLORS.lightGrey};
+        border: 1px solid ${COLORS.lightGrey};
       }
       .close-newsletter-btn {
         position: absolute;
