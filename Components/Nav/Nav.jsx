@@ -38,14 +38,18 @@ const Nav = ( { nav } ) => {
   
   const [ email, setEmail ] = useState( '' );
   const handlerEmail = email => {
-    if (validateEmail(email)) { // TODO tester si l'email est valide
+    if (validateEmail(email)) {
       setEmail( email );
     }
   };
   
-  const onSubmit = async email => {
-    // email.preventDefault();
-    subscribeToNews(email)
+  const onSubmit = async (e, email) => {
+    e.preventDefault();
+    if (!!email) {
+      subscribeToNews(email);
+    } else {
+      // TODO faire un truc tahi
+    }
   };
   
   // noinspection JSUnresolvedVariable
@@ -139,7 +143,7 @@ const Nav = ( { nav } ) => {
               <input id="mail" type="email" placeholder="monemail@mail.com"
               onChange={ ({ target }) => handlerEmail(target.value) } value={ email }/>
             </div>
-            <input type="submit" value="S'inscrire" onClick={ () => onSubmit(email) }/>
+            <input type="submit" value="S'inscrire" onClick={ (e) => onSubmit(e, email) }/>
           </form>
         </div>
       </div>
