@@ -44,14 +44,25 @@ const Nav = ( { nav } ) => {
                     <Fragment>
                       <p id={ i } className="except" onClick={ () => toggleList( i ) }>{ link.data.link_one[ 0 ].text }</p>
                       <ul className={ isListOpen ? `${ isList } test` : '' }>
+                        {console.log({link})}
                         { link.data.body.map( ( sublink, i ) =>
-                          sublink.primary.link_to_level_two && sublink.primary.link_to_level_two.uid
+                          sublink.primary.link_to_level_two
                             ? (
-                              <li key={ i }>
-                                <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
-                                  <a>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text  }</a>
-                                </Link>
-                              </li>
+                              sublink.primary.link_to_level_two.uid
+                                ? (
+                                  <li key={ i }>
+                                    <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
+                                      <a>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text  }</a>
+                                    </Link>
+                                  </li>
+                                )
+                                : (
+                                  <li key={ i }>
+                                    <Link href={ `${ sublink.primary.link_to_level_two.url }` }>
+                                      <a target="_blank">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text  }</a>
+                                    </Link>
+                                  </li>
+                                )
                             )
                             : (
                               <Fragment key={ i }>

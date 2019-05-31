@@ -14,7 +14,6 @@ const Index = ({result}) => (
       <title>{result.data.description[0].text}</title>
     </Head>
     <MainComponent>
-      {console.log({result})}
       <HomePage result={result} />
     </MainComponent>
   </Fragment>
