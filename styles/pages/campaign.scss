@@ -6,40 +6,38 @@ div.wrapper {
 }
 
 div.text {
-  //width          : 80vw;
-  //max-height     : calc(100vh - 6rem);
-  //position       : absolute;
-  //top            : 0;
-  //left           : 50%;
-  //transform      : translate(-50%, 0%);
-  //line-height    : 1.7;
-  //overflow-y     : scroll;
-  //font-size      : 0.8rem;
-  ////margin-top     : 20px;
-  //display        : flex;
-  //flex-direction : column;
-  //text-align     : justify;
-  //align-items    : center;
-  //pointer-events : none;
-  //z-index        : 10;
-
-  width          : 80vw;
-  height         : 70vh;
-  margin         : 10px auto 0;
-  overflow-y     : scroll;
-  line-height    : 1.7;
-  font-size      : .85rem;
-  //padding-bottom : 15rem;
+  width           : 80vw;
+  height          : 70vh;
+  margin          : 10px auto 0;
+  overflow-y      : scroll;
+  line-height     : 1.7;
+  font-size       : .85rem;
   text-align     : justify;
   display        : flex;
   align-items    : center;
   flex-direction : column;
   scrollbar-width : none;
 
+  h1 {
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 1rem;
+
+    @media (min-width: 1280px) {
+      margin-bottom: .7rem;
+    }
+  }
+
   div.description { margin : 1rem 0; }
 
   p {
-    &:last-child { margin: 1rem 0 10rem; }
+    &:last-child {
+      margin : 1rem 0 10rem;
+
+      @media (min-width: 576px) {
+        margin: 1rem 0 0 0;
+      }
+    }
   }
 
   @media (min-width : 576px) {
@@ -51,7 +49,7 @@ div.text {
     min-width       : 70vw;
     max-width       : 40vw;
     margin-top      : 0;
-    font-size       : 1rem;
+    font-size       : .85rem;
     padding-right   : 12px;
     line-height     : 2;
     pointer-events  : unset;
@@ -65,7 +63,10 @@ div.text {
   }
 
   @media (min-width : 768px) {
-    min-width : 55vw;
+    min-width : 35vw;
+    max-width: 35vw;
+    line-height: 1.9;
+    font-size: .8rem;
   }
 
   @media (min-width : 1280px) {
@@ -73,25 +74,24 @@ div.text {
   }
 
   @media (min-width : 1440px) {
-    min-width   : 40vw;
-    max-width   : 40vw;
-    line-height : 2.2;
-    font-size   : 1.1rem;
+    min-width   : 35vw;
+    max-width   : 35vw;
+    line-height : 2.1;
+    font-size   : .9rem;
 
     div.description { margin : 2rem 0; }
   }
 
   @media (min-width : 3000px) {
-    min-width   : 40vw;
-    max-width   : 40vw;
-    font-size   : 1.2rem;
-    line-height : 2.4;
+    min-width   : 35vw;
+    max-width   : 35vw;
+    font-size   : 1.05rem;
+    line-height : 2.2;
   }
 }
 
 div.slides-wrapper {
   position : relative;
-  //height   : 100%;
   z-index  : 29;
 
   @media (min-width : 576px) {
@@ -100,13 +100,6 @@ div.slides-wrapper {
 }
 
 div.slides {
-  //overflow        : hidden;
-  //display         : flex;
-  //flex-direction  : column;
-  //justify-content : flex-start;
-  //width           : auto;
-  //position        : relative;
-  //z-index         : 19;
   display : none;
 
   @media (min-width : 576px) {
@@ -124,24 +117,15 @@ div.slides {
   .slider-wrapper {
     overflow : scroll;
     position : relative;
-    //background      : #080808;
   }
 
   ul {
-    //display         : flex;
-    //justify-content : space-between;
-    //flex-direction  : column;
-    //overflow        : scroll;
-    //position        : relative;
-    //padding         : 0;
-    //margin-top      : 87vh;
-    //z-index         : 25;
 
     @media (min-width : 576px) {
       display         : flex;
       position        : relative;
       overflow        : scroll;
-      justify-content : space-between;
+      justify-content : flex-start;
       padding-left    : 85vw;
       flex-direction  : row;
       margin-top      : unset;
@@ -155,7 +139,6 @@ div.slides {
         top        : 0;
         left       : 85vw;
         background : #080808;
-        //width: 300vw;
         height     : 100vh;
       }
     }
@@ -174,7 +157,7 @@ div.slides {
       width    : 100vw;
 
       @media (min-width : 576px) {
-        margin-right  : calc(100vw - 40vw);
+        margin-right  : 40vw;
         position      : relative;
         z-index       : 25;
         margin-bottom : 0;
@@ -182,16 +165,7 @@ div.slides {
         max-width     : 60vw;
       }
 
-      &:last-of-type {
-        //margin-right  : 0;
-        //margin-bottom : 0;
-      }
-
       img {
-        //position   : absolute;
-        //top        : 0;
-        //left       : 50%;
-        //transform  : translateX(-50%);
 
         @media (min-width : 576px) {
           display    : block;
@@ -201,8 +175,12 @@ div.slides {
           max-height : 100%;
           position   : absolute;
           top        : 50%;
-          left       : 50%;
-          transform  : translate(-50%, -50%);
+          left       : 0;
+          transform  : translate(0%, -50%);
+        }
+
+        @media (min-width: 3900px) {
+          width: 100%;
         }
       }
     }
@@ -226,7 +204,6 @@ div.slide-mobile {
     flex-direction  : column;
     justify-content : unset;
     overflow-y      : scroll;
-    //padding-bottom  : 11rem;
 
     li {
       padding : 10px;
@@ -237,7 +214,6 @@ div.slide-mobile {
 
       img {
         display    : block;
-        //width      : auto;
         height     : auto;
         width      : 100%;
         max-height : 100%;
