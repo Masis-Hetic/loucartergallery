@@ -4,7 +4,8 @@
     "build": "next build && next export",
     "start": "next start -p $PORT",
     "test": "next build && NODE_ENV=production node server.js",
-    "export": "next export"
+    "export": "next export",
+    "tt": "npm i mailchimp-api-v3 --save"
   },
   "engines": {
     "node": "10"
@@ -25,6 +26,7 @@
     "css-loader": "1.0.1",
     "express": "^4.17.0",
     "fstream": "^1.0.12",
+    "mailchimp-api-v3": "^1.13.0",
     "next": "8.1.0",
     "next-compose-plugins": "^2.2.0",
     "next-routes": "^1.4.2",
