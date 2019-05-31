@@ -46,8 +46,8 @@ const Nav = ( { nav } ) => {
                       <ul className={ isListOpen ? `${ isList } test` : '' }>
                         {console.log({link})}
                         { link.data.body.map( ( sublink, i ) =>
-                          sublink.primary.link_to_level_two
-                            ? (
+                          sublink.primary.link_to_level_two.uid || sublink.primary.link_to_level_two.url ?
+                            (
                               sublink.primary.link_to_level_two.uid
                                 ? (
                                   <li key={ i }>
