@@ -35,14 +35,15 @@ const Nav = ( { nav } ) => {
       toggleModal( !newsletter );
     }
   };
-  
+
   const [ email, setEmail ] = useState( '' );
   const handlerEmail = email => {
-    if (validateEmail(email)) {
+    // if (validateEmail(email)) {
+      console.log('email', email);
       setEmail( email );
-    }
+    // }
   };
-  
+
   const onSubmit = async (e, email) => {
     e.preventDefault();
     if (!!email) {
@@ -51,7 +52,7 @@ const Nav = ( { nav } ) => {
       // TODO faire un truc tahi
     }
   };
-  
+
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
@@ -137,13 +138,17 @@ const Nav = ( { nav } ) => {
         <div className="newsletter-wrapper">
           <p>Inscrivez-vous à notre newsletter</p>
           <div className="close-newsletter-btn" onClick={() => isNewsletter('newsletter')}>X</div>
-          <form>
+          <form onSubmit={ (e) => onSubmit(e, email) }>
             <div className="input-wrapper">
               <label htmlFor="mail">Adresse e-mail :</label>
-              <input id="mail" type="email" placeholder="monemail@mail.com"
-              onChange={ ({ target }) => handlerEmail(target.value) } value={ email }/>
+              <input
+                id="mail"
+                type="email"
+                placeholder="monemail@mail.com"
+                onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
+              />
             </div>
-            <input type="submit" value="S'inscrire" onClick={ (e) => onSubmit(e, email) }/>
+            <input type="submit" value="S'inscrire"/>
           </form>
         </div>
       </div>
@@ -204,6 +209,7 @@ const Nav = ( { nav } ) => {
         width: 50%;
         background: #080808;
         border: 1px solid ${COLORS.lightGrey};
+        color: ${COLORS.lightGrey};
       }
       form input[type="submit"] {
         margin-top: 1rem;
