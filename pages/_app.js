@@ -26,7 +26,7 @@ class LouCarter extends App {
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'),
       { orderings : '[my.link.order]' });
     const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
-    console.log({myLinks});
+    // console.log({myLinks});
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ...ctx });
     }

@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import Link from "next/link";
 
-import { connect } from "react-redux";
-import COLORS from "../../helpers/colors";
+import { connect }         from "react-redux";
+import COLORS              from "../../helpers/colors";
+import { validateEmail }   from '../../helpers/functions';
+import { subscribeToNews } from '../../helpers/mailchimp';
 
 const mapStateToProps = state => {
   return {
@@ -33,7 +35,19 @@ const Nav = ( { nav } ) => {
       toggleModal( !newsletter );
     }
   };
-
+  
+  const [ email, setEmail ] = useState( '' );
+  const handlerEmail = email => {
+    if (validateEmail(email)) { // TODO tester si l'email est valide
+      setEmail( email );
+    }
+  };
+  
+  const onSubmit = async email => {
+    // email.preventDefault();
+    subscribeToNews(email)
+  };
+  
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
@@ -122,9 +136,10 @@ const Nav = ( { nav } ) => {
           <form>
             <div className="input-wrapper">
               <label htmlFor="mail">Adresse e-mail :</label>
-              <input id="mail" type="email" placeholder="monemail@gmail.com" />
+              <input id="mail" type="email" placeholder="monemail@mail.com"
+              onChange={ ({ target }) => handlerEmail(target.value) } value={ email }/>
             </div>
-            <input type="submit" value="S'inscrire" />
+            <input type="submit" value="S'inscrire" onClick={ () => onSubmit(email) }/>
           </form>
         </div>
       </div>
