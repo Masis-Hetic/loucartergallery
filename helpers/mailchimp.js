@@ -1,4 +1,9 @@
-// export const news = (req, res, next) => {
+import axios                                 from 'axios';
+import { ADD_MEMBER_URL, MAILCHIMP_API_KEY } from './config';
+
+// export const subscribeToNews = (req, res, next) => {
+//   console.log({req});
+//
 //   const email = req.body.email; // Email entered
 //   const dataCenter = 'us1';
 //   const apiKey = 'c03e070b4411f258d90f5b7e834aecf8-us20';
@@ -27,3 +32,28 @@
 //   });
 //   next();
 // };
+
+export const subscribeToNews = (email_address) => { // TODO valider la request AXIOS
+  axios.post(
+    ADD_MEMBER_URL,
+    {
+      email_address,
+      status: 'subscribed',
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      auth: {
+        username: 'medias.loucarter@gmail.com',
+        password: MAILCHIMP_API_KEY,
+      },
+    },
+  ).then(() => {
+    console.log('prop', email_address); // TODO hundle sucess
+  })
+        .catch(() => {
+    console.log('error'); // TODO hundle error
+  });
+};
