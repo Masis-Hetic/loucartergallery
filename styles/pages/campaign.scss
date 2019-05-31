@@ -19,15 +19,25 @@ div.text {
   scrollbar-width : none;
 
   h1 {
-    line-height: unset;
+    line-height: 1.5;
     text-align: center;
     margin-bottom: 1rem;
+
+    @media (min-width: 1280px) {
+      margin-bottom: .7rem;
+    }
   }
 
   div.description { margin : 1rem 0; }
 
   p {
-    &:last-child { margin : 1rem 0 10rem; }
+    &:last-child {
+      margin : 1rem 0 10rem;
+
+      @media (min-width: 576px) {
+        margin: 1rem 0 0 0;
+      }
+    }
   }
 
   @media (min-width : 576px) {
@@ -39,12 +49,12 @@ div.text {
     min-width       : 70vw;
     max-width       : 40vw;
     margin-top      : 0;
-    font-size       : 1rem;
+    font-size       : .85rem;
     padding-right   : 12px;
     line-height     : 2;
     pointer-events  : unset;
     display         : flex;
-    justify-content : start;
+    justify-content : center;
     padding-bottom  : 0;
 
     &::-webkit-scrollbar {
@@ -53,7 +63,10 @@ div.text {
   }
 
   @media (min-width : 768px) {
-    min-width : 55vw;
+    min-width : 35vw;
+    max-width: 35vw;
+    line-height: 1.9;
+    font-size: .8rem;
   }
 
   @media (min-width : 1280px) {
@@ -61,19 +74,19 @@ div.text {
   }
 
   @media (min-width : 1440px) {
-    min-width   : 40vw;
-    max-width   : 40vw;
-    line-height : 2.2;
-    font-size   : 1.1rem;
+    min-width   : 35vw;
+    max-width   : 35vw;
+    line-height : 2.1;
+    font-size   : .9rem;
 
     div.description { margin : 2rem 0; }
   }
 
   @media (min-width : 3000px) {
-    min-width   : 40vw;
-    max-width   : 40vw;
-    font-size   : 1.2rem;
-    line-height : 2.4;
+    min-width   : 35vw;
+    max-width   : 35vw;
+    font-size   : 1.05rem;
+    line-height : 2.2;
   }
 }
 

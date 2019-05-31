@@ -47,20 +47,25 @@ class Campaign extends Component {
           </div>
         </div>
 
-        <div className="text-wrapper">
-          <div className="text-overflow">
-            <div className="text">
-              <h1><SanitizedHTML html={ campaign.data.title[ 0 ].text } /></h1>
+        <div className="text-wrapper" style={{
+          width: '100%',
+          height: '100vh',
+          position: 'absolute',
+          top: 0,
+          left: 0
+        }}>
 
-              <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
-              <div className="description">
-                { campaign.data.description.map( ( p, i ) => <SanitizedHTML key={ i } html={ p.text }/> ) }
-              </div>
+          <div className="text">
+            <h1><SanitizedHTML html={ campaign.data.title[ 0 ].text } /></h1>
 
-              <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
-
-              <p>Détail des oeuvres</p>
+            <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
+            <div className="description">
+              { campaign.data.description.map( ( p, i ) => <SanitizedHTML key={ i } html={ p.text }/> ) }
             </div>
+
+            <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
+
+            <p>Détail des oeuvres</p>
           </div>
 
         </div>
