@@ -44,7 +44,6 @@ const Nav = ( { nav } ) => {
                     <Fragment>
                       <p id={ i } className="except" onClick={ () => toggleList( i ) }>{ link.data.link_one[ 0 ].text }</p>
                       <ul className={ isListOpen ? `${ isList } test` : '' }>
-                        {console.log({link})}
                         { link.data.body.map( ( sublink, i ) =>
                           sublink.primary.link_to_level_two.uid || sublink.primary.link_to_level_two.url ?
                             (
