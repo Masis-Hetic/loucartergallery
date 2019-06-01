@@ -45,6 +45,7 @@ export const subscribeToNews = ( email ) => { // TODO valider la request AXIOS
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
+        'Authorization': 'apikey c03e070b4411f258d90f5b7e834aecf8-us20'
       },
       auth: {
         username: 'medias.loucarter@gmail.com',
