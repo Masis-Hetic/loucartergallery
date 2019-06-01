@@ -39,6 +39,10 @@ export const subscribeToNews = (email_address) => { // TODO valider la request A
     {
       email_address,
       status: 'subscribed',
+      merge_fieds: {
+        FIRSTNAME: '',
+        LASTNAME: ''
+      }
     },
     {
       headers: {
