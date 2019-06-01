@@ -138,7 +138,7 @@ const Nav = ( { nav } ) => {
         <div className="newsletter-wrapper">
           <p>Inscrivez-vous à notre newsletter</p>
           <div className="close-newsletter-btn" onClick={() => isNewsletter('newsletter')}>X</div>
-          <form onSubmit={ e => onSubmit(e, email) }>
+          <form onSubmit={ onSubmit(e, email) }>
             <div className="input-wrapper">
               <label htmlFor="mail">Adresse e-mail :</label>
               <input
