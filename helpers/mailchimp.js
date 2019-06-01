@@ -33,11 +33,11 @@ import { ADD_MEMBER_URL, MAILCHIMP_API_KEY } from './config';
 //   next();
 // };
 
-export const subscribeToNews = (email_address) => { // TODO valider la request AXIOS
+export const subscribeToNews = (email) => { // TODO valider la request AXIOS
   axios.post(
     ADD_MEMBER_URL,
     {
-      email_address,
+      email,
       status: 'subscribed',
       merge_fields: {
       }
@@ -53,7 +53,7 @@ export const subscribeToNews = (email_address) => { // TODO valider la request A
       },
     },
   ).then(() => {
-    console.log('prop', email_address); // TODO hundle sucess
+    console.log('prop', email); // TODO hundle sucess
   })
         .catch(() => {
     console.log('error'); // TODO hundle error
