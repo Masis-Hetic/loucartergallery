@@ -45,10 +45,12 @@ export const subscribeToNews = ( email ) => { // TODO valider la request AXIOS
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
-        'Authorization': 'apikey c03e070b4411f258d90f5b7e834aecf8-us20'
+        'Authorization': 'apikey c03e070b4411f258d90f5b7e834aecf8-us20',
       },
       auth: {
         username: 'medias.loucarter@gmail.com',
+        client_id: '865921435691',
+        client_secret: 'a627bb00dcca50500fbe3bc5beef810a5ac1126a00cf4817f5',
         password: MAILCHIMP_API_KEY,
       },
     },
