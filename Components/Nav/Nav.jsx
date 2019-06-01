@@ -37,13 +37,12 @@ const Nav = ( { nav } ) => {
   };
 
   const [ email, setEmail ] = useState( '' );
-  const handlerEmail = email => {
-      setEmail( email );
-  };
+  const handlerEmail = email => setEmail( email );
 
   const onSubmit = async (e, email) => {
     e.preventDefault();
-    if (!!email && validateEmail(email)) {
+    // if (!!email && validateEmail(email)) {
+    if (!!email) {
       subscribeToNews(email);
     } else {
       // TODO faire un truc tahi
