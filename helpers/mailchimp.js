@@ -37,7 +37,7 @@ export const subscribeToNews = (email_address) => { // TODO valider la request A
   axios.post(
     ADD_MEMBER_URL,
     {
-      email_address: email_address,
+      email_address,
       status: 'subscribed',
       merge_fields: {
       }
