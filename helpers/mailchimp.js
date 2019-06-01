@@ -49,8 +49,6 @@ export const subscribeToNews = ( email ) => { // TODO valider la request AXIOS
       },
       auth: {
         username: 'medias.loucarter@gmail.com',
-        client_id: '865921435691',
-        client_secret: 'a627bb00dcca50500fbe3bc5beef810a5ac1126a00cf4817f5',
         password: MAILCHIMP_API_KEY,
       },
     },
