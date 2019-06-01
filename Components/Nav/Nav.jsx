@@ -38,15 +38,12 @@ const Nav = ( { nav } ) => {
 
   const [ email, setEmail ] = useState( '' );
   const handlerEmail = email => {
-    // if (validateEmail(email)) {
-      console.log('email', email);
       setEmail( email );
-    // }
   };
 
   const onSubmit = async (e, email) => {
     e.preventDefault();
-    if (!!email) {
+    if (!!email && validateEmail(email)) {
       subscribeToNews(email);
     } else {
       // TODO faire un truc tahi
@@ -218,6 +215,7 @@ const Nav = ( { nav } ) => {
         background: #080808;
         color: ${COLORS.lightGrey};
         border: 1px solid ${COLORS.lightGrey};
+        cursor: pointer;
       }
       .close-newsletter-btn {
         position: absolute;
