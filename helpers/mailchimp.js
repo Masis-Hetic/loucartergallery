@@ -1,4 +1,4 @@
-import axios                                 from 'axios';
+import axios from 'axios';
 import { ADD_MEMBER_URL, MAILCHIMP_API_KEY } from './config';
 
 // export const subscribeToNews = (req, res, next) => {
@@ -33,30 +33,29 @@ import { ADD_MEMBER_URL, MAILCHIMP_API_KEY } from './config';
 //   next();
 // };
 
-export const subscribeToNews = (email) => { // TODO valider la request AXIOS
+export const subscribeToNews = ( email ) => { // TODO valider la request AXIOS
   axios.post(
     ADD_MEMBER_URL,
     {
       email_address: email,
       status: 'subscribed',
-      merge_fields: {
-      }
+      merge_fields: {}
     },
     {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
-        // 'Content-Type': 'application/json; charset=UTF-8',
       auth: {
         username: 'medias.loucarter@gmail.com',
         password: MAILCHIMP_API_KEY,
       },
     },
-  ).then(() => {
-    console.log('prop', email); // TODO hundle sucess
-  })
-        .catch(() => {
-    console.log('error'); // TODO hundle error
-  });
+  ).then( () => {
+    console.log( 'prop', email ); // TODO hundle sucess
+  } )
+    .catch( e => {
+      console.log('**', email);
+      console.log( 'error', e ); // TODO hundle error
+    } );
 };
