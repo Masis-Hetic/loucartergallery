@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_MEMBER_URL, MAILCHIMP_API_KEY } from './config';
+import { ADD_MEMBER_URL, MAILCHIMP_API_KEY, MAILCHIMP_API_URL } from './config';
 
 // export const subscribeToNews = (req, res, next) => {
 //   console.log({req});
@@ -45,6 +45,7 @@ export const subscribeToNews = ( email ) => { // TODO valider la request AXIOS
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
+        'Origin': MAILCHIMP_API_URL,
       },
       auth: {
         username: 'medias.loucarter@gmail.com',
