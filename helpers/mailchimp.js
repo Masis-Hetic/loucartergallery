@@ -44,7 +44,7 @@ export const subscribeToNews = (email_address) => { // TODO valider la request A
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': MAILCHIMP_API_KEY
+        'X-HTTP-Method-Override': 'POST'
       },
       auth: {
         username: 'medias.loucarter@gmail.com',
