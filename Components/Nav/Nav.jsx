@@ -139,7 +139,7 @@ const Nav = ( { nav } ) => {
           <span className="burger"/>
         </div>
       </header>
-      {console.log(newsletter)}
+
       <div className={newsletter ? 'open-newsletter' : 'close-newsletter'}>
         <div className="newsletter-wrapper">
           <p>{success}</p>
