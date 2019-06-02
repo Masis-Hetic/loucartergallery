@@ -269,3 +269,100 @@ header {
     opacity : 1;
   }
 }
+
+// newsletter
+.close-newsletter {
+  position   : fixed;
+  width      : 100%;
+  height     : 100vh;
+  bottom     : -100%;
+  opacity    : 0;
+  transition : .3s ease-in-out;
+}
+
+.open-newsletter {
+  opacity    : 1;
+  position   : fixed;
+  width      : 100%;
+  height     : 100vh;
+  background : rgba(84, 110, 122, .6);
+  transition : .3s ease-in-out;
+}
+
+.newsletter-wrapper {
+  padding    : 2rem;
+  background : #080808;
+  position   : absolute;
+  top        : .5rem;
+  transform  : translate(-50%, 0);
+  left       : 50%;
+  width      : 95%;
+  height     : calc(100% - 7rem - 1rem);
+
+  @media (min-width : 576px) {
+    padding   : 4rem;
+    width     : 50%;
+    top       : 50%;
+    transform : translate(-50%, -50%);
+    height    : auto;
+  }
+
+  @media (min-width : 1440px) {
+    width : 40%;
+  }
+}
+
+.newsletter-wrapper p {
+  text-align : center;
+  font-size  : 1rem;
+
+  @media (min-width : 576px) {
+    font-size : 1.3rem;
+  }
+}
+
+.newsletter-wrapper form {
+  width      : 100%;
+  height     : calc(100% - 4rem);
+  margin-top : 3rem;
+}
+
+.input-wrapper {
+  margin-bottom : 3rem;
+}
+
+form label {
+  text-align    : center;
+  margin-bottom : 2rem;
+}
+
+form input {
+  line-height  : 4;
+  padding-left : 1rem;
+  border       : none;
+  margin       : 0 auto;
+}
+
+.newsletter-wrapper form label, form input {
+  display : block;
+}
+
+form input[type="email"] {
+  width      : 100%;
+  background : #080808;
+
+  @media (min-width : 576px) {
+    width : 70%;
+  }
+
+  @media (min-width : 1440px) {
+    width : 50%;
+  }
+}
+
+.close-newsletter-btn {
+  position : absolute;
+  top      : 20px;
+  right    : 20px;
+  cursor   : pointer;
+}

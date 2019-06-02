@@ -155,60 +155,7 @@ const Nav = ( { nav } ) => {
       </div>
 
       <style jsx>{`
-      .close-newsletter {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        bottom: -100%;
-        opacity: 0;
-        transition: .3s ease-in-out;
-      }
-      .open-newsletter {
-        opacity: 1;
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background: rgba(84, 110, 122, .6);
-        transition: .3s ease-in-out;
-      }
-      .newsletter-wrapper {
-        padding: 4rem;
-        background: #080808;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40%;
-        height: 50%;
-      }
-      .newsletter-wrapper p {
-        text-align: center;
-        font-size: 1.3rem;
-      }
-      .newsletter-wrapper form {
-        width: 100%;
-        height: calc(100% - 4rem);
-        margin-top: 3rem;
-      }
-      .input-wrapper {
-        margin-bottom: 3rem;
-      }
-      form label {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-      form input {
-        line-height: 4;
-        padding-left: 1rem;
-        border: none;
-        margin: 0 auto;
-      }
-      .newsletter-wrapper form label, form input {
-        display: block; 
-      }
       form input[type="email"] {
-        width: 50%;
-        background: #080808;
         border: 1px solid ${COLORS.lightGrey};
         color: ${COLORS.lightGrey};
       }
@@ -221,13 +168,6 @@ const Nav = ( { nav } ) => {
         border: 1px solid ${COLORS.lightGrey};
         cursor: pointer;
       }
-      .close-newsletter-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        cursor: pointer;
-      }
-      
       
       .nav-links ul > li ul {
         height: 0;
