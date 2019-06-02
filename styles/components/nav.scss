@@ -130,7 +130,7 @@ header {
     margin-top : unset;
   }
 
-  a {
+  a, p.underline span {
     border-bottom  : 1px solid;
     padding-bottom : 1px;
 
@@ -358,6 +358,20 @@ form input[type="email"] {
   @media (min-width : 1440px) {
     width : 50%;
   }
+}
+
+.underline {
+  //border-bottom  : 1px solid;
+  //padding-bottom : 1px;
+  //
+  //span {
+  //  display: table;
+  //}
+  //
+  //@media (min-width : 576px) {
+  //  border-bottom  : none;
+  //  padding-bottom : unset;
+  //}
 }
 
 .close-newsletter-btn {

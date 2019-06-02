@@ -94,7 +94,12 @@ const Nav = ( { nav } ) => {
                             )
                             : (
                               <Fragment key={ i }>
-                                <p className="except" onClick={ () => isNewsletter(sublink.primary.link_two[0].text)}>{ sublink.primary.link_two[ 0 ].text }</p>
+                                <p
+                                  className={`except ${sublink.primary.link_two[0].text.toLowerCase() === 'newsletter' ? 'underline' : null}`}
+                                  onClick={ () => isNewsletter(sublink.primary.link_two[0].text)}
+                                >
+                                  <span>{ sublink.primary.link_two[ 0 ].text }</span>
+                                </p>
                                 <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
                                   { sublink.items.map( ( thirdLink, i ) =>
                                     <li key={ i } onClick={ toggleMenu }>
@@ -134,7 +139,7 @@ const Nav = ( { nav } ) => {
           <span className="burger"/>
         </div>
       </header>
-
+      {console.log(newsletter)}
       <div className={newsletter ? 'open-newsletter' : 'close-newsletter'}>
         <div className="newsletter-wrapper">
           <p>{success}</p>
@@ -169,6 +174,7 @@ const Nav = ( { nav } ) => {
         cursor: pointer;
       }
       
+      
       .nav-links ul > li ul {
         height: 0;
         opacity: 0;
@@ -179,6 +185,12 @@ const Nav = ( { nav } ) => {
         height: unset;
         opacity: 1;
         transition: .4s ease-in-out;
+      }
+      `}</style>
+
+      <style jsx global>{`
+      .head-wrapper {
+        z-index: ${newsletter ? '51' : '50'};
       }
       `}</style>
 

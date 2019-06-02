@@ -1,9 +1,9 @@
 div.contact-container {
-  position           : absolute;
+  position           : relative;
   top                : 0;
   margin             : 0 auto;
   width              : 100vw;
-  height             : 100vh;
+  height             : calc(100vh - 6rem);
   text-align         : center;
   overflow-y         : scroll;
   overflow           : -moz-scrollbars-none;
@@ -23,7 +23,7 @@ div.contact-container {
   div.contact-block {
     position   : absolute;
     text-align : center;
-    top        : 125px;
+    top        : 0;
     margin     : 0 auto 20px;
     left       : 50%;
     transform  : translateX(-50%);
