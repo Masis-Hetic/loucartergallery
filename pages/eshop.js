@@ -25,11 +25,11 @@ const Eshop = () => {
 Eshop.getInitialProps = async () => {
   const API = await Prismic.api( PRISMIC_API );
 
-  const artistes = await API.query(
+  const eshop = await API.query(
     Prismic.Predicates.at( 'document.type', 'eshop' ), { lang: 'fr-FR' }
   );
 
-  return { artistes: artistes.results[ 0 ] }
+  return { eshop: eshop.results[ 0 ] }
 };
 
 export default Eshop;
