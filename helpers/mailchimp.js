@@ -44,7 +44,9 @@ export const subscribeToNews = ( email_address ) => { // TODO valider la request
     {
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic YXBpa2V5OmMwM2UwNzBiNDQxMWYyNThkOTBmNWI3ZTgzNGFlY2Y4LXVzMjA=',
+        'X-Requested-With': 'XMLHttpRequest'
       },
       auth: {
         username: 'medias.loucarter@gmail.com',
