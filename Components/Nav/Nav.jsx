@@ -153,6 +153,7 @@ const Nav = ( { nav } ) => {
           <span className="burger"/>
         </div>
       </header>
+
       <div className={newsletter ? 'open-newsletter' : 'close-newsletter'}>
         <div className="newsletter-wrapper">
           <p>{success}</p>

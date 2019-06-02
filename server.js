@@ -9,7 +9,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-  
+
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use((req, res, next) => {
@@ -17,19 +17,27 @@ app.prepare().then(() => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-  
+
   server.get('/campagnes/:slug', (req, res) => {
     return app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug }));
   });
-  
+
   server.get('/la-fondatrice', (req, res) => {
     return app.render(req, res, '/la-fondatrice');
   });
-  
+
+  server.get('/artistes', (req, res) => {
+    return app.render(req, res, '/artistes');
+  });
+
+  server.get('/eshop', (req, res) => {
+    return app.render(req, res, '/eshop');
+  });
+
   server.get('*', (req, res) => {
     return handle(req, res)
   });
-  
+
   server.listen(port, err => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`)
