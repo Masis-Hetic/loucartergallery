@@ -41,8 +41,8 @@ const Nav = ( { nav } ) => {
 
   const onSubmit = async (e, email) => {
     e.preventDefault();
-    // if (!!email && validateEmail(email)) {
-    if (!!email) {
+    if (!!email && validateEmail(email)) {
+    // if (!!email) {
       subscribeToNews(email);
     } else {
       // TODO faire un truc tahi
