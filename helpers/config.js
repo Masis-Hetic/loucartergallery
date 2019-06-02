@@ -11,5 +11,5 @@ export const ADDRESS = 'https://loucarter.netlify.com/'; // TODO ajouter la bonn
 
 // export const ADD_MEMBER_URL = `https://${ADDRESS}/${MAILCHIMP_API_URL}lists/${LIST_ID}/members/`;
 
-export const ADD_MEMBER_URL = `${MAILCHIMP_API_URL}/lists/${LIST_ID}/members/`; // TODO trouver la bonne URL
-// export const ADD_MEMBER_URL = `https://cors-anywhere.herokuapp.com/${MAILCHIMP_API_URL}/lists/${LIST_ID}/members/`; // TODO trouver la bonne URL
+// export const ADD_MEMBER_URL = `${MAILCHIMP_API_URL}/lists/${LIST_ID}/members/`; // TODO trouver la bonne URL
+export const ADD_MEMBER_URL = `https://cors-anywhere.herokuapp.com/${MAILCHIMP_API_URL}/lists/${LIST_ID}/members/`; // TODO trouver la bonne URL
