@@ -32,6 +32,8 @@ const Nav = ( { nav } ) => {
   const isNewsletter = param => {
     if (param.toLowerCase() === 'newsletter') {
       toggleModal && openMenu(false);
+      setEmail('');
+      setSuccess('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
       toggleModal( !newsletter );
     }
   };
@@ -39,13 +41,16 @@ const Nav = ( { nav } ) => {
   const [ email, setEmail ] = useState( '' );
   const handlerEmail = email => setEmail( email );
 
+  const [ success, setSuccess ] = useState('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
+  const message = msg => setSuccess(msg);
+
   const onSubmit = async (e, email) => {
     e.preventDefault();
     if (!!email && validateEmail(email)) {
-    // if (!!email) {
       subscribeToNews(email);
+      message('Vous êtes bien inscrit à notre newsletter. Merci !');
     } else {
-      // TODO faire un truc tahi
+      message('Une erreur c\'est produite.');
     }
   };
 
@@ -132,7 +137,7 @@ const Nav = ( { nav } ) => {
 
       <div className={newsletter ? 'open-newsletter' : 'close-newsletter'}>
         <div className="newsletter-wrapper">
-          <p>Inscrivez-vous à notre newsletter</p>
+          <p>{success}</p>
           <div className="close-newsletter-btn" onClick={() => isNewsletter('newsletter')}>X</div>
           <form onSubmit={ e => onSubmit(e, email) }>
             <div className="input-wrapper">
@@ -140,7 +145,7 @@ const Nav = ( { nav } ) => {
               <input
                 id="mail"
                 type="email"
-                placeholder="monemail@mail.com"
+                placeholder="e-mail"
                 onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
               />
             </div>
@@ -178,7 +183,7 @@ const Nav = ( { nav } ) => {
       }
       .newsletter-wrapper p {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
       }
       .newsletter-wrapper form {
         width: 100%;
