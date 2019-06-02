@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { ADD_MEMBER_URL, MAILCHIMP_API_KEY } from './config';
 
-export const subscribeToNews = ( email_address ) => {
-  axios.post(
+export const subscribeToNews = async ( email_address ) => {
+  return axios.post(
     ADD_MEMBER_URL,
     {
       email_address,
@@ -21,11 +21,5 @@ export const subscribeToNews = ( email_address ) => {
         password: MAILCHIMP_API_KEY,
       },
     },
-  ).then( () => {
-    console.log( 'prop', email_address ); // TODO hundle sucess
-  } )
-    .catch( e => {
-      console.log('**', email_address);
-      console.log( 'error', e ); // TODO hundle error
-    } );
+  )
 };

@@ -35,6 +35,7 @@ const Nav = ( { nav } ) => {
       setEmail('');
       setSuccess('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
       toggleModal( !newsletter );
+      stateSubscribe(false);
     }
   };
 
@@ -43,14 +44,27 @@ const Nav = ( { nav } ) => {
 
   const [ success, setSuccess ] = useState('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
   const message = msg => setSuccess(msg);
+  
+  const [ successState, setSuccessState ] = useState(false);
+  const stateSubscribe = state => setSuccessState(state);
 
   const onSubmit = async (e, email) => {
     e.preventDefault();
     if (!!email && validateEmail(email)) {
-      subscribeToNews(email);
-      message('Vous êtes bien inscrit à notre newsletter. Merci !');
+      subscribeToNews(email).then(() => {
+        message('Vous êtes bien inscrit à notre newsletter. Merci !');
+        stateSubscribe(true);
+      }).catch((e) => {
+        message(e && e.response.data.detail ? e.response.data.detail : 'Une erreur c\'est produite.');
+        stateSubscribe(true);
+        // TODO style btn
+        // TODO contact desktop
+        // TODO typo
+        // TODO error msg
+        // TODO Resolve bug
+      });
     } else {
-      message('Une erreur c\'est produite.');
+      message('Votre adresse e-mail est erronée.');
     }
   };
 
@@ -139,7 +153,6 @@ const Nav = ( { nav } ) => {
           <span className="burger"/>
         </div>
       </header>
-      {console.log(newsletter)}
       <div className={newsletter ? 'open-newsletter' : 'close-newsletter'}>
         <div className="newsletter-wrapper">
           <p>{success}</p>
@@ -154,7 +167,11 @@ const Nav = ( { nav } ) => {
                 onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
               />
             </div>
-            <input type="submit" value="S'inscrire"/>
+            { !successState ? (
+              <input type="submit" value="S'inscrire"/>
+            ) : (
+              <input type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') }/>
+            ) }
           </form>
         </div>
       </div>
