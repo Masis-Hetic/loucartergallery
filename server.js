@@ -30,7 +30,7 @@ app.prepare().then(() => {
     return app.render(req, res, '/artistes');
   });
 
-  server.get('/boutique', (req, res) => {
+  server.get('/eshop', (req, res) => {
     return app.render(req, res, '/eshop');
   });
 
