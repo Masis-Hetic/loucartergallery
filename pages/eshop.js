@@ -8,6 +8,8 @@ const Eshop = () => {
     <MainComponent>
       <img
         src="../static/images/coming_soon/e_1080X1920.jpg"
+        srcSet="../static/images/coming_soon/e_1080X1920_m.jpg,
+        ../static/images/coming_soon/e_1080X1920.jpg"
         alt=""
       />
       <style jsx>{`
