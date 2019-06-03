@@ -15,7 +15,7 @@ const Index = ({result}) => (
       <meta property="og:url" content="https://loucartergallery.com" />
       <meta property="og:type" content="website" />
       <meta property="og:description" content="Une nouvelle vision de la vente d'art" />
-      <meta property="og:image" content="../static/images/bg-ss19.jpg" />
+      <meta property="og:image" content="https://loucarter.prismic.io/medias/?open=XOwpYxAAAGMAZ6t3" />
     </Head>
     <MainComponent>
       <HomePage result={result} />
