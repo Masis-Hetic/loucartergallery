@@ -19,6 +19,10 @@ const Index = ({result}) => (
         property="og:image:secure_url"
         content="https://prismic-io.s3.amazonaws.com/loucarter%2F4972e972-1795-4d75-99aa-5383ae99cba1_image_trois_1920x1080.jpg"
       />
+      <meta
+        property="og:image"
+        content="https://prismic-io.s3.amazonaws.com/loucarter%2F4972e972-1795-4d75-99aa-5383ae99cba1_image_trois_1920x1080.jpg"
+      />
       <meta property="og:image:width" content={600} />
       <meta property="og:image:height" content={314} />
     </Head>
