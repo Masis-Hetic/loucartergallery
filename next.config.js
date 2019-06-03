@@ -178,6 +178,8 @@ module.exports = withSass( {
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/soon'          : { page: '/soon' },
       '/partager'      : { page: '/partager' },
+      '/artistes'      : { page: '/artistes' },
+      '/eshop'          : { page: '/eshop' }
     });
   }
 } );

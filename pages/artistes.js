@@ -33,26 +33,3 @@ Artistes.getInitialProps = async () => {
 };
 
 export default Artistes;
-
-
-// import React, { Component } from 'react';
-//
-// class Artistes extends Component {
-//
-//
-//   render() {
-//     return (
-//       <div>
-//         <img
-//           srcSet={
-//             "../static/images/a_1920X1080.jpg," +
-//             "../static/images/a_1280X1024.jpg"
-//           }
-//           alt=""
-//         />
-//       </div>
-//     );
-//   }
-// }
-//
-// export default Artistes;

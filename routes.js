@@ -7,6 +7,7 @@ routes
   .add('contact', '/contact', 'contact')
   .add('la-fondatrice', '/la-fondatrice', 'fondatrice')
   .add('partager', '/partager', 'partager')
+  .add('artistes', '/artistes', 'artistes')
   .add('soon', '/soon', 'soon');
 
 module.exports = routes;
