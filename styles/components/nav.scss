@@ -285,19 +285,21 @@ header {
   position   : fixed;
   width      : 100%;
   height     : 100vh;
-  background : rgba(84, 110, 122, .6);
+  background : rgba(0, 0, 0, 0.9);
   transition : .3s ease-in-out;
 }
 
 .newsletter-wrapper {
-  padding    : 2rem;
-  background : #080808;
-  position   : absolute;
-  top        : .5rem;
-  transform  : translate(-50%, 0);
-  left       : 50%;
-  width      : 95%;
-  height     : calc(100% - 7rem - 1rem);
+  padding       : 2rem;
+  background    : #080808;
+  position      : absolute;
+  top           : .5rem;
+  transform     : translate(-50%, 0);
+  left          : 50%;
+  width         : 95%;
+  height        : calc(100% - 7rem - 1rem);
+  border-radius : 2px;
+  border        : 1px solid #D9E1E8;
 
   @media (min-width : 576px) {
     padding   : 4rem;
