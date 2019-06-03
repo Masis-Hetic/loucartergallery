@@ -67,12 +67,12 @@ class HomePage extends Component {
                 className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
                 onMouseMove={ this.clearMouseMoving }
               >
-                <Link 
+                <Link
                   href={ `${bg.page_category.slug !== undefined ? `/${bg.page_category.slug}?slug=${bg.link_to.uid}` : bg.link_to.uid}` }
                   as={ `${bg.page_category.slug !== undefined ? `/${bg.page_category.slug}/${bg.link_to.uid}` : bg.link_to.uid}` }
                 >
                   <a>
-                    <img src={ bg.background_img.url } alt=""/>
+                    {bg.background_img.url !== undefined && <img src={ bg.background_img.url } alt="" />}
                     <h1>
                       <span>
                         { bg.title_img[ 0 ].text }
