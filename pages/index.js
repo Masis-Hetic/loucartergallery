@@ -12,6 +12,10 @@ const Index = ({result}) => (
   <Fragment>
     <Head>
       <title>{result.data.description[0].text}</title>
+      <meta property="og:url" content="https://loucartergallery.com" />
+      <meta property="og:type" content="website" />
+      <meta property="og:description" content="Une nouvelle vision de la vente d'art" />
+      <meta property="og:image" content="../static/images/bg-ss19.jpg" />
     </Head>
     <MainComponent>
       <HomePage result={result} />
