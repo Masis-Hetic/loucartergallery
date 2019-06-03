@@ -48,14 +48,14 @@ const Nav = ( { nav } ) => {
   const [ successState, setSuccessState ] = useState(false);
   const stateSubscribe = state => setSuccessState(state);
 
-  const onSubmit = async (e, email) => {
-    e.preventDefault();
+  const onSubmit = async (event, email) => {
+    event.preventDefault();
     if (!!email && validateEmail(email)) {
       subscribeToNews(email).then(() => {
         message('Vous êtes bien inscrit à notre newsletter. Merci !');
         stateSubscribe(true);
-      }).catch((e) => {
-        message(e && e.response.data.detail ? e.response.data.detail : 'Une erreur c\'est produite.');
+      }).catch((error) => {
+        message(error && error.response.data.detail ? error.response.data.detail : 'Une erreur c\'est produite.');
         stateSubscribe(true);
         // TODO contact desktop
         // TODO typo

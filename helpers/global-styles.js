@@ -18,9 +18,9 @@ const GlobalStyle = `
 }
 body {
   background: #080808;
-  font-family: Aileron-Thin, sans-serif;
+  font-family: WorkSans-Light, sans-serif;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: .85rem;
   color: #d9e1e8;
   height: calc(var(--vh, 1vh) * 100);
   height: 100%;

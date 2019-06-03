@@ -126,6 +126,10 @@ header {
     margin-top    : 50px;
   }
 
+  @media (min-width : 768px) {
+    margin-top : 0;
+  }
+
   @media (min-width : 1680px) {
     margin-top : unset;
   }
