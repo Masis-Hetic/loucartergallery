@@ -173,6 +173,7 @@ const Nav = ( { nav } ) => {
         border: 1px solid ${COLORS.lightGrey};
         cursor: pointer;
         -webkit-appearance: none;
+        border-radius: 0;
       }
       
       
