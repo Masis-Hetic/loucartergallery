@@ -154,7 +154,7 @@ const Nav = ( { nav } ) => {
                 onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
               />
             </div>
-            <input type="submit" value="S'inscrire"/>
+            <input type="button" value="S'inscrire"/>
           </form>
         </div>
       </div>
@@ -165,7 +165,7 @@ const Nav = ( { nav } ) => {
         color: ${COLORS.lightGrey};
         border-radius: 0 !important;
       }
-      form input[type="submit"] {
+      form input[type="button"] {
         margin-top: 1rem;
         padding: 0 1rem;
         display: table;
