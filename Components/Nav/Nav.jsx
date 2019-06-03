@@ -47,23 +47,26 @@ const Nav = ( { nav } ) => {
   
   const [ successState, setSuccessState ] = useState(false);
   const stateSubscribe = state => setSuccessState(state);
+  
+  const [ isLoding, setLoding ] = useState(false);
+  const stateLoding = state => setLoding(state);
 
   const onSubmit = async (event, email) => {
     event.preventDefault();
+    stateLoding(true);
     if (!!email && validateEmail(email)) {
       subscribeToNews(email).then(() => {
         message('Vous êtes bien inscrit à notre newsletter. Merci !');
         stateSubscribe(true);
+        stateLoding(false);
       }).catch((error) => {
         message(error && error.response.data.detail ? error.response.data.detail : 'Une erreur c\'est produite.');
         stateSubscribe(true);
-        // TODO contact desktop
-        // TODO typo
-        // TODO error msg
-        // TODO Resolve bug
+        stateLoding(false);
       });
     } else {
       message('Votre adresse e-mail est erronée.');
+      stateLoding(false);
     }
   };
 
@@ -167,11 +170,11 @@ const Nav = ( { nav } ) => {
                 onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
               />
             </div>
-            { !successState ? (
-              <input type="button" value="S'inscrire"/>
-            ) : (
-              <input type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') }/>
-            ) }
+            { isLoding ? (<div className="lds-ripple"><div/><div/></div>) : (!successState ? (
+              <input className="btn-submit" type="submit" value="S'inscrire"/>
+              ) : (
+              <input className="btn-submit" type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') }/>
+              )) }
           </form>
         </div>
       </div>
@@ -182,7 +185,7 @@ const Nav = ( { nav } ) => {
         color: ${COLORS.lightGrey};
         border-radius: 2px !important;
       }
-      form input[type="button"] {
+      form input.btn-submit {
         margin-top: 1rem;
         padding: 0 1rem;
         display: table;
