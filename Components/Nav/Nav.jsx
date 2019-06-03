@@ -163,6 +163,7 @@ const Nav = ( { nav } ) => {
       form input[type="email"] {
         border: 1px solid ${COLORS.lightGrey};
         color: ${COLORS.lightGrey};
+        border-radius: 0 !important;
       }
       form input[type="submit"] {
         margin-top: 1rem;
@@ -172,9 +173,8 @@ const Nav = ( { nav } ) => {
         color: ${COLORS.lightGrey};
         border: 1px solid ${COLORS.lightGrey};
         cursor: pointer;
-        // -webkit-appearance: none;
-        border-radius: 0;
-        -webkit-appearance: button;
+        border-radius: 0 !important;
+        -webkit-appearance: none;
       }
       
       
