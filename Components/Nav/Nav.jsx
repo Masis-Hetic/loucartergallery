@@ -168,9 +168,9 @@ const Nav = ( { nav } ) => {
               />
             </div>
             { !successState ? (
-              <input type="submit" value="S'inscrire" className="submit-btn"/>
+              <input type="button" value="S'inscrire"/>
             ) : (
-              <input type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') } className="submit-btn"/>
+              <input type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') }/>
             ) }
           </form>
         </div>
@@ -180,8 +180,9 @@ const Nav = ( { nav } ) => {
       form input[type="email"] {
         border: 1px solid ${COLORS.lightGrey};
         color: ${COLORS.lightGrey};
+        border-radius: 2px !important;
       }
-      form input.submit-btn {
+      form input[type="button"] {
         margin-top: 1rem;
         padding: 0 1rem;
         display: table;
@@ -189,6 +190,8 @@ const Nav = ( { nav } ) => {
         color: ${COLORS.lightGrey};
         border: 1px solid ${COLORS.lightGrey};
         cursor: pointer;
+        border-radius: 2px !important;
+        -webkit-appearance: none !important;
       }
       
       

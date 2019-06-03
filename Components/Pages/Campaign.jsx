@@ -74,11 +74,11 @@ class Campaign extends Component {
           Calcul de la taille du before (en desktop) :
           1- Nombre de slides * 60vw (la taille d'une slide)
           2- On rajoute la marge entre chaque slide : 40vw (sauf la dernière)
-          3- On rajoute les 5 vw qui permettent de centrer la dernière image
+          3- On enlève les 20 vw qui permettent de centrer la dernière image
          */ }
         <style jsx>{ `
         .slides .slider-wrapper ul::before {
-          width: ${ ( campaign.data.images.length * 60 ) + ( ( campaign.data.images.length - 1 ) * 40 ) + 5 }vw;
+          width: ${ ( campaign.data.images.length * 60 ) + ( ( campaign.data.images.length ) * 40 ) - 20 }vw;
         }
         ` }</style>
       </div>

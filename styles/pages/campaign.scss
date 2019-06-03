@@ -63,21 +63,21 @@ div.text {
   }
 
   @media (min-width : 768px) {
-    min-width : 35vw;
-    max-width: 35vw;
+    min-width : 32vw;
+    max-width: 32vw;
     line-height: 1.9;
     font-size: .8rem;
   }
 
   @media (min-width : 1280px) {
-    max-width : 35vw;
+    max-width : 32vw;
   }
 
   @media (min-width : 1440px) {
-    min-width   : 35vw;
-    max-width   : 35vw;
+    min-width   : 32vw;
+    max-width   : 32vw;
     line-height : 2.1;
-    font-size   : .9rem;
+    font-size   : .8rem;
 
     div.description { margin : 2rem 0; }
   }
