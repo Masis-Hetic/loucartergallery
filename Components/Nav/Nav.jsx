@@ -174,7 +174,7 @@ const Nav = ( { nav } ) => {
         border: 1px solid ${COLORS.lightGrey};
         cursor: pointer;
         border-radius: 0 !important;
-        -webkit-appearance: none;
+        -webkit-appearance: none !important;
       }
       
       
