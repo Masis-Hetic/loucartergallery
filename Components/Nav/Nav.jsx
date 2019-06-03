@@ -174,6 +174,7 @@ const Nav = ( { nav } ) => {
         cursor: pointer;
         -webkit-appearance: none;
         border-radius: 0;
+        -webkit-appearance: button;
       }
       
       
