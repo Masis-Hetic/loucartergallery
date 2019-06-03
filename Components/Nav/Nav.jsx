@@ -57,7 +57,6 @@ const Nav = ( { nav } ) => {
       }).catch((e) => {
         message(e && e.response.data.detail ? e.response.data.detail : 'Une erreur c\'est produite.');
         stateSubscribe(true);
-        // TODO style btn
         // TODO contact desktop
         // TODO typo
         // TODO error msg
@@ -169,9 +168,9 @@ const Nav = ( { nav } ) => {
               />
             </div>
             { !successState ? (
-              <input type="submit" value="S'inscrire"/>
+              <input type="submit" value="S'inscrire" className="submit-btn"/>
             ) : (
-              <input type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') }/>
+              <input type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') } className="submit-btn"/>
             ) }
           </form>
         </div>
@@ -182,7 +181,7 @@ const Nav = ( { nav } ) => {
         border: 1px solid ${COLORS.lightGrey};
         color: ${COLORS.lightGrey};
       }
-      form input[type="submit"] {
+      form input.submit-btn {
         margin-top: 1rem;
         padding: 0 1rem;
         display: table;

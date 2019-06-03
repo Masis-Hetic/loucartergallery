@@ -33,10 +33,12 @@ div.contact-container {
     }
     @media (min-width : 768px) {
       width : 50%;
+      top     : 100px;
       &:last-of-type { margin-bottom : 3rem; }
     }
     @media (min-width : 1280px) {
       padding : 0 5px;
+      top     : 125px;
       width   : 30%;
     }
     h1 {
@@ -44,13 +46,12 @@ div.contact-container {
       text-overflow : ellipsis;
     }
     div.contact-item-block {
-      margin : 3rem 0;
+      margin : 2rem 0;
       h2, h3, p { margin : 0 auto; }
       h3 {
         text-align    : center;
         font-size     : 1.4rem;
         font-weight   : 600;
-        margin-bottom : .8rem;
       }
       p {
         overflow      : hidden;
