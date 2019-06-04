@@ -10,7 +10,7 @@ body * {
 }
 
 main {
-  height: 100vh;
+  height : 100vh;
 }
 
 .head-wrapper {
@@ -24,12 +24,12 @@ main {
 }
 
 .logo-wrapper {
-  height: 7rem;
-  position: static;
+  height   : 7rem;
+  position : static;
 
-  @media (min-width: 576px) {
-    position: unset;
-    height: auto;
+  @media (min-width : 576px) {
+    position : unset;
+    height   : auto;
   }
 }
 
@@ -39,31 +39,14 @@ main {
   left     : 20px;
   z-index  : 30;
   cursor   : pointer;
+  width    : 6.7rem;
 
-  span {
-    transition     : .2s ease;
-    font-family    : 'WorkSans-Light', sans-serif;
-    font-weight    : 300;
-    letter-spacing : 5px;
-    display        : block;
+  @media (min-width : 576px) {
+    width : 14rem;
+  }
 
-    &:nth-of-type(1) {
-      font-size     : 1.3rem;
-      margin-bottom : .3rem;
-
-      @media (min-width : 576px) {
-        font-size     : 2.5rem;
-        margin-bottom : .5rem;
-      }
-    }
-
-    &:nth-of-type(2) {
-      font-size      : .6rem;
-      letter-spacing : 15px;
-
-      @media (min-width : 576px) {
-        font-size : 1rem;
-      }
-    }
+  img {
+    display : block;
+    width   : 100%;
   }
 }

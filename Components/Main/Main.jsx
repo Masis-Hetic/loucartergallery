@@ -13,13 +13,7 @@ const MainComponent = props => (
       <div className="logo-wrapper">
         <Link href={'/'}>
           <a className="logo">
-            <span>
-              lou <br/>
-              carter <br/>
-            </span>
-            <span>
-              gallery
-            </span>
+            <img src="../../static/icons/loucarter_logo.png" alt="" />
           </a>
         </Link>
       </div>
