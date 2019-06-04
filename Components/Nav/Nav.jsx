@@ -52,23 +52,28 @@ const Nav = ( { nav } ) => {
   const [ isLoding, setLoding ] = useState(false);
   const stateLoding = state => setLoding(state);
 
-  const onSubmit = async (event, email) => {
+  const onSubmit = async (event, email = '') => {
     event.preventDefault();
-    stateLoding(true);
-    if (!!email && validateEmail(email)) {
-      subscribeToNews(email).then(() => {
-        message('Vous êtes bien inscrit à notre newsletter. Merci !');
-        stateSubscribe(true);
-        stateLoding(false);
-      }).catch((error) => {
-        message(error && error.response.data.detail ? error.response.data.detail : 'Une erreur c\'est produite.');
-        stateSubscribe(true);
-        stateLoding(false);
-      });
-    } else {
-      message('Votre adresse e-mail est erronée.');
-      stateLoding(false);
-    }
+    subscribeToNews().then(
+      (r) => console.log({ r })
+    ).catch(
+      (e) => console.log({ e })
+    );
+    // stateLoding(true);
+    // if (!!email && validateEmail(email)) {
+    //   subscribeToNews(email).then(() => {
+    //     message('Vous êtes bien inscrit à notre newsletter. Merci !');
+    //     stateSubscribe(true);
+    //     stateLoding(false);
+    //   }).catch((error) => {
+    //     message(error && error.response.data.detail ? error.response.data.detail : 'Une erreur c\'est produite.');
+    //     stateSubscribe(true);
+    //     stateLoding(false);
+    //   });
+    // } else {
+    //   message('Votre adresse e-mail est erronée.');
+    //   stateLoding(false);
+    // }
   };
 
   // noinspection JSUnresolvedVariable
@@ -153,7 +158,7 @@ const Nav = ( { nav } ) => {
   
           </nav>
   
-          <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
+          <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ (e) => onSubmit(e) }>
             <span className="burger"/>
           </div>
         </header>
