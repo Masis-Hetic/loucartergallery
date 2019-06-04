@@ -12,19 +12,19 @@ div.text {
   overflow-y      : scroll;
   line-height     : 1.7;
   font-size       : .85rem;
-  text-align     : justify;
-  display        : flex;
-  align-items    : center;
-  flex-direction : column;
+  text-align      : justify;
+  display         : flex;
+  align-items     : center;
+  flex-direction  : column;
   scrollbar-width : none;
 
   h1 {
-    line-height: 1.5;
-    text-align: center;
-    margin-bottom: 1rem;
+    line-height   : 1.5;
+    text-align    : center;
+    margin-bottom : 1rem;
 
-    @media (min-width: 1280px) {
-      margin-bottom: .7rem;
+    @media (min-width : 1280px) {
+      margin-bottom : .7rem;
     }
   }
 
@@ -34,8 +34,8 @@ div.text {
     &:last-child {
       margin : 1rem 0 10rem;
 
-      @media (min-width: 576px) {
-        margin: 1rem 0 0 0;
+      @media (min-width : 576px) {
+        margin : 1rem 0 0 0;
       }
     }
   }
@@ -46,10 +46,10 @@ div.text {
     top             : 50%;
     left            : 50%;
     transform       : translate(-50%, -50%);
-    min-width       : 70vw;
+    min-width       : 60vw;
     max-width       : 40vw;
     margin-top      : 0;
-    font-size       : .85rem;
+    font-size       : .80rem;
     padding-right   : 12px;
     margin-left     : 12px;
     line-height     : 2;
@@ -64,20 +64,27 @@ div.text {
   }
 
   @media (min-width : 768px) {
-    min-width : 32vw;
-    max-width: 32vw;
-    line-height: 1.9;
-    font-size: .8rem;
+    min-width   : 45vw;
+    max-width   : 45vw;
+    line-height : 1.9;
+    font-size   : .8rem;
+  }
+
+  @media (min-width : 1080px) {
+    max-width   : 40vw;
+    min-width   : 40vw;
+    line-height : 2;
   }
 
   @media (min-width : 1280px) {
     max-width : 32vw;
+    min-width : 32vw;
   }
 
   @media (min-width : 1440px) {
-    min-width   : 32vw;
-    max-width   : 32vw;
-    line-height : 2.1;
+    min-width   : 28vw;
+    max-width   : 28vw;
+    line-height : 2.4;
     font-size   : .8rem;
 
     div.description { margin : 2rem 0; }
@@ -180,8 +187,8 @@ div.slides {
           transform  : translate(0%, -50%);
         }
 
-        @media (min-width: 3900px) {
-          width: 100%;
+        @media (min-width : 3900px) {
+          width : 100%;
         }
       }
     }
