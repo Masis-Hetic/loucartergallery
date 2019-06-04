@@ -26,6 +26,7 @@ main {
 .logo-wrapper {
   height   : 7rem;
   position : static;
+  background: #080808;
 
   @media (min-width : 576px) {
     position : unset;
