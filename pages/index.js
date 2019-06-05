@@ -7,14 +7,15 @@ import HomePage from '../Components/Pages/HomePage';
 import Prismic from 'prismic-javascript';
 import { PRISMIC_API } from '../config';
 import MainComponent from "../Components/Main/Main";
+import { sliceUrl } from "../helpers/functions";
 
-const Index = ({result}) => (
+const Index = ( { result, imgs } ) => (
   <Fragment>
     <Head>
-      <title>{result.data.description[0].text}</title>
-      <meta property="og:url" content="https://loucartergallery.com" />
-      <meta property="og:type" content="website" />
-      <meta property="og:description" content="Une nouvelle vision de la vente d'art" />
+      <title>{ result.data.description[ 0 ].text }</title>
+      <meta property="og:url" content="https://loucartergallery.com"/>
+      <meta property="og:type" content="website"/>
+      <meta property="og:description" content="Une nouvelle vision de la vente d'art"/>
       <meta
         property="og:image:secure_url"
         content="https://prismic-io.s3.amazonaws.com/loucarter%2F4972e972-1795-4d75-99aa-5383ae99cba1_image_trois_1920x1080.jpg"
@@ -23,23 +24,27 @@ const Index = ({result}) => (
         property="og:image"
         content="https://prismic-io.s3.amazonaws.com/loucarter%2F4972e972-1795-4d75-99aa-5383ae99cba1_image_trois_1920x1080.jpg"
       />
-      <meta property="og:image:width" content={600} />
-      <meta property="og:image:height" content={314} />
+      <meta property="og:image:width" content={ 600 } />
+      <meta property="og:image:height" content={ 314 } />
     </Head>
     <MainComponent>
-      <HomePage result={result} />
+      <HomePage result={ result } imgs={ imgs } />
     </MainComponent>
   </Fragment>
 );
 
-Index.getInitialProps = async ({}) => {
+Index.getInitialProps = async ( {} ) => {
   const API = await Prismic.api( PRISMIC_API );
 
   const result = await API.query(
-    Prismic.Predicates.at( 'document.type', 'homepage' ), { lang: 'fr-FR'}
+    Prismic.Predicates.at( 'document.type', 'homepage' ), { lang: 'fr-FR' }
   );
 
-  return { result: result.results[ 0 ] }
+  // noinspection JSUnresolvedVariable
+  let imgs = result.results[0].data.body.map(item => item.items.filter(img => img.background_img.url));
+  imgs = imgs.flatMap(img => img.reduce((url, element) => url + sliceUrl(` ${element.background_img.url},`), ''));
+
+  return { result: result.results[ 0 ], imgs }
 };
 
 export default Index;

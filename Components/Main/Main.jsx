@@ -1,10 +1,7 @@
 import React from 'react';
 
-// import MenuBurger from '../Nav/MenuBurger';
 import Link from "next/link";
 import Nav from "../Nav/Nav";
-
-// TODO remplacer le texte "lou carter gallery" par un logo
 
 const MainComponent = props => (
   <main className="clearfix">
@@ -19,8 +16,6 @@ const MainComponent = props => (
       </div>
 
       <Nav />
-
-      {/*<MenuBurger/>*/}
 
     </div>
 

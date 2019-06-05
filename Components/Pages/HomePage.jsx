@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import SanitizedHTML from 'react-sanitized-html';
 
+import {sliceUrl} from '../../helpers/functions.js';
+
 class HomePage extends Component {
   state = {
     visible: 0,
@@ -52,7 +54,7 @@ class HomePage extends Component {
 
   render() {
     const { visible } = this.state;
-    const { result } = this.props;
+    const { result, imgs } = this.props;
 
     // noinspection JSUnresolvedVariable
     return (
@@ -60,7 +62,6 @@ class HomePage extends Component {
         <div className="image-wrapper">
 
           <Swipe onSwipeEnd={ this.onSwipeEnd }>
-
             {result.data.home_bg.map((bg, i) =>
               <div
                 key={ i }
@@ -72,7 +73,7 @@ class HomePage extends Component {
                   as={ `${bg.page_category.slug !== undefined ? `/${bg.page_category.slug}/${bg.link_to.uid}` : bg.link_to.uid}` }
                 >
                   <a>
-                    {bg.background_img.url !== undefined && <img src={ bg.background_img.url } alt="" />}
+                    {bg.background_img.url !== undefined && <img srcSet={imgs[i]} alt="" /> }
                     <h1>
                       <span>
                         { bg.title_img[ 0 ].text }
