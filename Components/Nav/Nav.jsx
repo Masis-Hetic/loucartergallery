@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import Link                          from 'next/link';
-import { connect }         from 'react-redux';
+import { connect }                   from 'react-redux';
 
 import OutsideAlerter      from '../../helpers/click-outside';
 import COLORS              from '../../helpers/colors';
@@ -55,10 +55,10 @@ const Nav = ({ nav }) => {
       subscribeToNews(email).then((response) => {
         if (!!response.data && (response.data.status === 200 || response.data.status === 'subscribed')) {
           message('Vous êtes bien inscrit à notre newsletter. Merci !');
-        } else { message(response.data && response.data.title || 'Une erreur c\'est produite.'); }
+        } else { message(response.data && response.data.title || 'Une erreur s\'est produite.'); }
       }).catch((error) => {
         message(
-          error && error.response && error.response.data && error.response.data.title || 'Une erreur c\'est produite.'
+          error && error.response && error.response.data && error.response.data.title || 'Une erreur s\'est produite.'
         );
       });
       stateSubscribe(true);
