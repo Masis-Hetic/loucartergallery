@@ -3,6 +3,7 @@ import axios from 'axios';
 import { LIST_ID_EVENT } from './config';
 
 const PHP_URL = 'https://loucartergallery/newsletter.php';
+// const PHP_URL = 'http://localhost:8000/newsletter.php';
 
 export const subscribeToNews = async ( email_address ) => {
   return axios.post(
