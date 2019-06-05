@@ -1,48 +1,44 @@
 import React, { Fragment, useState } from 'react';
-import Link from "next/link";
+import Link                          from 'next/link';
+import { connect }                   from 'react-redux';
 
-import { connect }         from "react-redux";
 import OutsideAlerter      from '../../helpers/click-outside';
-import COLORS              from "../../helpers/colors";
+import COLORS              from '../../helpers/colors';
 import { validateEmail }   from '../../helpers/functions';
 import { subscribeToNews } from '../../helpers/mailchimp';
 
-const mapStateToProps = state => {
-  return {
-    nav: state.nav.datas
-  }
-};
+const mapStateToProps = state => ({ nav: state.nav.datas });
 
-const Nav = ( { nav } ) => {
-  const [ isOpen, openMenu ] = useState( false );
+const Nav = ({ nav }) => {
+  const [ isOpen, openMenu ] = useState(false);
   const toggleMenu = () => {
-    openMenu( !isOpen );
+    openMenu(!isOpen);
     openOrNot(false);
   };
-
-  const [ isList, openList ] = useState( null );
-  const [ isListOpen, openOrNot ] = useState( false );
-  const toggleList = ( id ) => {
-    openOrNot( true );
-    if (id !== isList) openOrNot( true );
-    if (id === isList) openOrNot( !isListOpen );
-    openList( id );
+  
+  const [ isList, openList ] = useState(null);
+  const [ isListOpen, openOrNot ] = useState(false);
+  const toggleList = (id) => {
+    openOrNot(true);
+    if (id !== isList) openOrNot(true);
+    if (id === isList) openOrNot(!isListOpen);
+    openList(id);
   };
-
+  
   const [ newsletter, toggleModal ] = useState(false);
   const isNewsletter = param => {
     if (param.toLowerCase() === 'newsletter') {
       toggleModal && openMenu(false);
       setEmail('');
       setSuccess('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
-      toggleModal( !newsletter );
+      toggleModal(!newsletter);
       stateSubscribe(false);
     }
   };
-
-  const [ email, setEmail ] = useState( '' );
-  const handlerEmail = email => setEmail( email );
-
+  
+  const [ email, setEmail ] = useState('');
+  const handlerEmail = email => setEmail(email);
+  
   const [ success, setSuccess ] = useState('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
   const message = msg => setSuccess(msg);
   
@@ -56,19 +52,18 @@ const Nav = ( { nav } ) => {
     event.preventDefault();
     stateLoding(true);
     if (!!email && validateEmail(email)) {
-      subscribeToNews(email).then(() => {
-        message('Vous êtes bien inscrit à notre newsletter. Merci !');
-        stateSubscribe(true);
-        stateLoding(false);
+      subscribeToNews(email).then((response) => {
+        if (!!response.data && (response.data.status === 200 || response.data.status === 'subscribed')) {
+          message('Vous êtes bien inscrit à notre newsletter. Merci !');
+        } else { message(response.data && response.data.title || 'Une erreur s\'est produite.'); }
       }).catch((error) => {
-        message(error && error.response.data.detail ? error.response.data.detail : 'Une erreur c\'est produite.');
-        stateSubscribe(true);
-        stateLoding(false);
+        message(
+          error && error.response && error.response.data && error.response.data.title || 'Une erreur s\'est produite.'
+        );
       });
-    } else {
-      message('Votre adresse e-mail est erronée.');
-      stateLoding(false);
-    }
+      stateSubscribe(true);
+    } else { message('Votre adresse e-mail est erronée.'); }
+    stateLoding(false);
   };
 
   // noinspection JSUnresolvedVariable
@@ -159,10 +154,10 @@ const Nav = ( { nav } ) => {
         </header>
       </OutsideAlerter>
 
-      <div className={newsletter ? 'open-newsletter' : 'close-newsletter'}>
+      <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>
         <div className="newsletter-wrapper">
-          <p>{success}</p>
-          <div className="close-newsletter-btn" onClick={() => isNewsletter('newsletter')}>X</div>
+          <p>{ success }</p>
+          <div className="close-newsletter-btn" onClick={ () => isNewsletter('newsletter') }>X</div>
           <form onSubmit={ e => onSubmit(e, email) }>
             <div className="input-wrapper">
               <label htmlFor="mail">Adresse e-mail :</label>
@@ -170,7 +165,7 @@ const Nav = ( { nav } ) => {
                 id="mail"
                 type="email"
                 placeholder="e-mail"
-                onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
+                onChange={ (e) => handlerEmail(e.target.value) } value={ email }
               />
             </div>
             { isLoding ? (<div className="lds-ripple"><div/><div/></div>) : (!successState ? (
@@ -184,8 +179,8 @@ const Nav = ( { nav } ) => {
 
       <style jsx>{`
       form input[type="email"] {
-        border: 1px solid ${COLORS.lightGrey};
-        color: ${COLORS.lightGrey};
+        border: 1px solid ${ COLORS.lightGrey };
+        color: ${ COLORS.lightGrey };
         border-radius: 2px !important;
       }
       form input.btn-submit {
@@ -193,8 +188,8 @@ const Nav = ( { nav } ) => {
         padding: 0 1rem;
         display: table;
         background: #080808;
-        color: ${COLORS.lightGrey};
-        border: 1px solid ${COLORS.lightGrey};
+        color: ${ COLORS.lightGrey };
+        border: 1px solid ${ COLORS.lightGrey };
         cursor: pointer;
         border-radius: 2px !important;
         -webkit-appearance: none !important;
@@ -216,11 +211,11 @@ const Nav = ( { nav } ) => {
 
       <style jsx global>{`
       .head-wrapper {
-        z-index: ${newsletter ? '51' : '50'};
+        z-index: ${ newsletter ? '51' : '50' };
       }
-      `}</style>
+      ` }</style>
     </Fragment>
-  )
+  );
 };
 
-export default connect( mapStateToProps )( Nav );
+export default connect(mapStateToProps)(Nav);
