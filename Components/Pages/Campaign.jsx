@@ -6,15 +6,6 @@ class Campaign extends Component {
     isOpen: false
   };
 
-  componentDidMount() {
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    let vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    document.querySelector('body').style.height = 'calc(var(--vh, 1vh) * 100)';
-    document.body.style.height = '100vh';
-  }
-
   openSlider = () => this.setState( { isOpen: !this.state.isOpen } );
 
   render() {
@@ -23,8 +14,7 @@ class Campaign extends Component {
 
     // noinspection JSUnresolvedVariable
     return (
-      <div className="wrapper">
-        {console.log({imgs})}
+      <div className="wrapper" style={{ height: 'calc(100vh - 6rem)' }}>
         <div className={ `slide-mobile ${ isOpen ? 'open' : 'close' }` }>
           <p onClick={ this.openSlider }>
             <svg style={ { width: 28, height: 28 } } viewBox="0 0 24 24">
