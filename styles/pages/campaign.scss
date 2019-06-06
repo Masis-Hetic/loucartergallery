@@ -232,7 +232,8 @@ div.slide-mobile {
   svg { transition : .3s ease-in-out; }
 
   &.open {
-    bottom         : 0;
+    //bottom         : 0;
+    transform      : translateY(-6rem);
     position       : fixed;
     left           : 0;
     width          : 100vw;
@@ -246,7 +247,8 @@ div.slide-mobile {
   }
 
   &.close {
-    bottom : -60vh;
+    //bottom : -60vh;
+    transform : translateY(70%);
   }
 
   p {
