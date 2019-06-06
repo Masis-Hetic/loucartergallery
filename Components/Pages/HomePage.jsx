@@ -4,8 +4,6 @@ import Link from "next/link";
 
 import SanitizedHTML from 'react-sanitized-html';
 
-import {sliceUrl} from '../../helpers/functions.js';
-
 class HomePage extends Component {
   state = {
     visible: 0,
@@ -62,25 +60,26 @@ class HomePage extends Component {
         <div className="image-wrapper">
 
           <Swipe onSwipeEnd={ this.onSwipeEnd }>
-            {result.data.home_bg.map((bg, i) =>
+
+            {result.data.body.map((bg, i) =>
               <div
                 key={ i }
                 className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
                 onMouseMove={ this.clearMouseMoving }
               >
                 <Link
-                  href={ `${bg.page_category.slug !== undefined ? `/${bg.page_category.slug}?slug=${bg.link_to.uid}` : bg.link_to.uid}` }
-                  as={ `${bg.page_category.slug !== undefined ? `/${bg.page_category.slug}/${bg.link_to.uid}` : bg.link_to.uid}` }
+                  href={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}?slug=${bg.primary.link_to.uid}` : bg.primary.link_to.uid}` }
+                  as={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}/${bg.primary.link_to.uid}` : bg.primary.link_to.uid}` }
                 >
                   <a>
-                    {bg.background_img.url !== undefined && <img srcSet={imgs[i]} alt="" /> }
+                    {imgs[i] !== undefined && <img srcSet={imgs[i]} alt="" /> }
                     <h1>
                       <span>
-                        { bg.title_img[ 0 ].text }
+                        { bg.primary.title_img[ 0 ].text }
                       </span>
                     </h1>
                     <h2>
-                      <SanitizedHTML html={bg.text[0] && bg.text[0].text} />
+                      <SanitizedHTML html={bg.primary.text[0] && bg.primary.text[0].text} />
                     </h2>
                   </a>
                 </Link>

@@ -79,9 +79,9 @@ function deletenHandler($referer)
 
 function handle_error($referer)
 {
-    ob_start();
-    var_dump('error : ' . $referer);
-    error_log(ob_get_clean(), 4);
+    // ob_start();
+    // var_dump('error : ' . $referer);
+    // error_log(ob_get_clean(), 4);
 }
 
 function syncMailchimp($data) // PUT
