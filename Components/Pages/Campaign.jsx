@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SanitizedHTML from 'react-sanitized-html';
-import { sliceUrl } from "../../helpers/functions";
 
 class Campaign extends Component {
   state = {
@@ -29,24 +28,12 @@ class Campaign extends Component {
                 <img srcSet={img} alt="" />
               </li>
             )}
-            {/*{ campaign.data.images.map( ( img, i ) =>*/}
-            {/*  <li key={ i }>*/}
-            {/*    <img src={ img && sliceUrl( img.image.url ) } alt=""/>*/}
-            {/*  </li>*/}
-            {/*) }*/}
           </ul>
         </div>
 
         <div className="slides-wrapper">
           <div className="slides">
             <div className="slider-wrapper">
-              {/*<ul>*/}
-              {/*  { campaign.data.images.map( ( img, i ) =>*/}
-              {/*    <li key={ i }>*/}
-              {/*      <img src={ img && sliceUrl( img.image.url ) } alt=""/>*/}
-              {/*    </li>*/}
-              {/*  ) }*/}
-              {/*</ul>*/}
               <ul>
                 {imgs.map((img, i) =>
                   <li key={i}>
