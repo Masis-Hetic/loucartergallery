@@ -28,7 +28,6 @@ const Index = ( { result, imgs } ) => (
       <meta property="og:image:height" content={ 314 } />
     </Head>
     <MainComponent>
-      {console.log({result})}
       <HomePage result={ result } imgs={ imgs } />
     </MainComponent>
   </Fragment>

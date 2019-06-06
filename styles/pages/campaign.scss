@@ -235,10 +235,10 @@ div.slide-mobile {
     bottom         : 0;
     position       : fixed;
     left           : 0;
-    top            : 0;
     width          : 100vw;
     padding-bottom : 10rem;
     z-index        : 50;
+    transition     : .3s ease-in-out;
 
     svg {
       transform : rotate(180deg);

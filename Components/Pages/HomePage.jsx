@@ -32,7 +32,7 @@ class HomePage extends Component {
 
     const { visible } = this.state;
     // noinspection JSUnresolvedVariable
-    if (visible >= this.props.result.data.home_bg.length - 1) {
+    if (visible >= this.props.result.data.body.length - 1) {
       this.setState( { visible: 0 } );
       return;
     }
@@ -45,7 +45,7 @@ class HomePage extends Component {
     const { mouseMoving } = this.state;
     this.setState({ mouseMoving: mouseMoving + 1, visible: mouseMoving });
     // noinspection JSUnresolvedVariable
-    mouseMoving >= this.props.result.data.home_bg.length - 1 && this.setState({ mouseMoving: 0 });
+    mouseMoving >= this.props.result.data.body.length - 1 && this.setState({ mouseMoving: 0 });
   };
 
   clearMouseMoving = () => this.setState( { mouseMoving: this.state.visible } );
