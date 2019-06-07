@@ -72,7 +72,7 @@ class HomePage extends Component {
                   as={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}/${bg.primary.link_to.uid}` : bg.primary.link_to.uid}` }
                 >
                   <a>
-                    {imgs[i] !== undefined && <img srcSet={imgs[i]} alt="" /> }
+                    {imgs[i].length > 0 && <img srcSet={imgs[i]} alt="" /> }
                     <h1>
                       <span>
                         { bg.primary.title_img[ 0 ].text }

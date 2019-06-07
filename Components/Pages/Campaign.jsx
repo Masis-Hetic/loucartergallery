@@ -14,7 +14,7 @@ class Campaign extends Component {
 
     // noinspection JSUnresolvedVariable
     return (
-      <div className="wrapper" style={{ height: 'calc(100vh - 6rem)' }}>
+      <div className="wrapper campaign-wrapper">
         <div className={ `slide-mobile ${ isOpen ? 'open' : 'close' }` }>
           <p onClick={ this.openSlider }>
             <svg style={ { width: 28, height: 28 } } viewBox="0 0 24 24">
@@ -61,8 +61,6 @@ class Campaign extends Component {
             </div>
 
             <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
-
-            <p>Détail des oeuvres</p>
           </div>
 
         </div>

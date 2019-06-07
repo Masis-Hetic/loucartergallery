@@ -43,7 +43,7 @@ Index.getInitialProps = async ( {} ) => {
   // noinspection JSUnresolvedVariable
   let imgs = result.results[0].data.body.map(item => item.items.filter(img => img.background_img.url));
   // noinspection JSUnresolvedVariable
-  imgs = imgs.flatMap(img => img.reduce((url, element) => url + sliceUrl(` ${element.background_img.url},`), ''));
+  imgs = imgs.flatMap(img => img.reduce((url, element) => url + sliceUrl(` ${element.background_img.url} ${element.size[0].text},`), ''));
 
   return { result: result.results[ 0 ], imgs }
 };

@@ -5,6 +5,14 @@ div.wrapper {
   overflow : hidden;
 }
 
+.campaign-wrapper {
+  height : calc(100vh - 6rem);
+
+  @media (min-width : 576px) {
+    height : 100vh;
+  }
+}
+
 div.text {
   width           : 80vw;
   height          : 70vh;
@@ -12,7 +20,7 @@ div.text {
   overflow-y      : scroll;
   line-height     : 1.7;
   font-size       : .85rem;
-  text-align      : justify;
+  text-align      : left;
   display         : flex;
   align-items     : center;
   flex-direction  : column;
@@ -42,7 +50,7 @@ div.text {
 
   @media (min-width : 576px) {
     position        : absolute;
-    //height         : unset;
+    height          : 80vh;
     top             : 50%;
     left            : 50%;
     transform       : translate(-50%, -50%);

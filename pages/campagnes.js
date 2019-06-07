@@ -23,7 +23,7 @@ Campagnes.getInitialProps = async ( { query } ) => {
   );
 
   let imgs = campaign.results[0].data.body.map(item => item.items.filter(img => img.image.url));
-  imgs = imgs.flatMap(img => img.reduce((url, element) => url + sliceUrl(`${element.image.url}, `), ''));
+  imgs = imgs.flatMap(img => img.reduce((url, element) => url + sliceUrl(`${element.image.url} ${element.size[0].text}, `), ''));
 
   return { campaign: campaign.results[0], imgs, slug: query.slug }
 };
