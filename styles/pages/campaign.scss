@@ -192,6 +192,7 @@ div.slides {
           left       : 0;
           transform  : translate(0%, -50%);
           object-fit : contain;
+          max-width  : max-content;
         }
 
         @media (min-width : 3900px) {
