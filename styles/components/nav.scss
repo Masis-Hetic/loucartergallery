@@ -109,20 +109,17 @@ header {
 }
 
 .nav-links {
-  font-size     : 13px;
-  position      : absolute;
-  top           : 50%;
-  width         : 100%;
-  transform     : translateY(-50%);
-  //left          : 0;
-  //padding-right : 20px;
-  //text-align    : right;
-    left          : 20px;
-    text-align    : left;
+  font-size  : 13px;
+  position   : absolute;
+  top        : 50%;
+  width      : 100%;
+  transform  : translateY(-50%);
+  left       : 20px;
+  text-align : left;
+
   @media (min-width : 576px) {
-    //padding-right : unset;
-    width         : unset;
-    margin-top    : 50px;
+    width      : unset;
+    margin-top : 50px;
   }
 
   @media (min-width : 768px) {
@@ -134,12 +131,18 @@ header {
   }
 
   a, p.underline span {
-    border-bottom  : 1px solid;
-    padding-bottom : 1px;
+    display         : flex;
+    justify-content : flex-start;
+    flex-direction  : row;
+    align-items     : center;
 
-    @media (min-width : 576px) {
-      border-bottom  : none;
-      padding-bottom : unset;
+    &::before {
+      content      : "";
+      display      : block;
+      width        : 7px;
+      height       : 1px;
+      background   : $lightGrey;
+      margin-right : 10px;
     }
   }
 
@@ -184,12 +187,7 @@ header {
       }
 
       > ul {
-        //padding-right : 40px;
-
-          padding-left  : 40px;
-        @media (min-width : 576px) {
-          //padding-right : 0;
-        }
+        padding-left : 40px;
 
         > li {
           line-height : 2.5;
@@ -231,12 +229,7 @@ header {
 
   .third-step {
     margin-bottom : .5rem;
-    //padding-right : 40px;
-
-      padding-left  : 40px;
-    @media (min-width : 576px) {
-      //padding-right : 0;
-    }
+    padding-left  : 40px;
 
     &.close {
       opacity : 0;
@@ -367,20 +360,6 @@ form input[type="email"] {
   }
 }
 
-.underline {
-  //border-bottom  : 1px solid;
-  //padding-bottom : 1px;
-  //
-  //span {
-  //  display: table;
-  //}
-  //
-  //@media (min-width : 576px) {
-  //  border-bottom  : none;
-  //  padding-bottom : unset;
-  //}
-}
-
 .close-newsletter-btn {
   position : absolute;
   top      : 20px;
@@ -395,17 +374,20 @@ div.lds-ripple {
   transform : translateX(-50%);
   width     : 64px;
   height    : 64px;
+
   div {
     position      : absolute;
     border        : 4px solid #d9e1e8;
     opacity       : 1;
     border-radius : 50%;
     animation     : loads-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+
     &:nth-child(2) {
       animation-delay : -0.5s;
     }
   }
 }
+
 @keyframes loads-ripple {
   0% {
     top     : 28px;
