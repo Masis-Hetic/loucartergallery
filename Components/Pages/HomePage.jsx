@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Swipe from 'react-easy-swipe';
 import Link from "next/link";
 
 import SanitizedHTML from 'react-sanitized-html';
@@ -17,29 +16,12 @@ class HomePage extends Component {
    * and then, play slider every 3500ms
    */
   componentDidMount() {
-    const firstSlide = setTimeout(() => this.handleMouseMoving(), 5000);
-    const interval = setInterval(this.handleMouseMoving, 5000);
+    const firstSlide = setTimeout(() => this.handleMouseMoving(), 3700);
+    const interval = setInterval(this.handleMouseMoving, 3700);
     this.setState({interval, firstSlide});
   };
 
   componentWillUnmount() { clearInterval(this.state.interval); clearInterval(this.state.firstSlide); };
-
-  /**
-   * Change slide when user is swiping
-   */
-  incrementFunction = () => {
-    this.setState({ firstSlide: null });
-
-    const { visible } = this.state;
-    // noinspection JSUnresolvedVariable
-    if (visible >= this.props.result.data.body.length - 1) {
-      this.setState( { visible: 0 } );
-      return;
-    }
-    this.setState( { visible: visible + 1 } );
-  };
-
-  onSwipeEnd = () => this.incrementFunction();
 
   handleMouseMoving = () => {
     const { mouseMoving } = this.state;
@@ -58,8 +40,6 @@ class HomePage extends Component {
     return (
       <div className="home-image-wrapper">
         <div className="image-wrapper">
-
-          <Swipe onSwipeEnd={ this.onSwipeEnd }>
 
             {result.data.body.map((bg, i) =>
               <div
@@ -85,8 +65,6 @@ class HomePage extends Component {
                 </Link>
               </div>
             )}
-
-          </Swipe>
 
         </div>
       </div>
