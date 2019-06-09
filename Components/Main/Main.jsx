@@ -15,9 +15,8 @@ const MainComponent = props => (
         </Link>
       </div>
 
-      <Nav />
-
     </div>
+    <Nav />
 
     { props.children }
 

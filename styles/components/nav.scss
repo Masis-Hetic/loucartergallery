@@ -6,7 +6,7 @@ header {
   width      : 85vw;
   top        : 0;
   right      : -85vw;
-  z-index    : 30;
+  z-index    : 50;
   transition : .3s ease-in-out;
   background : rgba(0, 0, 0, .9);
 
@@ -79,7 +79,7 @@ header {
     left       : -30vw;
     width      : 30vw;
     height     : 100vh;
-    z-index    : 10;
+    z-index    : 11;
     transition : .3s ease-in-out;
 
     .menu-desktop {
@@ -137,17 +137,17 @@ header {
     align-items     : center;
 
     &::before {
-      content      : "";
-      display      : block;
-      width        : 0;
-      height       : 1px;
-      background   : $lightGrey;
-      margin-right : 10px;
-      animation-name: openLinks;
-      animation-fill-mode: forwards;
-      animation-duration: 300ms;
-      animation-timing-function: ease;
-      animation-delay: 400ms;
+      content                   : "";
+      display                   : block;
+      width                     : 0;
+      height                    : 1px;
+      background                : $lightGrey;
+      margin-right              : 10px;
+      animation-name            : openLinks;
+      animation-fill-mode       : forwards;
+      animation-duration        : 300ms;
+      animation-timing-function : ease;
+      animation-delay           : 400ms;
     }
   }
 
@@ -186,12 +186,12 @@ header {
 
 @keyframes openLinks {
   0% {
-    width: 0;
+    width : 0;
   }
   100% {
-    width: 7px;
+    width : 7px;
   }
-};
+}
 
 // newsletter
 .close-newsletter {
@@ -205,6 +205,7 @@ header {
 
 .open-newsletter {
   opacity    : 1;
+  z-index    : 100;
   position   : fixed;
   width      : 100%;
   height     : 100vh;

@@ -40,6 +40,7 @@ const Nav = ( { nav } ) => {
     stateLoding( true );
     if (!!email && validateEmail( email )) {
       subscribeToNews( email ).then( ( response ) => {
+        // noinspection JSUnresolvedVariable
         if (!!response.data && ( response.data.status === 200 || response.data.status === 'subscribed' )) {
           message( 'Vous êtes bien inscrit à notre newsletter. Merci !' );
         } else {
