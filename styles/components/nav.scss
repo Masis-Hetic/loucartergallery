@@ -139,10 +139,15 @@ header {
     &::before {
       content      : "";
       display      : block;
-      width        : 7px;
+      width        : 0;
       height       : 1px;
       background   : $lightGrey;
       margin-right : 10px;
+      animation-name: openLinks;
+      animation-fill-mode: forwards;
+      animation-duration: 300ms;
+      animation-timing-function: ease;
+      animation-delay: 400ms;
     }
   }
 
@@ -167,16 +172,6 @@ header {
       line-height : 2.5;
       position    : relative;
       z-index     : 30;
-      transition  : .3s ease-in-out;
-
-      &.open {
-        line-height : 3;
-        transition  : .3s ease-in-out;
-
-        @media (max-width : 1280px) {
-          line-height : 2.6;
-        }
-      }
 
       p {
 
@@ -185,86 +180,18 @@ header {
           transition : .3s ease-in-out;
         }
       }
-
-      > ul {
-        padding-left : 40px;
-
-        > li {
-          line-height : 2.5;
-        }
-
-        &.open {
-          -webkit-animation-name : openList;
-          -moz-animation-name    : openList;
-          -o-animation-name      : openList;
-          animation-name         : openList;
-          animation-duration     : .5s;
-          animation-fill-mode    : forwards;
-
-          > li {
-            margin     : unset;
-            transition : .3s ease-in-out;
-            cursor     : pointer;
-            opacity    : 1;
-
-            &:hover {
-              opacity    : .7;
-              transition : .3s ease-in-out;
-            }
-          }
-        }
-
-        &.close {
-          -webkit-animation-name : openList;
-          -moz-animation-name    : openList;
-          -o-animation-name      : openList;
-          animation-name         : openList;
-          animation-duration     : .5s;
-          animation-fill-mode    : forwards;
-          animation-direction    : reverse;
-        }
-      }
-    }
-  }
-
-  .third-step {
-    margin-bottom : .5rem;
-    padding-left  : 40px;
-
-    &.close {
-      opacity : 0;
-      height  : 0;
-    }
-
-    &.open {
-      height  : unset;
-      opacity : 1;
-    }
-
-    li {
-      line-height : 2;
-
-      a { text-transform : initial; }
     }
   }
 }
 
-@keyframes openList {
+@keyframes openLinks {
   0% {
-    height  : 0;
-    opacity : 0;
+    width: 0;
   }
-
-  80% {
-    height  : 80%;
-    opacity : .8;
-  }
-
   100% {
-    height  : initial;
-    opacity : 1;
+    width: 7px;
   }
-}
+};
 
 // newsletter
 .close-newsletter {
