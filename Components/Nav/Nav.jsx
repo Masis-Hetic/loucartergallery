@@ -90,11 +90,15 @@ const Nav = ( { nav } ) => {
     from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
   } );
 
+  const openHeader = useSpring({ transform: isOpen ? 'translateX(100%)' : 'translateX(0%)' });
+
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <header className={ isOpen ? 'open' : 'close' }>
+        <animated.header
+          style={openHeader}
+        >
           <nav className="nav-links">
 
             <ul>
@@ -184,7 +188,7 @@ const Nav = ( { nav } ) => {
           <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
             <span className="burger"/>
           </div>
-        </header>
+        </animated.header>
       </OutsideAlerter>
 
       <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>
