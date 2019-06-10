@@ -6,7 +6,7 @@ header {
   width      : 85vw;
   top        : 0;
   right      : -85vw;
-  z-index    : 50;
+  z-index    : 51;
   transition : .3s ease-in-out;
   background : rgba(0, 0, 0, .9);
 
@@ -221,7 +221,7 @@ header {
   transform     : translate(-50%, 0);
   left          : 50%;
   width         : 95%;
-  height        : calc(100% - 7rem - 1rem);
+  //height        : calc(100% - 7rem - 1rem);
   border-radius : 2px;
   border        : 1px solid #D9E1E8;
 
@@ -249,7 +249,7 @@ header {
 
 .newsletter-wrapper form {
   width      : 100%;
-  height     : calc(100% - 4rem);
+  //height     : calc(100% - 4rem);
   margin-top : 3rem;
 }
 
