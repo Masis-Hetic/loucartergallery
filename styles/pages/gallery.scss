@@ -9,20 +9,27 @@ div.gallery-container {
   justify-content : center;
   overflow-y      : scroll;
 
+  @media (min-width : 768px) {
+    position : relative;
+    top      : 10%;
+  }
+
   div.gallery-wrapper {
     display        : flex;
     height         : 80%;
     width          : 90%;
     flex-direction : column;
     align-self     : flex-start;
+    overflow-y     : scroll;
 
-    @media (min-width : 576px) {
+    @media (min-width : 800px) {
       height         : 100%;
       flex-direction : row;
       overflow       : hidden;
       align-items    : center;
       align-self     : unset;
       padding-bottom : 0;
+      overflow-y     : unset;
     }
   }
 
@@ -31,13 +38,13 @@ div.gallery-container {
     flex    : none;
     width   : 100%;
 
-    @media (min-width : 576px) {
+    @media (min-width : 800px) {
       width : 33%;
       flex  : unset;
     }
 
     &:nth-of-type(1) {
-      @media (min-width : 576px) {
+      @media (min-width : 800px) {
         width        : 30%;
         margin-right : 2rem;
       }
@@ -46,7 +53,7 @@ div.gallery-container {
     &:nth-of-type(2) {
       margin : 4rem 0;
 
-      @media (min-width : 576px) {
+      @media (min-width : 800px) {
         margin : 0 0;
         width  : 40%;
 
@@ -59,7 +66,7 @@ div.gallery-container {
     &:nth-of-type(3) {
       padding-bottom : 10rem;
 
-      @media (min-width : 576px) {
+      @media (min-width : 800px) {
         margin-left    : 2rem;
         padding-bottom : unset;
         width          : 30%;
@@ -78,15 +85,21 @@ div.gallery-container {
         line-height : 2;
         width       : 100%;
 
-        @media (min-width : 576px) {
+        @media (min-width : 800px) {
           min-height : 30vh;
         }
 
         &:nth-of-type(1), &:nth-of-type(2) {
-          @media (min-width : 576px) {
+          @media (min-width : 800px) {
             align-self : first baseline;
-            top        : 30%;
+            top        : 0;
             position   : relative;
+          }
+        }
+
+        &:nth-of-type(1) {
+          @media (min-width : 800px) {
+            top : 30%;
           }
         }
 
@@ -109,17 +122,17 @@ div.gallery-container {
 
         h3 {
 
-          @media (min-width : 576px) {
+          @media (min-width : 800px) {
             margin-top  : 1rem;
             line-height : 2.2;
-            text-align: justify;
+            text-align  : justify;
           }
         }
       }
 
       &.minor {
         -webkit-mask-image : none;
-        @media (min-width : 576px) {
+        @media (min-width : 800px) {
           line-height        : 2;
           height             : 70vh;
           overflow-y         : scroll;

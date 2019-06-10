@@ -28,7 +28,7 @@ main {
   position : static;
   background: #080808;
 
-  @media (min-width : 576px) {
+  @media (min-width : 800px) {
     position : unset;
     height   : auto;
   }
