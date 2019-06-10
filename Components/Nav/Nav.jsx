@@ -1,80 +1,94 @@
 import React, { Fragment, useState } from 'react';
-import Link from "next/link";
+import Link from 'next/link';
+import { connect } from 'react-redux';
 
-import { connect }         from "react-redux";
-import OutsideAlerter      from '../../helpers/click-outside';
-import COLORS              from "../../helpers/colors";
-import { validateEmail }   from '../../helpers/functions';
+import OutsideAlerter from '../../helpers/click-outside';
+import COLORS from '../../helpers/colors';
+import { validateEmail } from '../../helpers/functions';
 import { subscribeToNews } from '../../helpers/mailchimp';
 
-const mapStateToProps = state => {
-  return {
-    nav: state.nav.datas
-  }
-};
+import { useSpring, animated, config } from 'react-spring';
+
+const mapStateToProps = state => ( { nav: state.nav.datas } );
 
 const Nav = ( { nav } ) => {
-  const [ isOpen, openMenu ] = useState( false );
-  const toggleMenu = () => {
-    openMenu( !isOpen );
-    openOrNot(false);
-  };
-
-  const [ isList, openList ] = useState( null );
-  const [ isListOpen, openOrNot ] = useState( false );
-  const toggleList = ( id ) => {
-    openOrNot( true );
-    if (id !== isList) openOrNot( true );
-    if (id === isList) openOrNot( !isListOpen );
-    openList( id );
-  };
-
-  const [ newsletter, toggleModal ] = useState(false);
+  const [ newsletter, toggleModal ] = useState( false );
   const isNewsletter = param => {
     if (param.toLowerCase() === 'newsletter') {
-      toggleModal && openMenu(false);
-      setEmail('');
-      setSuccess('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
+      toggleModal && openMenu( false );
+      setEmail( '' );
+      setSuccess( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );
       toggleModal( !newsletter );
-      stateSubscribe(false);
+      stateSubscribe( false );
     }
   };
 
   const [ email, setEmail ] = useState( '' );
   const handlerEmail = email => setEmail( email );
 
-  const [ success, setSuccess ] = useState('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
-  const message = msg => setSuccess(msg);
-  
-  const [ successState, setSuccessState ] = useState(false);
-  const stateSubscribe = state => setSuccessState(state);
-  
-  const [ isLoding, setLoding ] = useState(false);
-  const stateLoding = state => setLoding(state);
+  const [ success, setSuccess ] = useState( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );
+  const message = msg => setSuccess( msg );
 
-  const onSubmit = async (event, email = '') => {
+  const [ successState, setSuccessState ] = useState( false );
+  const stateSubscribe = state => setSuccessState( state );
+
+  const [ isLoding, setLoding ] = useState( false );
+  const stateLoding = state => setLoding( state );
+
+  const onSubmit = async ( event, email ) => {
     event.preventDefault();
-    subscribeToNews().then(
-      (r) => console.log({ r })
-    ).catch(
-      (e) => console.log({ e })
-    );
-    // stateLoding(true);
-    // if (!!email && validateEmail(email)) {
-    //   subscribeToNews(email).then(() => {
-    //     message('Vous êtes bien inscrit à notre newsletter. Merci !');
-    //     stateSubscribe(true);
-    //     stateLoding(false);
-    //   }).catch((error) => {
-    //     message(error && error.response.data.detail ? error.response.data.detail : 'Une erreur c\'est produite.');
-    //     stateSubscribe(true);
-    //     stateLoding(false);
-    //   });
-    // } else {
-    //   message('Votre adresse e-mail est erronée.');
-    //   stateLoding(false);
-    // }
+    stateLoding( true );
+    if (!!email && validateEmail( email )) {
+      subscribeToNews( email ).then( ( response ) => {
+        // noinspection JSUnresolvedVariable
+        if (!!response.data && ( response.data.status === 200 || response.data.status === 'subscribed' )) {
+          message( 'Vous êtes bien inscrit à notre newsletter. Merci !' );
+        } else {
+          message( response.data && response.data.title || 'Une erreur s\'est produite.' );
+        }
+      } ).catch( ( error ) => {
+        message(
+          error && error.response && error.response.data && error.response.data.title || 'Une erreur s\'est produite.'
+        );
+      } );
+      stateSubscribe( true );
+    } else {
+      message( 'Votre adresse e-mail est erronée.' );
+    }
+    stateLoding( false );
   };
+
+  const [ isOpen, openMenu ] = useState( false );
+  const toggleMenu = () => {
+    openMenu( !isOpen );
+    openOrNot( false );
+  };
+
+  const [ isList, openList ] = useState( null );
+  const [ isListOpen, openOrNot ] = useState( false );
+  const toggleList = ( id ) => {
+    openOrNot( true );
+    openOrNot( false );
+    setTimeout(() => {
+      if (id !== isList) openOrNot( true );
+      if (id === isList) openOrNot( !isListOpen );
+      openList( id );
+    }, 50)
+  };
+
+  const props = useSpring( {
+    reset: true,
+    reverse: false,
+    immediate: false,
+    config: { duration: 300, ...config.default },
+    to: {
+      height: isListOpen ? 'auto' : 0,
+      lineHeight: isListOpen ? 2.5 : 0,
+      opacity: isListOpen ? 1 : 0,
+      marginBottom: isListOpen ? 15 : 'unset'
+    },
+    from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
+  } );
 
   // noinspection JSUnresolvedVariable
   return (
@@ -82,10 +96,10 @@ const Nav = ( { nav } ) => {
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
         <header className={ isOpen ? 'open' : 'close' }>
           <nav className="nav-links">
-  
+
             <ul>
               { nav.map( ( link, i ) =>
-                <li key={ i } className={ isListOpen ? 'open' : 'close' }>
+                <li key={ i }>
                   { link.data.link_to.uid
                     ? (
                       <Link href={ `/${ link.data.link_to.uid }` }>
@@ -94,81 +108,90 @@ const Nav = ( { nav } ) => {
                     )
                     : (
                       <Fragment>
-                        <p id={ i } className="except" onClick={ () => toggleList( i ) }>{ link.data.link_one[ 0 ].text }</p>
-                        <ul className={ isListOpen ? `${ isList } test` : '' }>
-                          { link.data.body.map( ( sublink, i ) =>
-                            sublink.primary.link_to_level_two.uid || sublink.primary.link_to_level_two.url ?
-                              (
-                                sublink.primary.link_to_level_two.uid
-                                  ? (
-                                    <li key={ i }>
-                                      <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
-                                        <a>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text  }</a>
-                                      </Link>
-                                    </li>
+                        <div
+                          id={ i }
+                          onClick={ () => toggleList( i ) }
+                        >
+                          <p>{ link.data.link_one[ 0 ].text }</p>
+
+                          { isList === i && isListOpen &&
+                            <animated.ul style={ props }>
+                              { link.data.body.map( ( sublink, i ) =>
+                                sublink.primary.link_to_level_two.uid || sublink.primary.link_to_level_two.url ?
+                                  (
+                                    sublink.primary.link_to_level_two.uid
+                                      ? (
+                                        <li key={ i }>
+                                          <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
+                                            <a>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</a>
+                                          </Link>
+                                        </li>
+                                      )
+                                      : (
+                                        <li key={ i }>
+                                          <Link href={ `${ sublink.primary.link_to_level_two.url }` }>
+                                            <a
+                                              target="_blank">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</a>
+                                          </Link>
+                                        </li>
+                                      )
                                   )
                                   : (
-                                    <li key={ i }>
-                                      <Link href={ `${ sublink.primary.link_to_level_two.url }` }>
-                                        <a target="_blank">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text  }</a>
-                                      </Link>
-                                    </li>
+                                    <Fragment key={ i }>
+                                      <p
+                                        className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }
+                                        onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
+                                      >
+                                        <span>{ sublink.primary.link_two[ 0 ].text }</span>
+                                      </p>
+                                      <ul style={{ paddingLeft: 40 }}>
+                                        { sublink.items.map( ( thirdLink, i ) =>
+                                          <li key={ i } onClick={ toggleMenu }>
+                                            { thirdLink.link_three[ 0 ].text === undefined ? null :
+                                              thirdLink.link_three_href[ 0 ].text !== ''
+                                                ? (
+                                                  <Link
+                                                    href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
+                                                    as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
+                                                  >
+                                                    <a>{ thirdLink.link_three[ 0 ].text }</a>
+                                                  </Link>
+                                                )
+                                                : (
+                                                  <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
+                                                    <a>{ thirdLink.link_three[ 0 ].text }</a>
+                                                  </Link>
+                                                )
+                                            }
+                                          </li>
+                                        ) }
+                                      </ul>
+                                    </Fragment>
                                   )
-                              )
-                              : (
-                                <Fragment key={ i }>
-                                  <p
-                                    className={`except ${sublink.primary.link_two[0].text.toLowerCase() === 'newsletter' ? 'underline' : null}`}
-                                    onClick={ () => isNewsletter(sublink.primary.link_two[0].text)}
-                                  >
-                                    <span>{ sublink.primary.link_two[ 0 ].text }</span>
-                                  </p>
-                                  <ul className={ `third-step ${ isListOpen ? 'open' : 'close' }` }>
-                                    { sublink.items.map( ( thirdLink, i ) =>
-                                      <li key={ i } onClick={ toggleMenu }>
-                                        {thirdLink.link_three[0].text === undefined ? null :
-                                          thirdLink.link_three_href[0].text !== ''
-                                          ? (
-                                            <Link
-                                              href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
-                                              as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
-                                            >
-                                              <a>{ thirdLink.link_three[ 0 ].text }</a>
-                                            </Link>
-                                            )
-                                          : (
-                                            <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
-                                              <a>{ thirdLink.link_three[ 0 ].text }</a>
-                                            </Link>
-                                          )
-                                        }
-                                      </li>
-                                    ) }
-                                  </ul>
-                                </Fragment>
-                              )
-                          ) }
-                        </ul>
+                              ) }
+                            </animated.ul>
+                          }
+                        </div>
                       </Fragment>
                     )
                   }
                 </li>
               ) }
             </ul>
-  
+
           </nav>
-  
-          <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ (e) => onSubmit(e) }>
+
+          <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
             <span className="burger"/>
           </div>
         </header>
       </OutsideAlerter>
 
-      <div className={newsletter ? 'open-newsletter' : 'close-newsletter'}>
+      <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>
         <div className="newsletter-wrapper">
-          <p>{success}</p>
-          <div className="close-newsletter-btn" onClick={() => isNewsletter('newsletter')}>X</div>
-          <form onSubmit={ e => onSubmit(e, email) }>
+          <p>{ success }</p>
+          <div className="close-newsletter-btn" onClick={ () => isNewsletter( 'newsletter' ) }>X</div>
+          <form onSubmit={ e => onSubmit( e, email ) }>
             <div className="input-wrapper">
               <label htmlFor="mail">Adresse e-mail :</label>
               <input
@@ -178,19 +201,23 @@ const Nav = ( { nav } ) => {
                 onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
               />
             </div>
-            { isLoding ? (<div className="lds-ripple"><div/><div/></div>) : (!successState ? (
+            { isLoding ? ( <div className="lds-ripple">
+              <div/>
+              <div/>
+            </div> ) : ( !successState ? (
               <input className="btn-submit" type="submit" value="S'inscrire"/>
-              ) : (
-              <input className="btn-submit" type="button" value="Fermer" onClick={ () => isNewsletter('newsletter') }/>
-              )) }
+            ) : (
+              <input className="btn-submit" type="button" value="Fermer"
+                     onClick={ () => isNewsletter( 'newsletter' ) }/>
+            ) ) }
           </form>
         </div>
       </div>
 
-      <style jsx>{`
+      <style jsx>{ `
       form input[type="email"] {
-        border: 1px solid ${COLORS.lightGrey};
-        color: ${COLORS.lightGrey};
+        border: 1px solid ${ COLORS.lightGrey };
+        color: ${ COLORS.lightGrey };
         border-radius: 2px !important;
       }
       form input.btn-submit {
@@ -198,34 +225,21 @@ const Nav = ( { nav } ) => {
         padding: 0 1rem;
         display: table;
         background: #080808;
-        color: ${COLORS.lightGrey};
-        border: 1px solid ${COLORS.lightGrey};
+        color: ${ COLORS.lightGrey };
+        border: 1px solid ${ COLORS.lightGrey };
         cursor: pointer;
         border-radius: 2px !important;
         -webkit-appearance: none !important;
       }
-      
-      
-      .nav-links ul > li ul {
-        height: 0;
-        opacity: 0;
-        transition: .1s ease-in-out;
-      }
-      
-      .nav-links ul > li:nth-of-type(${ isListOpen && isList !== null && isList + 1 }) ul {
-        height: unset;
-        opacity: 1;
-        transition: .4s ease-in-out;
-      }
-      `}</style>
+      ` }</style>
 
-      <style jsx global>{`
+      <style jsx global>{ `
       .head-wrapper {
-        z-index: ${newsletter ? '51' : '50'};
+        z-index: ${ newsletter ? '51' : '50' };
       }
-      `}</style>
+      ` }</style>
     </Fragment>
-  )
+  );
 };
 
 export default connect( mapStateToProps )( Nav );

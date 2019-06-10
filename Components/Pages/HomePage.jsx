@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Swipe from 'react-easy-swipe';
 import Link from "next/link";
 
 import SanitizedHTML from 'react-sanitized-html';
@@ -17,76 +16,55 @@ class HomePage extends Component {
    * and then, play slider every 3500ms
    */
   componentDidMount() {
-    const firstSlide = setTimeout(() => this.handleMouseMoving(), 5000);
-    const interval = setInterval(this.handleMouseMoving, 5000);
+    const firstSlide = setTimeout(() => this.handleMouseMoving(), 3700);
+    const interval = setInterval(this.handleMouseMoving, 3700);
     this.setState({interval, firstSlide});
   };
 
   componentWillUnmount() { clearInterval(this.state.interval); clearInterval(this.state.firstSlide); };
 
-  /**
-   * Change slide when user is swiping
-   */
-  incrementFunction = () => {
-    this.setState({ firstSlide: null });
-
-    const { visible } = this.state;
-    // noinspection JSUnresolvedVariable
-    if (visible >= this.props.result.data.home_bg.length - 1) {
-      this.setState( { visible: 0 } );
-      return;
-    }
-    this.setState( { visible: visible + 1 } );
-  };
-
-  onSwipeEnd = () => this.incrementFunction();
-
   handleMouseMoving = () => {
     const { mouseMoving } = this.state;
     this.setState({ mouseMoving: mouseMoving + 1, visible: mouseMoving });
     // noinspection JSUnresolvedVariable
-    mouseMoving >= this.props.result.data.home_bg.length - 1 && this.setState({ mouseMoving: 0 });
+    mouseMoving >= this.props.result.data.body.length - 1 && this.setState({ mouseMoving: 0 });
   };
 
   clearMouseMoving = () => this.setState( { mouseMoving: this.state.visible } );
 
   render() {
     const { visible } = this.state;
-    const { result } = this.props;
+    const { result, imgs } = this.props;
 
     // noinspection JSUnresolvedVariable
     return (
       <div className="home-image-wrapper">
         <div className="image-wrapper">
 
-          <Swipe onSwipeEnd={ this.onSwipeEnd }>
-
-            {result.data.home_bg.map((bg, i) =>
+            {result.data.body.map((bg, i) =>
               <div
                 key={ i }
                 className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
                 onMouseMove={ this.clearMouseMoving }
               >
                 <Link
-                  href={ `${bg.page_category.slug !== undefined ? `/${bg.page_category.slug}?slug=${bg.link_to.uid}` : bg.link_to.uid}` }
-                  as={ `${bg.page_category.slug !== undefined ? `/${bg.page_category.slug}/${bg.link_to.uid}` : bg.link_to.uid}` }
+                  href={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}?slug=${bg.primary.link_to.uid}` : bg.primary.link_to.uid}` }
+                  as={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}/${bg.primary.link_to.uid}` : bg.primary.link_to.uid}` }
                 >
                   <a>
-                    {bg.background_img.url !== undefined && <img src={ bg.background_img.url } alt="" />}
+                    {imgs[i].length > 0 && <img srcSet={imgs[i]} alt="" /> }
                     <h1>
                       <span>
-                        { bg.title_img[ 0 ].text }
+                        { bg.primary.title_img[ 0 ].text }
                       </span>
                     </h1>
                     <h2>
-                      <SanitizedHTML html={bg.text[0] && bg.text[0].text} />
+                      <SanitizedHTML html={bg.primary.text[0] && bg.primary.text[0].text} />
                     </h2>
                   </a>
                 </Link>
               </div>
             )}
-
-          </Swipe>
 
         </div>
       </div>

@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-import { ADD_MEMBER_URL, LIST_ID_EVENT, MAILCHIMP_API_KEY } from './config';
+import { LIST_ID_EVENT } from './config';
 
-const PHP_URL = 'http://localhost:8000/newsletter.php';
+const PHP_URL = 'https://loucartergallery.com/static/newsletter.php';
 
-export const subscribeToNews = async(email_address = 'jaja@mail.com') => {
-  console.log('ici');
+export const subscribeToNews = async ( email_address ) => {
   return axios.post(
     PHP_URL,
     {

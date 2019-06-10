@@ -6,7 +6,7 @@ header {
   width      : 85vw;
   top        : 0;
   right      : -85vw;
-  z-index    : 30;
+  z-index    : 50;
   transition : .3s ease-in-out;
   background : rgba(0, 0, 0, .9);
 
@@ -79,7 +79,7 @@ header {
     left       : -30vw;
     width      : 30vw;
     height     : 100vh;
-    z-index    : 10;
+    z-index    : 11;
     transition : .3s ease-in-out;
 
     .menu-desktop {
@@ -109,21 +109,17 @@ header {
 }
 
 .nav-links {
-  font-size     : 13px;
-  position      : absolute;
-  top           : 50%;
-  width         : 100%;
-  transform     : translateY(-50%);
-  left          : 0;
-  padding-right : 20px;
-  text-align    : right;
+  font-size  : 13px;
+  position   : absolute;
+  top        : 50%;
+  width      : 100%;
+  transform  : translateY(-50%);
+  left       : 20px;
+  text-align : left;
 
   @media (min-width : 576px) {
-    padding-right : unset;
-    left          : 20px;
-    width         : unset;
-    text-align    : left;
-    margin-top    : 50px;
+    width      : unset;
+    margin-top : 50px;
   }
 
   @media (min-width : 768px) {
@@ -135,12 +131,23 @@ header {
   }
 
   a, p.underline span {
-    border-bottom  : 1px solid;
-    padding-bottom : 1px;
+    display         : flex;
+    justify-content : flex-start;
+    flex-direction  : row;
+    align-items     : center;
 
-    @media (min-width : 576px) {
-      border-bottom  : none;
-      padding-bottom : unset;
+    &::before {
+      content                   : "";
+      display                   : block;
+      width                     : 0;
+      height                    : 1px;
+      background                : $lightGrey;
+      margin-right              : 10px;
+      animation-name            : openLinks;
+      animation-fill-mode       : forwards;
+      animation-duration        : 300ms;
+      animation-timing-function : ease;
+      animation-delay           : 400ms;
     }
   }
 
@@ -165,16 +172,6 @@ header {
       line-height : 2.5;
       position    : relative;
       z-index     : 30;
-      transition  : .3s ease-in-out;
-
-      &.open {
-        line-height : 3;
-        transition  : .3s ease-in-out;
-
-        @media (max-width : 1280px) {
-          line-height : 2.6;
-        }
-      }
 
       p {
 
@@ -183,94 +180,16 @@ header {
           transition : .3s ease-in-out;
         }
       }
-
-      > ul {
-        padding-right : 40px;
-
-        @media (min-width : 576px) {
-          padding-right : 0;
-          padding-left  : 40px;
-        }
-
-        > li {
-          line-height : 2.5;
-        }
-
-        &.open {
-          -webkit-animation-name : openList;
-          -moz-animation-name    : openList;
-          -o-animation-name      : openList;
-          animation-name         : openList;
-          animation-duration     : .5s;
-          animation-fill-mode    : forwards;
-
-          > li {
-            margin     : unset;
-            transition : .3s ease-in-out;
-            cursor     : pointer;
-            opacity    : 1;
-
-            &:hover {
-              opacity    : .7;
-              transition : .3s ease-in-out;
-            }
-          }
-        }
-
-        &.close {
-          -webkit-animation-name : openList;
-          -moz-animation-name    : openList;
-          -o-animation-name      : openList;
-          animation-name         : openList;
-          animation-duration     : .5s;
-          animation-fill-mode    : forwards;
-          animation-direction    : reverse;
-        }
-      }
-    }
-  }
-
-  .third-step {
-    margin-bottom : .5rem;
-    padding-right : 40px;
-
-    @media (min-width : 576px) {
-      padding-right : 0;
-      padding-left  : 40px;
-    }
-
-    &.close {
-      opacity : 0;
-      height  : 0;
-    }
-
-    &.open {
-      height  : unset;
-      opacity : 1;
-    }
-
-    li {
-      line-height : 2;
-
-      a { text-transform : initial; }
     }
   }
 }
 
-@keyframes openList {
+@keyframes openLinks {
   0% {
-    height  : 0;
-    opacity : 0;
+    width : 0;
   }
-
-  80% {
-    height  : 80%;
-    opacity : .8;
-  }
-
   100% {
-    height  : initial;
-    opacity : 1;
+    width : 7px;
   }
 }
 
@@ -286,6 +205,7 @@ header {
 
 .open-newsletter {
   opacity    : 1;
+  z-index    : 100;
   position   : fixed;
   width      : 100%;
   height     : 100vh;
@@ -368,20 +288,6 @@ form input[type="email"] {
   }
 }
 
-.underline {
-  //border-bottom  : 1px solid;
-  //padding-bottom : 1px;
-  //
-  //span {
-  //  display: table;
-  //}
-  //
-  //@media (min-width : 576px) {
-  //  border-bottom  : none;
-  //  padding-bottom : unset;
-  //}
-}
-
 .close-newsletter-btn {
   position : absolute;
   top      : 20px;
@@ -396,17 +302,20 @@ div.lds-ripple {
   transform : translateX(-50%);
   width     : 64px;
   height    : 64px;
+
   div {
     position      : absolute;
     border        : 4px solid #d9e1e8;
     opacity       : 1;
     border-radius : 50%;
     animation     : loads-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+
     &:nth-child(2) {
       animation-delay : -0.5s;
     }
   }
 }
+
 @keyframes loads-ripple {
   0% {
     top     : 28px;

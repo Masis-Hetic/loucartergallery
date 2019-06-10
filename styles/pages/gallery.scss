@@ -12,7 +12,7 @@ div.gallery-container {
   div.gallery-wrapper {
     display        : flex;
     height         : 80%;
-    width          : 80%;
+    width          : 90%;
     flex-direction : column;
     align-self     : flex-start;
 
@@ -37,7 +37,8 @@ div.gallery-container {
     }
 
     &:nth-of-type(1) {
-      @media (min-width: 576px) {
+      @media (min-width : 576px) {
+        width        : 30%;
         margin-right : 2rem;
       }
     }
@@ -47,15 +48,21 @@ div.gallery-container {
 
       @media (min-width : 576px) {
         margin : 0 0;
+        width  : 40%;
+
+        p {
+          line-height : 2.5;
+        }
       }
     }
 
     &:nth-of-type(3) {
-      padding-bottom : 8rem;
+      padding-bottom : 10rem;
 
       @media (min-width : 576px) {
         margin-left    : 2rem;
         padding-bottom : unset;
+        width          : 30%;
       }
     }
 
@@ -83,12 +90,29 @@ div.gallery-container {
           }
         }
 
-        h2 { font-weight : 600; }
+        h2 {
+          font-weight : 600;
+          position    : relative;
+
+          &::after {
+            content    : "";
+            display    : block;
+            width      : 20%;
+            height     : 1px;
+            background : #fff;
+            position   : absolute;
+            bottom     : 0;
+            left       : 50%;
+            transform  : translateX(-50%);
+          }
+        }
 
         h3 {
 
           @media (min-width : 576px) {
-            margin-top : 50px;
+            margin-top  : 1rem;
+            line-height : 2.2;
+            text-align: justify;
           }
         }
       }

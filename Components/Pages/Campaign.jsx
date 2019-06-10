@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SanitizedHTML from 'react-sanitized-html';
-import { sliceUrl } from "../../helpers/functions";
 
 class Campaign extends Component {
   state = {
@@ -10,13 +9,12 @@ class Campaign extends Component {
   openSlider = () => this.setState( { isOpen: !this.state.isOpen } );
 
   render() {
-    const { campaign } = this.props;
+    const { campaign, imgs } = this.props;
     const { isOpen } = this.state;
 
     // noinspection JSUnresolvedVariable
     return (
-      <div className="wrapper">
-
+      <div className="wrapper campaign-wrapper">
         <div className={ `slide-mobile ${ isOpen ? 'open' : 'close' }` }>
           <p onClick={ this.openSlider }>
             <svg style={ { width: 28, height: 28 } } viewBox="0 0 24 24">
@@ -24,11 +22,11 @@ class Campaign extends Component {
             </svg>
           </p>
           <ul>
-            { campaign.data.images.map( ( img, i ) =>
-              <li key={ i }>
-                <img src={ img && sliceUrl( img.image.url ) } alt=""/>
+            {imgs.map((img, i) =>
+              <li key={i}>
+                <img srcSet={img} alt="" />
               </li>
-            ) }
+            )}
           </ul>
         </div>
 
@@ -36,11 +34,11 @@ class Campaign extends Component {
           <div className="slides">
             <div className="slider-wrapper">
               <ul>
-                { campaign.data.images.map( ( img, i ) =>
-                  <li key={ i }>
-                    <img src={ img && sliceUrl( img.image.url ) } alt=""/>
+                {imgs.map((img, i) =>
+                  <li key={i}>
+                    <img srcSet={ img } alt="" />
                   </li>
-                ) }
+                )}
               </ul>
             </div>
           </div>
@@ -63,8 +61,6 @@ class Campaign extends Component {
             </div>
 
             <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
-
-            <p>Détail des oeuvres</p>
           </div>
 
         </div>
@@ -77,7 +73,7 @@ class Campaign extends Component {
          */ }
         <style jsx>{ `
         .slides .slider-wrapper ul::before {
-          width: ${ ( campaign.data.images.length * 60 ) + ( ( campaign.data.images.length ) * 40 ) - 20 }vw;
+          width: ${ ( imgs.length * 60 ) + ( ( imgs.length ) * 40 ) - 20 }vw;
         }
         ` }</style>
       </div>
