@@ -48,8 +48,8 @@ class HomePage extends Component {
                 onMouseMove={ this.clearMouseMoving }
               >
                 <Link
-                  href={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}?slug=${bg.primary.link_to.uid}` : `/${bg.primary.link_to.uid}`}` }
-                  as={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}/${bg.primary.link_to.uid}` : `/${bg.primary.link_to.uid}`}` }
+                  href={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}?slug=${bg.primary.link_to.uid}` : bg.primary.link_to.uid}` }
+                  as={ `${bg.primary.page_category.type === 'category' ? `/${bg.primary.page_category.slug}/${bg.primary.link_to.uid}` : bg.primary.link_to.uid}` }
                 >
                   <a>
                     {imgs[i].length > 0 && <img srcSet={imgs[i]} alt="" /> }
