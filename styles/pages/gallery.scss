@@ -59,7 +59,7 @@ div.gallery-container {
         width  : 40%;
 
         p {
-          line-height : 2.5;
+          line-height : 2;
         }
       }
     }
@@ -124,9 +124,10 @@ div.gallery-container {
         h3 {
 
           @media (min-width : 800px) {
-            margin-top  : 1rem;
-            line-height : 2.2;
+            margin-top  : 2rem;
+            line-height : 2;
             text-align  : justify;
+            font-size   : .85rem;
           }
         }
       }
