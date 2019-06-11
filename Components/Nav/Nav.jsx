@@ -90,11 +90,15 @@ const Nav = ( { nav } ) => {
     from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
   } );
 
+  const openHeader = useSpring({ transform: isOpen ? 'translateX(100%)' : 'translateX(0%)' });
+
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <header className={ isOpen ? 'open' : 'close' }>
+        <animated.header
+          style={openHeader}
+        >
           <nav className="nav-links">
 
             <ul>
@@ -123,7 +127,8 @@ const Nav = ( { nav } ) => {
                                       ? (
                                         <li key={ i }>
                                           <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
-                                            <a>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</a>
+                                            <a>
+                                              <span className="pasnew">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
                                           </Link>
                                         </li>
                                       )
@@ -131,7 +136,8 @@ const Nav = ( { nav } ) => {
                                         <li key={ i }>
                                           <Link href={ `${ sublink.primary.link_to_level_two.url }` }>
                                             <a
-                                              target="_blank">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</a>
+                                              target="_blank">
+                                              <span className="pasnew">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
                                           </Link>
                                         </li>
                                       )
@@ -142,7 +148,7 @@ const Nav = ( { nav } ) => {
                                         className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }
                                         onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
                                       >
-                                        <span>{ sublink.primary.link_two[ 0 ].text }</span>
+                                        <span className="new">{ sublink.primary.link_two[ 0 ].text }</span>
                                       </p>
                                       <ul style={{ paddingLeft: 40 }}>
                                         { sublink.items.map( ( thirdLink, i ) =>
@@ -154,12 +160,14 @@ const Nav = ( { nav } ) => {
                                                     href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
                                                     as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
                                                   >
-                                                    <a>{ thirdLink.link_three[ 0 ].text }</a>
+                                                    <a>
+                                                      <span className="pasnew">{ thirdLink.link_three[ 0 ].text }</span></a>
                                                   </Link>
                                                 )
                                                 : (
                                                   <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
-                                                    <a>{ thirdLink.link_three[ 0 ].text }</a>
+                                                    <a>
+                                                      <span className="pasnew">{ thirdLink.link_three[ 0 ].text }</span></a>
                                                   </Link>
                                                 )
                                             }
@@ -184,7 +192,7 @@ const Nav = ( { nav } ) => {
           <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
             <span className="burger"/>
           </div>
-        </header>
+        </animated.header>
       </OutsideAlerter>
 
       <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>

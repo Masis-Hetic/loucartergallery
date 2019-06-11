@@ -6,30 +6,30 @@ header {
   width      : 85vw;
   top        : 0;
   right      : -85vw;
-  z-index    : 50;
-  transition : .3s ease-in-out;
+  z-index    : 51;
+  //transition : .3s ease-in-out;
   background : rgba(0, 0, 0, .9);
 
   &.open {
-    right      : 0;
-    transition : .3s ease-in-out;
-    width      : 85vw;
+    right : 0;
+    //transition : .3s ease-in-out;
+    width : 85vw;
 
     .menu-desktop {
-      right      : 90vw;
-      transition : .25s ease-in-out;
+      right : 90vw;
+      //transition : .25s ease-in-out;
     }
   }
 
   .menu-desktop {
-    position   : absolute;
-    top        : 50%;
-    left       : -10vw;
-    transform  : translateY(-50%) rotate(90deg);
-    z-index    : 1;
-    cursor     : pointer;
-    padding    : 10px 0;
-    transition : .3s ease-in-out;
+    position  : absolute;
+    top       : 50%;
+    left      : -10vw;
+    transform : translateY(-50%) rotate(90deg);
+    z-index   : 1;
+    cursor    : pointer;
+    padding   : 10px 0;
+    //transition : .3s ease-in-out;
 
     span.burger {
       position   : relative;
@@ -74,23 +74,23 @@ header {
   }
 
   @media (min-width : 576px) {
-    display    : block;
-    top        : 0;
-    left       : -30vw;
-    width      : 30vw;
-    height     : 100vh;
-    z-index    : 11;
-    transition : .3s ease-in-out;
+    display : block;
+    top     : 0;
+    left    : -30vw;
+    width   : 30vw;
+    height  : 100vh;
+    //z-index    : 11;
+    //transition : .3s ease-in-out;
 
     .menu-desktop {
-      right      : -3vw;
-      left       : unset;
-      transition : .3s ease-in-out;
+      right : -3vw;
+      left  : unset;
+      //transition : .3s ease-in-out;
     }
 
     &.open {
       left       : 0;
-      transition : .3s ease-in-out;
+      //transition : .3s ease-in-out;
       width      : 50vw;
       box-shadow : 0 0 3px 1px #282c37;
 
@@ -130,7 +130,16 @@ header {
     margin-top : unset;
   }
 
-  a, p.underline span {
+  @keyframes openLinks {
+    0% {
+      width : 0;
+    }
+    100% {
+      width : 8px;
+    }
+  }
+
+  a, p.underline {
     display         : flex;
     justify-content : flex-start;
     flex-direction  : row;
@@ -142,12 +151,38 @@ header {
       width                     : 0;
       height                    : 1px;
       background                : $lightGrey;
-      margin-right              : 10px;
       animation-name            : openLinks;
       animation-fill-mode       : forwards;
       animation-duration        : 300ms;
       animation-timing-function : ease;
       animation-delay           : 400ms;
+      margin-right              : 10px;
+    }
+
+    &:hover {
+      &::before {
+        margin-right : 0;
+      }
+
+      span {
+        display        : flex;
+        flex-direction : row;
+        align-items    : center;
+
+        &::before {
+          content                   : "";
+          display                   : block;
+          width                     : 0;
+          height                    : 1px;
+          background                : $lightGrey;
+          margin-right              : 10px;
+          margin-left               : -1px;
+          animation-name            : openLinks;
+          animation-fill-mode       : forwards;
+          animation-duration        : 300ms;
+          animation-timing-function : ease;
+        }
+      }
     }
   }
 
@@ -184,15 +219,6 @@ header {
   }
 }
 
-@keyframes openLinks {
-  0% {
-    width : 0;
-  }
-  100% {
-    width : 7px;
-  }
-}
-
 // newsletter
 .close-newsletter {
   position   : fixed;
@@ -221,7 +247,7 @@ header {
   transform     : translate(-50%, 0);
   left          : 50%;
   width         : 95%;
-  height        : calc(100% - 7rem - 1rem);
+  //height        : calc(100% - 7rem - 1rem);
   border-radius : 2px;
   border        : 1px solid #D9E1E8;
 
@@ -249,7 +275,7 @@ header {
 
 .newsletter-wrapper form {
   width      : 100%;
-  height     : calc(100% - 4rem);
+  //height     : calc(100% - 4rem);
   margin-top : 3rem;
 }
 
