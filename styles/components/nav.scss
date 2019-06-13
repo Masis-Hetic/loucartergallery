@@ -159,28 +159,30 @@ header {
       margin-right              : 10px;
     }
 
-    &:hover {
-      &::before {
-        margin-right : 0;
-      }
-
-      span {
-        display        : flex;
-        flex-direction : row;
-        align-items    : center;
-
+    @media (min-width: 576px) {
+      &:hover {
         &::before {
-          content                   : "";
-          display                   : block;
-          width                     : 0;
-          height                    : 1px;
-          background                : $lightGrey;
-          margin-right              : 10px;
-          margin-left               : -1px;
-          animation-name            : openLinks;
-          animation-fill-mode       : forwards;
-          animation-duration        : 300ms;
-          animation-timing-function : ease;
+          margin-right : 0;
+        }
+
+        span {
+          display        : flex;
+          flex-direction : row;
+          align-items    : center;
+
+          &::before {
+            content                   : "";
+            display                   : block;
+            width                     : 0;
+            height                    : 1px;
+            background                : $lightGrey;
+            margin-right              : 10px;
+            margin-left               : -1px;
+            animation-name            : openLinks;
+            animation-fill-mode       : forwards;
+            animation-duration        : 300ms;
+            animation-timing-function : ease;
+          }
         }
       }
     }
@@ -209,10 +211,11 @@ header {
       z-index     : 30;
 
       p {
-
-        &:hover {
-          opacity    : .7;
-          transition : .3s ease-in-out;
+        @media (min-width: 576px) {
+          &:hover {
+            opacity    : .7;
+            transition : .3s ease-in-out;
+          }
         }
       }
     }
