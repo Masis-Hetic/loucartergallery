@@ -90,18 +90,21 @@ const Nav = ( { nav } ) => {
     from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
   } );
 
-
-  const [ size, setSize ] = useState([100, 0]);
-  useEffect(() => {
-    if (window && window.outerWidth <= 576) setSize([-100, 0]);
-  }, [isOpen]);
-  const openHeader = useSpring({ transform: isOpen ? `translateX(${size[0]}%)` : `translateX(${size[1]}%)` });
+  //
+  // const [ size, setSize ] = useState([100, 0]);
+  // useEffect(() => {
+  //   if (window && window.outerWidth <= 576) setSize([-100, 0]);
+  // }, [isOpen]);
+  // const openHeader = useSpring({ transform: isOpen ? `translateX(${size[0]}%)` : `translateX(${size[1]}%)` });
 
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <animated.header style={ openHeader }>
+        <header
+          className={ isOpen ? 'open' : 'close' }
+          // style={openHeader}
+        >
           <nav className="nav-links">
 
             <ul>
@@ -195,7 +198,7 @@ const Nav = ( { nav } ) => {
           <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
             <span className="burger"/>
           </div>
-        </animated.header>
+        </header>
       </OutsideAlerter>
 
       <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>
