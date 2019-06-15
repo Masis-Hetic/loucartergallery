@@ -6,10 +6,11 @@ div.wrapper {
 }
 
 .campaign-wrapper {
-  height : calc(100vh - 6rem);
+  margin-top : 7rem;
 
   @media (min-width : 576px) {
-    height : 100vh;
+    margin-top : unset;
+    height     : 100vh;
   }
 }
 

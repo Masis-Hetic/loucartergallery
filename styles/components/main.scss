@@ -1,7 +1,4 @@
 body * {
-  @media (min-width : 576px) {
-    //letter-spacing : 5px;
-  }
   @media (max-width : 576px) {
     .text-gradiant {
       -webkit-mask-image : -webkit-gradient(linear, left 10%, left top, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
@@ -16,7 +13,6 @@ main {
 .head-wrapper {
   position : relative;
   z-index  : 50;
-  height   : 6rem;
 
   @media (min-width : 576px) {
     height : unset;
@@ -24,13 +20,10 @@ main {
 }
 
 .logo-wrapper {
-  height   : 7rem;
   position : static;
-  background: #080808;
 
   @media (min-width : 800px) {
     position : unset;
-    height   : auto;
   }
 }
 

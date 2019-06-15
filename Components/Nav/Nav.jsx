@@ -233,6 +233,7 @@ const Nav = ( { nav } ) => {
         border: 1px solid ${ COLORS.lightGrey };
         color: ${ COLORS.lightGrey };
         border-radius: 2px !important;
+        letter-spacing: 2px;
       }
       form input.btn-submit {
         margin-top: 1rem;

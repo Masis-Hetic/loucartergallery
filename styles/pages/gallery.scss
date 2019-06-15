@@ -16,10 +16,10 @@ div.gallery-container {
 
   div.gallery-wrapper {
     display        : flex;
-    height         : 80%;
+    height         : 90%;
     width          : 90%;
     flex-direction : column;
-    align-self     : flex-start;
+    align-self     : flex-end;
     overflow-y     : scroll;
 
     @media (min-width : 800px) {
@@ -46,8 +46,8 @@ div.gallery-container {
 
     &:nth-of-type(1) {
       @media (min-width : 800px) {
-        width        : 30%;
-        margin-right : 2rem;
+        width        : 24%;
+        margin-right : 7%;
       }
     }
 
@@ -68,9 +68,9 @@ div.gallery-container {
       padding-bottom : 10rem;
 
       @media (min-width : 800px) {
-        margin-left    : 2rem;
+        margin-left    : 7%;
         padding-bottom : unset;
-        width          : 30%;
+        width          : 24%;
       }
     }
 
@@ -107,26 +107,15 @@ div.gallery-container {
         h2 {
           font-weight : 600;
           position    : relative;
-
-          &::after {
-            content    : "";
-            display    : block;
-            width      : 20%;
-            height     : 1px;
-            background : #fff;
-            position   : absolute;
-            bottom     : 0;
-            left       : 50%;
-            transform  : translateX(-50%);
-          }
+          font-size   : 1.2rem;
         }
 
         h3 {
 
           @media (min-width : 800px) {
-            margin-top  : 2rem;
+            margin-top  : 1.5rem;
             line-height : 2;
-            text-align  : justify;
+            text-align  : center;
             font-size   : .85rem;
           }
         }
