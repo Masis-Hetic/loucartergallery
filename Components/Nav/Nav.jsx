@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 
@@ -90,14 +90,20 @@ const Nav = ( { nav } ) => {
     from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
   } );
 
-  const openHeader = useSpring({ transform: isOpen ? 'translateX(100%)' : 'translateX(0%)' });
+  //
+  // const [ size, setSize ] = useState([100, 0]);
+  // useEffect(() => {
+  //   if (window && window.outerWidth <= 576) setSize([-100, 0]);
+  // }, [isOpen]);
+  // const openHeader = useSpring({ transform: isOpen ? `translateX(${size[0]}%)` : `translateX(${size[1]}%)` });
 
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <animated.header
-          style={openHeader}
+        <header
+          className={ isOpen ? 'open' : 'close' }
+          // style={openHeader}
         >
           <nav className="nav-links">
 
@@ -128,7 +134,7 @@ const Nav = ( { nav } ) => {
                                         <li key={ i }>
                                           <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
                                             <a>
-                                              <span className="pasnew">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
+                                              <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
                                           </Link>
                                         </li>
                                       )
@@ -137,7 +143,7 @@ const Nav = ( { nav } ) => {
                                           <Link href={ `${ sublink.primary.link_to_level_two.url }` }>
                                             <a
                                               target="_blank">
-                                              <span className="pasnew">{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
+                                              <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
                                           </Link>
                                         </li>
                                       )
@@ -148,7 +154,7 @@ const Nav = ( { nav } ) => {
                                         className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }
                                         onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
                                       >
-                                        <span className="new">{ sublink.primary.link_two[ 0 ].text }</span>
+                                        <span>{ sublink.primary.link_two[ 0 ].text }</span>
                                       </p>
                                       <ul style={{ paddingLeft: 40 }}>
                                         { sublink.items.map( ( thirdLink, i ) =>
@@ -161,13 +167,13 @@ const Nav = ( { nav } ) => {
                                                     as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
                                                   >
                                                     <a>
-                                                      <span className="pasnew">{ thirdLink.link_three[ 0 ].text }</span></a>
+                                                      <span>{ thirdLink.link_three[ 0 ].text }</span></a>
                                                   </Link>
                                                 )
                                                 : (
                                                   <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
                                                     <a>
-                                                      <span className="pasnew">{ thirdLink.link_three[ 0 ].text }</span></a>
+                                                      <span>{ thirdLink.link_three[ 0 ].text }</span></a>
                                                   </Link>
                                                 )
                                             }
@@ -192,7 +198,7 @@ const Nav = ( { nav } ) => {
           <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
             <span className="burger"/>
           </div>
-        </animated.header>
+        </header>
       </OutsideAlerter>
 
       <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>
@@ -227,6 +233,7 @@ const Nav = ( { nav } ) => {
         border: 1px solid ${ COLORS.lightGrey };
         color: ${ COLORS.lightGrey };
         border-radius: 2px !important;
+        letter-spacing: 2px;
       }
       form input.btn-submit {
         margin-top: 1rem;

@@ -22,8 +22,8 @@ body {
   font-weight: 300;
   font-size: .85rem;
   color: #d9e1e8;
-  height: calc(var(--vh, 1vh) * 100);
   height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
   font-smooth: subpixel-antialiased;
   font-smooth: antialiased;

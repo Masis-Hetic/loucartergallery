@@ -7,10 +7,12 @@ const Eshop = () => {
   return (
     <MainComponent>
       <img
-        srcSet="../static/images/coming_soon/e_shop_1080X1920.png 1080w,
-        ../static/images/coming_soon/e_shop_1280X1024.png 1280w,
-        ../static/images/coming_soon/e_shop1920X1080.png 1920w,
-        ../static/images/coming_soon/e_shop_2560X1440.png 2560w"
+        srcSet="../static/images/coming_soon/eshop_1080.png 1080w,
+        ../static/images/coming_soon/eshop_1280.png 1280w,
+        ../static/images/coming_soon/eshop_1366.png 1366w,
+        ../static/images/coming_soon/eshop_1920.png 1920w,
+        ../static/images/coming_soon/eshop_2560.png 2560w,
+        ../static/images/coming_soon/eshop_5120.png 5120w"
         alt=""
       />
       <style jsx>{`
@@ -23,7 +25,6 @@ const Eshop = () => {
     </MainComponent>
   )
 };
-
 
 // Eshop.getInitialProps = async () => {
   // const API = await Prismic.api( PRISMIC_API );

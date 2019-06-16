@@ -7,11 +7,7 @@ const Artistes = () => {
   return (
     <MainComponent>
       <img
-        srcSet="../static/images/coming_soon/a_1920X1080.jpg 1920w,
-        ../static/images/coming_soon/a_1080X1920_1.jpg 1080w,
-        ../static/images/coming_soon/a_1366X768.jpg 1366w,
-        ../static/images/coming_soon/a_2560X1440.jpg 2560w,
-        ../static/images/coming_soon/a_5120X2880.jpg 5120w"
+        srcSet="../static/images/coming_soon/artiste.jpg"
         alt=""
       />
       <style jsx>{`

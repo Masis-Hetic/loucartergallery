@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SanitizedHTML from 'react-sanitized-html';
+import Link from "next/link";
 
 class Campaign extends Component {
   state = {
@@ -22,11 +23,15 @@ class Campaign extends Component {
             </svg>
           </p>
           <ul>
-            {imgs.map((img, i) =>
-              <li key={i}>
-                <img srcSet={img} alt="" />
+            { imgs.map( ( img, i ) =>
+              <li key={ i }>
+                <Link href={ '/eshop' } as={ '/eshop' }>
+                  <a>
+                    <img srcSet={ img } alt="" />
+                  </a>
+                </Link>
               </li>
-            )}
+            ) }
           </ul>
         </div>
 
@@ -34,26 +39,30 @@ class Campaign extends Component {
           <div className="slides">
             <div className="slider-wrapper">
               <ul>
-                {imgs.map((img, i) =>
-                  <li key={i}>
-                    <img srcSet={ img } alt="" />
+                { imgs.map( ( img, i ) =>
+                  <li key={ i }>
+                    <Link href={ '/eshop' } as={ '/eshop' }>
+                      <a>
+                        <img srcSet={ img } alt="" />
+                      </a>
+                    </Link>
                   </li>
-                )}
+                ) }
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="text-wrapper" style={{
+        <div className="text-wrapper" style={ {
           width: '100%',
           height: '100vh',
           position: 'absolute',
           top: 0,
           left: 0
-        }}>
+        } }>
 
           <div className="text">
-            <h1><SanitizedHTML html={ campaign.data.title[ 0 ].text } /></h1>
+            <h1><SanitizedHTML html={ campaign.data.title[ 0 ].text }/></h1>
 
             <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
             <div className="description">

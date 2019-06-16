@@ -59,12 +59,12 @@
         -o-transform      : translate(-50%, -50%);
         transform         : translate(-50%, -50%);
         z-index           : 30;
-        font-size         : 1.3rem;
+        font-size         : 1rem;
         width             : 100%;
         text-align        : center;
         font-weight       : 300;
         color             : $lightGrey;
-        //text-transform    : uppercase;
+        line-height       : 2.3;
 
         span {
           display    : table;
@@ -75,6 +75,7 @@
 
         @media (min-width : 576px) {
           font-size         : .9rem;
+          line-height       : 2.7;
           width             : 100vh;
           right             : 3vw;
           top               : 0;
