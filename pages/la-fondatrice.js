@@ -28,7 +28,6 @@ const LaFondatrice = ( { body, meta } ) => (
       <meta property="og:image:height" content={ 314 } />
     </Head>
     <MainComponent>
-      { console.log( meta ) }
       <FounderPage result={ body }/>
     </MainComponent>
   </Fragment>
