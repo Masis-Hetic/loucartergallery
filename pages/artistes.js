@@ -10,7 +10,7 @@ const Artistes = ( { artistes } ) => {
     <Fragment>
       <Head>
         <title>{ artistes.data.title[ 0 ].text }</title>
-        <meta property="og:url" content="https://loucartergallery.com" />
+        <meta property="og:url" content="https://loucartergallery.com/artistes" />
         <meta property="og:type" content="website"/>
         <meta property="og:description" content={ artistes.data.description_google[ 0 ].text }/>
         <meta
