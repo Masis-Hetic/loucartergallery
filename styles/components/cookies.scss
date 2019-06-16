@@ -9,7 +9,21 @@ div.cookies {
   transition : .4s ease-in-out;
 
   &.not-accepted {
-    bottom : 0;
+    bottom                    : -100;
+    animation-name            : showCookies;
+    animation-fill-mode       : forwards;
+    animation-duration        : .3s;
+    animation-timing-function : ease-in-out;
+    animation-delay           : .3s;
+  }
+
+  @-webkit-keyframes showCookies {
+    from {
+      bottom : -100%;
+    }
+    to {
+      bottom : 0;
+    }
   }
 
   &.accepted {
