@@ -29,7 +29,6 @@ class LouCarter extends App {
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'),
       { orderings : '[my.link.order]' });
     const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
-    // console.log({myLinks});
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ...ctx });
     }
@@ -41,7 +40,6 @@ class LouCarter extends App {
     initGA();
     logPageView();
     Router.router.events.on('routeChangeComplete', logPageView);
-    console.log(document.cookie)
   }
 
   render() {
