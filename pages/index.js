@@ -12,7 +12,7 @@ import { sliceUrl } from "../helpers/functions";
 const Index = ( { result, imgs } ) => (
   <Fragment>
     <Head>
-      <title>{ result.data.description[ 0 ].text }</title>
+      <title>{ result.data.title[ 0 ].text }</title>
       <meta property="og:url" content="https://loucartergallery.com"/>
       <meta property="og:type" content="website"/>
       <meta property="og:description" content="Une nouvelle vision de la vente d'art"/>
