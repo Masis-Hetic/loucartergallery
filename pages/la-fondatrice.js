@@ -14,7 +14,6 @@ const LaFondatrice = ( { body }) => (
       <title>Lou Carter Gallery - La fondatrice</title>
     </Head>
     <MainComponent>
-      {console.log({body})}
       <FounderPage result={ body }/>
     </MainComponent>
   </Fragment>
