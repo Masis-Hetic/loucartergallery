@@ -24,7 +24,6 @@ const Cookies = () => {
   const [ storage, storageValue ] = useState(null);
   useEffect(() => {
     storageValue(localStorage.getItem('lou'));
-    console.log(localStorage.getItem('lou'));
   });
 
   return (
