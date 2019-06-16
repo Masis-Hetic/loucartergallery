@@ -7,6 +7,9 @@ import withReduxStore from '../lib/with-redux-store';
 import { PRISMIC_API }       from '../config';
 import { getNavDatas } from "../store/actions/nav.action";
 
+import Router from 'next/router';
+import { initGA, logPageView } from '../helpers/analytics';
+
 class LouCarter extends App {
   /**
    *
@@ -32,6 +35,13 @@ class LouCarter extends App {
     }
 
     return { pageProps: { ...pageProps }, myLinks };
+  }
+
+  componentDidMount () {
+    initGA();
+    logPageView();
+    Router.router.events.on('routeChangeComplete', logPageView);
+    console.log(document.cookie)
   }
 
   render() {

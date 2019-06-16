@@ -2,6 +2,7 @@ import React from 'react';
 
 import Link from "next/link";
 import Nav from "../Nav/Nav";
+import Cookies from "../Cookies/Cookies";
 
 const MainComponent = props => (
   <main className="clearfix">
@@ -20,6 +21,7 @@ const MainComponent = props => (
 
     { props.children }
 
+    <Cookies />
   </main>
 );
 
