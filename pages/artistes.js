@@ -24,7 +24,7 @@ const Artistes = ( { artistes } ) => {
         <meta property="og:image:width" content={ 600 }/>
         <meta property="og:image:height" content={ 314 }/>
       </Head>
-      
+
       <MainComponent>
         <img
           srcSet="../static/images/coming_soon/artiste.jpg"
