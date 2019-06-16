@@ -30,7 +30,9 @@ div.founder-container {
   }
 
   div.founder-block {
-    margin : 2.2rem auto;
+    margin : 3rem auto;
+
+    &:first-of-type { margin-top : 0; }
 
     &:last-of-type { padding-bottom : 50px; }
 
@@ -42,7 +44,7 @@ div.founder-container {
     p.question {
       font-family   : 'Aileron-SemiBold', sans-serif;
       font-size     : .9rem;
-      margin-bottom : .5rem;
+      margin-bottom : .6rem;
     }
   }
 
@@ -53,6 +55,6 @@ div.founder-container {
     div.founder-block { width : 40%; }
   }
   @media (min-width : 1280px) {
-    div.founder-block { width : 30%; }
+    div.founder-block { width : 40%; }
   }
 }
