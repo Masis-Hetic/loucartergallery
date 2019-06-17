@@ -18,7 +18,6 @@ const Cookies = () => {
     accepted.checked && setBtnText( 'OK, tout accepter' );
     refused.checked && setBtnText( 'Tout refuser' );
     refused.checked && setChoice( false );
-    JSON.stringify(localStorage.setItem('lou', 'disable'));
   };
 
   const [ storage, storageValue ] = useState(null);
