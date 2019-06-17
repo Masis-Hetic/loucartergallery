@@ -13,7 +13,7 @@ const Galerie = ({ body, result }) => (
     <Head>
       <title>{ result.data.meta_title[ 0 ].text }</title>
       <meta property="og:title" content={ result.data.meta_title[0].text }/>
-      <meta property="og:url" content="https://loucartergallery.com"/>
+      <meta property="og:url" content="https://loucartergallery.com/galerie"/>
       <meta property="og:type" content="website"/>
       <meta property="og:description" content={ result.data.meta_description[0].text }/>
       <meta

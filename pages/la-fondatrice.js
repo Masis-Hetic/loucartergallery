@@ -13,7 +13,7 @@ const LaFondatrice = ( { body, meta } ) => (
   <Fragment>
     <Head>
       <title>{ meta.data.title[ 0 ].text }</title>
-      <meta property="og:url" content="https://loucartergallery.com"/>
+      <meta property="og:url" content="https://loucartergallery.com/la-fondatrice"/>
       <meta property="og:type" content="website"/>
       <meta property="og:description" content={ meta.data.description_google[0].text } />
       <meta

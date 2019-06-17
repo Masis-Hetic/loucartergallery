@@ -10,7 +10,7 @@ const Eshop = ( { eshop } ) => {
     <Fragment>
       <Head>
         <title>{ eshop.data.title[ 0 ].text }</title>
-        <meta property="og:url" content="https://loucartergallery.com"/>
+        <meta property="og:url" content="https://loucartergallery.com/eshop"/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content={ eshop.data.description_google[ 0 ].text }/>
         <meta
