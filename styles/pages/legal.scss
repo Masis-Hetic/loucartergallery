@@ -1,0 +1,28 @@
+div.legal-container {
+  width              : 100%;
+  height             : calc(100vh - 20%);
+  overflow-y         : scroll;
+  overflow           : -moz-scrollbars-none;
+  -ms-overflow-style : none;
+  transition         : 1s ease;
+  scrollbar-width    : none;
+  display            : flex;
+  justify-content    : flex-end;
+  flex-direction     : column;
+  margin-top         : 20%;
+  &::-webkit-scrollbar { width : 0 !important }
+  div.wrapper-text {
+    height             : 100%;
+    margin             : 0 auto;
+    width              : 80%;
+    overflow           : -moz-scrollbars-none;
+    -ms-overflow-style : none;
+    transition         : 1s ease;
+    scrollbar-width    : none;
+    &::-webkit-scrollbar { width : 0 !important }
+  }
+  @media (min-width : 1280px) {
+    margin-top : 10%;
+    div.wrapper-text { width : 40%; }
+  }
+}
