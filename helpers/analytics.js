@@ -1,6 +1,7 @@
 import ReactGA from 'react-ga';
 
 export const initGA = () => {
+  console.log('la ca init frere');
   ReactGA.initialize('UA-142143734-1');
 };
 

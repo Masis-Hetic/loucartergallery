@@ -37,7 +37,7 @@ class LouCarter extends App {
   }
 
   componentDidMount () {
-    initGA();
+    // initGA();
     logPageView();
     Router.router.events.on('routeChangeComplete', logPageView);
   }

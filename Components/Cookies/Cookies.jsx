@@ -1,10 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
+import { initGA }                               from '../../helpers/analytics';
+
 const Cookies = () => {
   const [ isAccept, setChoice ] = useState( false );
   const acceptCookies = () => {
     setChoice( true );
-    JSON.stringify(localStorage.setItem('lou', 'disable'));
+    // JSON.stringify(localStorage.setItem('lou', 'disable'));
+    initGA();
   };
 
   const [ more, showMore ] = useState( false );
@@ -22,7 +25,13 @@ const Cookies = () => {
 
   const [ storage, storageValue ] = useState(null);
   useEffect(() => {
-    storageValue(localStorage.getItem('lou'));
+    console.log({localStorage, document, cookie: document.cookie });
+    // "_ga=GA1.1.1176769190.1561058104; _gid=GA1.1.691764666.1561058104; _gat=1"
+    
+    // storageValue(localStorage.getItem('lou'));
+    if (document && document.cookie.includes('_gat=')) {
+    
+    }
   });
 
   return (
