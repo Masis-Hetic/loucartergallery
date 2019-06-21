@@ -9,20 +9,21 @@ import { PRISMIC_API } from '../config';
 import MainComponent from "../Components/Main/Main";
 import { sliceUrl } from "../helpers/functions";
 
+// noinspection JSUnresolvedVariable
 const Index = ( { result, imgs } ) => (
   <Fragment>
     <Head>
-      <title>{ result.data.description[ 0 ].text }</title>
+      <title>{ result.data.title[ 0 ].text }</title>
       <meta property="og:url" content="https://loucartergallery.com"/>
       <meta property="og:type" content="website"/>
-      <meta property="og:description" content="Une nouvelle vision de la vente d'art"/>
+      <meta property="og:description" content={ result.data.description[0].text } />
       <meta
         property="og:image:secure_url"
-        content="https://prismic-io.s3.amazonaws.com/loucarter%2F4972e972-1795-4d75-99aa-5383ae99cba1_image_trois_1920x1080.jpg"
+        content={ result.data.og_image.url }
       />
       <meta
         property="og:image"
-        content="https://prismic-io.s3.amazonaws.com/loucarter%2F4972e972-1795-4d75-99aa-5383ae99cba1_image_trois_1920x1080.jpg"
+        content={ result.data.og_image.url }
       />
       <meta property="og:image:width" content={ 600 } />
       <meta property="og:image:height" content={ 314 } />
