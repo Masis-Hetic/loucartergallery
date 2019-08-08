@@ -30,7 +30,7 @@ const Cookies = () => {
     
     // storageValue(localStorage.getItem('lou'));
     if (document && document.cookie.includes('_gat=')) {
-    
+      console.log( 'ici' );
     }
   });
 
