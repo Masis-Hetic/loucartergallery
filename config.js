@@ -1,4 +1,4 @@
-export const PRISMIC_API = process.env.PRISMIC_API;
+export const PRISMIC_API = PRISMIC_API;
 
 // console.log(process.env.NODE_ENV);
 // const env = process.env.NODE_ENV;
