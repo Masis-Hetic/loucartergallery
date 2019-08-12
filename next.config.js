@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Prismic = require( 'prismic-javascript' );
 const withSass = require( '@zeit/next-sass' );
 const withPlugins = require( 'next-compose-plugins' );
@@ -154,7 +155,7 @@ module.exports = withSass( {
   },
   async exportPathMap() {
     // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
-    const API = await Prismic.api( 'https://loucarter.cdn.prismic.io/api/v2' );
+    const API = await Prismic.api( process.env.PRISMIC_API );
 
     const campaignList = await API.query(
       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR' }
