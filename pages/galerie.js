@@ -4,7 +4,9 @@ import Prismic             from 'prismic-javascript';
 
 import '../styles/style.scss';
 
-import { PRISMIC_API } from '../config';
+// import { PRISMIC_API } from '../config';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 import GalleryPage       from '../Components/Pages/GalleryPage';
 import MainComponent   from '../Components/Main/Main';
 
@@ -37,7 +39,7 @@ const Galerie = ({ body, result }) => (
 );
 
 Galerie.getInitialProps = async( {}) => {
-  const API = await Prismic.api(PRISMIC_API);
+  const API = await Prismic.api(publicRuntimeConfig.prismic);
   const response = await API.query(Prismic.Predicates.at('document.type', 'gallery'), { lang: 'fr-FR' });
   const { body } = response.results[ 0 ].data;
   return { body, result: response.results[ 0 ] };

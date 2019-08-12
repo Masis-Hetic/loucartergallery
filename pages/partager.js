@@ -4,7 +4,9 @@ import Prismic             from 'prismic-javascript';
 
 import '../styles/style.scss';
 
-import { PRISMIC_API } from '../config';
+// import { PRISMIC_API } from '../config';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 import PartagerPage    from '../Components/Pages/PartagerPage';
 import MainComponent   from '../Components/Main/Main';
 
@@ -20,7 +22,7 @@ const Partager = ({ body }) => (
 );
 
 Partager.getInitialProps = async({}) => {
-  const API = await Prismic.api(PRISMIC_API);
+  const API = await Prismic.api( publicRuntimeConfig.prismic );
   const response = await API.query(Prismic.Predicates.at('document.type', 'partager'), { lang: 'fr-FR' });
   const body = response.results;
   return { body };

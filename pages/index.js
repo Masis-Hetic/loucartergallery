@@ -5,7 +5,9 @@ import Head from 'next/head';
 import HomePage from '../Components/Pages/HomePage';
 
 import Prismic from 'prismic-javascript';
-import { PRISMIC_API } from '../config';
+// import { PRISMIC_API } from '../config';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 import MainComponent from "../Components/Main/Main";
 import { sliceUrl } from "../helpers/functions";
 
@@ -35,7 +37,7 @@ const Index = ( { result, imgs } ) => (
 );
 
 Index.getInitialProps = async ( {} ) => {
-  const API = await Prismic.api( PRISMIC_API );
+  const API = await Prismic.api( publicRuntimeConfig.prismic );
 
   const result = await API.query(
     Prismic.Predicates.at( 'document.type', 'homepage' ), { lang: 'fr-FR' }
