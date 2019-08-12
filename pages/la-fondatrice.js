@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import Head from 'next/head';
-import Prismic from 'prismic-javascript';
+import Head                from 'next/head';
+import Prismic             from 'prismic-javascript';
 
 import '../styles/style.scss';
 

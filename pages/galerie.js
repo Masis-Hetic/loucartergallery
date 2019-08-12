@@ -4,7 +4,6 @@ import Prismic             from 'prismic-javascript';
 
 import '../styles/style.scss';
 
-
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 import GalleryPage       from '../Components/Pages/GalleryPage';

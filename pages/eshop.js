@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
-import MainComponent from "../Components/Main/Main";
-import Head from 'next/head';
-import Prismic from "prismic-javascript";
+import MainComponent       from "../Components/Main/Main";
+import Head                from 'next/head';
+import Prismic             from "prismic-javascript";
 
 import getConfig from 'next/config';
+
 const { publicRuntimeConfig } = getConfig();
 
 const Eshop = ( { eshop } ) => {

@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import '../styles/style.scss'
-import Head from 'next/head';
+import Head                from 'next/head';
 
 import HomePage from '../Components/Pages/HomePage';
-
-import Prismic from 'prismic-javascript';
+import Prismic  from 'prismic-javascript';
 
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();

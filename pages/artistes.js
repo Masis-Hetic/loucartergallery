@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
-import MainComponent from "../Components/Main/Main";
-import Prismic from "prismic-javascript";
+import MainComponent       from "../Components/Main/Main";
+import Prismic             from "prismic-javascript";
 
 import getConfig from 'next/config';
+
 const { publicRuntimeConfig } = getConfig();
-import Head from 'next/head';
+import Head      from 'next/head';
 
 const Artistes = ( { artistes } ) => {
   // noinspection JSUnresolvedVariable
