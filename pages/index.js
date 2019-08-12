@@ -5,7 +5,7 @@ import Head from 'next/head';
 import HomePage from '../Components/Pages/HomePage';
 
 import Prismic from 'prismic-javascript';
-// import { PRISMIC_API } from '../config';
+
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 import MainComponent from "../Components/Main/Main";

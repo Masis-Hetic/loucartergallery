@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import MainComponent from "../Components/Main/Main";
 import Head from 'next/head';
 import Prismic from "prismic-javascript";
-// import { PRISMIC_API } from "../config";
+
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 

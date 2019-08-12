@@ -4,7 +4,6 @@ import Prismic from 'prismic-javascript';
 
 import '../styles/style.scss';
 
-// import { PRISMIC_API } from '../config';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 import FounderPage from '../Components/Pages/FounderPage';
