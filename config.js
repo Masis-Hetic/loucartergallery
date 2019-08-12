@@ -1,1 +1,3 @@
-export const PRISMIC_API = 'https://loucarter.cdn.prismic.io/api/v2';
+import { API } from "./api_key";
+
+export const PRISMIC_API = API;
