@@ -4,6 +4,10 @@ const withSass = require( '@zeit/next-sass' );
 const withPlugins = require( 'next-compose-plugins' );
 const webpack = require( 'webpack' );
 
+require('dotenv').config();
+const path = require( 'path' );
+const glob = require( 'glob' );
+
 const nextConfiguration = {
   webpack: config => {
     config.plugins.push(
@@ -56,9 +60,6 @@ module.exports = withSass( {
     localIdentName: '[local]___[hash:base64:5]',
   }
 } );
-
-const path = require( 'path' );
-const glob = require( 'glob' );
 
 module.exports = {
   webpack: ( config, { dev } ) => {
@@ -180,5 +181,8 @@ module.exports = withSass( {
       '/artistes'      : { page: '/artistes' },
       '/eshop'          : { page: '/eshop' }
     });
+  },
+  publicRuntimeConfig: {
+    prismic: process.env.PRISMIC_API,
   }
 } );
