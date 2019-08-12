@@ -175,7 +175,6 @@ module.exports = withSass( {
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
-      '/soon'          : { page: '/soon' },
       '/partager'      : { page: '/partager' },
       '/artistes'      : { page: '/artistes' },
       '/eshop'          : { page: '/eshop' }
