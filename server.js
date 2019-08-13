@@ -22,7 +22,7 @@ app.prepare().then(() => {
 
   server.get('/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice'));
 
-  server.get('/artistes', (req, res) => app.render(req, res, '/artistes'));
+  server.get('/artistes/:page', (req, res) => app.render(req, res, '/artistes/page-[page]', Object.assign({ page: req.params.page })));
 
   server.get('/eshop', (req, res) => app.render(req, res, '/eshop'));
 

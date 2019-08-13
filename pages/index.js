@@ -5,10 +5,14 @@ import Head                from 'next/head';
 import HomePage from '../Components/Pages/HomePage';
 import Prismic  from 'prismic-javascript';
 
-import getConfig from 'next/config';
+import getConfig     from 'next/config';
+
 const { publicRuntimeConfig } = getConfig();
 import MainComponent from "../Components/Main/Main";
-import { sliceUrl } from "../helpers/functions";
+import { sliceUrl }  from "../helpers/functions";
+
+
+import Link from "next/link";
 
 // noinspection JSUnresolvedVariable
 const Index = ( { result, imgs } ) => (
@@ -17,7 +21,7 @@ const Index = ( { result, imgs } ) => (
       <title>{ result.data.title[ 0 ].text }</title>
       <meta property="og:url" content="https://loucartergallery.com"/>
       <meta property="og:type" content="website"/>
-      <meta property="og:description" content={ result.data.description[0].text } />
+      <meta property="og:description" content={ result.data.description[ 0 ].text }/>
       <meta
         property="og:image:secure_url"
         content={ result.data.og_image.url }
@@ -26,12 +30,33 @@ const Index = ( { result, imgs } ) => (
         property="og:image"
         content={ result.data.og_image.url }
       />
-      <meta property="og:image:width" content={ 600 } />
-      <meta property="og:image:height" content={ 314 } />
+      <meta property="og:image:width" content={ 600 }/>
+      <meta property="og:image:height" content={ 314 }/>
     </Head>
     <MainComponent>
-      <HomePage result={ result } imgs={ imgs } />
+
+      <h1>
+        <Link
+          href={`artistes/page-[page]`}
+          as={`artistes/page-1`}
+          // as={`artistes`}
+        >
+          <a>ARTISTE</a>
+        </Link>
+      </h1>
+
+      <HomePage result={ result } imgs={ imgs }/>
     </MainComponent>
+
+    <style jsx>{`
+      h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 99999;
+        background: pink;
+      }
+    `}</style>
   </Fragment>
 );
 
@@ -43,9 +68,9 @@ Index.getInitialProps = async ( {} ) => {
   );
 
   // noinspection JSUnresolvedVariable
-  let imgs = result.results[0].data.body.map(item => item.items.filter(img => img.background_img.url));
+  let imgs = result.results[ 0 ].data.body.map( item => item.items.filter( img => img.background_img.url ) );
   // noinspection JSUnresolvedVariable
-  imgs = imgs.map(img => img.reduce((url, element) => url + sliceUrl(` ${element.background_img.url} ${element.size[0].text},`), ''));
+  imgs = imgs.map( img => img.reduce( ( url, element ) => url + sliceUrl( ` ${ element.background_img.url } ${ element.size[ 0 ].text },` ), '' ) );
 
   return { result: result.results[ 0 ], imgs }
 };

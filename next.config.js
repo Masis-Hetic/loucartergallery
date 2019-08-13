@@ -172,13 +172,40 @@ module.exports = withSass( {
       } ) ), {}
     );
 
-    return  Object.assign({}, campaigns, {
+    const artistes = await API.query(
+      Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' }
+    );
+
+    const page = artistes.results[0].data.artists.length;
+    const pageIndex = 0;
+    const artiste = await API.query(
+      Prismic.Predicates.at( 'document.type', 'artist' ), {
+        lang: 'fr-FR',
+        pageSize: 1,
+        orderings: '[my.artist.name]'
+      }
+    );
+
+    const artists = artiste.results.reduce(
+      ( base ) => {
+        if (pageIndex <= page) {
+          const index = pageIndex + 1;
+          ( Object.assign( {}, base, {
+            [ `/artistes/page-${ index }` ]: {
+              page: '/artistes',
+              query: { page: index }
+            }
+          } ) ), {}
+        }
+      }
+    );
+
+    return  Object.assign({}, {campaigns, artists}, {
       '/'              : { page: '/' },
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/partager'      : { page: '/partager' },
-      '/artistes'      : { page: '/artistes' },
       '/eshop'          : { page: '/eshop' }
     });
   },
