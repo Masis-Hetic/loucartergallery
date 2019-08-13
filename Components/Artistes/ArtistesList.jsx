@@ -1,58 +1,72 @@
 import React, { Fragment } from "react";
 import Link                from "next/link";
+
 const ArtistesList = props => {
   return (
     <div
-      style={{
+      style={ {
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-      }}
+      } }
     >
+
+      { props.currentPage > 1 &&
+      <Link
+        href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
+        as={ `/artistes/page-${ props.currentPage - 1 }` }
+      >
+        <a
+          onClick={ props.prevPage }
+          style={ { color: 'white', background: 'purple' } }
+        >
+          PREV
+        </a>
+      </Link>
+      }
       <div
-        style={{
+        style={ {
           background: 'grey',
           width: '60%',
           height: '60vh',
-        }}
+        } }
       >
         <ul
           className="ok"
-          style={{
+          style={ {
             height: 'inherit',
             display: 'flex',
             flexWrap: 'wrap',
             flexDirection: 'column',
             overflow: 'hidden'
-          }}
+          } }
         >
-          {props.artists.map((artiste, i) => <li key={i}>{artiste.data.name[0].text}</li>)}
+          { props.artists.map( ( artiste, i ) => <li key={ i }>{ artiste.data.name[ 0 ].text }</li> ) }
         </ul>
       </div>
-      {props.currentPage < props.maxPage &&
-        <Fragment>
-          <Link
-            href={`/artistes/page-[page]`}
-            as={`/artistes/page-${props.currentPage+1}`}
-            // as={`/artistes}`}
-          >
-            <a
-              onClick={props.page}
-              style={{color: 'white', background: 'purple'}}
-            >NEXT</a>
-          </Link>
-        </Fragment>
+
+      { props.currentPage < props.maxPage &&
+      <Link
+        href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
+        as={ `/artistes/page-${ props.currentPage + 1 }` }
+      >
+        <a
+          onClick={ props.nextPage }
+          style={ { color: 'white', background: 'purple' } }
+        >
+          NEXT
+        </a>
+      </Link>
       }
-      <h1>{props.currentPage}-{props.maxPage}</h1>
-      <style jsx>{`
+      <style jsx>{ `
         .ok li {
           width: 50%;
           background: hotpink;
           line-height: 2.5;
           text-align: center;
         }
-      `}</style>
+      ` }</style>
     </div>
   )
 };

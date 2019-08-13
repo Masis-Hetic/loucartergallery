@@ -8,12 +8,17 @@ import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 import Head      from 'next/head';
 
-const Artistes = ( { artistes, artiste, maxPage } ) => {
+const Artistes = ( { artistes, artiste, maxPage, query } ) => {
   // noinspection JSUnresolvedVariable
 
-  const [page, currentPage] = useState(1);
-  const changePage = () => {
-    currentPage(page + 1);
+  const [page, incrementPage] = useState(1);
+  const nextPage = () => {
+    if (page >= maxPage) return;
+    incrementPage(page + 1);
+  };
+  const prevPage = () => {
+    if (page <= 1) return;
+    incrementPage(page - 1);
   };
 
   return (
@@ -37,10 +42,12 @@ const Artistes = ( { artistes, artiste, maxPage } ) => {
 
       <MainComponent>
         {artiste &&
-        <ArtistesList page={changePage} currentPage={page} artists={artiste} maxPage={maxPage}/>
+        <ArtistesList nextPage={nextPage} prevPage={prevPage} currentPage={query} artists={artiste} maxPage={maxPage}/>
         }
+        {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */}
         {!artiste &&
-        <h1>PAS ARTISTE</h1>}
+        <h1>PAS ARTISTES</h1>
+        }
       </MainComponent>
     </Fragment>
   )
@@ -48,8 +55,8 @@ const Artistes = ( { artistes, artiste, maxPage } ) => {
 
 Artistes.getInitialProps = async ({ asPath, query }) => {
   const API = await Prismic.api( publicRuntimeConfig.prismic );
-
   const page = asPath.substring(15);
+
   const artistes = await API.query(
     Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' }
   );
@@ -59,13 +66,18 @@ Artistes.getInitialProps = async ({ asPath, query }) => {
   const artiste = await API.query(
     Prismic.Predicates.at( 'document.type', 'artist' ), {
       lang: 'fr-FR',
-      pageSize: 1,
+      pageSize: 2,
       page: page,
       orderings: '[my.artist.name]'
     }
   );
 
-  return { artistes: artistes.results[ 0 ], artiste: artiste.results.length >= 1 && artiste.results, maxPage }
+  return {
+    artistes: artistes.results[ 0 ],
+    artiste: artiste.results.length >= 1 && artiste.results,
+    maxPage,
+    query: query.page ? Number(query.page) : Number(page)
+  }
 };
 
 export default Artistes;
