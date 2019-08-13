@@ -66,8 +66,8 @@ Artistes.getInitialProps = async ( { asPath, query } ) => {
   const artiste = await API.query(
     Prismic.Predicates.at( 'document.type', 'artist' ), {
       lang: 'fr-FR',
-      pageSize: 2,
-      page: page,
+      pageSize: 1,
+      page,
       orderings: '[my.artist.name]'
     }
   );
