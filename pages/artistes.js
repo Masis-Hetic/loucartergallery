@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
-import MainComponent from "../Components/Main/Main";
-import Prismic from "prismic-javascript";
-import { PRISMIC_API } from "../config";
-import Head from 'next/head';
+import MainComponent       from "../Components/Main/Main";
+import Prismic             from "prismic-javascript";
+
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+import Head      from 'next/head';
 
 const Artistes = ( { artistes } ) => {
   // noinspection JSUnresolvedVariable
@@ -46,7 +49,7 @@ const Artistes = ( { artistes } ) => {
 
 
 Artistes.getInitialProps = async () => {
-  const API = await Prismic.api( PRISMIC_API );
+  const API = await Prismic.api( publicRuntimeConfig.prismic );
 
   const artistes = await API.query(
     Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' }

@@ -4,7 +4,9 @@ import App, { Container }    from 'next/app';
 import { Provider } from 'react-redux';
 import withReduxStore from '../lib/with-redux-store';
 
-import { PRISMIC_API }       from '../config';
+// import { PRISMIC_API }       from '../config';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 import { getNavDatas } from "../store/actions/nav.action";
 
 import Router from 'next/router';
@@ -24,7 +26,7 @@ class LouCarter extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
-    const API = await Prismic.api(PRISMIC_API);
+    const API = await Prismic.api(publicRuntimeConfig.prismic);
 
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'),
       { orderings : '[my.link.order]' });

@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
-import MainComponent from "../Components/Main/Main";
-import Head from 'next/head';
-import Prismic from "prismic-javascript";
-import { PRISMIC_API } from "../config";
+import MainComponent       from "../Components/Main/Main";
+import Head                from 'next/head';
+import Prismic             from "prismic-javascript";
+
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
 
 const Eshop = ( { eshop } ) => {
   // noinspection JSUnresolvedVariable
@@ -49,7 +52,7 @@ const Eshop = ( { eshop } ) => {
 };
 
 Eshop.getInitialProps = async () => {
-  const API = await Prismic.api( PRISMIC_API );
+  const API = await Prismic.api( publicRuntimeConfig.prismic );
 
   const eshop = await API.query(
     Prismic.Predicates.at( 'document.type', 'eshop' ), { lang: 'fr-FR' }

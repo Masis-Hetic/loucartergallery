@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
-import Head from 'next/head';
-import Prismic from 'prismic-javascript';
+import Head                from 'next/head';
+import Prismic             from 'prismic-javascript';
 
 import '../styles/style.scss';
 
-import { PRISMIC_API } from '../config';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 import FounderPage from '../Components/Pages/FounderPage';
 import MainComponent from '../Components/Main/Main';
 
@@ -34,7 +35,7 @@ const LaFondatrice = ( { body, meta } ) => (
 );
 
 LaFondatrice.getInitialProps = async ( {} ) => {
-  const API = await Prismic.api( PRISMIC_API );
+  const API = await Prismic.api( publicRuntimeConfig.prismic );
   const response = await API.query( Prismic.Predicates.at( 'document.type', 'la_fondatrice' ), { lang: 'fr-FR' } );
   const { body } = response.results[ 0 ].data;
   const meta = response.results[ 0 ];

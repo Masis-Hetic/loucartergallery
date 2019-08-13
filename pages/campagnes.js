@@ -3,9 +3,11 @@ import Prismic from 'prismic-javascript';
 import Head    from 'next/head';
 
 import MainComponent   from '../Components/Main/Main';
-import { PRISMIC_API } from '../config';
 import Campaign        from '../Components/Pages/Campaign';
 import { sliceUrl }    from '../helpers/functions';
+
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
 const Campagnes = ({ campaign, imgs }) => {
   return (
@@ -33,7 +35,7 @@ const Campagnes = ({ campaign, imgs }) => {
 };
 
 Campagnes.getInitialProps = async({ query }) => {
-  const API = await Prismic.api(PRISMIC_API);
+  const API = await Prismic.api(publicRuntimeConfig.prismic);
 
   const campaign = await API.query(
     Prismic.Predicates.at('my.campaign.uid', query.slug), { lang: 'fr-FR' }
