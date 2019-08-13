@@ -1,49 +1,54 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
-import { initGA }    from '../../helpers/analytics';
-import { getCookie } from '../../helpers/cookies';
+import { initGA, disableGA }                      from '../../helpers/analytics';
+import { clearCookie, getCookie, getCookieValue } from '../../helpers/cookies';
 
 const Cookies = () => {
-  const [ isAccept, setChoice ] = useState(false);
-  const acceptCookies = () => {
-    setChoice(true);
-    JSON.stringify(localStorage.setItem('lou', 'enable'));
-  };
-  
   const [ more, showMore ] = useState(false);
   const showChoices = () => showMore(!more);
   
   const [ btnText, setBtnText ] = useState('Ok, tout accepter');
-  const isCookiesAccepted = () => {
+  const acceptCookies = () => {
     const accepted = document.getElementById('accept');
     accepted.checked && setBtnText('OK, tout accepter');
+    setChoiceState(true);
   };
-  
   const refuseCokies = () => {
     const refused = document.getElementById('refuse');
     refused.checked && setBtnText('Tout refuser');
-    refused.checked && setChoice(false);
+    setChoiceState(false);
+  };
+  const [ choice, setChoice ] = useState(null);
+  const setChoiceState = (value) => setChoice(value);
+  
+  const [ isSelected, setSelection ] = useState(false);
+  const setSelectionState = () => {
+    if (!isSelected) {
+        if (!more) { setChoiceState(true, () => console.log(choice)); }
+      document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
+      setSelection(true);
+    }
   };
   
-  const [ storage, storageValue ] = useState(null);
   useEffect(() => {
-    console.log({ localStorage, document, cookie: document.cookie, storage, isAccept });
     const cookies = getCookie();
-    if (localStorage && localStorage.getItem('lou') === 'enable') {
-      storageValue(localStorage.getItem('lou'));
-      initGA();
-    }
-    if (localStorage && localStorage.getItem('lou') === 'disable') {
-    }
-    if (cookies.includes('_g')) {
-      console.log('ici');
+    if (document.cookie.includes('lou')) {
+      setSelectionState();
+      if (getCookieValue(cookies.find((cookie) => cookie.includes('lou'))) === 'enable') {
+        setChoiceState(true);
+        initGA();
+      } else {
+        setChoiceState(false);
+        disableGA();
+        cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(); } });
+      }
     }
   });
   
   return (
     <Fragment>
-      { storage !== 'enable' &&
-        <div className={ `cookies ${ isAccept ? 'accepted' : 'not-accepted' } ${ more ? 'show-more' : '' }` }>
+      { !isSelected &&
+        <div className={ `cookies ${ isSelected ? 'accepted' : 'not-accepted' } ${ more ? 'show-more' : '' }` }>
           <div className="cookies-wrapper">
             <div className="cookies-info">En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de
               cookies
@@ -63,10 +68,10 @@ const Cookies = () => {
             </div>
             <div className={ `big-wrapper ${ more ? 'big-wrapper__open' : '' }` }>
               <div className="choice-wrapper">
-                { !more && <button className="underline" onClick={ acceptCookies }>OK, tout accepter</button> }
+                { !more && <button className="underline" onClick={ setSelectionState }>OK, tout accepter</button> }
                 { more &&
                   <Fragment>
-                    <button onClick={ acceptCookies } className="box">{ btnText }</button>
+                    <button onClick={ setSelectionState } className="box">{ btnText }</button>
                     <div className="select-choice">
                       <div className="select-choice-wrapper">
                         <label htmlFor="accept">Accepter</label>
@@ -75,7 +80,7 @@ const Cookies = () => {
                           id="accept"
                           name="cookie"
                           style={ { width: 16, height: 16, border: '1px solid #fff' } }
-                          onClick={ isCookiesAccepted }
+                          onClick={ acceptCookies }
                         />
                       </div>
                       <div className="select-choice-wrapper">
@@ -93,7 +98,7 @@ const Cookies = () => {
                 }
               </div>
               <div className="choice-wrapper">
-                <button onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ isAccept }</button>
+                <button onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ choice }</button>
               </div>
             </div>
           </div>
