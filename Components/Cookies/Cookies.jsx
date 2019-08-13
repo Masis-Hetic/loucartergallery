@@ -1,34 +1,54 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
+import { initGA, disableGA }                      from '../../helpers/analytics';
+import { clearCookie, getCookie, getCookieValue } from '../../helpers/cookies';
+
 const Cookies = () => {
-  const [ isAccept, setChoice ] = useState( false );
+  const [ choice, setChoice ] = useState([]);
+  
+  const [ more, showMore ] = useState(false);
+  const showChoices = () => showMore(!more);
+  
+  const [ btnText, setBtnText ] = useState('Ok, tout accepter');
   const acceptCookies = () => {
-    setChoice( true );
-    JSON.stringify(localStorage.setItem('lou', 'disable'));
+    const accepted = document.getElementById('accept');
+    accepted.checked && setBtnText('OK, tout accepter');
+    setChoice(true);
   };
-
-  const [ more, showMore ] = useState( false );
-  const showChoices = () => showMore( !more );
-
-  const [ btnText, setBtnText ] = useState( 'Ok, tout accepter' );
-  const isCookiesAccepted = () => {
-    const accepted = document.getElementById( 'accept' );
-    const refused = document.getElementById( 'refuse' );
-
-    accepted.checked && setBtnText( 'OK, tout accepter' );
-    refused.checked && setBtnText( 'Tout refuser' );
-    refused.checked && setChoice( false );
+  const refuseCokies = () => {
+    const refused = document.getElementById('refuse');
+    refused.checked && setBtnText('Tout refuser');
+    setChoice(false);
   };
-
-  const [ storage, storageValue ] = useState(null);
+  
+  const [ isSelected, setSelection ] = useState(false);
+  const setSelectionState = () => {
+    if (!isSelected) {
+      if (!more || !choice.length) { setChoice(true); }
+      setSelection(true);
+      document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
+    }
+  };
+  
   useEffect(() => {
-    storageValue(localStorage.getItem('lou'));
+    const cookies = getCookie();
+    if (document.cookie.includes('lou')) {
+      if (getCookieValue(cookies.find((cookie) => cookie.includes('lou'))) === 'enable') {
+        setChoice(true);
+        initGA();
+      } else {
+        setChoice(false);
+        disableGA();
+        cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(cookie); } });
+      }
+      setSelection(true);
+    }
   });
-
+  
   return (
     <Fragment>
-      { storage !== 'disable' &&
-        <div className={ `cookies ${ isAccept ? 'accepted' : 'not-accepted' } ${ more ? 'show-more' : '' }` }>
+      { !isSelected &&
+        <div className={ `cookies ${ isSelected ? 'accepted' : 'not-accepted' } ${ more ? 'show-more' : '' }` }>
           <div className="cookies-wrapper">
             <div className="cookies-info">En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de
               cookies
@@ -36,51 +56,52 @@ const Cookies = () => {
               expérience utilisateurs et qui nous permettent d'analyser notre trafic.
               <div className={ `cookies-details ${ more ? 'show-more' : '' }` }>
                 <p>Cookies de performance</p>
-                <p>Ces cookies nous permettent de déterminer le nombre de visites et les sources du trafic sur notre site
+                <p>Ces cookies nous permettent de déterminer le nombre de visites et les sources du trafic sur notre
+                  site
                   web, afin d'en mesurer et d'en améliorer les performances. ils nous aident également à identifier les
                   pages les plus / moins visitées et à évaluer comment les visiteurs naviguent sur le site. Toutes les
-                  informations, collectées par ces cookies, sont agrégées et donc anonymisées. Si vous n'acceptez pas cette
+                  informations, collectées par ces cookies, sont agrégées et donc anonymisées. Si vous n'acceptez pas
+                  cette
                   catégorie de cookies, nous ne pourrons pas savoir quand vous avez réalisé votre visite sur notre site
                   web.</p>
               </div>
             </div>
             <div className={ `big-wrapper ${ more ? 'big-wrapper__open' : '' }` }>
               <div className="choice-wrapper">
-                { !more && <button className="underline" onClick={ acceptCookies }>OK, tout accepter</button> }
+                { !more && <button className="underline" onClick={ setSelectionState }>OK, tout accepter</button> }
                 { more &&
-                <Fragment>
-                  <button onClick={ acceptCookies } className="box">{ btnText }</button>
-                  <div className="select-choice">
-                    <div className="select-choice-wrapper">
-                      <label htmlFor="accept">Accepter</label>
-                      <input
-                        type="radio"
-                        id="accept"
-                        name="cookie"
-                        style={ { width: 16, height: 16, border: '1px solid #fff' } }
-                        onClick={ isCookiesAccepted }
-                      />
+                  <Fragment>
+                    <button onClick={ setSelectionState } className="box">{ btnText }</button>
+                    <div className="select-choice">
+                      <div className="select-choice-wrapper">
+                        <label htmlFor="accept">Accepter</label>
+                        <input
+                          type="radio"
+                          id="accept"
+                          name="cookie"
+                          style={ { width: 16, height: 16, border: '1px solid #fff' } }
+                          onClick={ acceptCookies }
+                        />
+                      </div>
+                      <div className="select-choice-wrapper">
+                        <label htmlFor="refuse">Refuser</label>
+                        <input
+                          type="radio"
+                          id="refuse"
+                          name="cookie"
+                          style={ { width: 16, height: 16, border: '1px solid #fff' } }
+                          onClick={ refuseCokies }
+                        />
+                      </div>
                     </div>
-                    <div className="select-choice-wrapper">
-                      <label htmlFor="refuse">Refuser</label>
-                      <input
-                        type="radio"
-                        id="refuse"
-                        name="cookie"
-                        style={ { width: 16, height: 16, border: '1px solid #fff' } }
-                        onClick={ isCookiesAccepted }
-                      />
-                    </div>
-                  </div>
-                </Fragment>
+                  </Fragment>
                 }
               </div>
               <div className="choice-wrapper">
-                <button onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ isAccept }</button>
+                <button onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ choice }</button>
               </div>
             </div>
           </div>
-
           <style jsx>{ `
           div.select-choice-wrapper input[type="radio"] { -webkit-appearance: none !important; }
           
@@ -92,8 +113,7 @@ const Cookies = () => {
         </div>
       }
     </Fragment>
-
-  )
+  );
 };
 
 export default Cookies;
