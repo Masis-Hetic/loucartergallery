@@ -4,7 +4,7 @@ import { initGA, disableGA }                      from '../../helpers/analytics'
 import { clearCookie, getCookie, getCookieValue } from '../../helpers/cookies';
 
 const Cookies = () => {
-  const [ choice, setChoice ] = useState(null);
+  const [ choice, setChoice ] = useState([]);
   
   const [ more, showMore ] = useState(false);
   const showChoices = () => showMore(!more);
@@ -24,7 +24,7 @@ const Cookies = () => {
   const [ isSelected, setSelection ] = useState(false);
   const setSelectionState = () => {
     if (!isSelected) {
-      if (!more) { setChoice(true); }
+      if (!more || !choice.length) { setChoice(true); }
       setSelection(true);
       document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
     }
