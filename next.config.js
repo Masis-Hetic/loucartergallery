@@ -195,17 +195,18 @@ module.exports = withSass( {
               page: '/artistes',
               query: { page: index }
             }
-          } ) ), {}
+          } ) )
         }
       }
     );
 
-    return  Object.assign({}, {campaigns, artists}, {
+    return  Object.assign({}, campaigns, {
       '/'              : { page: '/' },
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/partager'      : { page: '/partager' },
+      '/artistes': {page: '/artistes'},
       '/eshop'          : { page: '/eshop' }
     });
   },

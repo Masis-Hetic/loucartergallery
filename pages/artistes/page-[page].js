@@ -76,7 +76,7 @@ Artistes.getInitialProps = async ( { asPath, query } ) => {
     artistes: artistes.results[ 0 ],
     artiste: artiste.results.length >= 1 && artiste.results,
     maxPage,
-    query: query.page ? query.page : page
+    query: query.page ? Number( query.page ) : Number( page )
   }
 };
 
