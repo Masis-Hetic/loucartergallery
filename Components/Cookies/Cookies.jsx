@@ -11,37 +11,36 @@ const Cookies = () => {
   const acceptCookies = () => {
     const accepted = document.getElementById('accept');
     accepted.checked && setBtnText('OK, tout accepter');
-    setChoiceState(true);
+    setChoice(true);
   };
   const refuseCokies = () => {
     const refused = document.getElementById('refuse');
     refused.checked && setBtnText('Tout refuser');
-    setChoiceState(false);
+    setChoice(false);
   };
   const [ choice, setChoice ] = useState(null);
-  const setChoiceState = (value) => setChoice(value);
   
   const [ isSelected, setSelection ] = useState(false);
   const setSelectionState = () => {
     if (!isSelected) {
-        if (!more) { setChoiceState(true, () => console.log(choice)); }
-      document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
+        if (!more) { setChoice(true); }
       setSelection(true);
+      document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
     }
   };
   
   useEffect(() => {
     const cookies = getCookie();
     if (document.cookie.includes('lou')) {
-      setSelectionState();
       if (getCookieValue(cookies.find((cookie) => cookie.includes('lou'))) === 'enable') {
-        setChoiceState(true);
+        setChoice(true);
         initGA();
       } else {
-        setChoiceState(false);
+        setChoice(false);
         disableGA();
         cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(); } });
       }
+      setSelectionState();
     }
   });
   
