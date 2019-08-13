@@ -4,6 +4,8 @@ import { initGA, disableGA }                      from '../../helpers/analytics'
 import { clearCookie, getCookie, getCookieValue } from '../../helpers/cookies';
 
 const Cookies = () => {
+  const [ choice, setChoice ] = useState(null);
+  
   const [ more, showMore ] = useState(false);
   const showChoices = () => showMore(!more);
   
@@ -18,12 +20,11 @@ const Cookies = () => {
     refused.checked && setBtnText('Tout refuser');
     setChoice(false);
   };
-  const [ choice, setChoice ] = useState(null);
   
   const [ isSelected, setSelection ] = useState(false);
   const setSelectionState = () => {
     if (!isSelected) {
-        if (!more) { setChoice(true); }
+      if (!more) { setChoice(true); }
       setSelection(true);
       document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
     }
@@ -38,9 +39,9 @@ const Cookies = () => {
       } else {
         setChoice(false);
         disableGA();
-        cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(); } });
+        cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(cookie); } });
       }
-      setSelectionState();
+      setSelection(true);
     }
   });
   
