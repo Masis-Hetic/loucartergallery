@@ -38,11 +38,16 @@ const Artistes = ( { artistes, artiste, maxPage, query } ) => {
         <meta property="og:image:width" content={ 600 }/>
         <meta property="og:image:height" content={ 314 }/>
       </Head>
-
+      {console.log(artistes)}
       <MainComponent>
-        { artiste &&
-        <ArtistesList nextPage={ nextPage } prevPage={ prevPage } currentPage={ query } artists={ artiste }
-                      maxPage={ maxPage }/>
+        { artistes &&
+        <ArtistesList
+          nextPage={ nextPage }
+          prevPage={ prevPage }
+          currentPage={ query }
+          artists={ artistes }
+          maxPage={ maxPage }
+        />
         }
         {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */ }
         { !artiste &&
@@ -66,16 +71,35 @@ Artistes.getInitialProps = async ( { asPath, query } ) => {
   const artiste = await API.query(
     Prismic.Predicates.at( 'document.type', 'artist' ), {
       lang: 'fr-FR',
-      pageSize: 1,
-      page,
       orderings: '[my.artist.name]'
     }
   );
 
+  const listIds = artistes.results[0].data.artists.map(item => item.artist.id);
+  const allArtists = artiste.results.reduce((artist, current) => {
+    if (listIds.includes(current.id)) {
+      artist.push(current);
+    }
+    return artist;
+  }, []);
+
+  const pageLength = Math.round(allArtists.length / 1);
+  const artistsToDisplay = allArtists.map((artist, i) => {
+    return i % pageLength ? [ ] : [ allArtists.slice(i, i + pageLength) ];
+  } );
+
+  console.log('artiste', allArtists);
+
+  // let temparray = [];
+  // for ( let i=0; let j = allArtists.length; i < j; i += nbArtistPArPAgeOMO) {
+  //   temparray = allArtists.slice(i,i+nbArtistPArPAgeOMO);
+  // }
+
   return {
     artistes: artistes.results[ 0 ],
     artiste: artiste.results.length >= 1 && artiste.results,
-    maxPage,
+    allArtists,
+    maxPage: pageLength,
     query: query.page ? Number( query.page ) : Number( page )
   }
 };

@@ -186,40 +186,6 @@ module.exports = withSass( {
       artists[`/artistes/page-${ i }`] = { page: '/artistes/page-[page]', query: { page: i } }
     }
 
-
-    // const pageIndex = 0;
-    // const artiste = await API.query(
-    //   Prismic.Predicates.at( 'document.type', 'artist' ), {
-    //     lang: 'fr-FR',
-    //     pageSize: 2,
-    //     orderings: '[my.artist.name]'
-    //   }
-    // );
-
-    // const artists = artiste.results.reduce(
-    //   ( base ) => {
-    //     if (pageIndex <= artisteLenght) {
-    //       const index = pageIndex + 1;
-    //       return Object.assign({}, base, {
-    //         [`/artistes/page-${ index }`]: {
-    //           page: '/artistes',
-    //           query: { page: index }
-    //         }
-    //       })
-    //     }
-    //   }, {}
-    // );
-
-    // if (pageIndex <= page) {
-    //   const index = pageIndex + 1;
-    //   ( Object.assign( {}, base, {
-    //     [ `/artistes/page-${ index }` ]: {
-    //       page: '/artistes',
-    //       query: { page: index }
-    //     }
-    //   } ) ), {}
-    // }
-
     return  Object.assign({}, campaigns, artists, {
       '/'              : { page: '/' },
       '/galerie'       : { page: '/galerie' },

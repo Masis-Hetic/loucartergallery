@@ -42,7 +42,11 @@ const ArtistesList = props => {
             overflow: 'hidden'
           } }
         >
-          { props.artists.map( ( artiste, i ) => <li key={ i }>{ artiste.data.name[ 0 ].text }</li> ) }
+          {/*{ props.artists.map( ( artiste, i ) => <li key={ i }>{ artiste.data.name[ 0 ].text }</li> ) }*/}
+          { props.artists.data.artists.map( ( artiste, i ) => <li key={ i }>
+            {console.log(artiste)}
+            {/*{ artiste.data.name[ 0 ].text }*/}
+          </li> ) }
         </ul>
       </div>
 
