@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
-import MainComponent       from "../../Components/Main/Main";
-import ArtistesList        from "../../Components/Artistes/ArtistesList";
-import Prismic             from "prismic-javascript";
+import MainComponent                 from "../../Components/Main/Main";
+import ArtistesList                  from "../../Components/Artistes/ArtistesList";
+import Prismic                       from "prismic-javascript";
 
 import getConfig from 'next/config';
 
@@ -9,16 +9,15 @@ const { publicRuntimeConfig } = getConfig();
 import Head      from 'next/head';
 
 const Artistes = ( { artistes, artiste, maxPage, query } ) => {
-  // noinspection JSUnresolvedVariable
 
-  const [page, incrementPage] = useState(1);
+  const [ page, incrementPage ] = useState( 1 );
   const nextPage = () => {
     if (page >= maxPage) return;
-    incrementPage(page + 1);
+    incrementPage( page + 1 );
   };
   const prevPage = () => {
     if (page <= 1) return;
-    incrementPage(page - 1);
+    incrementPage( page - 1 );
   };
 
   return (
@@ -41,11 +40,12 @@ const Artistes = ( { artistes, artiste, maxPage, query } ) => {
       </Head>
 
       <MainComponent>
-        {artiste &&
-        <ArtistesList nextPage={nextPage} prevPage={prevPage} currentPage={query} artists={artiste} maxPage={maxPage}/>
+        { artiste &&
+        <ArtistesList nextPage={ nextPage } prevPage={ prevPage } currentPage={ query } artists={ artiste }
+                      maxPage={ maxPage }/>
         }
-        {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */}
-        {!artiste &&
+        {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */ }
+        { !artiste &&
         <h1>PAS ARTISTES</h1>
         }
       </MainComponent>
@@ -53,15 +53,15 @@ const Artistes = ( { artistes, artiste, maxPage, query } ) => {
   )
 };
 
-Artistes.getInitialProps = async ({ asPath, query }) => {
+Artistes.getInitialProps = async ( { asPath, query } ) => {
   const API = await Prismic.api( publicRuntimeConfig.prismic );
-  const page = asPath.substring(15);
+  const page = asPath.substring( 15 );
 
   const artistes = await API.query(
     Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' }
   );
 
-  const maxPage = artistes.results[0].data.artists.length;
+  const maxPage = artistes.results[ 0 ].data.artists.length;
 
   const artiste = await API.query(
     Prismic.Predicates.at( 'document.type', 'artist' ), {
@@ -76,7 +76,7 @@ Artistes.getInitialProps = async ({ asPath, query }) => {
     artistes: artistes.results[ 0 ],
     artiste: artiste.results.length >= 1 && artiste.results,
     maxPage,
-    query: query.page ? Number(query.page) : Number(page)
+    query: query.page ? query.page : page
   }
 };
 
