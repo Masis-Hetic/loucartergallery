@@ -1,7 +1,12 @@
+require('dotenv').config();
 const Prismic = require( 'prismic-javascript' );
 const withSass = require( '@zeit/next-sass' );
 const withPlugins = require( 'next-compose-plugins' );
 const webpack = require( 'webpack' );
+
+require('dotenv').config();
+const path = require( 'path' );
+const glob = require( 'glob' );
 
 const nextConfiguration = {
   webpack: config => {
@@ -55,9 +60,6 @@ module.exports = withSass( {
     localIdentName: '[local]___[hash:base64:5]',
   }
 } );
-
-const path = require( 'path' );
-const glob = require( 'glob' );
 
 module.exports = {
   webpack: ( config, { dev } ) => {
@@ -154,7 +156,7 @@ module.exports = withSass( {
   },
   async exportPathMap() {
     // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
-    const API = await Prismic.api( 'https://loucarter.cdn.prismic.io/api/v2' );
+    const API = await Prismic.api( process.env.PRISMIC_API );
 
     const campaignList = await API.query(
       Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR' }
@@ -175,10 +177,12 @@ module.exports = withSass( {
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
-      '/soon'          : { page: '/soon' },
       '/partager'      : { page: '/partager' },
       '/artistes'      : { page: '/artistes' },
       '/eshop'          : { page: '/eshop' }
     });
+  },
+  publicRuntimeConfig: {
+    prismic: process.env.PRISMIC_API,
   }
 } );

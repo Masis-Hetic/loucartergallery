@@ -4,7 +4,8 @@ import Prismic             from 'prismic-javascript';
 
 import '../styles/style.scss';
 
-import { PRISMIC_API } from '../config';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 import ContactPage     from '../Components/Pages/ContactPage';
 import MainComponent   from '../Components/Main/Main';
 
@@ -20,7 +21,7 @@ const Contact = ({ data }) => (
 );
 
 Contact.getInitialProps = async({}) => {
-  const API = await Prismic.api(PRISMIC_API);
+  const API = await Prismic.api(publicRuntimeConfig.prismic);
   const response = await API.query(Prismic.Predicates.at('document.type', 'contact'), { lang: 'fr-FR' });
   const { data } = response.results[ 0 ];
   return { data };
