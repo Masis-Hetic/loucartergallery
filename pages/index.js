@@ -34,29 +34,8 @@ const Index = ( { result, imgs } ) => (
       <meta property="og:image:height" content={ 314 }/>
     </Head>
     <MainComponent>
-
-      <h1>
-        <Link
-          href={`artistes/page-[page]`}
-          as={`artistes/page-1`}
-          // as={`artistes`}
-        >
-          <a>ARTISTE</a>
-        </Link>
-      </h1>
-
       <HomePage result={ result } imgs={ imgs }/>
     </MainComponent>
-
-    <style jsx>{`
-      h1 {
-        position: absolute;
-        top: 20%;
-        left: 20%;
-        z-index: 99999;
-        // background: pink;
-      }
-    `}</style>
   </Fragment>
 );
 
