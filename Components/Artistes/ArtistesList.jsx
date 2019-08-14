@@ -1,76 +1,47 @@
-import React, { Fragment } from 'react';
-import Link                from 'next/link';
+import React          from 'react';
+import Link           from 'next/link';
+import StyledArtistes from "./ArtistesList.style";
 
 const ArtistesList = props => {
   return (
-    <div
-      style={ {
-        height        : '100%',
-        display       : 'flex',
-        justifyContent: 'center',
-        alignItems    : 'center',
-      } }
-    >
-      
+    <StyledArtistes>
+
       { props.currentPage > 1 &&
-        <Link
-          href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
-          as={ `/artistes/page-${ props.currentPage - 1 }` }
-        >
-          <a
-            onClick={ props.prevPage }
-            style={ { color: 'white', background: 'purple' } }
-          >
-            PREV
-          </a>
-        </Link>
-      }
-      <div
-        style={ {
-          background: 'grey',
-          width     : '60%',
-          height    : '60vh',
-        } }
+      <Link
+        href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
+        as={ `/artistes/page-${ props.currentPage - 1 }` }
       >
-        <ul
-          className="ok"
-          style={ {
-            height       : 'inherit',
-            display      : 'flex',
-            flexWrap     : 'wrap',
-            flexDirection: 'column',
-            overflow     : 'hidden'
-          } }
+        <a
+          onClick={ props.prevPage }
+          style={ { color: 'white', cursor: 'pointer', padding: 15 } }
         >
-          {/*{ props.artists.map( ( artiste, i ) => <li key={ i }>{ artiste.data.name[ 0 ].text }</li> ) }*/ }
-          { props.artists.map((artiste, i) => <li key={ i }>
-            { artiste.data.name[ 0 ].text }
-          </li>) }
-        </ul>
-      </div>
-      
-      { props.currentPage < props.maxPage &&
-        <Link
-          href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
-          as={ `/artistes/page-${ props.currentPage + 1 }` }
-        >
-          <a
-            onClick={ props.nextPage }
-            style={ { color: 'white', background: 'purple' } }
-          >
-            NEXT
-          </a>
-        </Link>
+          {'<'}
+        </a>
+      </Link>
       }
-      <style jsx>{ `
-        .ok li {
-          width: 50%;
-          background: hotpink;
-          line-height: 2.5;
-          text-align: center;
-        }
-      ` }</style>
-    </div>
+      <StyledArtistes.Wrapper>
+        <StyledArtistes.Ul>
+          {/*{ props.artists.map( ( artiste, i ) => <li key={ i }>{ artiste.data.name[ 0 ].text }</li> ) }*/ }
+          { props.artists.map( ( artiste, i ) => <StyledArtistes.Li key={ i }>
+            { artiste.data.name[ 0 ].text }
+          </StyledArtistes.Li> ) }
+        </StyledArtistes.Ul>
+      </StyledArtistes.Wrapper>
+
+      { props.currentPage < props.maxPage &&
+      <Link
+        href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
+        as={ `/artistes/page-${ props.currentPage + 1 }` }
+      >
+        <a
+          onClick={ props.nextPage }
+          style={ { color: 'white', cursor: 'pointer', padding: 15 } }
+        >
+          >
+        </a>
+      </Link>
+      }
+    </StyledArtistes>
   );
 };
 

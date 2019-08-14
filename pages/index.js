@@ -51,10 +51,10 @@ const Index = ( { result, imgs } ) => (
     <style jsx>{`
       h1 {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 20%;
+        left: 20%;
         z-index: 99999;
-        background: pink;
+        // background: pink;
       }
     `}</style>
   </Fragment>
