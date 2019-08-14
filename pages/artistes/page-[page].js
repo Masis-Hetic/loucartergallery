@@ -39,12 +39,12 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
         <meta property="og:image:height" content={ 314 }/>
       </Head>
       <MainComponent>
-        { artistes &&
+        { artistes && artiste &&
           <ArtistesList
             nextPage={ nextPage }
             prevPage={ prevPage }
             currentPage={ query }
-            artists={ artistes }
+            artists={ artiste }
             maxPage={ maxPage }
           />
         }
@@ -60,41 +60,49 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
 Artistes.getInitialProps = async({ asPath, query }) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
   const page = asPath.substring(15);
+  const artistPerPages = 2;
   
-  const artistes = await API.query(
-    Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' }
-  );
-  
-  const maxPage = artistes.results[ 0 ].data.artists.length;
-  
-  const artiste = await API.query(
-    Prismic.Predicates.at('document.type', 'artist'), {
-      lang     : 'fr-FR',
-      orderings: '[my.artist.name]'
-    }
-  );
+  const artistes = await API.query(Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' });
+  const artiste = await iterArtist([], 1);
   
   const listIds = artistes.results[ 0 ].data.artists.map(item => item.artist.id);
-  const allArtists = artiste.results.reduce((artist, current) => {
-    if (listIds.includes(current.id)) {
-      artist.push(current);
-    }
+  const allArtists = artiste.reduce((artist, current) => {
+    if (listIds.includes(current.id)) { artist.push(current); }
     return artist;
   }, []);
-  
-  const artistPerPages = 1;
   const pageLength = Math.round(allArtists.length / artistPerPages);
   
   const artistsToDisplay = allArtists.reduce((resultArray, item, index) => {
     const chunkIndex = Math.floor(index / artistPerPages);
-    if (!resultArray[ chunkIndex ]) { resultArray[ chunkIndex ] = []; } // start a new chunk
+    if (!resultArray[ chunkIndex ]) { resultArray[ chunkIndex ] = []; }
     resultArray[ chunkIndex ].push(item);
     return resultArray;
   }, []);
   
+  async function iterArtist(artistes, nbPage) {
+    const response = await callArtist(nbPage);
+    artistes = artistes.concat(response.results);
+    if (artistes.length === artistPerPages * nbPage) {
+      nbPage += 1;
+      return await iterArtist(artistes, nbPage);
+    }
+    return artistes;
+  }
+  
+  async function callArtist(page) {
+    return await API.query(
+      Prismic.Predicates.at('document.type', 'artist'), {
+        lang     : 'fr-FR',
+        orderings: '[my.artist.name]',
+        pageSize : artistPerPages,
+        page
+      }
+    );
+  }
+  
   return {
-    artistes: artistsToDisplay[ page + 1 ],
-    artiste : artiste.results.length >= 1 && artiste.results,
+    artistes: artistes.results[ 0 ],
+    artiste : artistsToDisplay[ Number(page) - 1 ],
     allArtists,
     maxPage : pageLength,
     query   : query.page ? Number(query.page) : Number(page)

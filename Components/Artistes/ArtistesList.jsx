@@ -1,67 +1,66 @@
-import React, { Fragment } from "react";
-import Link                from "next/link";
+import React, { Fragment } from 'react';
+import Link                from 'next/link';
 
 const ArtistesList = props => {
   return (
     <div
       style={ {
-        height: '100%',
-        display: 'flex',
+        height        : '100%',
+        display       : 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems    : 'center',
       } }
     >
-
+      
       { props.currentPage > 1 &&
-      <Link
-        href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
-        as={ `/artistes/page-${ props.currentPage - 1 }` }
-      >
-        <a
-          onClick={ props.prevPage }
-          style={ { color: 'white', background: 'purple' } }
+        <Link
+          href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
+          as={ `/artistes/page-${ props.currentPage - 1 }` }
         >
-          PREV
-        </a>
-      </Link>
+          <a
+            onClick={ props.prevPage }
+            style={ { color: 'white', background: 'purple' } }
+          >
+            PREV
+          </a>
+        </Link>
       }
       <div
         style={ {
           background: 'grey',
-          width: '60%',
-          height: '60vh',
+          width     : '60%',
+          height    : '60vh',
         } }
       >
         <ul
           className="ok"
           style={ {
-            height: 'inherit',
-            display: 'flex',
-            flexWrap: 'wrap',
+            height       : 'inherit',
+            display      : 'flex',
+            flexWrap     : 'wrap',
             flexDirection: 'column',
-            overflow: 'hidden'
+            overflow     : 'hidden'
           } }
         >
-          {/*{ props.artists.map( ( artiste, i ) => <li key={ i }>{ artiste.data.name[ 0 ].text }</li> ) }*/}
-          { props.artists.data.artists.map( ( artiste, i ) => <li key={ i }>
-            {console.log(artiste)}
-            {/*{ artiste.data.name[ 0 ].text }*/}
-          </li> ) }
+          {/*{ props.artists.map( ( artiste, i ) => <li key={ i }>{ artiste.data.name[ 0 ].text }</li> ) }*/ }
+          { props.artists.map((artiste, i) => <li key={ i }>
+            { artiste.data.name[ 0 ].text }
+          </li>) }
         </ul>
       </div>
-
+      
       { props.currentPage < props.maxPage &&
-      <Link
-        href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
-        as={ `/artistes/page-${ props.currentPage + 1 }` }
-      >
-        <a
-          onClick={ props.nextPage }
-          style={ { color: 'white', background: 'purple' } }
+        <Link
+          href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
+          as={ `/artistes/page-${ props.currentPage + 1 }` }
         >
-          NEXT
-        </a>
-      </Link>
+          <a
+            onClick={ props.nextPage }
+            style={ { color: 'white', background: 'purple' } }
+          >
+            NEXT
+          </a>
+        </Link>
       }
       <style jsx>{ `
         .ok li {
@@ -72,7 +71,7 @@ const ArtistesList = props => {
         }
       ` }</style>
     </div>
-  )
+  );
 };
 
 export default ArtistesList;
