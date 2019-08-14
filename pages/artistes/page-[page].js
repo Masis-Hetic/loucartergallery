@@ -60,7 +60,8 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
 Artistes.getInitialProps = async({ asPath, query }) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
   const page = asPath.substring(15);
-  const artistPerPages = 2;
+  const artistPerPages = 20;
+  const artistQueryLength = 100;
   
   const artistes = await API.query(Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' });
   const artiste = await iterArtist([], 1);
@@ -70,10 +71,10 @@ Artistes.getInitialProps = async({ asPath, query }) => {
     if (listIds.includes(current.id)) { artist.push(current); }
     return artist;
   }, []);
-  const pageLength = Math.round(allArtists.length / artistPerPages);
+  const pageLength = Math.ceil(allArtists.length / artistPerPages);
   
   const artistsToDisplay = allArtists.reduce((resultArray, item, index) => {
-    const chunkIndex = Math.floor(index / artistPerPages);
+    const chunkIndex = Math.floor(index / 20);
     if (!resultArray[ chunkIndex ]) { resultArray[ chunkIndex ] = []; }
     resultArray[ chunkIndex ].push(item);
     return resultArray;
@@ -82,7 +83,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
   async function iterArtist(artistes, nbPage) {
     const response = await callArtist(nbPage);
     artistes = artistes.concat(response.results);
-    if (artistes.length === artistPerPages * nbPage) {
+    if (artistes.length === artistQueryLength * nbPage) {
       nbPage += 1;
       return await iterArtist(artistes, nbPage);
     }
@@ -94,7 +95,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
       Prismic.Predicates.at('document.type', 'artist'), {
         lang     : 'fr-FR',
         orderings: '[my.artist.name]',
-        pageSize : artistPerPages,
+        pageSize : artistQueryLength,
         page
       }
     );
