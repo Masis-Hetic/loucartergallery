@@ -132,10 +132,12 @@ header {
 
   @-webkit-keyframes openLinks {
     0% {
-      width : 0;
+      width  : 0;
+      height : 0;
     }
     100% {
-      width : 8px;
+      width  : 5px;
+      height : 5px;
     }
   }
 
@@ -149,7 +151,8 @@ header {
       content                   : "";
       display                   : block;
       width                     : 0;
-      height                    : 1px;
+      height                    : 0;
+      border-radius             : 50%;
       background                : $lightGrey;
       animation-name            : openLinks;
       animation-fill-mode       : forwards;
@@ -176,26 +179,15 @@ header {
       }
       &:hover {
         &::before {
-          margin-right : 0;
+          transition : .3s;
+          transform  : scale(1.5);
+          border-radius: 50%;
         }
 
         span {
           display        : flex;
           flex-direction : row;
           align-items    : center;
-
-          &::before {
-            content                   : "";
-            display                   : block;
-            width                     : 0;
-            height                    : 1px;
-            background                : $lightGrey;
-            margin-right              : 10px;
-            animation-name            : openLinks;
-            animation-fill-mode       : forwards;
-            animation-duration        : 300ms;
-            animation-timing-function : ease;
-          }
         }
       }
     }
