@@ -65,10 +65,11 @@ Artist.Collection = styled.p`
 `;
 
 Artist.DescriptionWrapper = styled.div`
-  width: calc(45% - 60px);
-  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  width: calc(45% - 60px);
+  height: 100%;
   padding-right: 30px;
   overflow-y: scroll;
   overflow: -moz-scrollbars-none;
@@ -86,9 +87,13 @@ Artist.Description = styled.p`
   width: 95%;
 `;
 
+Artist.BtnWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 Artist.BackBtn = styled.a`
   display: table;
-  align-self: flex-end;
   border: 1px solid #fff;
   margin: 30px 0;
   padding: 10px;

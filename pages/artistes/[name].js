@@ -46,12 +46,17 @@ const Artiste = ( { artist } ) => {
             </Artist.ImageInnerWrapper>
           </Artist.ImageWrapper>
 
-          <Artist.DescriptionWrapper className="clearfix">
-            <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
-            <Artist.Description>{ artist.description[ 0 ].text }</Artist.Description>
-            <Link href={ '/artistes/page-[page]' } as={ '/artistes/page-1' }>
-              <Artist.BackBtn>Retour aux artistes</Artist.BackBtn>
-            </Link>
+          <Artist.DescriptionWrapper>
+            <div>
+              <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
+              <Artist.Description>{ artist.description[ 0 ].text }</Artist.Description>
+            </div>
+
+            <Artist.BtnWrapper>
+              <Link href={ '/artistes/page-[page]' } as={ '/artistes/page-1' }>
+                <Artist.BackBtn>Retour aux artistes</Artist.BackBtn>
+              </Link>
+            </Artist.BtnWrapper>
           </Artist.DescriptionWrapper>
 
         </Artist>
