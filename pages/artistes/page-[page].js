@@ -9,7 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 import Head      from 'next/head';
 
 const Artistes = ({ artistes, artiste, maxPage, query }) => {
-  
+
   const [ page, incrementPage ] = useState(1);
   const nextPage = () => {
     if (page >= maxPage) return;
@@ -19,7 +19,7 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
     if (page <= 1) return;
     incrementPage(page - 1);
   };
-  
+
   return (
     <Fragment>
       <Head>
@@ -49,9 +49,9 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
           />
         }
         {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */ }
-        { !artiste &&
-          <h1>PAS ARTISTES</h1>
-        }
+        {/*{ !artiste &&*/}
+        {/*  <h1>PAS ARTISTES</h1>*/}
+        {/*}*/}
       </MainComponent>
     </Fragment>
   );
@@ -62,24 +62,24 @@ Artistes.getInitialProps = async({ asPath, query }) => {
   const page = asPath.substring(15);
   const artistPerPages = 20;
   const artistQueryLength = 100;
-  
+
   const artistes = await API.query(Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' });
   const artiste = await iterArtist([], 1);
-  
+
   const listIds = artistes.results[ 0 ].data.artists.map(item => item.artist.id);
   const allArtists = artiste.reduce((artist, current) => {
     if (listIds.includes(current.id)) { artist.push(current); }
     return artist;
   }, []);
   const pageLength = Math.ceil(allArtists.length / artistPerPages);
-  
+
   const artistsToDisplay = allArtists.reduce((resultArray, item, index) => {
     const chunkIndex = Math.floor(index / 20);
     if (!resultArray[ chunkIndex ]) { resultArray[ chunkIndex ] = []; }
     resultArray[ chunkIndex ].push(item);
     return resultArray;
   }, []);
-  
+
   async function iterArtist(artistes, nbPage) {
     const response = await callArtist(nbPage);
     artistes = artistes.concat(response.results);
@@ -89,7 +89,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
     }
     return artistes;
   }
-  
+
   async function callArtist(page) {
     return await API.query(
       Prismic.Predicates.at('document.type', 'artist'), {
@@ -100,7 +100,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
       }
     );
   }
-  
+
   return {
     artistes: artistes.results[ 0 ],
     artiste : artistsToDisplay[ Number(page) - 1 ],

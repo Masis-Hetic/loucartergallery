@@ -26,6 +26,8 @@ app.prepare().then(() => {
 
   server.get('/artistes/:page', (req, res) => app.render(req, res, '/artistes/page-[page]', Object.assign({ page: req.params.page })));
 
+  server.get('/artistes/:name', (req, res) => app.render(req, res, '/artistes/[name]', Object.assign({ name: req.params.name })));
+
   server.get('/eshop', (req, res) => app.render(req, res, '/eshop'));
 
   server.get('*', (req, res) => handle(req, res));

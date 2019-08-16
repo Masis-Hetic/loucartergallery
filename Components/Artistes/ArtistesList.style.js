@@ -25,7 +25,28 @@ StyledArtistes.Li = styled.li`
   line-height: 2.5;
   text-align: center;
   font-size: 20px;
+`;
+
+StyledArtistes.ArtistLink = styled.a`
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  cursor: pointer;
+`;
+
+StyledArtistes.NameWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: left; 
+`;
+
+StyledArtistes.ArtistLastName = styled.span`
   text-transform: uppercase;
+  width: 50%;
+`;
+
+StyledArtistes.ArtistFirstName = styled.span`
+  width: 50%;
 `;
 
 export default StyledArtistes;

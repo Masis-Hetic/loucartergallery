@@ -158,9 +158,7 @@ module.exports = withSass( {
     // we fetch our list of campaigns, this allow us to dynamically generate the exported pages
     const API = await Prismic.api( process.env.PRISMIC_API );
 
-    const campaignList = await API.query(
-      Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR' }
-    );
+    const campaignList = await API.query( Prismic.Predicates.at( 'document.type', 'campaign' ), { lang: 'fr-FR' } );
 
     // tranform the list of posts into a map of pages with the pathname `/campagnes/:slug`
     const campaigns = campaignList.results.reduce(
@@ -172,9 +170,7 @@ module.exports = withSass( {
       } ) ), {}
     );
 
-    const artistes = await API.query(
-      Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' }
-    );
+    const artistes = await API.query( Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' } );
 
     const artisteLength = artistes.results[0].data.artists.length;
 
@@ -186,7 +182,17 @@ module.exports = withSass( {
       artists[`/artistes/page-${ i }`] = { page: '/artistes/page-[page]', query: { page: i } }
     }
 
-    return  Object.assign({}, campaigns, artists, {
+    const artistList = {};
+
+    for (let i = 0; i < artistes.results[ 0 ].data.artists.length; i += 1) {
+      // noinspection JSUnresolvedVariable
+      artistList[ `/artistes/${ artistes.results[ 0 ].data.artists[ i ].artist.slug }` ] = {
+        page: '/artistes/[name]',
+        query: { name: artistes.results[ 0 ].data.artists[ i ].artist.slug }
+      }
+    }
+
+    return  Object.assign({}, campaigns, artists, artistList, {
       '/'              : { page: '/' },
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
