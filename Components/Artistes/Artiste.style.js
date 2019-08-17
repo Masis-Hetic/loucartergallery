@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import media from "../../helpers/media";
+
+export const NEXT = "NEXT";
 
 const Artist = styled.div`
   display: flex;
@@ -7,6 +10,16 @@ const Artist = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
+  
+  ${media.mobile`
+    display: block;
+    margin-top: 7rem;
+    width: initial;
+    height: initial;
+    position: initial;
+    bottom: initial;
+    right: initial;
+  `}
 `;
 
 Artist.Carousel = styled.ul`
@@ -17,6 +30,21 @@ Artist.Carousel = styled.ul`
   -ms-overflow-style: none;
   
   &::-webkit-scrollbar { width: 0 !important; }
+  
+  ${media.mobile`
+    display: flex;
+    width: 480px;
+    position: relative;
+    
+    
+    transition: ${props => (props.sliding ? "none" : "transform .3s ease")};
+    transform: ${props => {
+      if (!props.sliding) return "translateX(0%)";
+      return "translateX(120px)";
+    }};
+    
+    justify-content: center;
+  `}
 `;
 
 Artist.CarouselPicture = styled.li`
@@ -29,6 +57,12 @@ Artist.CarouselPicture = styled.li`
   &:last-of-type {
     margin-bottom: 0;
   }
+  
+  ${media.mobile`
+    flex: 1 0 100%;
+    flex-basis: 120px;
+    order: ${ props => props.order };
+  `}
 `;
 
 Artist.MiniPicture = styled.img`
@@ -43,12 +77,28 @@ Artist.ImageWrapper = styled.div`
   height: 100%;
 `;
 
+// Artist.MobileImageWrapper = styled(Artist.ImageWrapper)`
+//   display: none;
+//
+//   ${media.mobile`
+//     display: block;
+//   `}
+// `;
+
 Artist.ImageInnerWrapper = styled.div`
   width: 90%;
   height: 70%;
   margin: 0 auto;
   text-align: center;
 `;
+
+// Artist.MobileImageInnerWrapper = styled(Artist.ImageWrapper)`
+//   display: none;
+//
+//   ${media.mobile`
+//     display: block;
+//   `}
+// `;
 
 Artist.Image = styled.img`
   display: block;
@@ -58,11 +108,27 @@ Artist.Image = styled.img`
   margin-bottom: 20px;
 `;
 
+// Artist.MobileImage = styled(Artist.Image)`
+//   display: none;
+//
+//   ${media.mobile`
+//     display: block;
+//   `}
+// `;
+
 Artist.Collection = styled.p`
   border-bottom: 1px solid #fff;
   display: table;
   margin: 0 auto 15px;
 `;
+
+// Artist.MobileCollection = styled(Artist.Collection)`
+//   display: none;
+//
+//   ${media.mobile`
+//     display: block;
+//   `}
+// `;
 
 Artist.DescriptionWrapper = styled.div`
   display: flex;
