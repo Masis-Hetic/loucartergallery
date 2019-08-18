@@ -1,13 +1,10 @@
-import React, { Fragment, useState } from "react";
-import Link                          from "next/link";
-import Prismic                       from "prismic-javascript";
-import getConfig                     from 'next/config';
-import MainComponent                 from '../../Components/Main/Main';
-import Head                          from 'next/head';
-import Artist                        from "../../Components/Artistes/Artiste.style";
-
-import { useSwipeable } from 'react-swipeable';
-import { NEXT }         from "../../Components/Artistes/Artiste.style";
+import React, { Fragment } from "react";
+import Link                from "next/link";
+import Prismic             from "prismic-javascript";
+import getConfig           from 'next/config';
+import MainComponent       from '../../Components/Main/Main';
+import Head                from 'next/head';
+import Artist              from "../../Components/Artistes/Artiste.style";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -23,122 +20,197 @@ const { publicRuntimeConfig } = getConfig();
  * @constructor
  */
 
-const Artiste = ( { artist } ) => {
-  // const [ activePicture, picture ] = useState( 0 );
-  // const changePicture = id => picture( Number( id ) );
+class Artiste extends React.Component {
+  static async getInitialProps( { query } ) {
+    const API = await Prismic.api( publicRuntimeConfig.prismic );
 
-  const initialState = { pos: 0, sliding: false, dir: NEXT, current: 1 };
-  const [ state, dispatch ] = React.useReducer( reducer, initialState );
-  const numItems = artist.photos.length;
+    const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } );
 
-  const slide = dir => {
-    dispatch( { type: dir, numItems, current: 3 } );
-    setTimeout( () => dispatch( { type: "stopSliding" } ), 50 );
+    return {
+      artist: artist.results[ 0 ].data,
+      query
+    }
+  }
+
+  state = {
+    activePicture: 0,
+    startingX: null,
+    change: null,
+    position: 0,
+    currentSlide: 1,
+    itemNumber: this.props.artist.photos.length,
   };
 
-  const handlers = useSwipeable( {
-    onSwipedLeft: () => slide( NEXT ),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: false
-  } );
+  changePicture = id => this.setState( { activePicture: Number( id ) } );
 
-  const getOrder = ( { index, pos, numItems } ) => index - pos < 0 ? numItems - Math.abs( index - pos ) : index - pos;
-
-  const changePicture = id => {
-    dispatch( {type: 'CLICK', current: Number(id)});
-    console.log(state);
+  handleTouchStart = e => this.setState( { startingX: e.touches[ 0 ].clientX } );
+  handleTouchMove = e => {
+    const touch = e.touches[ 0 ];
+    this.setState( { change: this.state.startingX - touch.clientX } );
   };
-  return (
-    <Fragment>
-      <Head>
-        <title>Titre à ajouter dans Prismic</title>
-      </Head>
-      <MainComponent>
+  handleTouchEnd = () => {
+    if (this.state.change > 0) {
+      this.state.currentSlide < this.state.itemNumber &&
+      this.setState( { position: this.state.currentSlide * -90, currentSlide: this.state.currentSlide + 1 } );
+    } else {
+      this.state.currentSlide > 1 &&
+      this.setState( { position: this.state.position - -90, currentSlide: this.state.currentSlide - 1 } );
+    }
+  };
 
-        <Artist>
-          {/* https://xiaody.github.io/react-touch-carousel/docs/ */}
-          <div {...handlers}>
-            <Artist.Carousel dir={state.dir} sliding={state.sliding}>
+  render() {
+    const { artist } = this.props;
+    const { activePicture, position } = this.state;
+
+    return (
+      <Fragment>
+        <Head>
+          <title>Titre à ajouter dans Prismic</title>
+        </Head>
+        <MainComponent>
+
+          <Artist>
+
+            <Artist.Carousel>
               { artist.photos.map( ( photo, i ) =>
                 <Artist.CarouselPicture
-                  order={getOrder({ index: i, pos: state.pos, numItems })} key={ i } id={ i }
-                  sliding={state.sliding}
-                  onClick={ e => changePicture( e.target.getAttribute( 'id' ) ) }
+                  key={ i }
+                  id={ i }
+                  onClick={ e => this.changePicture( e.target.getAttribute( 'id' ) ) }
                 >
                   <Artist.MiniPicture src={ `${ photo.artist_pictures.url }` } alt=""/>
                 </Artist.CarouselPicture>
               ) }
             </Artist.Carousel>
-          </div>
 
-          {/*<Artist.Carousel>*/}
-          {/*  { artist.photos.map( ( photo, i ) =>*/}
-          {/*    <Artist.CarouselPicture key={ i } id={ i } onClick={ e => changePicture( e.target.getAttribute( 'id' ) ) }>*/}
-          {/*      <Artist.MiniPicture src={ `${ photo.artist_pictures.url }` } alt=""/>*/}
-          {/*    </Artist.CarouselPicture>*/}
-          {/*  ) }*/}
-          {/*</Artist.Carousel>*/}
+            <Artist.MobileCarouselWrapper>
+              <Artist.MobileCarousel
+                onTouchStart={ e => this.handleTouchStart( e ) }
+                onTouchMove={ e => this.handleTouchMove( e ) }
+                onTouchEnd={ () => this.handleTouchEnd() }
+                position={ position }
+              >
+                { artist.photos.map( ( photo, i ) =>
+                  <Artist.MobileImageWrapper key={ i }>
+                    <Artist.MobileImage src={ artist.photos[ i ].artist_pictures.url } alt=""/>
+                    <Artist.DetailsWrapper>
+                      <p>{ artist.photos[ i ].collection[ 0 ].text }</p>
+                      <p>{ artist.photos[ i ].name_of_art[ 0 ].text }</p>
+                      <p>{ artist.photos[ i ].dimensions[ 0 ].text }</p>
+                      <p>{ artist.photos[ i ].year[ 0 ].text }</p>
+                    </Artist.DetailsWrapper>
+                  </Artist.MobileImageWrapper>
+                ) }
+              </Artist.MobileCarousel>
+            </Artist.MobileCarouselWrapper>
 
-          <Artist.ImageWrapper>
-            <Artist.ImageInnerWrapper>
-              <Artist.Image src={ artist.photos[ state.pos ].artist_pictures.url } alt=""/>
-              <Artist.Collection>{ artist.photos[ state.pos ].collection[ 0 ].text }</Artist.Collection>
-              <p>{ artist.photos[ state.pos ].name_of_art[ 0 ].text }</p>
-              <p>{ artist.photos[ state.pos ].dimensions[ 0 ].text }</p>
-              <p>{ artist.photos[ state.pos ].year[ 0 ].text }</p>
-            </Artist.ImageInnerWrapper>
-          </Artist.ImageWrapper>
+            <Artist.ImageWrapper>
+              <Artist.ImageInnerWrapper>
+                <Artist.Image src={ artist.photos[ activePicture ].artist_pictures.url } alt=""/>
+                <Artist.Collection>{ artist.photos[ activePicture ].collection[ 0 ].text }</Artist.Collection>
+                <p>{ artist.photos[ activePicture ].name_of_art[ 0 ].text }</p>
+                <p>{ artist.photos[ activePicture ].dimensions[ 0 ].text }</p>
+                <p>{ artist.photos[ activePicture ].year[ 0 ].text }</p>
+              </Artist.ImageInnerWrapper>
+            </Artist.ImageWrapper>
 
-          <Artist.DescriptionWrapper>
-            <div>
-              <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
-              <Artist.Description>{ artist.description[ 0 ].text }</Artist.Description>
-            </div>
+            <Artist.DescriptionWrapper>
+              <div>
+                <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
+                <Artist.Description>{ artist.description[ 0 ].text }</Artist.Description>
+              </div>
 
-            <Artist.BtnWrapper>
-              <Link href={ '/artistes/page-[page]' } as={ '/artistes/page-1' }>
-                <Artist.BackBtn>Retour aux artistes</Artist.BackBtn>
-              </Link>
-            </Artist.BtnWrapper>
-          </Artist.DescriptionWrapper>
+              <Artist.BtnWrapper>
+                <Link href={ '/artistes/page-[page]' } as={ '/artistes/page-1' }>
+                  <Artist.BackBtn>Retour aux artistes</Artist.BackBtn>
+                </Link>
+              </Artist.BtnWrapper>
+            </Artist.DescriptionWrapper>
 
-        </Artist>
-        { console.log( { artist } ) }
-      </MainComponent>
-    </Fragment>
-  )
-};
+          </Artist>
 
-function reducer(state, { type, numItems, current }) {
-  switch (type) {
-    case NEXT:
-      return {
-        ...state,
-        dir: NEXT,
-        sliding: true,
-        pos: state.pos === numItems - 1 ? 0 : state.pos + 1,
-      };
-    case 'CLICK':
-      return {
-        sliding: false,
-        pos: current
-      };
-    case "stopSliding":
-      return { ...state, sliding: false };
-    default:
-      return state;
+        </MainComponent>
+      </Fragment>
+    )
   }
 }
 
-Artiste.getInitialProps = async ( { query } ) => {
-  const API = await Prismic.api( publicRuntimeConfig.prismic );
-
-  const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } );
-
-  return {
-    artist: artist.results[ 0 ].data,
-    query
-  }
-};
+// const Artiste = ( { artist } ) => {
+//   const [ activePicture, picture ] = useState( 0 );
+//   const changePicture = id => picture( Number( id ) );
+//
+//   return (
+//     <Fragment>
+//       <Head>
+//         <title>Titre à ajouter dans Prismic</title>
+//       </Head>
+//       <MainComponent>
+//
+//         <Artist>
+//
+//           <Artist.Carousel>
+//             { artist.photos.map( ( photo, i ) =>
+//               <Artist.CarouselPicture key={ i } id={ i } onClick={ e => changePicture( e.target.getAttribute( 'id' ) ) }>
+//                 <Artist.MiniPicture src={ `${ photo.artist_pictures.url }` } alt=""/>
+//               </Artist.CarouselPicture>
+//             ) }
+//           </Artist.Carousel>
+//
+//           <Artist.MobileCarouselWrapper>
+//             <Artist.MobileCarousel
+//
+//             >
+//               {artist.photos.map((photo, i) =>
+//                 <Artist.MobileImageWrapper key={i}>
+//                   <Artist.MobileImage src={artist.photos[ i ].artist_pictures.url} alt=""/>
+//                   <p>{artist.photos[ i ].collection[ 0 ].text}</p>
+//                   <p>{ artist.photos[ i ].name_of_art[ 0 ].text }</p>
+//                   <p>{ artist.photos[ i ].dimensions[ 0 ].text }</p>
+//                   <p>{ artist.photos[ i ].year[ 0 ].text }</p>
+//                 </Artist.MobileImageWrapper>
+//               )}
+//             </Artist.MobileCarousel>
+//           </Artist.MobileCarouselWrapper>
+//
+//           <Artist.ImageWrapper>
+//             <Artist.ImageInnerWrapper>
+//               <Artist.Image src={ artist.photos[ activePicture ].artist_pictures.url } alt=""/>
+//               <Artist.Collection>{ artist.photos[ activePicture ].collection[ 0 ].text }</Artist.Collection>
+//               <p>{ artist.photos[ activePicture ].name_of_art[ 0 ].text }</p>
+//               <p>{ artist.photos[ activePicture ].dimensions[ 0 ].text }</p>
+//               <p>{ artist.photos[ activePicture ].year[ 0 ].text }</p>
+//             </Artist.ImageInnerWrapper>
+//           </Artist.ImageWrapper>
+//
+//           <Artist.DescriptionWrapper>
+//             <div>
+//               <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
+//               <Artist.Description>{ artist.description[ 0 ].text }</Artist.Description>
+//             </div>
+//
+//             <Artist.BtnWrapper>
+//               <Link href={ '/artistes/page-[page]' } as={ '/artistes/page-1' }>
+//                 <Artist.BackBtn>Retour aux artistes</Artist.BackBtn>
+//               </Link>
+//             </Artist.BtnWrapper>
+//           </Artist.DescriptionWrapper>
+//
+//         </Artist>
+//         { console.log( { artist } ) }
+//       </MainComponent>
+//     </Fragment>
+//   )
+// };
+//
+// Artiste.getInitialProps = async ( { query } ) => {
+//   const API = await Prismic.api( publicRuntimeConfig.prismic );
+//
+//   const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } );
+//
+//   return {
+//     artist: artist.results[ 0 ].data,
+//     query
+//   }
+// };
 
 export default Artiste;

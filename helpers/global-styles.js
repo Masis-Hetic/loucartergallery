@@ -24,7 +24,7 @@ body {
   color: #d9e1e8;
   height: 100%;
   height: calc(var(--vh, 1vh) * 100);
-  overflow: hidden;
+  overflow-x: hidden;
   font-smooth: subpixel-antialiased;
   font-smooth: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -35,7 +35,7 @@ body * {
 main {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
   /* enable smooth scrolling on iOS */
   -webkit-overflow-scrolling: touch;

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import media from "../../helpers/media";
 
-export const NEXT = "NEXT";
-
 const Artist = styled.div`
   display: flex;
   width: calc(100% - 14rem - 20px);
@@ -32,18 +30,7 @@ Artist.Carousel = styled.ul`
   &::-webkit-scrollbar { width: 0 !important; }
   
   ${media.mobile`
-    display: flex;
-    width: 480px;
-    position: relative;
-    
-    
-    transition: ${props => (props.sliding ? "none" : "transform .3s ease")};
-    transform: ${props => {
-      if (!props.sliding) return "translateX(0%)";
-      return "translateX(120px)";
-    }};
-    
-    justify-content: center;
+    display: none;
   `}
 `;
 
@@ -59,9 +46,7 @@ Artist.CarouselPicture = styled.li`
   }
   
   ${media.mobile`
-    flex: 1 0 100%;
     flex-basis: 120px;
-    order: ${ props => props.order };
   `}
 `;
 
@@ -75,30 +60,22 @@ Artist.MiniPicture = styled.img`
 Artist.ImageWrapper = styled.div`
   width: calc(55% - 60px);
   height: 100%;
+  
+  ${media.mobile`
+    display: none;
+  `}
 `;
-
-// Artist.MobileImageWrapper = styled(Artist.ImageWrapper)`
-//   display: none;
-//
-//   ${media.mobile`
-//     display: block;
-//   `}
-// `;
 
 Artist.ImageInnerWrapper = styled.div`
   width: 90%;
   height: 70%;
   margin: 0 auto;
   text-align: center;
+  
+  ${media.mobile`
+    width: 100%;
+  `}
 `;
-
-// Artist.MobileImageInnerWrapper = styled(Artist.ImageWrapper)`
-//   display: none;
-//
-//   ${media.mobile`
-//     display: block;
-//   `}
-// `;
 
 Artist.Image = styled.img`
   display: block;
@@ -108,27 +85,11 @@ Artist.Image = styled.img`
   margin-bottom: 20px;
 `;
 
-// Artist.MobileImage = styled(Artist.Image)`
-//   display: none;
-//
-//   ${media.mobile`
-//     display: block;
-//   `}
-// `;
-
 Artist.Collection = styled.p`
   border-bottom: 1px solid #fff;
   display: table;
   margin: 0 auto 15px;
 `;
-
-// Artist.MobileCollection = styled(Artist.Collection)`
-//   display: none;
-//
-//   ${media.mobile`
-//     display: block;
-//   `}
-// `;
 
 Artist.DescriptionWrapper = styled.div`
   display: flex;
@@ -142,20 +103,37 @@ Artist.DescriptionWrapper = styled.div`
   -ms-overflow-style: none;
   
   &::-webkit-scrollbar { width: 0 !important; }
+  
+  ${media.mobile`
+    width: 100%;
+    padding: 0 5%;
+  `}
 `;
 
 Artist.Name = styled.h2`
   line-height: initial !important;
   margin-bottom: 30px;
+  
+  ${media.mobile`
+    text-align: center;
+  `}
 `;
 
 Artist.Description = styled.p`
   width: 95%;
+  
+  ${media.mobile`
+    width: 100%;
+  `}
 `;
 
 Artist.BtnWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  
+  ${media.mobile`
+    justify-content: center;
+  `}
 `;
 
 Artist.BackBtn = styled.a`
@@ -164,6 +142,46 @@ Artist.BackBtn = styled.a`
   margin: 30px 0;
   padding: 10px;
   cursor: pointer;
+`;
+
+
+// Artiste responsive
+Artist.MobileCarouselWrapper = styled.div`
+  display: none;
+  
+  ${media.mobile`
+    width: 100vw;
+    display: block;
+  `}
+`;
+
+Artist.MobileCarousel = styled.ul`
+  display: flex;
+  position: relative;
+  transform: translateX(${props => props.position}%);
+  transition: .3s ease-in;
+`;
+
+Artist.MobileImageWrapper = styled.li`
+  flex: 1 0 90vw;
+  margin: 0 auto;
+  
+  &:nth-of-type(1) {
+    margin-left: 5%;
+  }
+`;
+
+Artist.MobileImage = styled.img`
+  display: block;
+  width: 95%;
+  object-fit: cover;
+  margin: 0 auto;
+`;
+
+Artist.DetailsWrapper = styled.div`
+  width: 95%;
+  margin: 20px auto;
+  text-align: center;
 `;
 
 export default Artist;
