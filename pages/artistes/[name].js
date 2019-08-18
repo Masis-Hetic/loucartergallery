@@ -50,12 +50,12 @@ class Artiste extends React.Component {
   };
   handleTouchEnd = () => {
     const gestureDistance = screen.width / 3;
-    console.log(gestureDistance);
+
     if (this.state.change > 0 && this.state.change > gestureDistance) {
       this.state.currentSlide < this.state.itemNumber &&
       this.setState( { position: this.state.currentSlide * -90, currentSlide: this.state.currentSlide + 1 } );
     } else {
-      this.state.currentSlide > 1 &&
+      this.state.currentSlide > 1 && this.state.change > gestureDistance &&
       this.setState( { position: this.state.position - -90, currentSlide: this.state.currentSlide - 1 } );
     }
   };
