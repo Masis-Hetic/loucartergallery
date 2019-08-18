@@ -8,6 +8,6 @@ routes
   .add('la-fondatrice', '/la-fondatrice', 'fondatrice')
   .add('partager', '/partager', 'partager')
   .add('artistes', '/artistes', 'artistes')
-  .add('soon', '/soon', 'soon');
+  .add('legal-notice', '/legal-notice', 'legal-notice');
 
 module.exports = routes;

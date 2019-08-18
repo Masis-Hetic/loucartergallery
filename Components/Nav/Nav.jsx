@@ -132,7 +132,10 @@ const Nav = ( { nav } ) => {
                                     sublink.primary.link_to_level_two.uid
                                       ? (
                                         <li key={ i }>
-                                          <Link href={ `/${ sublink.primary.link_to_level_two.uid }` }>
+                                          <Link
+                                            href={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-[page]' : sublink.primary.link_to_level_two.uid }` }
+                                            as={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-1' : sublink.primary.link_to_level_two.uid }` }
+                                          >
                                             <a>
                                               <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
                                           </Link>

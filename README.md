@@ -8,9 +8,10 @@
 
 5219*2880
 
-nouvelle regles pour les grand ecrans
-comming soon (pour le eshop)
-partager => logo media + pressroom + (bulle qui donne des docs) 
+- Todo :
+    - partager => logo media + pressroom + (bulle qui donne des docs) 
+    - pages artistes 
+    - transition navigation
 
 artiste 
 
