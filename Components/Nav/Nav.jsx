@@ -1,17 +1,19 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import Link from 'next/link';
-import { connect } from 'react-redux';
-
-import OutsideAlerter from '../../helpers/click-outside';
-import COLORS from '../../helpers/colors';
-import { validateEmail } from '../../helpers/functions';
-import { subscribeToNews } from '../../helpers/mailchimp';
+import React, { Fragment, useState } from 'react';
+import Link                          from 'next/link';
+import { connect, useDispatch }      from 'react-redux'
+import { navStatus }                 from "../../store/actions/nav.action";
+import OutsideAlerter                from '../../helpers/click-outside';
+import COLORS                        from '../../helpers/colors';
+import { validateEmail }             from '../../helpers/functions';
+import { subscribeToNews }           from '../../helpers/mailchimp';
 
 import { useSpring, animated, config } from 'react-spring';
 
 const mapStateToProps = state => ( { nav: state.nav.datas } );
 
 const Nav = ( { nav } ) => {
+  const dispatch = useDispatch();
+
   const [ newsletter, toggleModal ] = useState( false );
   const isNewsletter = param => {
     if (param.toLowerCase() === 'newsletter') {
@@ -20,6 +22,9 @@ const Nav = ( { nav } ) => {
       setSuccess( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );
       toggleModal( !newsletter );
       stateSubscribe( false );
+      if (!newsletter) {
+        dispatch(navStatus( !isOpen ));
+      }
     }
   };
 
@@ -62,6 +67,7 @@ const Nav = ( { nav } ) => {
   const toggleMenu = () => {
     openMenu( !isOpen );
     openOrNot( false );
+    dispatch(navStatus( !isOpen ));
   };
 
   const [ isList, openList ] = useState( null );
@@ -113,7 +119,7 @@ const Nav = ( { nav } ) => {
                   { link.data.link_to.uid
                     ? (
                       <Link href={ `/${ link.data.link_to.uid }` }>
-                        <a>{ link.data.link_one[ 0 ].text }</a>
+                        <a onClick={() => dispatch(navStatus( !isOpen ))}>{ link.data.link_one[ 0 ].text }</a>
                       </Link>
                     )
                     : (
@@ -136,7 +142,7 @@ const Nav = ( { nav } ) => {
                                             href={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-[page]' : sublink.primary.link_to_level_two.uid }` }
                                             as={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-1' : sublink.primary.link_to_level_two.uid }` }
                                           >
-                                            <a>
+                                            <a onClick={() => dispatch(navStatus( !isOpen ))}>
                                               <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
                                           </Link>
                                         </li>
@@ -144,8 +150,7 @@ const Nav = ( { nav } ) => {
                                       : (
                                         <li key={ i }>
                                           <Link href={ `${ sublink.primary.link_to_level_two.url }` }>
-                                            <a
-                                              target="_blank">
+                                            <a target="_blank">
                                               <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
                                           </Link>
                                         </li>
@@ -169,13 +174,13 @@ const Nav = ( { nav } ) => {
                                                     href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
                                                     as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
                                                   >
-                                                    <a>
+                                                    <a onClick={() => dispatch(navStatus( !isOpen ))}>
                                                       <span>{ thirdLink.link_three[ 0 ].text }</span></a>
                                                   </Link>
                                                 )
                                                 : (
                                                   <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
-                                                    <a>
+                                                    <a onClick={() => dispatch(navStatus( !isOpen ))}>
                                                       <span>{ thirdLink.link_three[ 0 ].text }</span></a>
                                                   </Link>
                                                 )
@@ -260,4 +265,4 @@ const Nav = ( { nav } ) => {
   );
 };
 
-export default connect( mapStateToProps )( Nav );
+export default connect( mapStateToProps, navStatus )( Nav );

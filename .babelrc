@@ -17,7 +17,8 @@
       {
         "extensions": ["css$", "scss$"]
       }
-    ]
+    ],
+    ["babel-plugin-styled-components"]
   ],
   "presets": [
     "next/babel"

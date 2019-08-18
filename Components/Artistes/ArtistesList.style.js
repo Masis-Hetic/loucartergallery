@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import media from "../../helpers/media";
 
 const StyledArtistes = styled.div`
   height: 100%;
@@ -10,6 +11,10 @@ const StyledArtistes = styled.div`
 StyledArtistes.Wrapper = styled.div`
   width: 60%;
   height: 60vh;
+  
+  ${media.mobile`
+    width: 100%;
+  `}
 `;
 
 StyledArtistes.Ul = styled.ul`
@@ -25,6 +30,11 @@ StyledArtistes.Li = styled.li`
   line-height: 2.5;
   text-align: center;
   font-size: 20px;
+  
+  ${media.mobile`
+    width: 100%;
+    font-size: 16px;
+  `}
 `;
 
 StyledArtistes.ArtistLink = styled.a`

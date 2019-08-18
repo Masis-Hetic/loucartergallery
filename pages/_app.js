@@ -1,16 +1,15 @@
-import React   from 'react';
-import Prismic from 'prismic-javascript';
-import App, { Container }    from 'next/app';
-import { Provider } from 'react-redux';
-import withReduxStore from '../lib/with-redux-store';
+import React              from 'react';
+import Prismic            from 'prismic-javascript';
+import App, { Container } from 'next/app';
+import { Provider }       from 'react-redux';
+import withReduxStore     from '../lib/with-redux-store';
+import getConfig          from 'next/config';
 
-// import { PRISMIC_API }       from '../config';
-import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
-import { getNavDatas } from "../store/actions/nav.action";
+import { getNavDatas, navStatus }    from "../store/actions/nav.action";
 
-import Router from 'next/router';
-import { initGA, logPageView } from '../helpers/analytics';
+import Router          from 'next/router';
+import { logPageView } from '../helpers/analytics';
 
 class LouCarter extends App {
   /**
@@ -31,11 +30,12 @@ class LouCarter extends App {
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'),
       { orderings : '[my.link.order]' });
     const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
+    const nav = ctx.reduxStore.dispatch(navStatus(false));
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ...ctx });
     }
 
-    return { pageProps: { ...pageProps }, myLinks };
+    return { pageProps: { ...pageProps }, myLinks, nav };
   }
 
   componentDidMount () {
@@ -45,12 +45,12 @@ class LouCarter extends App {
   }
 
   render() {
-    const { Component, pageProps, myLinks, reduxStore } = this.props;
+    const { Component, pageProps, myLinks, nav, reduxStore } = this.props;
 
     return (
       <Container>
         <Provider store={ reduxStore }>
-          <Component { ...pageProps } { ...myLinks } />
+          <Component { ...pageProps } { ...myLinks } { ...navStatus } />
         </Provider>
       </Container>
     );
