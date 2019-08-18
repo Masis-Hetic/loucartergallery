@@ -15,4 +15,15 @@ partager => logo media + pressroom + (bulle qui donne des docs)
 artiste 
 
 
-transition navigation
+[transition navigation]
+
+- Cookies
+- Mention Legal
+
+
+
+
+- La fondatrice ajouter un titre. (prismique && code)
+- tri par nom de famille
+
+
