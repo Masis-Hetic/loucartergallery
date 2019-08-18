@@ -133,6 +133,7 @@ Artist.BtnWrapper = styled.div`
   
   ${media.mobile`
     justify-content: center;
+    margin-bottom: 60px;
   `}
 `;
 
