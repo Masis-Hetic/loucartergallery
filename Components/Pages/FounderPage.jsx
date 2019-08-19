@@ -8,10 +8,8 @@ const FounderPage = ( { result } ) => (
     <div className="founder-wrapper">
       <h2
         style={ {
-          position: 'absolute',
-          top: '10%',
-          left: '50%',
-          transform: 'translateX(-50%)',
+          textAlign: 'center',
+          marginBottom: '5%',
           fontSize: '34px'
         } }>
         { result.title_of_page[ 0 ].text }
