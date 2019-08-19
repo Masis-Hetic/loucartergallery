@@ -105,7 +105,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
     artistes: artistes.results[ 0 ],
     artiste : artistsToDisplay[ Number(page) - 1 ],
     allArtists,
-    maxPage : pageLength,
+    maxPage : Number(pageLength),
     query   : query.page ? Number(query.page) : Number(page)
   };
 };

@@ -8,19 +8,17 @@ const ArtistesList = props => {
   return (
     <StyledArtistes>
 
-      { props.currentPage > 1 &&
       <Link
         href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
         as={ `/artistes/page-${ props.currentPage - 1 }` }
       >
-        <a
-          onClick={ props.prevPage }
-          // style={ { color: 'white', cursor: 'pointer', padding: 15, opacity: props.currentPage > 1 ? 1 : 0 } }
+        <a onClick={ props.prevPage }
+           style={ { color: 'white', cursor: 'pointer', padding: 15, opacity: props.currentPage > 1 ? 1 : 0 } }
         >
-          <ArrowRight/>
+          <ArrowLeft/>
         </a>
       </Link>
-      }
+
       <StyledArtistes.Wrapper>
         <StyledArtistes.Ul>
           { props.artists.map( ( artiste, i ) =>
@@ -40,7 +38,6 @@ const ArtistesList = props => {
         </StyledArtistes.Ul>
       </StyledArtistes.Wrapper>
 
-      { props.currentPage < props.maxPage &&
       <Link
         href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
         as={ `/artistes/page-${ props.currentPage + 1 }` }
@@ -54,10 +51,10 @@ const ArtistesList = props => {
             opacity: props.currentPage < props.maxPage ? 1 : 0
           } }
         >
-          <ArrowLeft/>
+          <ArrowRight/>
         </a>
       </Link>
-      }
+
     </StyledArtistes>
   );
 };
