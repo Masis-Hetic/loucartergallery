@@ -22,6 +22,14 @@ div.founder-container {
     }
   }
 
+  div.founder-wrapper {
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar { width: 0 !important; }
+  }
+
   div.opacity-text-block {
     position : sticky;
     top      : 0;

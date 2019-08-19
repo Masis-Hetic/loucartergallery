@@ -5,7 +5,8 @@ const FounderPage = ( { result } ) => (
   <div
     className="founder-container"
   >
-    <div>
+    <div className="founder-wrapper">
+      <h2 style={{position: 'absolute', top: '10%', left: '50%', transform: 'translateX(-50%)', fontSize: '34px'}}>Entretien avec Lou Perrier</h2>
       { result.map( ( datas, i ) => (
         <div
           key={ i }
