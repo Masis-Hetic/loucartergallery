@@ -89,7 +89,7 @@ class Artiste extends React.Component {
                 position={ position }
               >
                 { artist.photos.map( ( photo, i ) =>
-                  <Artist.MobileImageWrapper key={ i }>
+                  <Artist.MobileImageWrapper key={ i } length={artist.photos.length}>
                     <Artist.MobileImage src={ artist.photos[ i ].artist_pictures.url } alt=""/>
                     <Artist.DetailsWrapper>
                       <p>{ artist.photos[ i ].collection[ 0 ].text }</p>

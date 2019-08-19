@@ -8,6 +8,18 @@ const StyledArtistes = styled.div`
   align-items: center;
 `;
 
+StyledArtistes.BackBtn = styled.a`
+  cursor: pointer;
+  padding: 15px;
+  opacity: ${ props => props.currentPage > 1 ? 1 : 0 };
+`;
+
+StyledArtistes.NextBtn = styled.a`
+  cursor: pointer;
+  padding: 15px;
+  opacity: ${ props => props.currentPage < props.maxPage ? 1 : 0 };
+`;
+
 StyledArtistes.Wrapper = styled.div`
   width: 60%;
   height: 60vh;

@@ -9,6 +9,18 @@ const Artist = styled.div`
   bottom: 0;
   right: 0;
   
+  ${media.mediumDesktop`
+    width: calc(100% - 10rem - 20px);
+    left: 50%;
+    transform: translateX(-49%);
+  `}
+  
+  ${media.smallDesktop`
+    width: calc(100% - 5rem - 20px);
+    left: unset;
+    transform: unset;
+  `}
+  
   ${media.mobile`
     display: block;
     margin-top: 7rem;
@@ -133,7 +145,7 @@ Artist.BtnWrapper = styled.div`
   
   ${media.mobile`
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
   `}
 `;
 
@@ -168,7 +180,7 @@ Artist.MobileImageWrapper = styled.li`
   margin: 0 auto;
   
   &:nth-of-type(1) {
-    margin-left: 5%;
+    margin-left: ${ props => props.length === 1 ? '0' : '5%' };
   }
 `;
 
