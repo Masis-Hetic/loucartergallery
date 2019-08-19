@@ -1,7 +1,27 @@
-import styled from "styled-components";
-import media from "../../helpers/media";
+import styled, { keyframes } from "styled-components";
+import media                 from "../../helpers/media";
 
-const Main = styled.main``;
+const opacity = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const Main = styled.main`
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  /* enable smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  
+  animation-name: ${opacity};
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+`;
 
 Main.LogoWrapper = styled.div`
   position: static;

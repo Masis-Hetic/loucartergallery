@@ -8,7 +8,7 @@ import Cookies     from "../Cookies/Cookies";
 const mapStateToProps = state => ( { nav: state.nav.status } );
 
 const MainComponent = props => (
-  <main>
+  <Main>
     <Main.LogoWrapper>
       <Link href={ '/' }>
         <Main.Logo navStatus={ props.nav } style={ { position: 'absolute', top: 20, left: 20, zIndex: 100 } }>
@@ -22,7 +22,7 @@ const MainComponent = props => (
     { props.children }
 
     <Cookies/>
-  </main>
+  </Main>
 );
 
 export default connect( mapStateToProps )( MainComponent );
