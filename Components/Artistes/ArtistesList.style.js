@@ -12,12 +12,20 @@ StyledArtistes.BackBtn = styled.a`
   cursor: pointer;
   padding: 15px;
   opacity: ${ props => props.currentPage > 1 ? 1 : 0 };
+  
+  ${media.mobile`
+    display: none;
+  `}
 `;
 
 StyledArtistes.NextBtn = styled.a`
   cursor: pointer;
   padding: 15px;
   opacity: ${ props => props.currentPage < props.maxPage ? 1 : 0 };
+  
+  ${media.mobile`
+    display: none;
+  `}
 `;
 
 StyledArtistes.Wrapper = styled.div`
@@ -35,6 +43,12 @@ StyledArtistes.Ul = styled.ul`
   flex-wrap: wrap;
   flex-direction: column;
   overflow: hidden;
+  
+  ${media.mobile`
+    overflow: initial;
+    padding: 0 5%;
+    flex-wrap: nowrap;
+  `}
 `;
 
 StyledArtistes.Li = styled.li`
@@ -46,6 +60,7 @@ StyledArtistes.Li = styled.li`
   ${media.mobile`
     width: 100%;
     font-size: 16px;
+    line-height: 2.2;
   `}
 `;
 
