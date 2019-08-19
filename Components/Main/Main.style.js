@@ -7,7 +7,7 @@ Main.LogoWrapper = styled.div`
   position: static;
   
   @media (min-width: 800px) {
-    position: unset;
+    position: relative;
   }
 `;
 
@@ -17,6 +17,7 @@ Main.Logo = styled.a`
   left: 20px;
   z-index: 100;
   cursor: pointer;
+  max-width: 14rem;
   width: ${props => props.navStatus === true ? '10rem' : '14rem'};
   transition: .3s ease;
   

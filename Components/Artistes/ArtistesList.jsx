@@ -1,24 +1,26 @@
-import React from 'react';
-import Link from 'next/link';
+import React          from 'react';
+import Link           from 'next/link';
 import StyledArtistes from "./ArtistesList.style";
+import ArrowRight     from "../../static/icons/arrow-right";
+import ArrowLeft      from "../../static/icons/arrow-left";
 
 const ArtistesList = props => {
   return (
     <StyledArtistes>
 
-      {/*{ props.currentPage > 1 &&*/ }
+      { props.currentPage > 1 &&
       <Link
         href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
         as={ `/artistes/page-${ props.currentPage - 1 }` }
       >
         <a
           onClick={ props.prevPage }
-          style={ { color: 'white', cursor: 'pointer', padding: 15, opacity: props.currentPage > 1 ? 1 : 0 } }
+          // style={ { color: 'white', cursor: 'pointer', padding: 15, opacity: props.currentPage > 1 ? 1 : 0 } }
         >
-          { '<' }
+          <ArrowRight/>
         </a>
       </Link>
-      {/*// }*/ }
+      }
       <StyledArtistes.Wrapper>
         <StyledArtistes.Ul>
           { props.artists.map( ( artiste, i ) =>
@@ -38,7 +40,7 @@ const ArtistesList = props => {
         </StyledArtistes.Ul>
       </StyledArtistes.Wrapper>
 
-      {/*{ props.currentPage < props.maxPage &&*/ }
+      { props.currentPage < props.maxPage &&
       <Link
         href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
         as={ `/artistes/page-${ props.currentPage + 1 }` }
@@ -52,10 +54,10 @@ const ArtistesList = props => {
             opacity: props.currentPage < props.maxPage ? 1 : 0
           } }
         >
-          >
+          <ArrowLeft/>
         </a>
       </Link>
-      {/*// }*/ }
+      }
     </StyledArtistes>
   );
 };
