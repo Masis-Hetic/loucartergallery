@@ -39,6 +39,14 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
         <meta property="og:image:height" content={ 314 }/>
       </Head>
       <MainComponent>
+        {/* ************************************* */}
+        {/* ************************************* */}
+
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+
         {/*<img*/}
         {/*  srcSet="../../static/images/coming_soon/a_1080X1920_1.jpg 1080w,*/}
         {/*  ../../static/images/coming_soon/a_1280X1024.jpg 1280w,*/}
@@ -57,6 +65,16 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
         {/*  object-position: right;*/}
         {/*}*/}
         {/*` }</style>*/}
+
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+
+        {/* ************************************* */}
+        {/* ************************************* */}
+
+
 
         { artistes && artiste &&
           <ArtistesList

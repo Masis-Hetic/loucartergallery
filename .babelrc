@@ -1,4 +1,7 @@
 {
+  "presets": [
+    "next/babel"
+  ],
   "plugins": [
     [
       "module-resolver",
@@ -18,9 +21,10 @@
         "extensions": ["css$", "scss$"]
       }
     ],
-    ["babel-plugin-styled-components"]
-  ],
-  "presets": [
-    "next/babel"
+    ["babel-plugin-styled-components",
+      {
+        "ssr": true
+      }
+    ]
   ]
 }

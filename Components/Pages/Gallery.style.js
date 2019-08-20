@@ -98,7 +98,7 @@ Gallery.BlockTitle = styled.h2`
   }
   
   @media (min-width: 4000px) {
-    font-size: 3rem;
+    font-size: 2.7rem;
   }
   
   ${media.mobile`
@@ -110,7 +110,7 @@ Gallery.SubTitle = styled.p`
   text-align: center;
   
   @media (min-width: 4000px) {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   
   @media (min-width: 2560px) {

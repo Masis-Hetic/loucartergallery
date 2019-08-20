@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import Newsletter                    from "./Newsletter.style";
 import Link                          from 'next/link';
 import { connect, useDispatch }      from 'react-redux'
 import { navStatus }                 from "../../store/actions/nav.action";
@@ -209,8 +210,12 @@ const Nav = ( { nav } ) => {
         </header>
       </OutsideAlerter>
 
-      <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>
-        <div className="newsletter-wrapper">
+
+
+      {/*<div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>*/}
+      <Newsletter newsletter={newsletter}>
+        {/*<div className="newsletter-wrapper">*/}
+        <Newsletter.Wrapper>
           <p>{ success }</p>
           <div className="close-newsletter-btn" onClick={ () => isNewsletter( 'newsletter' ) }>X</div>
           <form onSubmit={ e => onSubmit( e, email ) }>
@@ -233,8 +238,39 @@ const Nav = ( { nav } ) => {
                      onClick={ () => isNewsletter( 'newsletter' ) }/>
             ) ) }
           </form>
-        </div>
-      </div>
+        </Newsletter.Wrapper>
+        {/*</div>*/}
+      </Newsletter>
+      {/*</div>*/}
+
+
+
+      {/*<div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>*/}
+      {/*  <div className="newsletter-wrapper">*/}
+      {/*    <p>{ success }</p>*/}
+      {/*    <div className="close-newsletter-btn" onClick={ () => isNewsletter( 'newsletter' ) }>X</div>*/}
+      {/*    <form onSubmit={ e => onSubmit( e, email ) }>*/}
+      {/*      <div className="input-wrapper">*/}
+      {/*        <label htmlFor="mail">Adresse e-mail :</label>*/}
+      {/*        <input*/}
+      {/*          id="mail"*/}
+      {/*          type="email"*/}
+      {/*          placeholder="e-mail"*/}
+      {/*          onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }*/}
+      {/*        />*/}
+      {/*      </div>*/}
+      {/*      { isLoding ? ( <div className="lds-ripple">*/}
+      {/*        <div/>*/}
+      {/*        <div/>*/}
+      {/*      </div> ) : ( !successState ? (*/}
+      {/*        <input className="btn-submit" type="submit" value="S'inscrire"/>*/}
+      {/*      ) : (*/}
+      {/*        <input className="btn-submit" type="button" value="Fermer"*/}
+      {/*               onClick={ () => isNewsletter( 'newsletter' ) }/>*/}
+      {/*      ) ) }*/}
+      {/*    </form>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
 
       <style jsx>{ `
       form input[type="email"] {

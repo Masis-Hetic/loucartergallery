@@ -1,20 +1,28 @@
-import React from "react";
+import React                                      from "react";
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import GlobalStyle from "../helpers/global-styles";
+import { ServerStyleSheet }                       from 'styled-components';
+import GlobalStyle                                from "../helpers/global-styles";
+
 
 class MyDocument extends Document {
   static async getInitialProps( ctx ) {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+
+    const page = ctx.renderPage((App) => (props) => sheet.collectStyles(<App {...props} />), );
+    const styleTags = sheet.getStyleElement();
+
     const initialProps = await Document.getInitialProps( ctx );
-    return { ...initialProps }
+    return { ...initialProps, ...page, styleTags }
   }
 
   componentDidMount() {
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    /* // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
     let vh = window.innerHeight * 0.01;
     // Then we set the value in the --vh custom property to the root of the document
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     document.querySelector('body').style.height = 'calc(var(--vh, 1vh) * 100)';
-    document.body.style.height = '100vh';
+    document.body.style.height = '100vh'; */
   }
 
   render() {
@@ -22,6 +30,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <style>{GlobalStyle}</style>
+          {this.props.styleTags}
         </Head>
         <body className="custom_class">
         <Main/>
