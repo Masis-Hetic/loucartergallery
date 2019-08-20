@@ -14,7 +14,7 @@ const Gallery = styled.div`
     height: calc(100% - 20%);
     grid-template-columns: unset;
     display: block;
-    overflow-y: unset;
+    overflow-y: scroll;
   `}
 `;
 
