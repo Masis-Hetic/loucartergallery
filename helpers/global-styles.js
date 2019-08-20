@@ -36,7 +36,7 @@ main {
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-  position: relative;
+  position: fixed;
   /* enable smooth scrolling on iOS */
   -webkit-overflow-scrolling: touch;
 }
