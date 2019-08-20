@@ -13,7 +13,7 @@ div.contact-container {
   font-size          : .85rem;
   line-height        : 1.7;
   overflow-y         : scroll;
-  &::-webkit-scrollbar { width : 0 !important }
+  &::-webkit-scrollbar { width : 0 !important; }
   div.opacity-text-block {
     position : sticky;
     top      : 0;

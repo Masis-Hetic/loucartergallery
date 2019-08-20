@@ -10,7 +10,7 @@ div.founder-container {
   justify-content    : flex-end;
   flex-direction     : column;
 
-  &::-webkit-scrollbar { width : 0 !important }
+  &::-webkit-scrollbar { width : 0 !important; }
 
   > div {
     height : calc(100vh - 7rem);
