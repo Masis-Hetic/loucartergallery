@@ -14,7 +14,7 @@ const ArtistesList = props => {
       >
         <StyledArtistes.BackBtn
           onClick={ props.prevPage }
-          opacity={ props.currentPage }
+          opacity={ Number(props.currentPage) }
         >
           <ArrowLeft width={44} height={44}/>
         </StyledArtistes.BackBtn>

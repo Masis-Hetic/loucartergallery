@@ -74,8 +74,6 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
         {/* ************************************* */}
         {/* ************************************* */}
 
-
-
         { artistes && artiste &&
           <ArtistesList
             nextPage={ nextPage }

@@ -10,7 +10,6 @@ import Gallery from "./Gallery.style";
  */
 const GalleryPage = ( { result } ) => (
   <Gallery>
-    {console.log({result})}
     <Gallery.WrapperOne>
       <Gallery.BlockTitle>
         {result[0].items[0].block_title[0].text}

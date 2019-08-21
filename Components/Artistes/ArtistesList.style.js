@@ -11,7 +11,7 @@ const StyledArtistes = styled.div`
 StyledArtistes.BackBtn = styled.a`
   cursor: pointer;
   padding: 15px;
-  opacity: ${ props => props.currentPage > 1 ? 1 : 0 };
+  opacity: ${ props => props.currentPage > 1 ? '1' : '0' };
   
   ${media.mobile`
     display: none;
@@ -21,7 +21,7 @@ StyledArtistes.BackBtn = styled.a`
 StyledArtistes.NextBtn = styled.a`
   cursor: pointer;
   padding: 15px;
-  opacity: ${ props => props.currentPage < props.maxPage ? 1 : 0 };
+  opacity: ${ props => props.currentPage < props.maxPage ? '1' : '0' };
   
   ${media.mobile`
     display: none;

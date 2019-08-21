@@ -10,7 +10,7 @@ const mapStateToProps = state => ( { nav: state.nav.status } );
 const MainComponent = props => (
   <Main>
     <Main.LogoWrapper>
-      <Link href={ '/' }>
+      <Link href={ '/' } as={ '/' }>
         <Main.Logo navStatus={ props.nav } style={ { position: 'absolute', top: 20, left: 20, zIndex: 100 } }>
           <Main.Img src="../../static/icons/loucarter_logo_copie.png" alt="" style={ { maxWidth: '14rem' } }/>
         </Main.Logo>
