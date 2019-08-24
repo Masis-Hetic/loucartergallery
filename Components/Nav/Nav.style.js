@@ -26,7 +26,7 @@ const Header = styled.header`
   
   ${media.mobile`
     width: 85vw;
-    left: initial;
+    left: unset;
     right: ${ props => !props.open ? '-85vw' : '0' };
   `}
 `;
@@ -71,7 +71,7 @@ Header.MenuBtn = styled.div`
    transition : .3s ease-in-out;
    
    ${media.mobile`
-    left: initial;
+    left: unset;
     right: calc(85vw + 20px);
    `}
 `;

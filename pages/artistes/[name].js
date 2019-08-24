@@ -93,9 +93,9 @@ class Artiste extends React.Component {
                     <Artist.MobileImage src={ artist.photos[ i ].artist_pictures.url } alt=""/>
                     <Artist.DetailsWrapper>
                       <p>{ artist.photos[ i ].collection[ 0 ].text }</p>
-                      <p>{ artist.photos[ i ].name_of_art[ 0 ].text }</p>
-                      <p>{ artist.photos[ i ].dimensions[ 0 ].text }</p>
-                      <p>{ artist.photos[ i ].year[ 0 ].text }</p>
+                      <p dangerouslySetInnerHTML={{ __html: artist.photos[ i ].name_of_art[ 0 ].text }}/>
+                      <p dangerouslySetInnerHTML={{ __html: artist.photos[ i ].dimensions[ 0 ].text }}/>
+                      <p dangerouslySetInnerHTML={{ __html: artist.photos[ i ].year[ 0 ].text }}/>
                     </Artist.DetailsWrapper>
                   </Artist.MobileImageWrapper>
                 ) }
@@ -106,9 +106,9 @@ class Artiste extends React.Component {
               <Artist.ImageInnerWrapper>
                 <Artist.Image src={ artist.photos[ activePicture ].artist_pictures.url } alt=""/>
                 <Artist.Collection>{ artist.photos[ activePicture ].collection[ 0 ].text }</Artist.Collection>
-                <p>{ artist.photos[ activePicture ].name_of_art[ 0 ].text }</p>
-                <p>{ artist.photos[ activePicture ].dimensions[ 0 ].text }</p>
-                <p>{ artist.photos[ activePicture ].year[ 0 ].text }</p>
+                <p dangerouslySetInnerHTML={{ __html: artist.photos[ activePicture ].name_of_art[ 0 ].text }}/>
+                <p dangerouslySetInnerHTML={{ __html: artist.photos[ activePicture ].dimensions[ 0 ].text }}/>
+                <p dangerouslySetInnerHTML={{ __html: artist.photos[ activePicture ].year[ 0 ].text }}/>
               </Artist.ImageInnerWrapper>
             </Artist.ImageWrapper>
 
