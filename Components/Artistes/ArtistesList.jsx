@@ -1,24 +1,25 @@
-import React from 'react';
-import Link from 'next/link';
+import React          from 'react';
+import Link           from 'next/link';
 import StyledArtistes from "./ArtistesList.style";
+import ArrowRight     from "../../static/icons/arrow-right";
+import ArrowLeft      from "../../static/icons/arrow-left";
 
 const ArtistesList = props => {
   return (
     <StyledArtistes>
 
-      {/*{ props.currentPage > 1 &&*/ }
       <Link
         href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
         as={ `/artistes/page-${ props.currentPage - 1 }` }
       >
-        <a
+        <StyledArtistes.BackBtn
           onClick={ props.prevPage }
-          style={ { color: 'white', cursor: 'pointer', padding: 15, opacity: props.currentPage > 1 ? 1 : 0 } }
+          opacity={ Number(props.currentPage) }
         >
-          { '<' }
-        </a>
+          <ArrowLeft width={44} height={44}/>
+        </StyledArtistes.BackBtn>
       </Link>
-      {/*// }*/ }
+
       <StyledArtistes.Wrapper>
         <StyledArtistes.Ul>
           { props.artists.map( ( artiste, i ) =>
@@ -38,24 +39,18 @@ const ArtistesList = props => {
         </StyledArtistes.Ul>
       </StyledArtistes.Wrapper>
 
-      {/*{ props.currentPage < props.maxPage &&*/ }
       <Link
         href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage + 1 } } }
         as={ `/artistes/page-${ props.currentPage + 1 }` }
       >
-        <a
+        <StyledArtistes.NextBtn
           onClick={ props.nextPage }
-          style={ {
-            color: 'white',
-            cursor: 'pointer',
-            padding: 15,
-            opacity: props.currentPage < props.maxPage ? 1 : 0
-          } }
+          opacity={ props.currentPage }
         >
-          >
-        </a>
+          <ArrowRight width={44} height={44}/>
+        </StyledArtistes.NextBtn>
       </Link>
-      {/*// }*/ }
+
     </StyledArtistes>
   );
 };

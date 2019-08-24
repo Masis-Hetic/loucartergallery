@@ -1,28 +1,28 @@
-import React from 'react';
+import React       from 'react';
+import Main        from "./Main.style";
+import { connect } from "react-redux";
+import Link        from "next/link";
+import Nav         from "../Nav/Nav";
+import Cookies     from "../Cookies/Cookies";
 
-import Link from "next/link";
-import Nav from "../Nav/Nav";
-import Cookies from "../Cookies/Cookies";
+const mapStateToProps = state => ( { nav: state.nav.status } );
 
 const MainComponent = props => (
-  <main className="clearfix">
-
-    <div className="logo-wrapper">
-      <Link href={ '/' }>
-        <a className="logo">
-          <img src="../../static/icons/loucarter_logo.png" alt=""/>
-        </a>
+  <Main>
+    <Main.LogoWrapper>
+      <Link href={ '/' } as={ '/' }>
+        <Main.Logo navStatus={ props.nav } style={ { position: 'absolute', top: 20, left: 20, zIndex: 100 } }>
+          <Main.Img src="../../static/icons/loucarter_logo_copie.png" alt="" style={ { maxWidth: '14rem' } }/>
+        </Main.Logo>
       </Link>
-    </div>
-    <div className="head-wrapper">
+    </Main.LogoWrapper>
 
-    </div>
     <Nav/>
 
     { props.children }
 
     <Cookies/>
-  </main>
+  </Main>
 );
 
-export default MainComponent;
+export default connect( mapStateToProps )( MainComponent );

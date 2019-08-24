@@ -11,11 +11,13 @@ div.gallery-container {
   overflow           : -moz-scrollbars-none;
   -ms-overflow-style : none;
   scrollbar-width    : none;
-  &::-webkit-scrollbar { width : 0 !important }
+
+  &::-webkit-scrollbar { width : 0 !important; }
 
   @media (min-width : 768px) {
     position : relative;
     top      : 10%;
+    height   : calc(100vh - 10%);
   }
 
   div.gallery-wrapper {
@@ -26,7 +28,8 @@ div.gallery-container {
     align-self     : flex-end;
     overflow-y     : scroll;
     margin-left    : -20px;
-    &::-webkit-scrollbar { width : 0 !important }
+
+    &::-webkit-scrollbar { width : 0 !important; }
 
     @media (min-width : 800px) {
       height         : 100%;
@@ -143,7 +146,7 @@ div.gallery-container {
           scrollbar-width    : none;
         }
 
-        &::-webkit-scrollbar { width : 0 !important }
+        &::-webkit-scrollbar { width : 0 !important; }
 
         & > div.gallery-item-block {
           z-index : -1;

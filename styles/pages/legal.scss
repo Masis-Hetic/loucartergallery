@@ -10,7 +10,7 @@ div.legal-container {
   justify-content    : flex-end;
   flex-direction     : column;
   margin-top         : 20%;
-  &::-webkit-scrollbar { width : 0 !important }
+  &::-webkit-scrollbar { width : 0 !important; }
   div.wrapper-text {
     height             : 100%;
     margin             : 0 auto;
@@ -19,7 +19,7 @@ div.legal-container {
     -ms-overflow-style : none;
     transition         : 1s ease;
     scrollbar-width    : none;
-    &::-webkit-scrollbar { width : 0 !important }
+    &::-webkit-scrollbar { width : 0 !important; }
   }
   @media (min-width : 1280px) {
     margin-top : 10%;

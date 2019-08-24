@@ -39,6 +39,41 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
         <meta property="og:image:height" content={ 314 }/>
       </Head>
       <MainComponent>
+        {/* ************************************* */}
+        {/* ************************************* */}
+
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+
+        {/*<img*/}
+        {/*  srcSet="../../static/images/coming_soon/a_1080X1920_1.jpg 1080w,*/}
+        {/*  ../../static/images/coming_soon/a_1280X1024.jpg 1280w,*/}
+        {/*  ../../static/images/coming_soon/a_1366X768.jpg 1366w,*/}
+        {/*  ../../static/images/coming_soon/a_1920X1080.jpg 1920w,*/}
+        {/*  ../../static/images/coming_soon/a_2560X1440.jpg 2560w,*/}
+        {/*  ../../static/images/coming_soon/a_5120X2880.jpg 5120w"*/}
+        {/*  alt=""*/}
+        {/*/>*/}
+        {/*<style jsx>{ `*/}
+        {/*img {*/}
+        {/*  display: block;*/}
+        {/*  width: 100vw;*/}
+        {/*  height: 100vh;*/}
+        {/*  object-fit: cover;*/}
+        {/*  object-position: right;*/}
+        {/*}*/}
+        {/*` }</style>*/}
+
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+        {/* NE PAS EFFACER CE CODE */}
+
+        {/* ************************************* */}
+        {/* ************************************* */}
+
         { artistes && artiste &&
           <ArtistesList
             nextPage={ nextPage }
@@ -48,6 +83,7 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
             maxPage={ maxPage }
           />
         }
+
         {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */ }
         {/*{ !artiste &&*/}
         {/*  <h1>PAS ARTISTES</h1>*/}
@@ -105,7 +141,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
     artistes: artistes.results[ 0 ],
     artiste : artistsToDisplay[ Number(page) - 1 ],
     allArtists,
-    maxPage : pageLength,
+    maxPage : Number(pageLength),
     query   : query.page ? Number(query.page) : Number(page)
   };
 };

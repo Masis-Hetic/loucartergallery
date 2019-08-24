@@ -1,17 +1,21 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import Link from 'next/link';
-import { connect } from 'react-redux';
-
-import OutsideAlerter from '../../helpers/click-outside';
-import COLORS from '../../helpers/colors';
-import { validateEmail } from '../../helpers/functions';
-import { subscribeToNews } from '../../helpers/mailchimp';
+import React, { Fragment, useState } from 'react';
+import Header                        from "./Nav.style";
+import Newsletter                    from "./Newsletter.style";
+import Link                          from 'next/link';
+import { connect, useDispatch }      from 'react-redux'
+import { navStatus }                 from "../../store/actions/nav.action";
+import OutsideAlerter                from '../../helpers/click-outside';
+import COLORS                        from '../../helpers/colors';
+import { validateEmail }             from '../../helpers/functions';
+import { subscribeToNews }           from '../../helpers/mailchimp';
 
 import { useSpring, animated, config } from 'react-spring';
 
 const mapStateToProps = state => ( { nav: state.nav.datas } );
 
 const Nav = ( { nav } ) => {
+  const dispatch = useDispatch();
+
   const [ newsletter, toggleModal ] = useState( false );
   const isNewsletter = param => {
     if (param.toLowerCase() === 'newsletter') {
@@ -20,6 +24,9 @@ const Nav = ( { nav } ) => {
       setSuccess( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );
       toggleModal( !newsletter );
       stateSubscribe( false );
+      if (!newsletter) {
+        dispatch(navStatus( !isOpen ));
+      }
     }
   };
 
@@ -62,6 +69,7 @@ const Nav = ( { nav } ) => {
   const toggleMenu = () => {
     openMenu( !isOpen );
     openOrNot( false );
+    dispatch(navStatus( !isOpen ));
   };
 
   const [ isList, openList ] = useState( null );
@@ -90,30 +98,20 @@ const Nav = ( { nav } ) => {
     from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
   } );
 
-  //
-  // const [ size, setSize ] = useState([100, 0]);
-  // useEffect(() => {
-  //   if (window && window.outerWidth <= 576) setSize([-100, 0]);
-  // }, [isOpen]);
-  // const openHeader = useSpring({ transform: isOpen ? `translateX(${size[0]}%)` : `translateX(${size[1]}%)` });
-
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <header
-          className={ isOpen ? 'open' : 'close' }
-          // style={openHeader}
-        >
-          <nav className="nav-links">
+        <Header open={ isOpen }>
+          <Header.Nav>
 
-            <ul>
+            <Header.UlWrapper>
               { nav.map( ( link, i ) =>
-                <li key={ i }>
+                <Header.FirstStepLi key={ i }>
                   { link.data.link_to.uid
                     ? (
                       <Link href={ `/${ link.data.link_to.uid }` }>
-                        <a>{ link.data.link_one[ 0 ].text }</a>
+                        <a onClick={() => dispatch(navStatus( !isOpen ))}>{ link.data.link_one[ 0 ].text }</a>
                       </Link>
                     )
                     : (
@@ -136,29 +134,36 @@ const Nav = ( { nav } ) => {
                                             href={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-[page]' : sublink.primary.link_to_level_two.uid }` }
                                             as={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-1' : sublink.primary.link_to_level_two.uid }` }
                                           >
-                                            <a>
-                                              <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
+                                            <Header.Link onClick={() => dispatch(navStatus( !isOpen ))}>
+                                              <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></Header.Link>
                                           </Link>
                                         </li>
                                       )
                                       : (
                                         <li key={ i }>
-                                          <Link href={ `${ sublink.primary.link_to_level_two.url }` }>
-                                            <a
-                                              target="_blank">
-                                              <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></a>
-                                          </Link>
+                                          {/*<Link href={ `${ sublink.primary.link_to_level_two.url }` }>*/}
+                                            <Header.Link href={ `${ sublink.primary.link_to_level_two.url }` } target="_blank">
+                                              <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span>
+                                            </Header.Link>
+                                          {/*</Link>*/}
                                         </li>
                                       )
                                   )
                                   : (
                                     <Fragment key={ i }>
-                                      <p
-                                        className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }
+                                      <Header.NavItem
+                                        underline={ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }
+                                        // className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }
                                         onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
                                       >
                                         <span>{ sublink.primary.link_two[ 0 ].text }</span>
-                                      </p>
+                                      </Header.NavItem>
+                                      {/*<p*/}
+                                      {/*  className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }*/}
+                                      {/*  onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }*/}
+                                      {/*>*/}
+                                      {/*  <span>{ sublink.primary.link_two[ 0 ].text }</span>*/}
+                                      {/*</p>*/}
                                       <ul style={{ paddingLeft: 40 }}>
                                         { sublink.items.map( ( thirdLink, i ) =>
                                           <li key={ i } onClick={ toggleMenu }>
@@ -169,14 +174,16 @@ const Nav = ( { nav } ) => {
                                                     href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
                                                     as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
                                                   >
-                                                    <a>
-                                                      <span>{ thirdLink.link_three[ 0 ].text }</span></a>
+                                                    <Header.Link onClick={() => dispatch(navStatus( !isOpen ))}>
+                                                      <span>{ thirdLink.link_three[ 0 ].text }</span>
+                                                    </Header.Link>
                                                   </Link>
                                                 )
                                                 : (
                                                   <Link href={ `/${ thirdLink.link_to_level_three.uid }` }>
-                                                    <a>
-                                                      <span>{ thirdLink.link_three[ 0 ].text }</span></a>
+                                                    <Header.Link onClick={() => dispatch(navStatus( !isOpen ))}>
+                                                      <span>{ thirdLink.link_three[ 0 ].text }</span>
+                                                    </Header.Link>
                                                   </Link>
                                                 )
                                             }
@@ -192,46 +199,82 @@ const Nav = ( { nav } ) => {
                       </Fragment>
                     )
                   }
-                </li>
+                </Header.FirstStepLi>
               ) }
-            </ul>
+            </Header.UlWrapper>
 
-          </nav>
+          </Header.Nav>
 
-          <div className={ `menu-desktop ${ isOpen ? 'active' : '' }` } onClick={ toggleMenu }>
-            <span className="burger"/>
-          </div>
-        </header>
+          <Header.MenuBtn onClick={ toggleMenu }>
+            <Header.Burger open={ isOpen }/>
+          </Header.MenuBtn>
+        </Header>
       </OutsideAlerter>
 
-      <div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>
-        <div className="newsletter-wrapper">
-          <p>{ success }</p>
-          <div className="close-newsletter-btn" onClick={ () => isNewsletter( 'newsletter' ) }>X</div>
-          <form onSubmit={ e => onSubmit( e, email ) }>
-            <div className="input-wrapper">
-              <label htmlFor="mail">Adresse e-mail :</label>
-              <input
+      <Newsletter newsletter={newsletter}>
+        <Newsletter.Wrapper>
+          <Newsletter.SuccessMessage>{ success }</Newsletter.SuccessMessage>
+          <Newsletter.CloseBtn onClick={ () => isNewsletter( 'newsletter' ) }>X</Newsletter.CloseBtn>
+
+          <Newsletter.Form onSubmit={ e => onSubmit( e, email ) }>
+            <Newsletter.InputWrapper>
+              <Newsletter.Label htmlFor="mail">Adresse e-mail :</Newsletter.Label>
+              <Newsletter.InputEmail
                 id="mail"
                 type="email"
                 placeholder="e-mail"
                 onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }
+                color={ COLORS.lightGrey }
               />
-            </div>
-            { isLoding ? ( <div className="lds-ripple">
-              <div/>
-              <div/>
-            </div> ) : ( !successState ? (
-              <input className="btn-submit" type="submit" value="S'inscrire"/>
-            ) : (
-              <input className="btn-submit" type="button" value="Fermer"
-                     onClick={ () => isNewsletter( 'newsletter' ) }/>
-            ) ) }
-          </form>
-        </div>
-      </div>
+            </Newsletter.InputWrapper>
 
-      <style jsx>{ `
+            { isLoding ? ( <Newsletter.LdsRipple>
+              <div/>
+              <div/>
+            </Newsletter.LdsRipple> ) : ( !successState ? (
+              <Newsletter.SubmitBtn color={ COLORS.lightGrey } type="submit" value="S'inscrire"/>
+            ) : (
+              <Newsletter.SubmitBtn
+                color={ COLORS.lightGrey }
+                type="button"
+                value="Fermer"
+                onClick={ () => isNewsletter( 'newsletter' ) }
+              />
+            ) ) }
+          </Newsletter.Form>
+        </Newsletter.Wrapper>
+      </Newsletter>
+
+
+      {/* TODO NE PAS EFFACER POUR LE MOMENT */}
+      {/*<div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>*/}
+      {/*  <div className="newsletter-wrapper">*/}
+      {/*    <p>{ success }</p>*/}
+      {/*    <div className="close-newsletter-btn" onClick={ () => isNewsletter( 'newsletter' ) }>X</div>*/}
+      {/*    <form onSubmit={ e => onSubmit( e, email ) }>*/}
+      {/*      <div className="input-wrapper">*/}
+      {/*        <label htmlFor="mail">Adresse e-mail :</label>*/}
+      {/*        <input*/}
+      {/*          id="mail"*/}
+      {/*          type="email"*/}
+      {/*          placeholder="e-mail"*/}
+      {/*          onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }*/}
+      {/*        />*/}
+      {/*      </div>*/}
+      {/*      { isLoding ? ( <div className="lds-ripple">*/}
+      {/*        <div/>*/}
+      {/*        <div/>*/}
+      {/*      </div> ) : ( !successState ? (*/}
+      {/*        <input className="btn-submit" type="submit" value="S'inscrire"/>*/}
+      {/*      ) : (*/}
+      {/*        <input className="btn-submit" type="button" value="Fermer"*/}
+      {/*               onClick={ () => isNewsletter( 'newsletter' ) }/>*/}
+      {/*      ) ) }*/}
+      {/*    </form>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
+
+      {/* <style jsx>{ `
       form input[type="email"] {
         border: 1px solid ${ COLORS.lightGrey };
         color: ${ COLORS.lightGrey };
@@ -249,7 +292,7 @@ const Nav = ( { nav } ) => {
         border-radius: 2px !important;
         -webkit-appearance: none !important;
       }
-      ` }</style>
+      ` }</style> */}
 
       <style jsx global>{ `
       .head-wrapper {
@@ -260,4 +303,4 @@ const Nav = ( { nav } ) => {
   );
 };
 
-export default connect( mapStateToProps )( Nav );
+export default connect( mapStateToProps, navStatus )( Nav );

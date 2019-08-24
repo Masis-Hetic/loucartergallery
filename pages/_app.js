@@ -9,8 +9,8 @@ import { CookiesProvider } from 'react-cookie';
 
 const { publicRuntimeConfig } = getConfig();
 
-import { getNavDatas } from '../store/actions/nav.action';
-import { logPageView } from '../helpers/analytics';
+import { getNavDatas, navStatus } from '../store/actions/nav.action';
+import { logPageView }            from '../helpers/analytics';
 
 class LouCarter extends App {
   /**
@@ -31,11 +31,12 @@ class LouCarter extends App {
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'),
                                   { orderings: '[my.link.order]' });
     const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
+    const nav = ctx.reduxStore.dispatch(navStatus(false));
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ...ctx });
     }
     
-    return { pageProps: { ...pageProps }, myLinks };
+    return { pageProps: { ...pageProps }, myLinks, nav };
   }
   
   componentDidMount() {
@@ -44,13 +45,13 @@ class LouCarter extends App {
   }
   
   render() {
-    const { Component, pageProps, myLinks, reduxStore } = this.props;
+    const { Component, pageProps, myLinks, nav, reduxStore } = this.props;
     
     return (
       <Container>
         <CookiesProvider>
           <Provider store={ reduxStore }>
-            <Component { ...pageProps } { ...myLinks } />
+            <Component { ...pageProps } { ...myLinks } { ...navStatus } />
           </Provider>
         </CookiesProvider>
       </Container>

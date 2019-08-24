@@ -1,15 +1,18 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useCookies }                           from 'react-cookie';
 
+import CookiesBanner from "./Cookies.style";
+
 import { initGA, disableGA }                      from '../../helpers/analytics';
 import { clearCookie, getCookie, getCookieValue } from '../../helpers/cookies';
+import COLORS                                     from "../../helpers/colors";
 
 const Cookies = () => {
   const [ choice, setChoice ] = useState([]);
-  
+
   const [ more, showMore ] = useState(false);
   const showChoices = () => showMore(!more);
-  
+
   const [ btnText, setBtnText ] = useState('Ok, tout accepter');
   const acceptCookies = () => {
     const accepted = document.getElementById('accept');
@@ -35,7 +38,7 @@ const Cookies = () => {
       console.log({ cookies });
     }
   };
-  
+
   useEffect(() => {
     // const cookies = getCookie();
     console.log(Object.keys(cookies) );
@@ -64,17 +67,18 @@ const Cookies = () => {
     //   }
     }
   });
-  
+
   return (
     <Fragment>
       { !isSelected &&
-        <div className={ `cookies ${ isSelected ? 'accepted' : 'not-accepted' } ${ more ? 'show-more' : '' }` }>
-          <div className="cookies-wrapper">
-            <div className="cookies-info">En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de
+        <CookiesBanner accepted={ isSelected } showMore={ more }>
+          <CookiesBanner.Wrapper>
+            <CookiesBanner.Infos>
+              En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de
               cookies
               qui optimisent votre
               expérience utilisateurs et qui nous permettent d'analyser notre trafic.
-              <div className={ `cookies-details ${ more ? 'show-more' : '' }` }>
+              <CookiesBanner.Details showMore={ more }>
                 <p>Cookies de performance</p>
                 <p>Ces cookies nous permettent de déterminer le nombre de visites et les sources du trafic sur notre
                   site
@@ -84,53 +88,62 @@ const Cookies = () => {
                   cette
                   catégorie de cookies, nous ne pourrons pas savoir quand vous avez réalisé votre visite sur notre site
                   web.</p>
-              </div>
-            </div>
-            <div className={ `big-wrapper ${ more ? 'big-wrapper__open' : '' }` }>
-              <div className="choice-wrapper">
-                { !more && <button className="underline" onClick={ setSelectionState }>OK, tout accepter</button> }
+              </CookiesBanner.Details>
+            </CookiesBanner.Infos>
+            <CookiesBanner.BigWrapper showMore={ more }>
+              <CookiesBanner.ChoiceWrapper>
+                { !more &&
+                <CookiesBanner.Button borderBottom={ `1px solid ${COLORS.white}` } onClick={ setSelectionState }>
+                  OK, tout accepter
+                </CookiesBanner.Button>
+                }
                 { more &&
                   <Fragment>
-                    <button onClick={ setSelectionState } className="box">{ btnText }</button>
-                    <div className="select-choice">
-                      <div className="select-choice-wrapper">
-                        <label htmlFor="accept">Accepter</label>
-                        <input
+                    <CookiesBanner.Button
+                      border={ `1px solid ${COLORS.lightGrey}` }
+                      padding={ '5px 10px' }
+                      onClick={ setSelectionState }>
+                      { btnText }
+                    </CookiesBanner.Button>
+                    <CookiesBanner.SelectChoice>
+                      <CookiesBanner.SelectChoiceWrapper marginRight={ '1rem' }>
+                        <CookiesBanner.Label htmlFor="accept">Accepter</CookiesBanner.Label>
+                        <CookiesBanner.AcceptedInput
                           type="radio"
                           id="accept"
                           name="cookie"
-                          style={ { width: 16, height: 16, border: '1px solid #fff' } }
+                          choice={choice}
                           onClick={ acceptCookies }
                         />
-                      </div>
-                      <div className="select-choice-wrapper">
-                        <label htmlFor="refuse">Refuser</label>
-                        <input
+                      </CookiesBanner.SelectChoiceWrapper>
+                      <CookiesBanner.SelectChoiceWrapper>
+                        <CookiesBanner.Label htmlFor="refuse">Refuser</CookiesBanner.Label>
+                        <CookiesBanner.RefusedInput
                           type="radio"
                           id="refuse"
                           name="cookie"
-                          style={ { width: 16, height: 16, border: '1px solid #fff' } }
+                          choice={choice}
                           onClick={ refuseCokies }
                         />
-                      </div>
-                    </div>
+                      </CookiesBanner.SelectChoiceWrapper>
+                    </CookiesBanner.SelectChoice>
                   </Fragment>
                 }
-              </div>
-              <div className="choice-wrapper">
-                <button onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ choice }</button>
-              </div>
-            </div>
-          </div>
-          <style jsx>{ `
-          div.select-choice-wrapper input[type="radio"] { -webkit-appearance: none !important; }
-          
-          div.select-choice-wrapper input[type="radio"]:checked {
-            background: #fff;
-            outline: none;
-          }
-          ` }</style>
-        </div>
+              </CookiesBanner.ChoiceWrapper>
+              <CookiesBanner.ChoiceWrapper>
+                <CookiesBanner.Button onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ choice }</CookiesBanner.Button>
+              </CookiesBanner.ChoiceWrapper>
+            </CookiesBanner.BigWrapper>
+          </CookiesBanner.Wrapper>
+          {/*<style jsx>{ `*/}
+          {/*div.select-choice-wrapper input[type="radio"] { -webkit-appearance: none !important; }*/}
+
+          {/*div.select-choice-wrapper input[type="radio"]:checked {*/}
+          {/*  background: #fff;*/}
+          {/*  outline: none;*/}
+          {/*}*/}
+          {/*` }</style>*/}
+        </CookiesBanner>
       }
     </Fragment>
   );

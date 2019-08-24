@@ -5,8 +5,16 @@ const FounderPage = ( { result } ) => (
   <div
     className="founder-container"
   >
-    <div>
-      { result.map( ( datas, i ) => (
+    <div className="founder-wrapper">
+      <h2
+        style={ {
+          textAlign: 'center',
+          marginBottom: '5%',
+          fontSize: '34px'
+        } }>
+        { result.title_of_page[ 0 ].text }
+      </h2>
+      { result.body.map( ( datas, i ) => (
         <div
           key={ i }
           className="founder-block"

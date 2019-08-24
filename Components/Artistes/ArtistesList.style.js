@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import media from "../../helpers/media";
 
 const StyledArtistes = styled.div`
   height: 100%;
@@ -7,9 +8,33 @@ const StyledArtistes = styled.div`
   align-items: center;
 `;
 
+StyledArtistes.BackBtn = styled.a`
+  cursor: pointer;
+  padding: 15px;
+  opacity: ${ props => props.currentPage > 1 ? '1' : '0' };
+  
+  ${media.mobile`
+    display: none;
+  `}
+`;
+
+StyledArtistes.NextBtn = styled.a`
+  cursor: pointer;
+  padding: 15px;
+  opacity: ${ props => props.currentPage < props.maxPage ? '1' : '0' };
+  
+  ${media.mobile`
+    display: none;
+  `}
+`;
+
 StyledArtistes.Wrapper = styled.div`
   width: 60%;
   height: 60vh;
+  
+  ${media.mobile`
+    width: 100%;
+  `}
 `;
 
 StyledArtistes.Ul = styled.ul`
@@ -18,6 +43,12 @@ StyledArtistes.Ul = styled.ul`
   flex-wrap: wrap;
   flex-direction: column;
   overflow: hidden;
+  
+  ${media.mobile`
+    overflow: initial;
+    padding: 0 5%;
+    flex-wrap: nowrap;
+  `}
 `;
 
 StyledArtistes.Li = styled.li`
@@ -25,6 +56,12 @@ StyledArtistes.Li = styled.li`
   line-height: 2.5;
   text-align: center;
   font-size: 20px;
+  
+  ${media.mobile`
+    width: 100%;
+    font-size: 16px;
+    line-height: 2.2;
+  `}
 `;
 
 StyledArtistes.ArtistLink = styled.a`

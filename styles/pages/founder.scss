@@ -10,7 +10,7 @@ div.founder-container {
   justify-content    : flex-end;
   flex-direction     : column;
 
-  &::-webkit-scrollbar { width : 0 !important }
+  &::-webkit-scrollbar { width : 0 !important; }
 
   > div {
     height : calc(100vh - 7rem);
@@ -20,6 +20,14 @@ div.founder-container {
     @media (min-width : 576px) {
       height : calc(100vh - 14rem);
     }
+  }
+
+  div.founder-wrapper {
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar { width: 0 !important; }
   }
 
   div.opacity-text-block {
