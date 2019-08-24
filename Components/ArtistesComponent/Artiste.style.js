@@ -22,7 +22,7 @@ const Artist = styled.div`
   `}
   
   ${media.mobile`
-    width: 100%;
+    width: 100% !important;
     display: block;
     margin-top: 7rem;
     width: initial;
