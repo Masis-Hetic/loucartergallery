@@ -25,8 +25,8 @@ const ArtistesList = props => {
           { props.artists.map( ( artiste, i ) =>
             <StyledArtistes.Li key={ i }>
               <Link
-                href={ { pathname: `/artistes/[name]`, query: { name: artiste.uid } } }
-                as={ `/artistes/${ artiste.uid }` }
+                href={ { pathname: `/artiste/[name]`, query: { name: artiste.uid } } }
+                as={ `/artiste/${ artiste.uid }` }
               >
                 <StyledArtistes.ArtistLink>
                   <StyledArtistes.NameWrapper>

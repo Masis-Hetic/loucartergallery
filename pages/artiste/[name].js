@@ -4,7 +4,7 @@ import Prismic             from "prismic-javascript";
 import getConfig           from 'next/config';
 import MainComponent       from '../../Components/Main/Main';
 import Head                from 'next/head';
-import Artist              from "../../Components/Artistes/Artiste.style";
+import Artist              from "../../Components/ArtistesComponent/Artiste.style";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -25,7 +25,10 @@ class Artiste extends React.Component {
     const API = await Prismic.api( publicRuntimeConfig.prismic );
     const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } );
 
-    return { artist: artist.results[ 0 ].data, query }
+    return {
+      artist: artist.results[0].data,
+      query
+    }
   }
 
   state = {
@@ -66,7 +69,6 @@ class Artiste extends React.Component {
           <title>Titre à ajouter dans Prismic</title>
         </Head>
         <MainComponent>
-
           <Artist>
 
             <Artist.Carousel>
@@ -92,10 +94,10 @@ class Artiste extends React.Component {
                   <Artist.MobileImageWrapper key={ i } length={artist.photos.length}>
                     <Artist.MobileImage src={ artist.photos[ i ].artist_pictures.url } alt=""/>
                     <Artist.DetailsWrapper>
-                      <p>{ artist.photos[ i ].collection[ 0 ].text }</p>
-                      <p dangerouslySetInnerHTML={{ __html: artist.photos[ i ].name_of_art[ 0 ].text }}/>
-                      <p dangerouslySetInnerHTML={{ __html: artist.photos[ i ].dimensions[ 0 ].text }}/>
-                      <p dangerouslySetInnerHTML={{ __html: artist.photos[ i ].year[ 0 ].text }}/>
+                      <p>{ artist.photos && artist.photos[ i ].collection[ 0 ].text }</p>
+                      <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ i ].name_of_art[ 0 ].text }}/>
+                      <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ i ].dimensions[ 0 ].text }}/>
+                      <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ i ].year[ 0 ].text }}/>
                     </Artist.DetailsWrapper>
                   </Artist.MobileImageWrapper>
                 ) }
@@ -105,10 +107,10 @@ class Artiste extends React.Component {
             <Artist.ImageWrapper>
               <Artist.ImageInnerWrapper>
                 <Artist.Image src={ artist.photos[ activePicture ].artist_pictures.url } alt=""/>
-                <Artist.Collection>{ artist.photos[ activePicture ].collection[ 0 ].text }</Artist.Collection>
-                <p dangerouslySetInnerHTML={{ __html: artist.photos[ activePicture ].name_of_art[ 0 ].text }}/>
-                <p dangerouslySetInnerHTML={{ __html: artist.photos[ activePicture ].dimensions[ 0 ].text }}/>
-                <p dangerouslySetInnerHTML={{ __html: artist.photos[ activePicture ].year[ 0 ].text }}/>
+                <Artist.Collection>{ artist.photos && artist.photos[ activePicture ].collection[ 0 ].text }</Artist.Collection>
+                <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ activePicture ].name_of_art[ 0 ].text }}/>
+                <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ activePicture ].dimensions[ 0 ].text }}/>
+                <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ activePicture ].year[ 0 ].text }}/>
               </Artist.ImageInnerWrapper>
             </Artist.ImageWrapper>
 
