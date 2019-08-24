@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useCookies }                           from 'react-cookie';
 
 import { initGA, disableGA }                      from '../../helpers/analytics';
 import { clearCookie, getCookie, getCookieValue } from '../../helpers/cookies';
@@ -21,27 +22,46 @@ const Cookies = () => {
     setChoice(false);
   };
   
-  const [ isSelected, setSelection ] = useState(false);
+  const [ isSelected, setSelection ] = useState(true);
+  
+  const [ cookies, setCookie, removeCookie ] = useCookies([ 'lou' ]);
+  //
   const setSelectionState = () => {
     if (!isSelected) {
       if (!more || !choice.length) { setChoice(true); }
       setSelection(true);
-      document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
+      setCookie('lou', `${ choice ? 'enable' : 'disable' }`, { path: '/', expires: new Date });
+      // document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
+      console.log({ cookies });
     }
   };
   
   useEffect(() => {
-    const cookies = getCookie();
-    if (document.cookie.includes('lou')) {
-      if (getCookieValue(cookies.find((cookie) => cookie.includes('lou'))) === 'enable') {
-        setChoice(true);
-        initGA();
-      } else {
-        setChoice(false);
-        disableGA();
-        cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(cookie); } });
-      }
-      setSelection(true);
+    // const cookies = getCookie();
+    console.log(Object.keys(cookies) );
+    if (Object.keys(cookies).includes('lou')) {
+    //   if (getCookieValue(cookies.find((cookie) => cookie.includes('lou'))) === 'enable') {
+    //     setChoice(true);
+    //     initGA();
+    //   } else {
+    //     setChoice(false);
+    //     disableGA();
+    //     cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(cookie); } });
+    //   }
+    //   setSelection(true);
+    } else {
+    //   if (!!localStorage.getItem('lou')) {
+    //     if (localStorage.getItem('lou') === 'enable') {
+    //       setChoice(true);
+    //       initGA();
+    //     } else {
+    //       setChoice(false);
+    //       disableGA();
+    //       cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(cookie); } });
+    //     }
+    //   } else {
+        setSelection(false);
+    //   }
     }
   });
   

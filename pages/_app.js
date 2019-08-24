@@ -1,16 +1,16 @@
-import React   from 'react';
-import Prismic from 'prismic-javascript';
-import App, { Container }    from 'next/app';
-import { Provider } from 'react-redux';
-import withReduxStore from '../lib/with-redux-store';
+import React               from 'react';
+import Prismic             from 'prismic-javascript';
+import App, { Container }  from 'next/app';
+import { Provider }        from 'react-redux';
+import withReduxStore      from '../lib/with-redux-store';
+import getConfig           from 'next/config';
+import Router              from 'next/router';
+import { CookiesProvider } from 'react-cookie';
 
-// import { PRISMIC_API }       from '../config';
-import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
-import { getNavDatas } from "../store/actions/nav.action";
 
-import Router from 'next/router';
-import { initGA, logPageView } from '../helpers/analytics';
+import { getNavDatas } from '../store/actions/nav.action';
+import { logPageView } from '../helpers/analytics';
 
 class LouCarter extends App {
   /**
@@ -25,33 +25,34 @@ class LouCarter extends App {
    */
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-
+    
     const API = await Prismic.api(publicRuntimeConfig.prismic);
-
+    
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'),
-      { orderings : '[my.link.order]' });
+                                  { orderings: '[my.link.order]' });
     const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ...ctx });
     }
-
+    
     return { pageProps: { ...pageProps }, myLinks };
   }
-
-  componentDidMount () {
-    // initGA();
+  
+  componentDidMount() {
     logPageView();
     Router.router.events.on('routeChangeComplete', logPageView);
   }
-
+  
   render() {
     const { Component, pageProps, myLinks, reduxStore } = this.props;
-
+    
     return (
       <Container>
-        <Provider store={ reduxStore }>
-          <Component { ...pageProps } { ...myLinks } />
-        </Provider>
+        <CookiesProvider>
+          <Provider store={ reduxStore }>
+            <Component { ...pageProps } { ...myLinks } />
+          </Provider>
+        </CookiesProvider>
       </Container>
     );
   }
