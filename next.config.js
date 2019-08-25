@@ -198,7 +198,8 @@ module.exports = withSass( {
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/partager'      : { page: '/partager' },
-      '/eshop'          : { page: '/eshop' }
+      '/collections'   : { page: '/collections' },
+      '/collections/the-silencing-dinner-of' : { page: '/collections/[collection]', query: { collection: 'the-silencing-dinner-of' }}
     });
   },
   publicRuntimeConfig: {

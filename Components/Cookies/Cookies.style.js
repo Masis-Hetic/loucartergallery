@@ -25,6 +25,7 @@ const hideCookiesBanner = keyframes`
 `;
 
 const CookiesBanner = styled.div`
+  display             : ${ props => props.accepted ? 'none' : 'block' };
   animation-name      : ${ props => props.accepted ? hideCookiesBanner : showCookiesBanner };
   animation-fill-mode : forwards;
   position            : absolute;

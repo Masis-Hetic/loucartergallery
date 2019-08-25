@@ -4,29 +4,25 @@ import Prismic             from "prismic-javascript";
 import getConfig           from 'next/config';
 import MainComponent       from '../../Components/Main/Main';
 import Head                from 'next/head';
-import Artist              from "../../Components/ArtistesComponent/Artiste.style";
+import Artist              from "../../Components/Artistes/Artiste.style";
 
 const { publicRuntimeConfig } = getConfig();
-
-/**
- * @param artist
- * @property { object } photos
- * @property { string } artist_pictures
- * @property { string } dimensions
- * @property { string } name_of_art
- * @property { string } collection
- * @property { string } prenom
- * @returns {*}
- * @constructor
- */
 
 class Artiste extends React.Component {
   static async getInitialProps( { query } ) {
     const API = await Prismic.api( publicRuntimeConfig.prismic );
-    const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } );
+    const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } )
+      .then(async res => {
+        const idsArray = [];
+        res.results[0].data.artist_work.map(work => idsArray.push(work.oeuvre.id) );
+        const arts = await API.query( Prismic.Predicates.in( 'document.id', idsArray ), { lang: 'fr-FR' } );
+
+        return { res, arts };
+      });
 
     return {
-      artist: artist.results[0].data,
+      artist: artist.res.results[0].data,
+      arts: artist.arts.results,
       query
     }
   }
@@ -60,7 +56,7 @@ class Artiste extends React.Component {
   };
 
   render() {
-    const { artist } = this.props;
+    const { artist, arts } = this.props;
     const { activePicture, position } = this.state;
 
     return (
@@ -72,13 +68,13 @@ class Artiste extends React.Component {
           <Artist>
 
             <Artist.Carousel>
-              { artist.photos.map( ( photo, i ) =>
+              { arts.map( ( photo, i ) =>
                 <Artist.CarouselPicture
                   key={ i }
                   id={ i }
                   onClick={ e => this.changePicture( e.target.getAttribute( 'id' ) ) }
                 >
-                  <Artist.MiniPicture src={ `${ photo.artist_pictures.url }` } alt=""/>
+                  <Artist.MiniPicture src={ `${ photo.data.image.url }` } alt=""/>
                 </Artist.CarouselPicture>
               ) }
             </Artist.Carousel>
@@ -90,14 +86,14 @@ class Artiste extends React.Component {
                 onTouchEnd={ () => this.handleTouchEnd() }
                 position={ position }
               >
-                { artist.photos.map( ( photo, i ) =>
-                  <Artist.MobileImageWrapper key={ i } length={artist.photos.length}>
-                    <Artist.MobileImage src={ artist.photos[ i ].artist_pictures.url } alt=""/>
+                { arts.map( ( photo, i ) =>
+                  <Artist.MobileImageWrapper key={ i } length={ arts.length }>
+                    <Artist.MobileImage src={ arts[ i ].data.image.url } alt=""/>
                     <Artist.DetailsWrapper>
-                      <p>{ artist.photos && artist.photos[ i ].collection[ 0 ].text }</p>
-                      <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ i ].name_of_art[ 0 ].text }}/>
-                      <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ i ].dimensions[ 0 ].text }}/>
-                      <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ i ].year[ 0 ].text }}/>
+                      <p>{ arts && arts[ i ].data.collection_name[ 0 ].text }</p>
+                      <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.name[ 0 ].text } }/>
+                      <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.dimensions[ 0 ].text } }/>
+                      <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.year[ 0 ].text } }/>
                     </Artist.DetailsWrapper>
                   </Artist.MobileImageWrapper>
                 ) }
@@ -106,18 +102,20 @@ class Artiste extends React.Component {
 
             <Artist.ImageWrapper>
               <Artist.ImageInnerWrapper>
-                <Artist.Image src={ artist.photos[ activePicture ].artist_pictures.url } alt=""/>
-                <Artist.Collection>{ artist.photos && artist.photos[ activePicture ].collection[ 0 ].text }</Artist.Collection>
-                <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ activePicture ].name_of_art[ 0 ].text }}/>
-                <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ activePicture ].dimensions[ 0 ].text }}/>
-                <p dangerouslySetInnerHTML={{ __html: artist.photos && artist.photos[ activePicture ].year[ 0 ].text }}/>
+                <Artist.Image src={ arts[ activePicture ].data.image.url } alt=""/>
+                <Artist.Collection>{ arts && arts[ activePicture ].data.collection_name[ 0 ].text }</Artist.Collection>
+                <p dangerouslySetInnerHTML={ { __html: arts && arts[ activePicture ].data.name[ 0 ].text } }/>
+                <p dangerouslySetInnerHTML={ { __html: arts && arts[ activePicture ].data.dimensions[ 0 ].text } }/>
+                <p dangerouslySetInnerHTML={ { __html: arts && arts[ activePicture ].data.year[ 0 ].text } }/>
               </Artist.ImageInnerWrapper>
             </Artist.ImageWrapper>
 
             <Artist.DescriptionWrapper>
               <div>
                 <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
-                <Artist.Description>{ artist.description[ 0 ].text }</Artist.Description>
+                <Artist.Description>
+                  { artist.description.map((description, i) => <p style={{marginBottom: 10}} key={i}>{description.text}</p>) }
+                </Artist.Description>
               </div>
 
               <Artist.BtnWrapper>

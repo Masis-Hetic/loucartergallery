@@ -132,7 +132,7 @@ Artist.Name = styled.h2`
   `}
 `;
 
-Artist.Description = styled.p`
+Artist.Description = styled.div`
   width: 95%;
   
   ${media.mobile`
