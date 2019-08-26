@@ -48,23 +48,6 @@ const Cookies = () => {
   };
   
   useEffect(() => {
-    const cookies = getCookie();
-    if (document.cookie.includes('lou')) {
-      if (getCookieValue(cookies.find((cookie) => cookie.includes('lou'))) === 'enable') {
-        setChoice(true);
-        initGA();
-      } else {
-        setChoice(false);
-        disableGA();
-        cookies.forEach((cookie) => {
-          if (cookie.includes('_g')) {
-            clearCookie(cookie);
-          }
-        });
-      }
-      setSelection(true);
-  
-  useEffect(() => {
     const cookies = parseCookies();
     if (cookies.lou === 'enable') {
       console.log('enable');
@@ -77,8 +60,6 @@ const Cookies = () => {
       clearCookies(cookies);
       if (cookies.lou === 'init') { setSelection(false); }
     }
-  });
-  
   }, isSelected);
   
   return (
