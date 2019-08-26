@@ -1,15 +1,18 @@
 import Router                                   from 'next/router';
 import React, { Fragment, useState, useEffect } from 'react';
 import { parseCookies, setCookie }              from 'nookies';
+import { useDispatch }                          from 'react-redux';
+import { initGA, logPageView }                  from '../../helpers/analytics';
 
 import CookiesBanner from './Cookies.style';
 
-import { initGA, logPageView } from '../../helpers/analytics';
-import { clearCookies }        from '../../helpers/cookies';
-import COLORS                  from '../../helpers/colors';
+import { storeCookiesDatas } from '../../store/actions/cookies.action';
+import { clearCookies }      from '../../helpers/cookies';
+import COLORS                from '../../helpers/colors';
 
 const Cookies = () => {
-  const maxAge = 365 * 24 * 60 * 60 * 1000;
+  const dispatch = useDispatch();
+  const maxAge = 365 * 24 * 60 * 60;
   const path = '/';
   
   const [ choice, setChoice ] = useState(true);
@@ -41,18 +44,27 @@ const Cookies = () => {
   
   useEffect(() => {
     const cookies = parseCookies();
+    dispatch(storeCookiesDatas(cookies));
     if (cookies.lou === 'enable') {
-      console.log('enable');
-      // setChoice(true);
-      initGA();
-      // logPageView();
-      // Router.router.events.on('routeChangeComplete', logPageView);
+      // initGA();
+      logPageView();
+      Router.router.events.on('routeChangeComplete', logPageView);
     } else {
-      // setChoice(false);
       clearCookies(cookies);
       if (cookies.lou === 'init') { setSelection(false); }
     }
   }, [ isSelected, choice ]);
+  
+  // <script>
+  //   (function (i, s, o, g, r, a, m) {
+  //   i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+  //   (i[r].q = i[r].q || []).push(arguments)
+  // }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  //   m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  // })(window, document, 'script', '<%=htmlWebpackPlugin.options.analyticsURL%>', 'ga');
+  //   ga('create', 'UA-XXX-X', 'auto');
+  //   ga('send', 'pageview');
+  // </script>
   
   return (
     <Fragment>
@@ -118,7 +130,7 @@ const Cookies = () => {
             </CookiesBanner.ChoiceWrapper>
             <CookiesBanner.ChoiceWrapper>
               <CookiesBanner.Button
-                onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ choice }</CookiesBanner.Button>
+                onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }</CookiesBanner.Button>
             </CookiesBanner.ChoiceWrapper>
           </CookiesBanner.BigWrapper>
         </CookiesBanner.Wrapper>
