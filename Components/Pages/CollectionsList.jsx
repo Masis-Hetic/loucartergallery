@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Collections          from "./Collections.style";
-import Link from 'next/link';
+import Collections          from "../Collections/Collections.style";
+import Link                 from 'next/link';
 
 /**
  * @property { object } collection_name

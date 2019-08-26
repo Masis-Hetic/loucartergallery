@@ -1,13 +1,18 @@
 import React, { Fragment } from 'react';
-
-import Prismic       from 'prismic-javascript';
-import getConfig     from 'next/config';
-import MainComponent from "../../Components/Main/Main";
-import Head          from "next/head";
+import SingleCollection    from "../../Components/Collections/Collection.style";
+import Prismic             from 'prismic-javascript';
+import getConfig           from 'next/config';
+import MainComponent       from "../../Components/Main/Main";
+import Head                from "next/head";
 
 const { publicRuntimeConfig } = getConfig();
 
 const Collection = ( { query, collection } ) => {
+
+  const handleScroll = e => {
+    console.log(e.target.scrollHeight);
+  };
+
   return (
     <Fragment>
       <Head>
@@ -15,15 +20,15 @@ const Collection = ( { query, collection } ) => {
       </Head>
       <MainComponent>
 
-        <div>
-          <ul style={{ display: 'flex', flexWrap: 'wrap', width: '50%', position: 'absolute', top: '50%', left: '50%', transform: 'translateX(-50%)', overflowY: 'scroll' }}>
+        <SingleCollection className="kkk" onWheel={handleScroll}>
+          <SingleCollection.Ul>
             {collection.map((art, i)=>
-              <li style={{ height: 'auto', border: '1px solid #fff',flex: '1 0 45%', margin: i % 2 === 0 ? '0 5% 5% 0' : '0 0 5% 0', cursor: 'pointer' }} key={i}>
+              <SingleCollection.Li margin={ i % 2 === 0 ? '0 5% 5% 0' : '0 0 5% 0' } key={i}>
                 <img style={{ display: 'block', width: '100%', height: '100%' }} src={ art.data.image.url } alt=""/>
-              </li>
+              </SingleCollection.Li>
             )}
-          </ul>
-        </div>
+          </SingleCollection.Ul>
+        </SingleCollection>
 
       </MainComponent>
     </Fragment>
