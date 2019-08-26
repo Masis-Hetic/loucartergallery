@@ -9,10 +9,12 @@ import { clearCookies }        from '../../helpers/cookies';
 import COLORS                  from '../../helpers/colors';
 
 const Cookies = () => {
-  
   const maxAge = 365 * 24 * 60 * 60 * 1000;
   const path = '/';
+  
   const [ choice, setChoice ] = useState(true);
+  
+  const [ isSelected, setSelection ] = useState(true);
   
   const [ more, showMore ] = useState(false);
   const showChoices = () => showMore(!more);
@@ -29,16 +31,11 @@ const Cookies = () => {
     setChoice(false);
   };
   
-  const [ isSelected, setSelection ] = useState(true);
-  
   const setSelectionState = () => {
     if (!isSelected) {
       setSelection(true);
-      if (!more || !choice.length) {
-        setCookie({}, 'lou', 'enable', { maxAge, path });
-      } else {
-        setCookie({}, 'lou', `${ choice ? 'enable' : 'disable' }`, { maxAge, path });
-      }
+      if (!more) { setChoice(true); }
+      setCookie({}, 'lou', `${ choice ? 'enable' : 'disable' }`, { maxAge, path });
     }
   };
   
@@ -46,16 +43,16 @@ const Cookies = () => {
     const cookies = parseCookies();
     if (cookies.lou === 'enable') {
       console.log('enable');
-      setChoice(true);
+      // setChoice(true);
       initGA();
       // logPageView();
       // Router.router.events.on('routeChangeComplete', logPageView);
     } else {
-      setChoice(false);
+      // setChoice(false);
       clearCookies(cookies);
       if (cookies.lou === 'init') { setSelection(false); }
     }
-  }, isSelected);
+  }, [ isSelected, choice ]);
   
   return (
     <Fragment>
