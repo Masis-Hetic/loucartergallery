@@ -22,6 +22,7 @@ const Artist = styled.div`
   `}
   
   ${media.mobile`
+    width: 100% !important;
     display: block;
     margin-top: 7rem;
     width: initial;
@@ -131,7 +132,7 @@ Artist.Name = styled.h2`
   `}
 `;
 
-Artist.Description = styled.p`
+Artist.Description = styled.div`
   width: 95%;
   
   ${media.mobile`

@@ -1,17 +1,41 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import media  from "../../helpers/media";
 import COLORS from "../../helpers/colors";
 
+const showCookiesBanner = keyframes`
+  from {
+    display: none;
+    opacity: 0;
+  }
+  to {
+    display: block;
+    opacity: 1;
+  }
+`;
+
+const hideCookiesBanner = keyframes`
+  from {
+    display: block;
+    opacity: 1;
+  }
+  to {
+    display: none;
+    opacity: 0;
+  }
+`;
+
 const CookiesBanner = styled.div`
-  display    : ${ props => props.accepted && 'none'};
-  position   : absolute;
-  z-index    : 100;
-  left       : 0;
-  width      : 100%;
-  background : rgba(0, 0, 0, .7);
-  transition : .4s ease-in-out;
-  overflow   : hidden;
-  bottom     : ${ props => !props.accepted ? '0' : '-100%' };
+  display             : ${ props => props.accepted ? 'none' : 'block' };
+  animation-name      : ${ props => props.accepted ? hideCookiesBanner : showCookiesBanner };
+  animation-fill-mode : forwards;
+  position            : absolute;
+  z-index             : 100;
+  left                : 0;
+  width               : 100%;
+  background          : rgba(0, 0, 0, .7);
+  transition          : .4s ease-in-out;
+  overflow            : hidden;
+  bottom              : ${ props => !props.accepted ? '0' : '-100%' };
 
   ${media.mobile`
     height: ${ props => props.showMore === true ? '100%' : 'inital' };
@@ -133,7 +157,7 @@ CookiesBanner.Button = styled.button`
 CookiesBanner.Input = styled.input`
   width: 16px;
   height: 16px;
-  border: 1px solid ${COLORS.white};
+  border: 1px solid ${ COLORS.white };
   -webkit-appearance: none !important;
   outline: none;
 `;

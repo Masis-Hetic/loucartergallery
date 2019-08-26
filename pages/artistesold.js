@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
-import MainComponent       from "../Components/Main/Main";
-import ArtistesList        from "../Components/Artistes/ArtistesList";
-import Prismic             from "prismic-javascript";
+import MainComponent                 from "../Components/Main/Main";
+import ArtistesList                  from "../Components/Artistes/ArtistesList";
+import Prismic                       from "prismic-javascript";
 
 import getConfig from 'next/config';
 

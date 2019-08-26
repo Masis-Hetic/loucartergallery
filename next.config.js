@@ -186,9 +186,9 @@ module.exports = withSass( {
 
     for (let i = 0; i < artistes.results[ 0 ].data.artists.length; i += 1) {
       // noinspection JSUnresolvedVariable
-      artistList[ `/artistes/${ artistes.results[ 0 ].data.artists[ i ].artist.slug }` ] = {
-        page: '/artistes/[name]',
-        query: { name: artistes.results[ 0 ].data.artists[ i ].artist.slug }
+      artistList[ `/artiste/${ artistes.results[ 0 ].data.artists[ i ].artist.uid }` ] = {
+        page: '/artiste/[name]',
+        query: { name: artistes.results[ 0 ].data.artists[ i ].artist.uid }
       }
     }
 
@@ -198,16 +198,11 @@ module.exports = withSass( {
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/partager'      : { page: '/partager' },
-      '/eshop'          : { page: '/eshop' }
+      '/collections'   : { page: '/collections' },
+      '/collections/the-silencing-dinner-of' : { page: '/collections/[collection]', query: { collection: 'the-silencing-dinner-of' }}
     });
   },
   publicRuntimeConfig: {
     prismic: process.env.PRISMIC_API,
-  },
-  onDemandEntries: {
-    // period (in ms) where the server will keep pages in the buffer
-    maxInactiveAge: 25 * 1000,
-    // number of pages that should be kept simultaneously without being disposed
-    pagesBufferLength: 5,
   },
 } );
