@@ -1,8 +1,15 @@
+import Router  from 'next/router';
 import ReactGA from 'react-ga';
 
-export const initGA = () => { ReactGA.initialize('UA-142143734-1'); };
+export const initGA = () => {
+  // window.GA_INITIALIZED = true;
+  ReactGA.initialize('UA-142143734-1');
+};
 
-export const disableGA = () => { window['ga-disable-UA-142143734-1'] = true; };
+export const disableGA = () => {
+  // window.GA_INITIALIZED = false;
+  window[ 'ga-disable-UA-142143734-1' ] = true;
+};
 
 export const logPageView = () => {
   ReactGA.set({ page: window.location.pathname });

@@ -1,73 +1,63 @@
+import Router                                   from 'next/router';
 import React, { Fragment, useState, useEffect } from 'react';
-import { useCookies }                           from 'react-cookie';
+import { parseCookies, setCookie }              from 'nookies';
 
-import CookiesBanner from "./Cookies.style";
+import CookiesBanner from './Cookies.style';
 
-import { initGA, disableGA }                      from '../../helpers/analytics';
-import { clearCookie, getCookie, getCookieValue } from '../../helpers/cookies';
-import COLORS                                     from "../../helpers/colors";
+import { initGA, logPageView } from '../../helpers/analytics';
+import { clearCookies }        from '../../helpers/cookies';
+import COLORS                  from '../../helpers/colors';
 
 const Cookies = () => {
-  const [ choice, setChoice ] = useState([]);
-
+  const maxAge = 365 * 24 * 60 * 60 * 1000;
+  const path = '/';
+  const [ choice, setChoice ] = useState(true);
+  const changeChoice = (argu) => {
+    console.log({ argu })
+  }
   const [ more, showMore ] = useState(false);
   const showChoices = () => showMore(!more);
-
-  const [ btnText, setBtnText ] = useState('Ok, tout accepter');
+  
+  const [ btnText, setBtnText ] = useState('OK, tout accepter');
   const acceptCookies = () => {
     const accepted = document.getElementById('accept');
     accepted.checked && setBtnText('OK, tout accepter');
-    setChoice(true);
+    console.log({ choice });
   };
   const refuseCokies = () => {
     const refused = document.getElementById('refuse');
     refused.checked && setBtnText('Tout refuser');
-    setChoice(false);
+    console.log({ choice });
   };
   
   const [ isSelected, setSelection ] = useState(true);
   
-  const [ cookies, setCookie, removeCookie ] = useCookies([ 'lou' ]);
-  //
   const setSelectionState = () => {
     if (!isSelected) {
-      if (!more || !choice.length) { setChoice(true); }
       setSelection(true);
-      setCookie('lou', `${ choice ? 'enable' : 'disable' }`, { path: '/', expires: new Date });
-      // document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
-      console.log({ cookies });
+      if (!more || !choice.length) {
+        setCookie({}, 'lou', 'enable', { maxAge, path });
+      } else {
+        setCookie({}, 'lou', `${ choice ? 'enable' : 'disable' }`, { maxAge, path });
+      }
     }
   };
-
+  
   useEffect(() => {
-    // const cookies = getCookie();
-    console.log(Object.keys(cookies) );
-    if (Object.keys(cookies).includes('lou')) {
-    //   if (getCookieValue(cookies.find((cookie) => cookie.includes('lou'))) === 'enable') {
-    //     setChoice(true);
-    //     initGA();
-    //   } else {
-    //     setChoice(false);
-    //     disableGA();
-    //     cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(cookie); } });
-    //   }
-    //   setSelection(true);
+    const cookies = parseCookies();
+    if (cookies.lou === 'enable') {
+      console.log('enable');
+      setChoice(true);
+      initGA();
+      // logPageView();
+      // Router.router.events.on('routeChangeComplete', logPageView);
     } else {
-    //   if (!!localStorage.getItem('lou')) {
-    //     if (localStorage.getItem('lou') === 'enable') {
-    //       setChoice(true);
-    //       initGA();
-    //     } else {
-    //       setChoice(false);
-    //       disableGA();
-    //       cookies.forEach((cookie) => { if (cookie.includes('_g')) { clearCookie(cookie); } });
-    //     }
-    //   } else {
-        setSelection(false);
-    //   }
+      setChoice(false);
+      clearCookies(cookies);
+      if (cookies.lou === 'init') { setSelection(false); }
     }
-  });
-
+  }, isSelected);
+  
   return (
     <Fragment>
       { !isSelected &&
@@ -93,14 +83,14 @@ const Cookies = () => {
             <CookiesBanner.BigWrapper showMore={ more }>
               <CookiesBanner.ChoiceWrapper>
                 { !more &&
-                <CookiesBanner.Button borderBottom={ `1px solid ${COLORS.white}` } onClick={ setSelectionState }>
-                  OK, tout accepter
-                </CookiesBanner.Button>
+                  <CookiesBanner.Button borderBottom={ `1px solid ${ COLORS.white }` } onClick={ setSelectionState }>
+                    OK, tout accepter
+                  </CookiesBanner.Button>
                 }
                 { more &&
                   <Fragment>
                     <CookiesBanner.Button
-                      border={ `1px solid ${COLORS.lightGrey}` }
+                      border={ `1px solid ${ COLORS.lightGrey }` }
                       padding={ '5px 10px' }
                       onClick={ setSelectionState }>
                       { btnText }
@@ -112,7 +102,7 @@ const Cookies = () => {
                           type="radio"
                           id="accept"
                           name="cookie"
-                          choice={choice}
+                          choice={ choice }
                           onClick={ acceptCookies }
                         />
                       </CookiesBanner.SelectChoiceWrapper>
@@ -122,7 +112,7 @@ const Cookies = () => {
                           type="radio"
                           id="refuse"
                           name="cookie"
-                          choice={choice}
+                          choice={ choice }
                           onClick={ refuseCokies }
                         />
                       </CookiesBanner.SelectChoiceWrapper>
@@ -131,18 +121,19 @@ const Cookies = () => {
                 }
               </CookiesBanner.ChoiceWrapper>
               <CookiesBanner.ChoiceWrapper>
-                <CookiesBanner.Button onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ choice }</CookiesBanner.Button>
+                <CookiesBanner.Button
+                  onClick={ showChoices }>{ !more ? 'En savoir plus' : 'En voir moins' }{ choice }</CookiesBanner.Button>
               </CookiesBanner.ChoiceWrapper>
             </CookiesBanner.BigWrapper>
           </CookiesBanner.Wrapper>
-          {/*<style jsx>{ `*/}
-          {/*div.select-choice-wrapper input[type="radio"] { -webkit-appearance: none !important; }*/}
-
-          {/*div.select-choice-wrapper input[type="radio"]:checked {*/}
-          {/*  background: #fff;*/}
-          {/*  outline: none;*/}
-          {/*}*/}
-          {/*` }</style>*/}
+          {/*<style jsx>{ `*/ }
+          {/*div.select-choice-wrapper input[type="radio"] { -webkit-appearance: none !important; }*/ }
+        
+          {/*div.select-choice-wrapper input[type="radio"]:checked {*/ }
+          {/*  background: #fff;*/ }
+          {/*  outline: none;*/ }
+          {/*}*/ }
+          {/*` }</style>*/ }
         </CookiesBanner>
       }
     </Fragment>
