@@ -33,11 +33,6 @@ const Cookies = () => {
   
   const setSelectionState = () => {
     if (!isSelected) {
-      if (!more || !choice.length) {
-        setChoice(true);
-      }
-      setSelection(true);
-      document.cookie = `lou=${ choice ? 'enable' : 'disable' };expires=${ new Date };`;
       setSelection(true);
       if (!more || !choice.length) {
         setCookie({}, 'lou', 'enable', { maxAge, path });

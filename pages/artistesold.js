@@ -44,7 +44,6 @@ const Artistes = ( { artistes, artiste } ) => {
   )
 };
 
-
 Artistes.getInitialProps = async () => {
   const API = await Prismic.api( publicRuntimeConfig.prismic );
   const artistes = await API.query(
