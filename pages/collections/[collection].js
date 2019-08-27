@@ -58,6 +58,10 @@ const Collection = ( { collection } ) => {
             display={ !display ? 'none' : 'flex' }
             onClick={() => setDisplay(false)}
           >
+            <img
+              src="../../static/icons/loucarter_logo_copie.png" alt=""
+              style={{ display: 'block', width: '6.7rem', position: 'absolute', top: 20, left: 20 }}
+            />
             <SingleCollection.BigImage src={ collection[index].data.image.url } alt="" width={ width } />
             <SingleCollection.DescriptionWrapper>
               <SingleCollection.ArtistName>{collection[index].data.artist_name[0].text}</SingleCollection.ArtistName>

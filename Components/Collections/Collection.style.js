@@ -73,7 +73,7 @@ SingleCollection.SelectedImage = styled.div`
 
 SingleCollection.BigImage = styled.img`
 	display: block;
-	width: calc(${ props => props.width }px + 2px);
+	width: ${ props => props.width }px;
 	height: 100%;
 	border: 1px solid ${ COLORS.white };
 	
@@ -81,6 +81,7 @@ SingleCollection.BigImage = styled.img`
 		width: 100%;
 		margin: 0 auto;
 		object-fit: contain;
+		border: none;
 	`}
 `;
 
