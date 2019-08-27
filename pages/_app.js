@@ -25,6 +25,7 @@ class LouCarter extends App {
    * Il faut connecter le reduxStore pour passer l'objet links dans le store, et ensuite c'est bon
    */
   static async getInitialProps({ Component, ctx }) {
+    console.log('lol');
     let pageProps = {};
     const API = await Prismic.api(publicRuntimeConfig.prismic);
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'), { orderings: '[my.link.order]' });
