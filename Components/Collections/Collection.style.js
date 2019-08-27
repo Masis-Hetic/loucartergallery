@@ -5,13 +5,13 @@ const SingleCollection = styled.div`
   width: 100vw;
   height: 100vh;
   overflow-y: hidden;
-  position: fixed;
+  // position: fixed;
 `;
 
 SingleCollection.Ul = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
+  width: 45%;
   position: absolute;
   top: 50%;
   left: 50%;
