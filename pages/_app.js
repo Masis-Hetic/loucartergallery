@@ -14,6 +14,17 @@ import { getNavDatas, navStatus } from '../store/actions/nav.action';
 import { initGA, logPageView }    from '../helpers/analytics';
 
 class LouCarter extends App {
+  
+  constructor(props) {
+    //force import components in client side, and recorded in props, well,it's just a test
+    if (!props) {
+      console.log('Masisuuuuuuuuu')
+    }
+    console.log('Putain imagine toi que lou a voulu me pécho')
+    super(props);
+    console.log("props:", this.props);
+  }
+  
   /**
    *
    * @param Component
@@ -29,7 +40,6 @@ class LouCarter extends App {
     const isServer = !!req;
     if (isServer) {
       console.log('lol');
-
     } else {
       console.log('lolOOOOOOOOOO');
     }
@@ -44,7 +54,7 @@ class LouCarter extends App {
     ctx.reduxStore.dispatch(storeCookiesDatas(cookies));
     if (!cookies.lou) { setCookie(ctx, 'lou', 'init', { path: '/' }); }
     if (Component.getInitialProps) { pageProps = await Component.getInitialProps({ ...ctx }); }
-    return { pageProps: { ...pageProps }, myLinks, nav };
+    return { pageProps: { ...pageProps }, myLinks, nav, cookies };
   }
   
   componentDidMount() {
@@ -63,12 +73,12 @@ class LouCarter extends App {
   }
   
   render() {
-    const { Component, pageProps, myLinks, nav, reduxStore, cooky } = this.props;
+    const { Component, pageProps, myLinks, nav, reduxStore, cookies } = this.props;
     
     return (
       <Container>
         <Provider store={ reduxStore }>
-          <Component { ...pageProps } { ...myLinks } { ...navStatus } { ...cooky } />
+          <Component { ...pageProps } { ...myLinks } { ...navStatus } { ...cookies } />
         </Provider>
       </Container>
     );
