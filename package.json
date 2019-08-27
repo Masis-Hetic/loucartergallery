@@ -36,6 +36,7 @@
     "next-routes": "^1.4.2",
     "nookies": "^2.0.8",
     "prismic-javascript": "^2.0.3",
+    "prismic-reactjs": "^1.1.0",
     "prop-types": "latest",
     "react": "^16.8.6",
     "react-cookie": "^4.0.1",

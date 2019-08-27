@@ -15,7 +15,6 @@ import { initGA, logPageView }    from '../helpers/analytics';
 class LouCarter extends App {
   
   constructor(props) {
-    // initGA();
     const cookies = parseCookies({});
     if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     super(props);
@@ -45,9 +44,7 @@ class LouCarter extends App {
     return { pageProps: { ...pageProps }, myLinks, nav, cookies };
   }
   
-  componentDidMount() {
-    initGA();
-  }
+  componentDidMount() { initGA(); }
   
   render() {
     const { Component, pageProps, myLinks, nav, reduxStore, cookies } = this.props;
