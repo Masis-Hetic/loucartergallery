@@ -4,7 +4,6 @@ import App, { Container }          from 'next/app';
 import { Provider }                from 'react-redux';
 import withReduxStore              from '../lib/with-redux-store';
 import getConfig                   from 'next/config';
-import Router                      from 'next/router';
 import { parseCookies, setCookie } from 'nookies';
 
 const { publicRuntimeConfig } = getConfig();
@@ -16,6 +15,7 @@ import { initGA, logPageView }    from '../helpers/analytics';
 class LouCarter extends App {
   
   constructor(props) {
+    initGA();
     const cookies = parseCookies({});
     if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     super(props);
@@ -45,21 +45,6 @@ class LouCarter extends App {
     return { pageProps: { ...pageProps }, myLinks, nav, cookies };
   }
   
-  // componentDidMount() {
-  //   initGA();
-  // }
-  
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log({ prevProps: prevProps.reduxStore.getState().cookies });
-    if (prevProps.reduxStore.getState().cookies.lou === 'enable') {
-      console.log('porps !!!');
-      initGA();
-      logPageView();
-      Router.router.events.on('routeChangeComplete', logPageView);
-      return true;
-    }
-  }
-  
   render() {
     const { Component, pageProps, myLinks, nav, reduxStore, cookies } = this.props;
     
@@ -74,6 +59,3 @@ class LouCarter extends App {
 }
 
 export default withReduxStore(LouCarter);
-
-// export default connect( mapStateToProps, navStatus )( LouCarter );
-
