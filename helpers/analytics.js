@@ -1,6 +1,7 @@
 import ReactGA from 'react-ga';
 
 export const initGA = () => {
+  console.log('init');
   ReactGA.initialize('UA-142143734-1');
 };
 // export const initGA = () => { ReactGA.initialize('UA-142143734-1', { testMode: true }); };
@@ -8,6 +9,7 @@ export const initGA = () => {
 export const disableGA = () => { window[ 'ga-disable-UA-142143734-1' ] = true; };
 
 export const logPageView = () => {
+  console.log('log');
   ReactGA.set({ page: window.location.pathname });
   ReactGA.pageview(window.location.pathname);
 };

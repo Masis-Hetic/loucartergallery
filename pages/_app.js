@@ -1,7 +1,7 @@
 import React                       from 'react';
 import Prismic                     from 'prismic-javascript';
 import App, { Container }          from 'next/app';
-import { Provider }       from 'react-redux';
+import { Provider }                from 'react-redux';
 import withReduxStore              from '../lib/with-redux-store';
 import getConfig                   from 'next/config';
 import Router                      from 'next/router';
@@ -16,13 +16,9 @@ import { initGA, logPageView }    from '../helpers/analytics';
 class LouCarter extends App {
   
   constructor(props) {
-    //force import components in client side, and recorded in props, well,it's just a test
-    if (!props) {
-      console.log('Masisuuuuuuuuu')
-    }
-    console.log('Putain imagine toi que lou a voulu me pécho')
+    const cookies = parseCookies({});
+    if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     super(props);
-    console.log("props:", this.props);
   }
   
   /**
@@ -36,36 +32,28 @@ class LouCarter extends App {
    *
    * Il faut connecter le reduxStore pour passer l'objet links dans le store, et ensuite c'est bon
    */
-  static async getInitialProps({ Component, ctx, req }) {
-    const isServer = !!req;
-    if (isServer) {
-      console.log('lol');
-    } else {
-      console.log('lolOOOOOOOOOO');
-    }
-    
-    
+  static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
     const API = await Prismic.api(publicRuntimeConfig.prismic);
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'), { orderings: '[my.link.order]' });
     const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
     const nav = ctx.reduxStore.dispatch(navStatus(false));
     const cookies = parseCookies(ctx);
+    if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     ctx.reduxStore.dispatch(storeCookiesDatas(cookies));
-    if (!cookies.lou) { setCookie(ctx, 'lou', 'init', { path: '/' }); }
     if (Component.getInitialProps) { pageProps = await Component.getInitialProps({ ...ctx }); }
     return { pageProps: { ...pageProps }, myLinks, nav, cookies };
   }
   
-  componentDidMount() {
-    initGA();
-  }
+  // componentDidMount() {
+  //   initGA();
+  // }
   
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log({ prevProps: prevProps.reduxStore.getState().cookies });
     if (prevProps.reduxStore.getState().cookies.lou === 'enable') {
       console.log('porps !!!');
-      // initGA();
+      initGA();
       logPageView();
       Router.router.events.on('routeChangeComplete', logPageView);
       return true;
