@@ -15,7 +15,7 @@ import { initGA, logPageView }    from '../helpers/analytics';
 class LouCarter extends App {
   
   constructor(props) {
-    initGA();
+    // initGA();
     const cookies = parseCookies({});
     if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     super(props);
@@ -43,6 +43,10 @@ class LouCarter extends App {
     ctx.reduxStore.dispatch(storeCookiesDatas(cookies));
     if (Component.getInitialProps) { pageProps = await Component.getInitialProps({ ...ctx }); }
     return { pageProps: { ...pageProps }, myLinks, nav, cookies };
+  }
+  
+  componentDidMount() {
+    initGA();
   }
   
   render() {
