@@ -18,14 +18,23 @@ class LouCarter extends App {
    *
    * @param Component
    * @param ctx
+   * @param req
    * @returns {Promise<{pageProps: {}, myLinks: *}>}
    *
    * Ici on appelle les éléments qu'on va afficher sur toutes les pages, pour faire l'appelle qu'une seule fois
    *
    * Il faut connecter le reduxStore pour passer l'objet links dans le store, et ensuite c'est bon
    */
-  static async getInitialProps({ Component, ctx }) {
-    console.log('lol');
+  static async getInitialProps({ Component, ctx, req }) {
+    const isServer = !!req;
+    if (isServer) {
+      console.log('lol');
+
+    } else {
+      console.log('lolOOOOOOOOOO');
+    }
+    
+    
     let pageProps = {};
     const API = await Prismic.api(publicRuntimeConfig.prismic);
     const links = await API.query(Prismic.Predicates.at('document.type', 'link'), { orderings: '[my.link.order]' });
