@@ -68,7 +68,7 @@ class Campaign extends Component {
             <CampaignStyled.CampaignTitle dangerouslySetInnerHTML={{ __html: campaign.data.title[ 0 ].text }}/>
             <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
             <CampaignStyled.CampaignDescription
-              dangerouslySetInnerHTML={{ __html: campaign.data.description.map( p => p.text + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, in nostrum? Consectetur cumque fuga inventore magni necessitatibus nostrum voluptas voluptatem?' ) }}
+              dangerouslySetInnerHTML={{ __html: campaign.data.description.map( p => p.text ) }}
             />
             <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
           </CampaignStyled.Text
