@@ -187,8 +187,7 @@ CampaignStyled.TextWrapper = styled.div`
   
   ${media.mobile`
     overflow-y: scroll;
-    // height: calc(100vh - 15rem);
-    height: 50%;
+    height: 60%;
     top: 7rem;
     z-index: ${ props => !props.isOpen ? '110' : '120'};
   `}
