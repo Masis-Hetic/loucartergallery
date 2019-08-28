@@ -29,7 +29,8 @@ CampaignStyled.SlidesWrapper = styled.div`
   
   ${media.mobile`
     height: ${ props => props.isOpen ? '100vh' : 'unset' };
-    z-index: 110;
+    z-index: ${ props => props.isOpen ? '130' : '110' };
+    position: ${ props => props.isOpen ? 'fixed' : 'relative' };
   `}
 `;
 
@@ -62,7 +63,7 @@ CampaignStyled.Slides = styled.div`
     width: 100vw;
     position: ${ props => props.isOpen ? 'fixed' : 'unset' };
     top: 0;
-    z-index: 110;
+    z-index: 130;
   `}
 `;
 
@@ -91,6 +92,7 @@ CampaignStyled.UpBtn = styled.div`
   
   ${media.mobile`
     display: table;
+    padding: 15px;
     transition: .3s ease;
     margin: 0 auto;
     transform: rotate(${ props => props.isOpen ? '180deg' : '0deg'});
@@ -179,7 +181,7 @@ CampaignStyled.TextWrapper = styled.div`
     overflow-y: scroll;
     height: auto;
     top: 7rem;
-    z-index: ${ props => props.isOpen ? '90' : '120'};
+    z-index: ${ props => props.isOpen ? '80' : '120'};
   `}
 `;
 

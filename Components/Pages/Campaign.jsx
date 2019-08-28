@@ -24,7 +24,7 @@ class Campaign extends Component {
   };
 
   render() {
-    const { campaign, imgs, overflowStatus } = this.props;
+    const { campaign, imgs } = this.props;
     const { isOpen } = this.state;
 
     // noinspection JSUnresolvedVariable
