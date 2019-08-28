@@ -20,7 +20,6 @@ const Main = styled.main`
   -webkit-overflow-scrolling: touch;
   
   overflow-y: ${ props => props.overflowStatus.data === 'hidden' ? 'hidden' : 'unset' };
-  
   animation-name: ${opacity};
   animation-duration: .3s;
   animation-fill-mode: forwards;

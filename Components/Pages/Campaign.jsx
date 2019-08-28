@@ -27,9 +27,7 @@ class Campaign extends Component {
     dispatch(overflowStatus(null));
   }
 
-  openSlider = () => {
-    this.setState( { isOpen: !this.state.isOpen } );
-  };
+  openSlider = () => this.setState( { isOpen: !this.state.isOpen } );
 
   render() {
     const { campaign, imgs } = this.props;
