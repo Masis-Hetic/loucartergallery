@@ -65,7 +65,7 @@ CampaignStyled.Slides = styled.div`
     top: 0;
     z-index: 130;
     transition: .3s ease;
-    top: ${ props => props.isOpen ? '0' : '65vh' };
+    top: ${ props => props.isOpen ? '0' : '55vh' };
   `}
 `;
 
@@ -187,7 +187,8 @@ CampaignStyled.TextWrapper = styled.div`
   
   ${media.mobile`
     overflow-y: scroll;
-    height: calc(100vh - 15rem);
+    // height: calc(100vh - 15rem);
+    height: 50%;
     top: 7rem;
     z-index: ${ props => !props.isOpen ? '110' : '120'};
   `}
