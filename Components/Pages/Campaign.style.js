@@ -189,7 +189,7 @@ CampaignStyled.TextWrapper = styled.div`
     overflow-y: scroll;
     height: auto;
     top: 7rem;
-    z-index: ${ props => props.isOpen ? '80' : '120'};
+    z-index: ${ props => !props.isOpen ? '110' : '120'};
   `}
 `;
 

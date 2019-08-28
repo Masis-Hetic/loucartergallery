@@ -14,7 +14,7 @@ const Main = styled.main`
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-  position: relative;
+  position: ${ props => props.overflowStatus.data === 'hidden' ? 'fixed' : 'relative' } ;
   
   /* enable smooth scrolling on iOS */
   -webkit-overflow-scrolling: touch;

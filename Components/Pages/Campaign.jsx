@@ -1,8 +1,8 @@
-import React, { Component, useEffect } from 'react';
-import { connect, useDispatch }        from "react-redux";
-import CampaignStyled                  from "./Campaign.style";
-import Link                            from "next/link";
-import ArrowUp                         from "../../static/icons/arrow-up";
+import React, { Component } from 'react';
+import { connect }          from "react-redux";
+import CampaignStyled       from "./Campaign.style";
+import Link                 from "next/link";
+import ArrowUp              from "../../static/icons/arrow-up";
 
 import { overflowStatus } from "../../store/actions/controlOverflow.action";
 
@@ -17,9 +17,17 @@ class Campaign extends Component {
     isOpen: false
   };
 
-  openSlider = () => {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(overflowStatus('hidden'));
+  }
+
+  componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch(overflowStatus(null));
+  }
+
+  openSlider = () => {
     this.setState( { isOpen: !this.state.isOpen } );
   };
 
