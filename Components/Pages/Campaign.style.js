@@ -94,6 +94,8 @@ CampaignStyled.UpBtn = styled.div`
   ${media.mobile`
     display: table;
     padding: 15px;
+    width: 30px;
+    height: 30px;
     transition: .3s ease;
     margin: 0 auto;
     transform: rotate(${ props => props.isOpen ? '180deg' : '0deg'});

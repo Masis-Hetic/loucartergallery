@@ -35,7 +35,7 @@ class Campaign extends Component {
             <CampaignStyled.SliderWrapper isOpen={ isOpen }>
 
               <CampaignStyled.UpBtn isOpen={ isOpen } onClick={ this.openSlider }>
-                <ArrowUp onClick={ this.openSlider }/>
+                <ArrowUp/>
               </CampaignStyled.UpBtn>
 
               <CampaignStyled.UlDesktop ulWidth={(imgs.length * 100) - (imgs.length * 20)}>
