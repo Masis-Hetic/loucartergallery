@@ -1,11 +1,12 @@
-import ReactGA from 'react-ga';
+import ReactGA           from 'react-ga';
+import { destroyCookie } from 'nookies';
 
-export const initGA = () => {
-  ReactGA.initialize('UA-142143734-1');
+export const initGA = () => { ReactGA.initialize('UA-142143734-1', { alwaysSendToDefaultTracker: false }); };
+
+export const disableGA = (cookies) => {
+  window[ 'ga-disable-UA-142143734-1' ] = true;
+  Object.keys(cookies).forEach((key) => { if (key.includes('_g')) { destroyCookie({}, key); } });
 };
-// export const initGA = () => { ReactGA.initialize('UA-142143734-1', { testMode: true }); };
-
-export const disableGA = () => { window[ 'ga-disable-UA-142143734-1' ] = true; };
 
 export const logPageView = () => {
   ReactGA.set({ page: window.location.pathname });

@@ -2,13 +2,12 @@ import Router                                   from 'next/router';
 import React, { Fragment, useState, useEffect } from 'react';
 import { parseCookies, setCookie }              from 'nookies';
 import { useDispatch }                          from 'react-redux';
-import { initGA, logPageView }                  from '../../helpers/analytics';
 
 import CookiesBanner from './Cookies.style';
 
-import { storeCookiesDatas } from '../../store/actions/cookies.action';
-import { clearCookies }      from '../../helpers/cookies';
-import COLORS                from '../../helpers/colors';
+import { storeCookiesDatas }      from '../../store/actions/cookies.action';
+import { disableGA, logPageView } from '../../helpers/analytics';
+import COLORS                     from '../../helpers/colors';
 
 const Cookies = () => {
   const dispatch = useDispatch();
@@ -16,8 +15,14 @@ const Cookies = () => {
   const path = '/';
   
   const [ choice, setChoice ] = useState(true);
-  
   const [ isSelected, setSelection ] = useState(true);
+  const setSelectionState = () => {
+    if (!isSelected) {
+      setSelection(true);
+      if (!more) { setChoice(true); }
+      setCookie({}, 'lou', `${ choice ? 'enable' : 'disable' }`, { maxAge, path });
+    }
+  };
   
   const [ more, showMore ] = useState(false);
   const showChoices = () => showMore(!more);
@@ -34,37 +39,21 @@ const Cookies = () => {
     setChoice(false);
   };
   
-  const setSelectionState = () => {
-    if (!isSelected) {
-      setSelection(true);
-      if (!more) { setChoice(true); }
-      setCookie({}, 'lou', `${ choice ? 'enable' : 'disable' }`, { maxAge, path });
-    }
-  };
-  
   useEffect(() => {
     const cookies = parseCookies();
     dispatch(storeCookiesDatas(cookies));
-    if (cookies.lou === 'enable') {
-      // initGA();
-      logPageView();
-      Router.router.events.on('routeChangeComplete', logPageView);
-    } else {
-      clearCookies(cookies);
-      if (cookies.lou === 'init') { setSelection(false); }
+    switch (cookies.lou) {
+      case 'enable':
+        logPageView();
+        Router.router.events.on('routeChangeComplete', logPageView);
+        break;
+      case 'init':
+        setSelection(false);
+        break;
+      default:
+        disableGA(cookies);
     }
   }, [ isSelected, choice ]);
-  
-  // <script>
-  //   (function (i, s, o, g, r, a, m) {
-  //   i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-  //   (i[r].q = i[r].q || []).push(arguments)
-  // }, i[r].l = 1 * new Date(); a = s.createElement(o),
-  //   m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-  // })(window, document, 'script', '<%=htmlWebpackPlugin.options.analyticsURL%>', 'ga');
-  //   ga('create', 'UA-XXX-X', 'auto');
-  //   ga('send', 'pageview');
-  // </script>
   
   return (
     <Fragment>

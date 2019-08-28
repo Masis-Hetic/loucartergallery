@@ -1,10 +1,9 @@
 import React                       from 'react';
 import Prismic                     from 'prismic-javascript';
 import App, { Container }          from 'next/app';
-import { Provider }       from 'react-redux';
+import { Provider }                from 'react-redux';
 import withReduxStore              from '../lib/with-redux-store';
 import getConfig                   from 'next/config';
-import Router                      from 'next/router';
 import { parseCookies, setCookie } from 'nookies';
 
 const { publicRuntimeConfig } = getConfig();
@@ -14,10 +13,18 @@ import { getNavDatas, navStatus } from '../store/actions/nav.action';
 import { initGA, logPageView }    from '../helpers/analytics';
 
 class LouCarter extends App {
+  
+  constructor(props) {
+    const cookies = parseCookies({});
+    if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
+    super(props);
+  }
+  
   /**
    *
    * @param Component
    * @param ctx
+   * @param req
    * @returns {Promise<{pageProps: {}, myLinks: *}>}
    *
    * Ici on appelle les éléments qu'on va afficher sur toutes les pages, pour faire l'appelle qu'une seule fois
@@ -31,34 +38,21 @@ class LouCarter extends App {
     const myLinks = await ctx.reduxStore.dispatch(getNavDatas(links.results));
     const nav = ctx.reduxStore.dispatch(navStatus(false));
     const cookies = parseCookies(ctx);
+    if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     ctx.reduxStore.dispatch(storeCookiesDatas(cookies));
-    if (!cookies.lou) { setCookie(ctx, 'lou', 'init', { path: '/' }); }
     if (Component.getInitialProps) { pageProps = await Component.getInitialProps({ ...ctx }); }
-    return { pageProps: { ...pageProps }, myLinks, nav };
+    return { pageProps: { ...pageProps }, myLinks, nav, cookies };
   }
   
-  componentDidMount() {
-    initGA();
-  }
-  
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log({ prevProps: prevProps.reduxStore.getState().cookies });
-    if (prevProps.reduxStore.getState().cookies.lou === 'enable') {
-      console.log('porps !!!');
-      // initGA();
-      logPageView();
-      Router.router.events.on('routeChangeComplete', logPageView);
-      return true;
-    }
-  }
+  componentDidMount() { initGA(); }
   
   render() {
-    const { Component, pageProps, myLinks, nav, reduxStore, cooky } = this.props;
+    const { Component, pageProps, myLinks, nav, reduxStore, cookies } = this.props;
     
     return (
       <Container>
         <Provider store={ reduxStore }>
-          <Component { ...pageProps } { ...myLinks } { ...navStatus } { ...cooky } />
+          <Component { ...pageProps } { ...myLinks } { ...navStatus } { ...cookies } />
         </Provider>
       </Container>
     );
@@ -66,6 +60,3 @@ class LouCarter extends App {
 }
 
 export default withReduxStore(LouCarter);
-
-// export default connect( mapStateToProps, navStatus )( LouCarter );
-
