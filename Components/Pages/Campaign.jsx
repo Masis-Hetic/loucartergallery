@@ -34,7 +34,7 @@ class Campaign extends Component {
           <CampaignStyled.Slides isOpen={ isOpen }>
             <CampaignStyled.SliderWrapper isOpen={ isOpen }>
 
-              <CampaignStyled.UpBtn onTouchEnd={ this.openSlider }>
+              <CampaignStyled.UpBtn isOpen={ isOpen } onTouchEnd={ this.openSlider }>
                 <ArrowUp/>
               </CampaignStyled.UpBtn>
 
