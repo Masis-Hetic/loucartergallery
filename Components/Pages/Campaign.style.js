@@ -94,6 +94,7 @@ CampaignStyled.UpBtn = styled.div`
   ${media.mobile`
     display: table;
     padding: 15px;
+    margin-top: 15px;
     width: 30px;
     height: 30px;
     transition: .3s ease;

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect }          from "react-redux";
-import CampaignStyled       from "./Campaign.style";
-import Link                 from "next/link";
-import ArrowUp              from "../../static/icons/arrow-up";
+import React, { Component, useEffect } from 'react';
+import { connect, useDispatch }        from "react-redux";
+import CampaignStyled                  from "./Campaign.style";
+import Link                            from "next/link";
+import ArrowUp                         from "../../static/icons/arrow-up";
 
 import { overflowStatus } from "../../store/actions/controlOverflow.action";
 
@@ -62,7 +62,7 @@ class Campaign extends Component {
             <CampaignStyled.CampaignTitle dangerouslySetInnerHTML={{ __html: campaign.data.title[ 0 ].text }}/>
             <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
             <CampaignStyled.CampaignDescription
-              dangerouslySetInnerHTML={{ __html: campaign.data.description.map( p => p.text ) }}
+              dangerouslySetInnerHTML={{ __html: campaign.data.description.map( p => p.text + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, in nostrum? Consectetur cumque fuga inventore magni necessitatibus nostrum voluptas voluptatem?' ) }}
             />
             <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
           </CampaignStyled.Text
