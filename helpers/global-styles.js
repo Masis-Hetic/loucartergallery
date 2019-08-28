@@ -28,6 +28,10 @@ body {
   font-smooth: subpixel-antialiased;
   font-smooth: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
+  
+  @viewport {
+    orientation: portrait;
+  }
 }
 body * {
   letter-spacing: 4px;
