@@ -61,9 +61,11 @@ CampaignStyled.Slides = styled.div`
     display: block;
     height: ${ props => props.isOpen ? '100vh' : 'unset' };
     width: 100vw;
-    position: ${ props => props.isOpen ? 'fixed' : 'unset' };
+    position: ${ props => props.isOpen ? 'fixed' : 'relative' };
     top: 0;
     z-index: 130;
+    transition: .3s ease;
+    top: ${ props => props.isOpen ? '0' : '65vh' };
   `}
 `;
 
@@ -79,11 +81,10 @@ CampaignStyled.SliderWrapper = styled.div`
   ${media.mobile`
     background: #080808;
     transition: .3s ease;
-    top: ${ props => props.isOpen ? '0' : '65vh' };
     z-index: 999;
-    position: ${ props => props.isOpen ? 'fixed' : 'relative' };
     height: 100vh;
     padding-bottom: 10vh;
+    top: 0;
   `}
 `;
 
@@ -119,6 +120,10 @@ CampaignStyled.UlDesktop = styled.ul`
     position: unset;
     left: unset;
   }
+  
+  ${media.mobile`
+    top: 0;
+  `}
 `;
 
 CampaignStyled.LiDesktop = styled.li`
