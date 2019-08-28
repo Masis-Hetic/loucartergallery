@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux';
 
-import footerReducer from './footer.reducer.js';
-import navReducer    from './nav.reducer';
-import cookiesReducer    from './cookies.reducer';
+import footerReducer   from './footer.reducer.js';
+import navReducer      from './nav.reducer';
+import cookiesReducer  from './cookies.reducer';
+import overflowReducer from "./controlOverflow.reducer";
 
-export const reducers = { footer: footerReducer, nav: navReducer, cookies: cookiesReducer };
+export const reducers = {
+  footer: footerReducer,
+  nav: navReducer,
+  cookies: cookiesReducer,
+  overflow: overflowReducer,
+};
 
-export const rootReducer = combineReducers({ ...reducers });
+export const rootReducer = combineReducers( { ...reducers } );

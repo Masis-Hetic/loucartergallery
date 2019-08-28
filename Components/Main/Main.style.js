@@ -15,8 +15,11 @@ const Main = styled.main`
   height: 100vh;
   overflow-x: hidden;
   position: relative;
+  
   /* enable smooth scrolling on iOS */
   -webkit-overflow-scrolling: touch;
+  
+  overflow-y: ${ props => props.overflowStatus.data === 'hidden' ? 'hidden' : 'unset' };
   
   animation-name: ${opacity};
   animation-duration: .3s;

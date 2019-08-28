@@ -5,10 +5,10 @@ import Link        from "next/link";
 import Nav         from "../Nav/Nav";
 import Cookies     from "../Cookies/Cookies";
 
-const mapStateToProps = state => ( { nav: state.nav.status } );
+const mapStateToProps = state => ( { nav: state.nav.status, overflow: state.overflow } );
 
 const MainComponent = props => (
-  <Main>
+  <Main overflowStatus={ props.overflow }>
     <Main.LogoWrapper>
       <Link href={ '/' } as={ '/' }>
         <Main.Logo navStatus={ props.nav } style={ { position: 'absolute', top: 20, left: 20, zIndex: 100 } }>

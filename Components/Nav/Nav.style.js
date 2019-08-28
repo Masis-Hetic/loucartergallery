@@ -25,6 +25,7 @@ const Header = styled.header`
   box-shadow : ${ props => !props.open ? 'none' : '0 0 3px 1px #282c37' };
   
   ${media.mobile`
+    z-index: 150;
     width: 85vw;
     left: unset;
     right: ${ props => !props.open ? '-85vw' : '0' };

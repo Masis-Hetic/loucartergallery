@@ -18,6 +18,7 @@ const CampaignStyled = styled.div`
   
   ${media.mobile`
     margin-top: 7rem;
+    overflow: hidden;
   `}
 `;
 
@@ -27,7 +28,8 @@ CampaignStyled.SlidesWrapper = styled.div`
   height: 100%;
   
   ${media.mobile`
-    height: unset;
+    height: ${ props => props.isOpen ? '100vh' : 'unset' };
+    z-index: 110;
   `}
 `;
 
@@ -55,7 +57,12 @@ CampaignStyled.Slides = styled.div`
   }
   
   ${media.mobile`
-    // display: none;
+    display: block;
+    height: ${ props => props.isOpen ? '100vh' : 'unset' };
+    width: 100vw;
+    position: ${ props => props.isOpen ? 'fixed' : 'unset' };
+    top: 0;
+    z-index: 110;
   `}
 `;
 
@@ -65,8 +72,29 @@ CampaignStyled.SliderWrapper = styled.div`
   
   @media (max-width: 768px) {
     top: 80vh;
-    overflow: hidden;
+    overflow: ${ props => props.isOpen ? 'scroll' : 'hidden' };
   }
+  
+  ${media.mobile`
+    background: #080808;
+    transition: .3s ease;
+    top: ${ props => props.isOpen ? '0' : '65vh' };
+    z-index: 999;
+    position: ${ props => props.isOpen ? 'fixed' : 'relative' };
+    height: 100vh;
+    padding-bottom: 10vh;
+  `}
+`;
+
+CampaignStyled.UpBtn = styled.div`
+  display: none;
+  
+  ${media.mobile`
+    display: table;
+    transition: .3s ease;
+    margin: 0 auto;
+    transform: rotate(${ props => props.isOpen ? '180deg' : '0deg'});
+  `}
 `;
 
 CampaignStyled.UlDesktop = styled.ul`
@@ -146,6 +174,13 @@ CampaignStyled.TextWrapper = styled.div`
   width 100vw;
   height: 100vh;
   display: flex;
+  
+  ${media.mobile`
+    overflow-y: scroll;
+    height: auto;
+    top: 7rem;
+    z-index: ${ props => props.isOpen ? '90' : '120'};
+  `}
 `;
 
 CampaignStyled.Text = styled.div`

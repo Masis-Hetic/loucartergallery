@@ -6,10 +6,10 @@ import { rootReducer } from './reducers/combine.reducer';
 
 const exampleInitialState = {};
 
-export function initializeStore(initialState = exampleInitialState) {
+export function initializeStore( initialState = exampleInitialState ) {
   return createStore(
     rootReducer,
     initialState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware))
+    composeWithDevTools( applyMiddleware( thunkMiddleware ) )
   );
 }

@@ -1,15 +1,32 @@
-import React   from 'react';
-import Prismic from 'prismic-javascript';
-import Head    from 'next/head';
+import React, { useEffect }     from 'react';
+import { connect, useDispatch } from "react-redux";
+import Prismic                  from 'prismic-javascript';
+import Head                     from 'next/head';
 
-import MainComponent   from '../Components/Main/Main';
-import Campaign        from '../Components/Pages/Campaign';
-import { sliceUrl }    from '../helpers/functions';
+import MainComponent from '../Components/Main/Main';
+import Campaign      from '../Components/Pages/Campaign';
+import { sliceUrl }  from '../helpers/functions';
 
 import getConfig from 'next/config';
+
 const { publicRuntimeConfig } = getConfig();
 
+import { overflowStatus } from "../store/actions/controlOverflow.action";
+
+const mapDispatchToProps = state => {
+  return {
+    overflowStatus: state.overflowStatus,
+  }
+};
+
 const Campagnes = ({ campaign, imgs }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(overflowStatus('hidden'));
+    return () => dispatch(overflowStatus(null))
+  });
+
   return (
     <MainComponent>
       <Head>
@@ -47,4 +64,4 @@ Campagnes.getInitialProps = async({ query }) => {
   return { campaign: campaign.results[ 0 ], imgs, slug: query.slug };
 };
 
-export default Campagnes;
+export default connect(null, mapDispatchToProps) (Campagnes);
