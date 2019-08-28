@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import SanitizedHTML from 'react-sanitized-html';
-import Link from "next/link";
+import CampaignStyled       from "./Campaign.style";
+import SanitizedHTML        from 'react-sanitized-html';
+import Link                 from "next/link";
 
 class Campaign extends Component {
   state = {
     isOpen: false
   };
 
-  openSlider = () => this.setState( { isOpen: !this.state.isOpen } );
+  openSlider = () => this.setState( { isOpen: !this.state.isOpen }, () => console.log('fait un truc') );
 
   render() {
     const { campaign, imgs } = this.props;
@@ -15,77 +16,62 @@ class Campaign extends Component {
 
     // noinspection JSUnresolvedVariable
     return (
-      <div className="wrapper campaign-wrapper">
-        <div className={ `slide-mobile ${ isOpen ? 'open' : 'close' }` }>
-          <p onClick={ this.openSlider }>
-            <svg style={ { width: 28, height: 28 } } viewBox="0 0 24 24">
-              <path fill="#fff" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
-            </svg>
-          </p>
-          <ul>
-            { imgs.map( ( img, i ) =>
-              <li key={ i }>
-                <Link href={ '/eshop' } as={ '/eshop' }>
-                  <a>
-                    <img srcSet={ img } alt="" />
-                  </a>
-                </Link>
-              </li>
-            ) }
-          </ul>
-        </div>
+      <CampaignStyled
+        // className="wrapper campaign-wrapper"
+      >
+        {/*<CampaignStyled.SliderMobile*/}
+        {/*  isOpen={ isOpen ? 'open' : 'close' }*/}
+        {/*  // className={ `slide-mobile ${ isOpen ? 'open' : 'close' }` }*/}
+        {/*>*/}
+        {/*  <p onClick={ this.openSlider }>*/}
+        {/*    {JSON.stringify(isOpen)}*/}
+        {/*    <svg style={ { width: 28, height: 28 } } viewBox="0 0 24 24">*/}
+        {/*      <path fill="#fff" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>*/}
+        {/*    </svg>*/}
+        {/*  </p>*/}
+        {/*  <ul>*/}
+        {/*    { imgs.map( ( img, i ) =>*/}
+        {/*      <li key={ i }>*/}
+        {/*        <Link href={ '/eshop' } as={ '/eshop' }>*/}
+        {/*          <a>*/}
+        {/*            <img srcSet={ img } alt="" />*/}
+        {/*          </a>*/}
+        {/*        </Link>*/}
+        {/*      </li>*/}
+        {/*    ) }*/}
+        {/*  </ul>*/}
+        {/*</CampaignStyled.SliderMobile>*/}
 
-        <div className="slides-wrapper">
-          <div className="slides">
-            <div className="slider-wrapper">
-              <ul>
+        <CampaignStyled.SlidesWrapper>
+          <CampaignStyled.Slides>
+            <CampaignStyled.SliderWrapper>
+              <CampaignStyled.UlDesktop ulWidth={(imgs.length * 100) - (imgs.length * 20)}>
                 { imgs.map( ( img, i ) =>
-                  <li key={ i }>
+                  <CampaignStyled.LiDesktop key={ i }>
                     <Link href={ '/eshop' } as={ '/eshop' }>
-                      <a>
-                        <img srcSet={ img } alt="" />
-                      </a>
+                      <CampaignStyled.ImageLink>
+                        <CampaignStyled.ImgDesktop srcSet={ img } alt="" />
+                      </CampaignStyled.ImageLink>
                     </Link>
-                  </li>
+                  </CampaignStyled.LiDesktop>
                 ) }
-              </ul>
-            </div>
-          </div>
-        </div>
+              </CampaignStyled.UlDesktop>
+            </CampaignStyled.SliderWrapper>
+          </CampaignStyled.Slides>
+        </CampaignStyled.SlidesWrapper>
 
-        <div className="text-wrapper" style={ {
-          width: '100%',
-          height: '100vh',
-          position: 'absolute',
-          top: 0,
-          left: 0
-        } }>
-
-          <div className="text">
-            <h1><SanitizedHTML html={ campaign.data.title[ 0 ].text }/></h1>
-
+        <CampaignStyled.TextWrapper>
+          <CampaignStyled.Text>
+            <CampaignStyled.CampaignTitle dangerouslySetInnerHTML={{ __html: campaign.data.title[ 0 ].text }}/>
             <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
-            <div className="description">
-              { campaign.data.description.map( ( p, i ) => <SanitizedHTML key={ i } html={ p.text }/> ) }
-            </div>
-
+            <CampaignStyled.CampaignDescription
+              dangerouslySetInnerHTML={{ __html: campaign.data.description.map( p => p.text ) }}
+            />
             <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
-          </div>
+          </CampaignStyled.Text>
+        </CampaignStyled.TextWrapper>
 
-        </div>
-
-        {/*
-          Calcul de la taille du before (en desktop) :
-          1- Nombre de slides * 60vw (la taille d'une slide)
-          2- On rajoute la marge entre chaque slide : 40vw (sauf la dernière)
-          3- On enlève les 20 vw qui permettent de centrer la dernière image
-         */ }
-        <style jsx>{ `
-        .slides .slider-wrapper ul::before {
-          width: ${ ( imgs.length * 60 ) + ( ( imgs.length ) * 40 ) - 20 }vw;
-        }
-        ` }</style>
-      </div>
+      </CampaignStyled>
     );
   }
 }

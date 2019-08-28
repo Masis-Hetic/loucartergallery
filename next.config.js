@@ -192,14 +192,14 @@ module.exports = withSass( {
       }
     }
 
-    return  Object.assign({}, campaigns, artists, artistList, {
+    return Object.assign({}, campaigns, artists, artistList, {
       '/'              : { page: '/' },
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/partager'      : { page: '/partager' },
       '/collections'   : { page: '/collections' },
-      '/collections/the-silencing-dinner-of' : { page: '/collections/[collection]', query: { collection: 'the-silencing-dinner-of' }}
+      '/collections/silencing-dinner-of' : { page: '/collections/[collection]', query: { collection: 'silencing-dinner-of' }}
     });
   },
   publicRuntimeConfig: {
