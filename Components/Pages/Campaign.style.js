@@ -177,6 +177,11 @@ CampaignStyled.Text = styled.div`
   @media (min-width : 1920px) {
     width: 17vw;
   }
+  
+  ${media.mobile`
+    max-width: 85vw;
+    height: calc(100vh - 15rem);
+  `}
 `;
 
 CampaignStyled.CampaignTitle = styled.h1`
@@ -186,6 +191,10 @@ CampaignStyled.CampaignTitle = styled.h1`
   @media (max-width: 1024px) {
     font-size: 1rem;
   }
+  
+  ${media.mobile`
+    line-height: 2 !important;
+  `}
 `;
 
 CampaignStyled.CampaignDescription = styled.p`
