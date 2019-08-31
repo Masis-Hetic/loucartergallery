@@ -137,7 +137,6 @@ module.exports = {
   }
 };
 
-const getRoutes = require( './routes' );
 module.exports = withSass( {
   webpack: function ( config ) {
     config.module.rules.push( {
@@ -176,33 +175,34 @@ module.exports = withSass( {
 
     const pageLength = Math.round(artisteLength / 1);
 
-    const artists = {};
-
-    for ( let i = 1; i <= pageLength; i += 1 ) {
-      artists[`/artistes/page-${ i }`] = { page: '/artistes/page-[page]', query: { page: i } }
-    }
-
     const artistList = {};
 
-    for (let i = 0; i < artistes.results[ 0 ].data.artists.length; i += 1) {
-      // noinspection JSUnresolvedVariable
-      artistList[ `/artiste/${ artistes.results[ 0 ].data.artists[ i ].artist.uid }` ] = {
-        page: '/artiste/[name]',
-        query: { name: artistes.results[ 0 ].data.artists[ i ].artist.uid }
-      }
+    for ( let i = 1; i <= pageLength; i += 1 ) {
+      artistList[`/artistes/page-${ i }`] = { page: '/artistes/page-[page]', query: { page: i } }
     }
-
-    return Object.assign({}, campaigns, artists, artistList, {
+    
+    const artists = artistes.results[ 0 ].data.artists.reduce((base, current) => (
+      Object.assign( {}, base, {
+        [ `/artiste/${ current.artist.uid }` ]: { page: '/artiste/[name]', query: { name: current.artist.uid } }
+      })
+    ), {});
+  
+    const collections = await API.query( Prismic.Predicates.at( 'document.type', 'collection' ), { lang: 'fr-FR' } );
+    
+    const collectionsList = collections.results.reduce(( base, current ) => (
+      Object.assign({}, base, {
+          [ `/collections/${ current.uid }` ]: { page: '/collections/[collection]', query: { collection: current.uid } }
+        })
+    ), {});
+    
+    return Object.assign({}, campaigns, artistList, artists, collectionsList, {
       '/'              : { page: '/' },
       '/galerie'       : { page: '/galerie' },
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/partager'      : { page: '/partager' },
-      '/collections'   : { page: '/collections' },
-      '/collections/silencing-dinner-of' : { page: '/collections/[collection]', query: { collection: 'silencing-dinner-of' }}
+      '/collections'   : { page: '/collections' }
     });
   },
-  publicRuntimeConfig: {
-    prismic: process.env.PRISMIC_API,
-  },
+  publicRuntimeConfig: { prismic: process.env.PRISMIC_API, }
 } );
