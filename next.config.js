@@ -201,7 +201,8 @@ module.exports = withSass( {
       '/contact'       : { page: '/contact' },
       '/la-fondatrice' : { page: '/la-fondatrice' },
       '/partager'      : { page: '/partager' },
-      '/collections'   : { page: '/collections' }
+      '/collections'   : { page: '/collections' },
+      '/legal-notice'  : { page: '/legal-notice' }
     });
   },
   publicRuntimeConfig: { prismic: process.env.PRISMIC_API, }

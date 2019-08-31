@@ -9,7 +9,7 @@ class MyDocument extends Document {
     const sheet = new ServerStyleSheet();
     // const originalRenderPage = ctx.renderPage;
 
-    const page = ctx.renderPage( ( App ) => ( props ) => sheet.collectStyles( <App { ...props } /> ), );
+    const page = ctx.renderPage( ( App ) => ( props ) => sheet.collectStyles( <App { ...props } /> ) );
     const styleTags = sheet.getStyleElement();
 
     const initialProps = await Document.getInitialProps( ctx );

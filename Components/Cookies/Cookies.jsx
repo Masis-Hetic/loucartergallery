@@ -57,7 +57,6 @@ const Cookies = () => {
   
   return (
     <Fragment>
-      {/*{ !isSelected &&*/ }
       <CookiesBanner accepted={ isSelected } showMore={ more }>
         <CookiesBanner.Wrapper>
           <CookiesBanner.Infos>
@@ -124,7 +123,6 @@ const Cookies = () => {
           </CookiesBanner.BigWrapper>
         </CookiesBanner.Wrapper>
       </CookiesBanner>
-      {/*}*/ }
     </Fragment>
   );
 };
