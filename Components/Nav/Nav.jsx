@@ -272,7 +272,7 @@ const Nav = ({ nav }) => {
         </Newsletter.Wrapper>
       </Newsletter>
       
-      <Credits credits={ true }>
+      <Credits credits={ credits }>
         <Credits.Wrapper>
           <Credits.CloseBtn onClick={ () => isCredits(true) }>
             <svg width="12" height="12" viewBox="0 0 10 10" fill="none">
