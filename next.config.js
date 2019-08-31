@@ -205,5 +205,5 @@ module.exports = withSass( {
       '/legal-notice'  : { page: '/legal-notice' }
     });
   },
-  publicRuntimeConfig: { prismic: process.env.PRISMIC_API, }
+  publicRuntimeConfig: { prismic: process.env.PRISMIC_API }
 } );
