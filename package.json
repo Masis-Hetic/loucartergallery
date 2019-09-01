@@ -33,7 +33,6 @@
     "next": "^9.0.3",
     "next-compose-plugins": "^2.2.0",
     "next-ga": "^2.3.4",
-    "next-routes": "^1.4.2",
     "nookies": "^2.0.8",
     "prismic-javascript": "^2.0.3",
     "prismic-reactjs": "^1.1.0",
