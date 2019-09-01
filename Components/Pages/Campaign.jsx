@@ -25,13 +25,12 @@ class Campaign extends Component {
   openSlider = () => this.setState( { isOpen: !this.state.isOpen } );
 
   render() {
-    const { campaign, imgs, overflowStatus } = this.props;
+    const { campaign, imgs } = this.props;
     const { isOpen } = this.state;
 
     // noinspection JSUnresolvedVariable
     return (
       <CampaignStyled>
-        { console.log({ overflowStatus }) }
         <CampaignStyled.SlidesWrapper isOpen={ isOpen }>
           <CampaignStyled.Slides isOpen={ isOpen }>
             <CampaignStyled.SliderWrapper isOpen={ isOpen }>
