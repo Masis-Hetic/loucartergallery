@@ -2,40 +2,36 @@ import React, { Component } from 'react';
 import { connect }          from "react-redux";
 import CampaignStyled       from "./Campaign.style";
 import Link                 from "next/link";
+
 import ArrowUp              from "../../static/icons/arrow-up";
+import { overflowStatus }   from "../../store/actions/controlOverflow.action";
 
-import { overflowStatus } from "../../store/actions/controlOverflow.action";
-
-const mapStateToProps = state => {
-  return {
-    overflowStatus: state.overflowStatus,
-  }
-};
+const mapStateToProps = state => ({ overflowStatus: state.overflowStatus });
 
 class Campaign extends Component {
-  state = {
-    isOpen: false
-  };
+  
+  state = { isOpen: false };
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(overflowStatus('hidden'));
+    dispatch(overflowStatus(true));
   }
 
   componentWillUnmount() {
     const { dispatch } = this.props;
-    dispatch(overflowStatus(null));
+    dispatch(overflowStatus(false));
   }
 
   openSlider = () => this.setState( { isOpen: !this.state.isOpen } );
 
   render() {
-    const { campaign, imgs } = this.props;
+    const { campaign, imgs, overflowStatus } = this.props;
     const { isOpen } = this.state;
 
     // noinspection JSUnresolvedVariable
     return (
       <CampaignStyled>
+        { console.log({ overflowStatus }) }
         <CampaignStyled.SlidesWrapper isOpen={ isOpen }>
           <CampaignStyled.Slides isOpen={ isOpen }>
             <CampaignStyled.SliderWrapper isOpen={ isOpen }>

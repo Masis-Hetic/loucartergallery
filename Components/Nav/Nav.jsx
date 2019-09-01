@@ -237,8 +237,8 @@ const Nav = ({ nav }) => {
           <Newsletter.SuccessMessage>{ success }</Newsletter.SuccessMessage>
           <Newsletter.CloseBtn onClick={ () => isNewsletter(true) }>
             <svg width="12" height="12" viewBox="0 0 10 10" fill="none">
-              <path fill-rule="evenodd"
-                    clip-rule="evenodd"
+              <path fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M10 0H9L5 4L1 0H0V1L4 5L0 9V10H1L5 6L9 10H10V9L6 5L10 1V0Z"
                     fill={ COLORS.lightGrey }/>
             </svg>
@@ -276,8 +276,8 @@ const Nav = ({ nav }) => {
         <Credits.Wrapper>
           <Credits.CloseBtn onClick={ () => isCredits(true) }>
             <svg width="12" height="12" viewBox="0 0 10 10" fill="none">
-              <path fill-rule="evenodd"
-                    clip-rule="evenodd"
+              <path fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M10 0H9L5 4L1 0H0V1L4 5L0 9V10H1L5 6L9 10H10V9L6 5L10 1V0Z"
                     fill={ COLORS.almostBlack }/>
             </svg>

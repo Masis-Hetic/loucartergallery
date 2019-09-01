@@ -1,12 +1,18 @@
-import React, { Fragment, useState, useRef } from 'react';
-import SingleCollection    from "../../Components/Collections/Collection.style";
-import Prismic             from 'prismic-javascript';
-import getConfig           from 'next/config';
-import MainComponent       from "../../Components/Main/Main";
-import Head                from "next/head";
-import CloseBtn from "../../static/icons/close-btn";
+import React, { Fragment, useState, useRef, useEffect } from 'react';
+import Prismic                                          from 'prismic-javascript';
+import Head                                             from 'next/head';
+import getConfig                                        from 'next/config';
+import { connect, useDispatch }                         from 'react-redux';
+
+import SingleCollection from '../../Components/Collections/Collection.style';
+import MainComponent    from '../../Components/Main/Main';
+import CloseBtn         from '../../static/icons/close-btn';
+
+import { overflowStatus } from "../../store/actions/controlOverflow.action";
 
 const { publicRuntimeConfig } = getConfig();
+
+const mapDispatchToProps = state => ({ overflowStatus: state.overflowStatus });
 
 /**
  * @property { string } dimensions
@@ -17,6 +23,7 @@ const { publicRuntimeConfig } = getConfig();
  * @constructor
  */
 const Collection = ( { collection } ) => {
+  const dispatch = useDispatch();
   const ul = useRef(null);
 
   const [ index, setIndex ] = useState(0);
@@ -32,6 +39,11 @@ const Collection = ( { collection } ) => {
     setWidth(ul.current.getBoundingClientRect().width);
     setDisplay(!display);
   };
+  
+  useEffect(() => {
+    dispatch(overflowStatus(true));
+    return () => dispatch(overflowStatus(null))
+  });
 
   return (
     <Fragment>
@@ -97,4 +109,4 @@ Collection.getInitialProps = async ( { query } ) => {
   }
 };
 
-export default Collection;
+export default connect(null, mapDispatchToProps) (Collection);
