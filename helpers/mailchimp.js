@@ -4,12 +4,12 @@ import { LIST_ID_EVENT } from './config';
 
 const PHP_URL = 'https://loucartergallery.com/static/newsletter.php';
 
-export const subscribeToNews = async ( email_address ) => {
+export const subscribeToNews = async(email_address) => {
   return axios.post(
     PHP_URL,
     {
       email_address,
-      status: 'subscribed',
+      status : 'subscribed',
       list_id: LIST_ID_EVENT
     },
     {

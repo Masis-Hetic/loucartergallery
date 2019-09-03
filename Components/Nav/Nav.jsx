@@ -261,13 +261,13 @@ const Nav = ({ nav }) => {
             </Newsletter.LdsRipple>) : (!successState ? (
               <Newsletter.SubmitBtn color={ COLORS.lightGrey } type="submit" value="S'inscrire"/>
             ) : (
-              <Newsletter.SubmitBtn
-                color={ COLORS.lightGrey }
-                type="button"
-                value="Fermer"
-                onClick={ () => isNewsletter(true ) }
-              />
-            ) ) }
+                                          <Newsletter.SubmitBtn
+                                            color={ COLORS.lightGrey }
+                                            type="button"
+                                            value="Fermer"
+                                            onClick={ () => isNewsletter(true) }
+                                          />
+                                        )) }
           </Newsletter.Form>
         </Newsletter.Wrapper>
       </Newsletter>
