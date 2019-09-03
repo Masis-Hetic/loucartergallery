@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
-import SingleCollection    from "../../Components/Collections/Collection.style";
-import Prismic             from 'prismic-javascript';
-import getConfig           from 'next/config';
-import MainComponent       from "../../Components/Main/Main";
-import Head                from "next/head";
-import CloseBtn from "../../static/icons/close-btn";
+import SingleCollection                                 from "../../Components/Collections/Collection.style";
+import Prismic                                          from 'prismic-javascript';
+import getConfig                                        from 'next/config';
+import MainComponent                                    from "../../Components/Main/Main";
+import Head                                             from "next/head";
+import CloseBtn                                         from "../../static/icons/close-btn";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -26,7 +26,6 @@ const Collection = ( { collection } ) => {
       return () => setLastLiWidth(null)
   }, []);
 
-
   const [ index, setIndex ] = useState(0);
   const [ height, setHeight ] = useState(0);
   const [ width, setWidth ] = useState(0);
@@ -47,7 +46,6 @@ const Collection = ( { collection } ) => {
         <title>Nom de la collection</title>
       </Head>
       <MainComponent>
-        {console.log(lastLi)}
         <SingleCollection>
           <SingleCollection.Ul ref={ ul }>
             {collection.map((art, i)=>

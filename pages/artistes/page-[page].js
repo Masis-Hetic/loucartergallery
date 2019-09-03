@@ -96,7 +96,7 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
 Artistes.getInitialProps = async({ asPath, query }) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
   const page = asPath.substring(15);
-  const artistPerPages = 20;
+  const artistPerPages = 16;
   const artistQueryLength = 100;
 
   const artistes = await API.query(Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' });

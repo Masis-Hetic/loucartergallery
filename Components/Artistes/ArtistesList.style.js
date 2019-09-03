@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import media from "../../helpers/media";
 
+const liSmallDesktop = 45;
+const liMiddleDesktop = 55;
+const liLargeDesktop = 65;
+
 const StyledArtistes = styled.div`
   height: 100%;
   display: flex;
@@ -29,8 +33,21 @@ StyledArtistes.NextBtn = styled.a`
 `;
 
 StyledArtistes.Wrapper = styled.div`
-  width: 60%;
-  height: 60vh;
+  height: ${liSmallDesktop * 8}px;
+  width: 60vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  @media(min-width: 1440px) {
+    height: ${liMiddleDesktop * 8}px;
+  }
+  
+  @media(min-width: 1920px) {
+    height: ${liLargeDesktop * 8 }px;
+    width: 50vw;
+  }
   
   ${media.mobile`
     width: 100%;
@@ -43,6 +60,7 @@ StyledArtistes.Ul = styled.ul`
   flex-wrap: wrap;
   flex-direction: column;
   overflow: hidden;
+  justify-content: flex-start;
   
   ${media.mobile`
     overflow: initial;
@@ -53,14 +71,25 @@ StyledArtistes.Ul = styled.ul`
 
 StyledArtistes.Li = styled.li`
   width: 50%;
-  line-height: 2.5;
-  text-align: center;
-  font-size: 20px;
+  height: ${liSmallDesktop}px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  
+  @media(min-width: 1440px) {
+    height: ${liMiddleDesktop}px;
+    font-size: 20px;
+  }
+  
+  @media(min-width: 1920px) {
+    height: ${liLargeDesktop}px;
+    width: 50vw;
+  }
   
   ${media.mobile`
     width: 100%;
     font-size: 16px;
-    line-height: 2.2;
+    line-height: 2.5;
   `}
 `;
 
@@ -74,16 +103,25 @@ StyledArtistes.ArtistLink = styled.a`
 StyledArtistes.NameWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  text-align: left; 
+  text-align: justify;
 `;
 
 StyledArtistes.ArtistLastName = styled.span`
   text-transform: uppercase;
-  width: 50%;
+  width: 55%;
+  display: table;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 1%;
 `;
 
 StyledArtistes.ArtistFirstName = styled.span`
-  width: 50%;
+  width: 44%;
+  display: table;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export default StyledArtistes;
