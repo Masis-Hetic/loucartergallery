@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import Header                        from "./Nav.style";
 import Newsletter                    from "./Newsletter.style";
 import Link                          from 'next/link';
-import { connect, useDispatch }      from 'react-redux'
+import { connect, useDispatch }      from 'react-redux';
 import { navStatus }                 from "../../store/actions/nav.action";
 import OutsideAlerter                from '../../helpers/click-outside';
 import COLORS                        from '../../helpers/colors';
@@ -11,9 +11,9 @@ import { subscribeToNews }           from '../../helpers/mailchimp';
 
 import { useSpring, animated, config } from 'react-spring';
 
-const mapStateToProps = state => ( { nav: state.nav.datas } );
+const mapStateToProps = state => ( { nav: state.nav.datas, navPosition: state.navPosition } );
 
-const Nav = ( { nav } ) => {
+const Nav = ( { nav, navPosition } ) => {
   const dispatch = useDispatch();
 
   const [ newsletter, toggleModal ] = useState( false );
@@ -102,7 +102,7 @@ const Nav = ( { nav } ) => {
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <Header open={ isOpen }>
+        <Header open={ isOpen } navPos={navPosition.data}>
           <Header.Nav>
 
             <Header.UlWrapper>

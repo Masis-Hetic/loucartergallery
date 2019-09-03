@@ -1,29 +1,45 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
 import SingleCollection                                 from "../../Components/Collections/Collection.style";
-import Prismic                                          from 'prismic-javascript';
-import getConfig                                        from 'next/config';
+import Prismic                                          from "prismic-javascript";
+import getConfig                                        from "next/config";
 import MainComponent                                    from "../../Components/Main/Main";
 import Head                                             from "next/head";
 import CloseBtn                                         from "../../static/icons/close-btn";
+import { connect, useDispatch }                         from "react-redux";
+import { setNavPosition }                               from "../../store/actions/navPosition.action";
 
 const { publicRuntimeConfig } = getConfig();
+
+const mapStateToProps = state => {
+  return {
+    navPosition: state.navPosition
+  }
+};
 
 /**
  * @property { string } dimensions
  * @property { string } artist_name
+ * @property { string } meta_title
  * @param query
  * @param collection
  * @returns {*}
  * @constructor
  */
-const Collection = ( { collection } ) => {
+const Collection = ( { collection, res } ) => {
+  const dispatch = useDispatch();
+
   const ul = useRef(null);
   const li = useRef(null);
-
   const [ lastLi, setLastLiWidth ] = useState(null);
+
   useEffect(() => {
-      setLastLiWidth(li.current.getBoundingClientRect());
-      return () => setLastLiWidth(null)
+    dispatch(setNavPosition(true));
+    setLastLiWidth(li.current.getBoundingClientRect());
+
+    return () => {
+      dispatch(setNavPosition(false));
+      setLastLiWidth(null);
+    }
   }, []);
 
   const [ index, setIndex ] = useState(0);
@@ -31,7 +47,6 @@ const Collection = ( { collection } ) => {
   const [ width, setWidth ] = useState(0);
   const [ left, setLeft] = useState(0);
   const [ display, setDisplay ] = useState(false);
-
   const handleClick = (e, i) => {
     setIndex(i);
     setHeight(e.target.offsetHeight);
@@ -43,8 +58,9 @@ const Collection = ( { collection } ) => {
   return (
     <Fragment>
       <Head>
-        <title>Nom de la collection</title>
+        <title>{res.data.meta_title[0].text}</title>
       </Head>
+      {console.log(res)}
       <MainComponent>
         <SingleCollection>
           <SingleCollection.Ul ref={ ul }>
@@ -66,9 +82,8 @@ const Collection = ( { collection } ) => {
             display={ !display ? 'none' : 'flex' }
             onClick={() => setDisplay(false)}
           >
-            <img
+            <SingleCollection.MobileLogo
               src="../../static/icons/loucarter_logo_copie.png" alt=""
-              style={{ display: 'block', width: '6.7rem', position: 'absolute', top: 20, left: 20 }}
             />
             <SingleCollection.BigImage src={ collection[index].data.image.url } alt="" width={ width } />
             <SingleCollection.DescriptionWrapper>
@@ -101,8 +116,9 @@ Collection.getInitialProps = async ( { query } ) => {
 
   return {
     query,
+    res: collection.res.results[0],
     collection: collection.oeuvre.results,
   }
 };
 
-export default Collection;
+export default connect(mapStateToProps, null) (Collection);

@@ -13,8 +13,12 @@ const openLinks = keyframes`
   }
 `;
 
+/**
+ * @property { boolean } navPos
+ * @property { boolean } open
+ */
 const Header = styled.header`
-  position   : absolute;
+  position   : ${ props => props.navPos === true ? 'fixed' : 'absolute' };
   height     : 100vh;
   width      : 30vw;
   top        : 0;
