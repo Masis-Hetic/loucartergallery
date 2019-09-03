@@ -34,7 +34,7 @@ StyledArtistes.NextBtn = styled.a`
 
 StyledArtistes.Wrapper = styled.div`
   height: ${liSmallDesktop * 8}px;
-  width: 60vw;
+  width: 54vw;
   position: absolute;
   top: 50%;
   left: 50%;
