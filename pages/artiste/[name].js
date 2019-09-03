@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Link                from "next/link";
 import Prismic             from "prismic-javascript";
 import getConfig           from 'next/config';
-import MainComponent       from '../../Components/Main/Main';
 import Head                from 'next/head';
+
+import MainComponent       from '../../Components/Main/Main';
 import Artist              from "../../Components/Artistes/Artiste.style";
 
 const { publicRuntimeConfig } = getConfig();

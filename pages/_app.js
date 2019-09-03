@@ -2,15 +2,15 @@ import React                       from 'react';
 import Prismic                     from 'prismic-javascript';
 import App, { Container }          from 'next/app';
 import { Provider }                from 'react-redux';
-import withReduxStore              from '../lib/with-redux-store';
 import getConfig                   from 'next/config';
 import { parseCookies, setCookie } from 'nookies';
 
-const { publicRuntimeConfig } = getConfig();
-
+import withReduxStore             from '../lib/with-redux-store';
 import { storeCookiesDatas }      from '../store/actions/cookies.action';
 import { getNavDatas, navStatus } from '../store/actions/nav.action';
 import { initGA }                 from '../helpers/analytics';
+
+const { publicRuntimeConfig } = getConfig();
 
 class LouCarter extends App {
   

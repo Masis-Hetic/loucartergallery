@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
 import Prismic             from 'prismic-javascript';
 import Head                from 'next/head';
+import getConfig           from 'next/config';
 
 import LegalPage     from '../Components/Pages/LegalPage';
 import MainComponent from '../Components/Main/Main';
-
 import '../styles/style.scss';
 
-import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
 const Legal = (legalDatas) => (
@@ -21,7 +20,7 @@ const Legal = (legalDatas) => (
   </Fragment>
 );
 
-Legal.getInitialProps = async () => {
+Legal.getInitialProps = async() => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
   const legalDatas = await API.query(
     Prismic.Predicates.at('document.type', 'mentions_legales'), { lang: 'fr-FR' }

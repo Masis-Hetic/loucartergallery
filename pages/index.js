@@ -1,21 +1,19 @@
 import React, { Fragment } from 'react';
-import '../styles/style.scss'
 import Head                from 'next/head';
+import Prismic             from 'prismic-javascript';
+import getConfig           from 'next/config';
 
-import HomePage from '../Components/Pages/HomePage';
-import Prismic  from 'prismic-javascript';
-
-import getConfig     from 'next/config';
+import HomePage      from '../Components/Pages/HomePage';
+import MainComponent from '../Components/Main/Main';
+import { sliceUrl }  from '../helpers/functions';
+import '../styles/style.scss';
 
 const { publicRuntimeConfig } = getConfig();
-import MainComponent from "../Components/Main/Main";
-import { sliceUrl }  from "../helpers/functions";
 
-
-import Link from "next/link";
+import Link from 'next/link';
 
 // noinspection JSUnresolvedVariable
-const Index = ( { result, imgs } ) => (
+const Index = ({ result, imgs }) => (
   <Fragment>
     <Head>
       <title>{ result.data.title[ 0 ].text }</title>
@@ -39,19 +37,19 @@ const Index = ( { result, imgs } ) => (
   </Fragment>
 );
 
-Index.getInitialProps = async ( {} ) => {
-  const API = await Prismic.api( publicRuntimeConfig.prismic );
-
+Index.getInitialProps = async({}) => {
+  const API = await Prismic.api(publicRuntimeConfig.prismic);
+  
   const result = await API.query(
-    Prismic.Predicates.at( 'document.type', 'homepage' ), { lang: 'fr-FR' }
+    Prismic.Predicates.at('document.type', 'homepage'), { lang: 'fr-FR' }
   );
-
+  
   // noinspection JSUnresolvedVariable
-  let imgs = result.results[ 0 ].data.body.map( item => item.items.filter( img => img.background_img.url ) );
+  let imgs = result.results[ 0 ].data.body.map(item => item.items.filter(img => img.background_img.url));
   // noinspection JSUnresolvedVariable
-  imgs = imgs.map( img => img.reduce( ( url, element ) => url + sliceUrl( ` ${ element.background_img.url } ${ element.size[ 0 ].text },` ), '' ) );
-
-  return { result: result.results[ 0 ], imgs }
+  imgs = imgs.map(img => img.reduce((url, element) => url + sliceUrl(` ${ element.background_img.url } ${ element.size[ 0 ].text },`), ''));
+  
+  return { result: result.results[ 0 ], imgs };
 };
 
 export default Index;

@@ -1,11 +1,12 @@
 import React       from 'react';
-import Main        from "./Main.style";
-import { connect } from "react-redux";
-import Link        from "next/link";
-import Nav         from "../Nav/Nav";
-import Cookies     from "../Cookies/Cookies";
+import { connect } from 'react-redux';
+import Link        from 'next/link';
 
-const mapStateToProps = state => ( { nav: state.nav.status, overflow: state.overflow } );
+import Main    from './Main.style';
+import Nav     from '../Nav/Nav';
+import Cookies from '../Cookies/Cookies';
+
+const mapStateToProps = state => ({ nav: state.nav.status, overflow: state.overflow });
 
 const MainComponent = props => (
   <Main overflowStatus={ props.overflow }>
@@ -16,13 +17,13 @@ const MainComponent = props => (
         </Main.Logo>
       </Link>
     </Main.LogoWrapper>
-
+    
     <Nav/>
-
+    
     { props.children }
-
+    
     <Cookies/>
   </Main>
 );
 
-export default connect( mapStateToProps )( MainComponent );
+export default connect(mapStateToProps)(MainComponent);

@@ -1,15 +1,15 @@
 import React, { Fragment, useState } from 'react';
-import MainComponent                 from '../../Components/Main/Main';
-import ArtistesList                  from '../../Components/Artistes/ArtistesList';
 import Prismic                       from 'prismic-javascript';
+import getConfig                     from 'next/config';
+import Head                          from 'next/head';
 
-import getConfig from 'next/config';
+import MainComponent from '../../Components/Main/Main';
+import ArtistesList  from '../../Components/Artistes/ArtistesList';
 
 const { publicRuntimeConfig } = getConfig();
-import Head      from 'next/head';
 
 const Artistes = ({ artistes, artiste, maxPage, query }) => {
-
+  
   const [ page, incrementPage ] = useState(1);
   const nextPage = () => {
     if (page >= maxPage) return;
@@ -19,7 +19,7 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
     if (page <= 1) return;
     incrementPage(page - 1);
   };
-
+  
   return (
     <Fragment>
       <Head>
@@ -41,12 +41,12 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
       <MainComponent>
         {/* ************************************* */ }
         {/* ************************************* */ }
-
+        
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
-
+        
         <img
           srcSet="../../static/images/coming_soon/1080_artistes.jpg 1080w,
           ../../static/images/coming_soon/1280_artistes.jpg 1280w,
@@ -65,25 +65,25 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
           object-position: right;
         }
         ` }</style>
-
+        
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
-
+        
         {/* ************************************* */ }
         {/* ************************************* */ }
-
-        {/*{ artistes && artiste &&*/}
-        {/*  <ArtistesList*/}
-        {/*    nextPage={ nextPage }*/}
-        {/*    prevPage={ prevPage }*/}
-        {/*    currentPage={ query }*/}
-        {/*    artists={ artiste }*/}
-        {/*    maxPage={ maxPage }*/}
-        {/*  />*/}
-        {/*}*/}
-
+        
+        {/*{ artistes && artiste &&*/ }
+        {/*  <ArtistesList*/ }
+        {/*    nextPage={ nextPage }*/ }
+        {/*    prevPage={ prevPage }*/ }
+        {/*    currentPage={ query }*/ }
+        {/*    artists={ artiste }*/ }
+        {/*    maxPage={ maxPage }*/ }
+        {/*  />*/ }
+        {/*}*/ }
+        
         {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */ }
         {/*{ !artiste &&*/ }
         {/*  <h1>PAS ARTISTES</h1>*/ }
@@ -98,10 +98,10 @@ Artistes.getInitialProps = async({ asPath, query }) => {
   const page = asPath.substring(15);
   const artistPerPages = 20;
   const artistQueryLength = 100;
-
+  
   const artistes = await API.query(Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' });
   const artiste = await iterArtist([], 1);
-
+  
   const listIds = artistes.results[ 0 ].data.artists.map(item => item.artist.id);
   const allArtists = artiste.reduce((artist, current) => {
     if (listIds.includes(current.id)) { artist.push(current); }
@@ -112,16 +112,16 @@ Artistes.getInitialProps = async({ asPath, query }) => {
     name  : artist.data.name[ 0 ].text,
     prenom: artist.data.prenom[ 0 ].text
   }));
-
+  
   const pageLength = Math.ceil(allArtists.length / artistPerPages);
-
+  
   const artistsToDisplay = allArtists.reduce((resultArray, item, index) => {
     const chunkIndex = Math.floor(index / 20);
     if (!resultArray[ chunkIndex ]) { resultArray[ chunkIndex ] = []; }
     resultArray[ chunkIndex ].push(item);
     return resultArray;
   }, []);
-
+  
   async function iterArtist(artistes, nbPage) {
     const response = await callArtist(nbPage);
     artistes = artistes.concat(response.results);
@@ -131,7 +131,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
     }
     return artistes;
   }
-
+  
   async function callArtist(page) {
     return await API.query(
       Prismic.Predicates.at('document.type', 'artist'), {
@@ -142,7 +142,7 @@ Artistes.getInitialProps = async({ asPath, query }) => {
       }
     );
   }
-
+  
   return {
     artistes: artistes.results[ 0 ],
     artiste : artistsToDisplay[ Number(page) - 1 ],

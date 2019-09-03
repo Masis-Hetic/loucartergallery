@@ -1,21 +1,21 @@
-import React, { Fragment, useState } from "react";
-import MainComponent                 from "../Components/Main/Main";
-import ArtistesList                  from "../Components/Artistes/ArtistesList";
-import Prismic                       from "prismic-javascript";
+import React, { Fragment, useState } from 'react';
+import Prismic                       from 'prismic-javascript';
+import getConfig                     from 'next/config';
+import Head                          from 'next/head';
 
-import getConfig from 'next/config';
+import MainComponent from '../Components/Main/Main';
+import ArtistesList  from '../Components/Artistes/ArtistesList';
 
 const { publicRuntimeConfig } = getConfig();
-import Head      from 'next/head';
 
-const Artistes = ( { artistes, artiste } ) => {
+const Artistes = ({ artistes, artiste }) => {
   // noinspection JSUnresolvedVariable
-
-  const [page, currentPage] = useState(1);
+  
+  const [ page, currentPage ] = useState(1);
   const changePage = () => {
     currentPage(page + 1);
   };
-
+  
   return (
     <Fragment>
       <Head>
@@ -34,27 +34,27 @@ const Artistes = ( { artistes, artiste } ) => {
         <meta property="og:image:width" content={ 600 }/>
         <meta property="og:image:height" content={ 314 }/>
       </Head>
-
+      
       <MainComponent>
-        <ArtistesList page={changePage} currentPage={page}/>
-        {/*{ console.log( artistes ) }*/}
-        {/*{ console.log( artiste ) }*/}
+        <ArtistesList page={ changePage } currentPage={ page }/>
+        {/*{ console.log( artistes ) }*/ }
+        {/*{ console.log( artiste ) }*/ }
       </MainComponent>
     </Fragment>
-  )
+  );
 };
 
-Artistes.getInitialProps = async () => {
-  const API = await Prismic.api( publicRuntimeConfig.prismic );
+Artistes.getInitialProps = async() => {
+  const API = await Prismic.api(publicRuntimeConfig.prismic);
   const artistes = await API.query(
-    Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' }
+    Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' }
   );
-
+  
   const artiste = await API.query(
-    Prismic.Predicates.at( 'document.type', 'artist' ), { lang: 'fr-FR', pageSize: 1, page: 1 }
+    Prismic.Predicates.at('document.type', 'artist'), { lang: 'fr-FR', pageSize: 1, page: 1 }
   );
-
-  return { artistes: artistes.results[ 0 ], artiste: artiste.results[0] }
+  
+  return { artistes: artistes.results[ 0 ], artiste: artiste.results[ 0 ] };
 };
 
 export default Artistes;
