@@ -10,7 +10,7 @@ const { publicRuntimeConfig } = getConfig();
 
 import { storeCookiesDatas }      from '../store/actions/cookies.action';
 import { getNavDatas, navStatus } from '../store/actions/nav.action';
-import { initGA }    from '../helpers/analytics';
+import { initGA }                 from '../helpers/analytics';
 
 class LouCarter extends App {
   
