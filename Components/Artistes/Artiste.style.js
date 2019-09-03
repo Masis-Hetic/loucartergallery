@@ -39,6 +39,7 @@ Artist.Carousel = styled.ul`
   overflow-y: scroll;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
+  scrollbar-width: none;
   
   &::-webkit-scrollbar { width: 0 !important; }
   
@@ -114,6 +115,7 @@ Artist.DescriptionWrapper = styled.div`
   overflow-y: scroll;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
+  scrollbar-width: none;
   
   &::-webkit-scrollbar { width: 0 !important; }
   
