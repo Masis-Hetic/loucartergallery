@@ -36,6 +36,12 @@ SingleCollection.Li = styled.li`
   cursor: pointer;
   margin: ${ props => props.margin };
   
+  &:last-child {
+    flex: none;
+    width: ${ props => props.lastChild && props.lastChild.width }px;
+    height: ${ props => props.lastChild && props.lastChild.height }px;
+  }
+  
   ${media.mobile`
     margin: 0 0 40px 0;
   `}

@@ -8,6 +8,14 @@ import CollectionsList from "../Components/Pages/CollectionsList";
 
 const { publicRuntimeConfig } = getConfig();
 
+/**
+ * @property { string } description_google
+ * @property { string } og_image
+ * @param collections
+ * @param collectionsList
+ * @returns {*}
+ * @constructor
+ */
 const Collections = ( { collections, collectionsList } ) => {
   return (
     <Fragment>

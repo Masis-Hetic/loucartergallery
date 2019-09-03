@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from 'react';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
 import SingleCollection    from "../../Components/Collections/Collection.style";
 import Prismic             from 'prismic-javascript';
 import getConfig           from 'next/config';
@@ -18,6 +18,14 @@ const { publicRuntimeConfig } = getConfig();
  */
 const Collection = ( { collection } ) => {
   const ul = useRef(null);
+  const li = useRef(null);
+
+  const [ lastLi, setLastLiWidth ] = useState(null);
+  useEffect(() => {
+      setLastLiWidth(li.current.getBoundingClientRect());
+      return () => setLastLiWidth(null)
+  }, []);
+
 
   const [ index, setIndex ] = useState(0);
   const [ height, setHeight ] = useState(0);
@@ -39,13 +47,15 @@ const Collection = ( { collection } ) => {
         <title>Nom de la collection</title>
       </Head>
       <MainComponent>
-
+        {console.log(lastLi)}
         <SingleCollection>
           <SingleCollection.Ul ref={ ul }>
             {collection.map((art, i)=>
               <SingleCollection.Li
+                ref={ i === 0 ? li : null }
                 onClick={ e => handleClick(e, i) }
                 margin={ i % 2 === 0 ? '0 40px 40px 0' : '0 0 40px 0' } key={i}
+                lastChild={lastLi}
               >
                 <SingleCollection.Img src={ art.data.image.url } alt=""/>
               </SingleCollection.Li>
@@ -85,7 +95,7 @@ Collection.getInitialProps = async ( { query } ) => {
 
   const collection = await API.query( Prismic.Predicates.at( 'my.collection.uid', query.collection ), { lang: 'fr-FR' } )
     .then( async res => {
-        const oeuvre = await API.query( Prismic.Predicates.at( 'my.oeuvre.tag', res.results[ 0 ].data.tag ), { lang: 'fr-FR' } );
+        const oeuvre = await API.query( Prismic.Predicates.at( 'my.oeuvre.tag', res.results[ 0 ].data.tag ), { lang: 'fr-FR', pageSize: 100 } );
 
         return { res, oeuvre };
       }
