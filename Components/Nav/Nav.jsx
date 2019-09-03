@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react';
+import Header                        from './Nav.style';
 import Link                          from 'next/link';
 import { connect, useDispatch }      from 'react-redux';
 
-import Header              from './Nav.style';
 import Newsletter          from './Newsletter.style';
 import Credits             from './Credits.style';
 import { navStatus }       from '../../store/actions/nav.action';
@@ -13,18 +13,18 @@ import { subscribeToNews } from '../../helpers/mailchimp';
 
 import { useSpring, animated, config } from 'react-spring';
 
-const mapStateToProps = state => ({ nav: state.nav.datas });
+const mapStateToProps = state => ({ nav: state.nav.datas, navPosition: state.navPosition });
 
-const Nav = ({ nav }) => {
+const Nav = ({ nav, navPosition }) => {
   const dispatch = useDispatch();
   
-  const [ newsletter, toggleModalNews ] = useState(false);
+  const [ newsletter, toggleModal ] = useState(false);
   const isNewsletter = param => {
     if (param) {
-      toggleModalNews && openMenu(false);
+      toggleModal && openMenu(false);
       setEmail('');
       setSuccess('Partagez-nous votre adresse email pour être tenu informé de nos prochains événements');
-      toggleModalNews(!newsletter);
+      toggleModal(!newsletter);
       stateSubscribe(false);
       if (!newsletter) {
         dispatch(navStatus(!isOpen));
@@ -113,7 +113,7 @@ const Nav = ({ nav }) => {
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <Header open={ isOpen }>
+        <Header open={ isOpen } navPos={ navPosition.data }>
           <Header.Nav>
             
             <Header.UlWrapper>
@@ -243,6 +243,7 @@ const Nav = ({ nav }) => {
                     fill={ COLORS.lightGrey }/>
             </svg>
           </Newsletter.CloseBtn>
+          
           <Newsletter.Form onSubmit={ e => onSubmit(e, email) }>
             <Newsletter.InputWrapper>
               <Newsletter.Label htmlFor="mail">Adresse e-mail :</Newsletter.Label>
@@ -261,13 +262,13 @@ const Nav = ({ nav }) => {
             </Newsletter.LdsRipple>) : (!successState ? (
               <Newsletter.SubmitBtn color={ COLORS.lightGrey } type="submit" value="S'inscrire"/>
             ) : (
-              <Newsletter.SubmitBtn
-                color={ COLORS.lightGrey }
-                type="button"
-                value="Fermer"
-                onClick={ () => isNewsletter(true ) }
-              />
-            ) ) }
+                                          <Newsletter.SubmitBtn
+                                            color={ COLORS.lightGrey }
+                                            type="button"
+                                            value="Fermer"
+                                            onClick={ () => isNewsletter(true) }
+                                          />
+                                        )) }
           </Newsletter.Form>
         </Newsletter.Wrapper>
       </Newsletter>

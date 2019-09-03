@@ -13,13 +13,13 @@ import { getNavDatas, navStatus } from '../store/actions/nav.action';
 import { initGA }                 from '../helpers/analytics';
 
 class LouCarter extends App {
-  
+
   constructor(props) {
     const cookies = parseCookies({});
     if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     super(props);
   }
-  
+
   /**
    *
    * @param Component
@@ -27,7 +27,7 @@ class LouCarter extends App {
    * @param req
    * @returns {Promise<{pageProps: {}, myLinks: *}>}
    *
-   * Ici on appelle les éléments qu'on va afficher sur toutes les pages, pour faire l'appelle qu'une seule fois
+   * Ici on appelle les éléments qu'on va afficher sur toutes les pages, pour faire l'appel qu'une seule fois
    *
    * Il faut connecter le reduxStore pour passer l'objet links dans le store, et ensuite c'est bon
    */
@@ -43,12 +43,12 @@ class LouCarter extends App {
     if (Component.getInitialProps) { pageProps = await Component.getInitialProps({ ...ctx }); }
     return { pageProps: { ...pageProps }, myLinks, nav, cookies };
   }
-  
+
   componentDidMount() { initGA(); }
-  
+
   render() {
     const { Component, pageProps, myLinks, nav, reduxStore, cookies } = this.props;
-    
+
     return (
       <Container>
         <Provider store={ reduxStore }>

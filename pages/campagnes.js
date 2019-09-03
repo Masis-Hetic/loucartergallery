@@ -20,7 +20,7 @@ const Campagnes = ({ campaign, imgs }) => {
 
   useEffect(() => {
     dispatch(overflowStatus(true));
-    return () => dispatch(overflowStatus(null))
+    return () => dispatch(overflowStatus(false))
   });
 
   return (

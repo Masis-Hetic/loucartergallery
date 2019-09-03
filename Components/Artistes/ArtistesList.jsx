@@ -21,7 +21,7 @@ const ArtistesList = props => {
       </Link>
 
       <StyledArtistes.Wrapper>
-        <StyledArtistes.Ul>
+        <StyledArtistes.Ul length={props.artists.length}>
           { props.artists.map( ( artiste, i ) =>
             <StyledArtistes.Li key={ i }>
               <Link
@@ -30,7 +30,7 @@ const ArtistesList = props => {
               >
                 <StyledArtistes.ArtistLink>
                   <StyledArtistes.NameWrapper>
-                    <StyledArtistes.ArtistLastName>{ artiste.data.name[ 0 ].text }</StyledArtistes.ArtistLastName>
+                    <StyledArtistes.ArtistLastName><span style={{ display: 'block', width: '99%', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>{ artiste.data.name[ 0 ].text }</span></StyledArtistes.ArtistLastName>
                     <StyledArtistes.ArtistFirstName> { artiste.data.prenom[ 0 ].text }</StyledArtistes.ArtistFirstName>
                   </StyledArtistes.NameWrapper>
                 </StyledArtistes.ArtistLink>

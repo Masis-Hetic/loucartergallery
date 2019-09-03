@@ -3,7 +3,8 @@ import Collections          from "../Collections/Collections.style";
 import Link                 from 'next/link';
 
 /**
- * @property { object } collection_name
+ * @property { string } collection_name
+ * @property { string } image
  */
 class CollectionsList extends Component {
 
@@ -12,15 +13,20 @@ class CollectionsList extends Component {
 
     return (
       <Collections>
-        <div style={{ display: 'table', margin: '0 auto', position: 'relative', top: '300px' }}>
+        <Collections.Wrapper>
+        <Collections.Ul length={collectionsList.length}>
           {collectionsList.map(( collection, i ) =>
-            <li key={i}>
+            <Collections.Li key={i}>
               <Link href={ `/collections/[collection]` } as={ `/collections/${collection.uid}` }>
-                <a>{collection.data.collection_name[0].text}</a>
+                <Collections.A>
+                  <Collections.Img src={collection.data.image.url} alt=""/>
+                  <Collections.P>{collection.data.collection_name[0].text}</Collections.P>
+                </Collections.A>
               </Link>
-            </li>
+            </Collections.Li>
           )}
-        </div>
+        </Collections.Ul>
+        </Collections.Wrapper>
       </Collections>
     );
   }

@@ -36,6 +36,12 @@ SingleCollection.Li = styled.li`
   cursor: pointer;
   margin: ${ props => props.margin };
   
+  &:last-child {
+    flex: none;
+    width: ${ props => props.lastChild && props.lastChild.width }px;
+    height: ${ props => props.lastChild && props.lastChild.height }px;
+  }
+  
   ${media.mobile`
     margin: 0 0 40px 0;
   `}
@@ -71,6 +77,18 @@ SingleCollection.SelectedImage = styled.div`
 	`}
 `;
 
+SingleCollection.MobileLogo = styled.img`
+	display: none;
+	
+	${media.mobile`
+		display: block;
+		width: 6.7rem; 
+		position: absolute; 
+		top: 20px; 
+		left: 20px;
+	`}
+`;
+
 SingleCollection.BigImage = styled.img`
 	display: block;
 	width: ${ props => props.width }px;
@@ -79,7 +97,8 @@ SingleCollection.BigImage = styled.img`
 	
 	${media.mobile`
 		width: 100%;
-		margin: 0 auto;
+		height: unset;
+		margin: 7rem auto 0;
 		object-fit: contain;
 		border: none;
 	`}

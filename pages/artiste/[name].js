@@ -13,7 +13,10 @@ class Artiste extends React.Component {
     const API = await Prismic.api( publicRuntimeConfig.prismic );
     const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } )
       .then(async res => {
-        const idsArray = res.results[0].data.artist_work.map(work => gwork.oeuvre.id);
+        const idsArray = res.results[0].data.artist_work.map(work => work.oeuvre.id);
+
+        // const idsArray = [];
+        // res.results[0].data.artist_work.map(work => idsArray.push(work.oeuvre.id) );
         const arts = await API.query( Prismic.Predicates.in( 'document.id', idsArray ), { lang: 'fr-FR' } );
 
         return { res, arts };
@@ -36,6 +39,7 @@ class Artiste extends React.Component {
   };
 
   changePicture = id => this.setState( { activePicture: Number( id ) } );
+
   handleTouchStart = e => this.setState( { startingX: e.touches[ 0 ].clientX } );
   handleTouchMove = e => {
     const touch = e.touches[ 0 ];
