@@ -14,12 +14,12 @@ const Main = styled.main`
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-  position: ${ props => props.overflowStatus ? 'fixed' : 'relative' } ;
+  position: ${ props => props.overflowStatus.data ? 'fixed' : 'relative' };
   
   /* enable smooth scrolling on iOS */
   -webkit-overflow-scrolling: touch;
   
-  overflow-y: ${ props => props.overflowStatus ? 'hidden' : 'unset' };
+  overflow-y: ${ props => props.overflowStatus.data ? 'hidden' : 'unset' };
   animation-name: ${opacity};
   animation-duration: .3s;
   animation-fill-mode: forwards;
@@ -34,7 +34,6 @@ Main.LogoWrapper = styled.div`
 `;
 
 Main.Logo = styled.a`
-  position: absolute;
   top: 20px;
   left: 20px;
   z-index: 100;

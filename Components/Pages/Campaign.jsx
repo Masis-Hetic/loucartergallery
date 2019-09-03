@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import CampaignStyled       from './Campaign.style';
 import Link                 from 'next/link';
 
-import CampaignStyled     from './Campaign.style';
 import ArrowUp            from '../../static/icons/arrow-up';
 import { overflowStatus } from '../../store/actions/controlOverflow.action';
 

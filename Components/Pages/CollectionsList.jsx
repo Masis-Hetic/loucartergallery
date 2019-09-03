@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
+import Collections          from "../Collections/Collections.style";
 import Link                 from 'next/link';
 
-import Collections from '../Collections/Collections.style';
-
 /**
- * @property { object } collection_name
+ * @property { string } collection_name
+ * @property { string } image
  */
 class CollectionsList extends Component {
-  
+
   render() {
     const { collectionsList } = this.props;
-    
+
     return (
       <Collections>
-        <div style={ { display: 'table', margin: '0 auto', position: 'relative', top: '300px' } }>
-          { collectionsList.map((collection, i) =>
-                                  <li key={ i }>
-                                    <Link href={ `/collections/[collection]` }
-                                          as={ `/collections/${ collection.uid }` }>
-                                      <a>{ collection.data.collection_name[ 0 ].text }</a>
-                                    </Link>
-                                  </li>
-          ) }
-        </div>
+        <Collections.Wrapper>
+        <Collections.Ul length={collectionsList.length}>
+          {collectionsList.map(( collection, i ) =>
+            <Collections.Li key={i}>
+              <Link href={ `/collections/[collection]` } as={ `/collections/${collection.uid}` }>
+                <Collections.A>
+                  <Collections.Img src={collection.data.image.url} alt=""/>
+                  <Collections.P>{collection.data.collection_name[0].text}</Collections.P>
+                </Collections.A>
+              </Link>
+            </Collections.Li>
+          )}
+        </Collections.Ul>
+        </Collections.Wrapper>
       </Collections>
     );
   }

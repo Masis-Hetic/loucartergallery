@@ -31,11 +31,10 @@ body {
 }
 body * {
   letter-spacing: 4px;
-  
-  ::-webkit-scrollbar {
-    width: 0;
-    background: transparent;
-  }
+}
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 main {
   width: 100%;
