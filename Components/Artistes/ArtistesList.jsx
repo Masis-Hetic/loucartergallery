@@ -21,7 +21,7 @@ const ArtistesList = props => {
       </Link>
 
       <StyledArtistes.Wrapper>
-        <StyledArtistes.Ul>
+        <StyledArtistes.Ul length={props.artists.length}>
           { props.artists.map( ( artiste, i ) =>
             <StyledArtistes.Li key={ i }>
               <Link

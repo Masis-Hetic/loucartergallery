@@ -83,7 +83,7 @@ StyledArtistes.Li = styled.li`
   
   @media(min-width: 1920px) {
     height: ${liLargeDesktop}px;
-    width: 50vw;
+    width: 50%;
   }
   
   ${media.mobile`
