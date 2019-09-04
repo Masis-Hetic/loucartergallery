@@ -134,7 +134,7 @@ class Artiste extends React.Component {
               </div>
 
               <Artist.BtnWrapper>
-                <Link href={ '/artistes/page-[page]' } as={ '/artistes/page-1' }>
+                <Link href={ { pathname: '/artistes/page-[page]' } } as={ '/artistes/page-1' }>
                   <Artist.BackBtn>Retour aux artistes</Artist.BackBtn>
                 </Link>
               </Artist.BtnWrapper>

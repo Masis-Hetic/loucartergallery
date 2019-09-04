@@ -121,7 +121,7 @@ const Nav = ( { nav, navPosition } ) => {
                 <Header.FirstStepLi key={ i }>
                   { link.data.link_to.uid
                     ? (
-                      <Link href={ `/${ link.data.link_to.uid }` }>
+                      <Link href={ { pathname: `/${ link.data.link_to.uid }` } }>
                         <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ].text }</a>
                       </Link>
                     )
@@ -142,7 +142,7 @@ const Nav = ( { nav, navPosition } ) => {
                                     ? (
                                       <li key={ i }>
                                         <Link
-                                          href={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-[page]' : sublink.primary.link_to_level_two.uid }` }
+                                          href={ { pathname: `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-[page]' : sublink.primary.link_to_level_two.uid }` } }
                                           as={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-1' : sublink.primary.link_to_level_two.uid }` }
                                         >
                                           <Header.Link
@@ -155,7 +155,7 @@ const Nav = ( { nav, navPosition } ) => {
                                       <li key={ i }>
                                         {/*<Link href={ `${ sublink.primary.link_to_level_two.url }` }>*/ }
                                         <Header.Link
-                                          href={ `${ sublink.primary.link_to_level_two.url }` }
+                                          href={ { pathname: `${ sublink.primary.link_to_level_two.url }` } }
                                           target="_blank">
                                           <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span>
                                         </Header.Link>
@@ -189,7 +189,7 @@ const Nav = ( { nav, navPosition } ) => {
                                             thirdLink.link_three_href[ 0 ].text !== ''
                                               ? (
                                                 <Link
-                                                  href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
+                                                  href={ { pathname: `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` } }
                                                   as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
                                                 >
                                                   <Header.Link
@@ -200,7 +200,7 @@ const Nav = ( { nav, navPosition } ) => {
                                               )
                                               : (
                                                 <Link
-                                                  href={ `/${ thirdLink.link_to_level_three.uid }` }>
+                                                  href={ { pathname: `/${ thirdLink.link_to_level_three.uid }` } }>
                                                   <Header.Link
                                                     onClick={ () => dispatch( navStatus( !isOpen ) ) }>
                                                     <span>{ thirdLink.link_three[ 0 ].text }</span>

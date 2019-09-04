@@ -17,7 +17,7 @@ class CollectionsList extends Component {
         <Collections.Ul length={collectionsList.length}>
           {collectionsList.map(( collection, i ) =>
             <Collections.Li key={i}>
-              <Link href={ `/collections/[collection]` } as={ `/collections/${collection.uid}` }>
+              <Link href={ { pathname: `/collections/[collection]`} } as={ `/collections/${collection.uid}` }>
                 <Collections.A>
                   <Collections.Img src={collection.data.image.url} alt=""/>
                   <Collections.P>{collection.data.collection_name[0].text}</Collections.P>

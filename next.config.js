@@ -8,11 +8,7 @@ const webpack = require('webpack');
 
 const nextConfiguration = {
   webpack: config => {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-                                 PC: JSON.stringify('pc')
-                               })
-    );
+    config.plugins.push(new webpack.DefinePlugin({ PC: JSON.stringify('pc') }));
     return config;
   },
 };
@@ -47,9 +43,7 @@ module.exports = {
   }
 };
 
-module.exports = withPlugins([
-                               [ withSass, sassConfig ]
-                             ], nextConfiguration);
+module.exports = withPlugins([ [ withSass, sassConfig ] ], nextConfiguration);
 
 module.exports = withSass({
                             cssModules      : true,
