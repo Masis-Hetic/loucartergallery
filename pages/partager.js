@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import Head                from 'next/head';
 import Prismic             from 'prismic-javascript';
+import getConfig           from 'next/config';
 
+import PartagerPage        from '../Components/Pages/PartagerPage';
+import MainComponent       from '../Components/Main/Main';
 import '../styles/style.scss';
 
-import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
-import PartagerPage    from '../Components/Pages/PartagerPage';
-import MainComponent   from '../Components/Main/Main';
 
 const Partager = ({ body }) => (
   <Fragment>
@@ -21,7 +21,7 @@ const Partager = ({ body }) => (
 );
 
 Partager.getInitialProps = async({}) => {
-  const API = await Prismic.api( publicRuntimeConfig.prismic );
+  const API = await Prismic.api(publicRuntimeConfig.prismic);
   const response = await API.query(Prismic.Predicates.at('document.type', 'partager'), { lang: 'fr-FR' });
   const body = response.results;
   return { body };

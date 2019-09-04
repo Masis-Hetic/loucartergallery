@@ -14,12 +14,12 @@ const Main = styled.main`
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-  position: ${ props => props.overflowStatus.data === 'hidden' ? 'fixed' : 'relative' } ;
+  position: ${ props => props.overflowStatus.data ? 'fixed' : 'relative' };
   
   /* enable smooth scrolling on iOS */
   -webkit-overflow-scrolling: touch;
   
-  overflow-y: ${ props => props.overflowStatus.data === 'hidden' ? 'hidden' : 'unset' };
+  overflow-y: ${ props => props.overflowStatus.data ? 'hidden' : 'unset' };
   animation-name: ${opacity};
   animation-duration: .3s;
   animation-fill-mode: forwards;
@@ -39,11 +39,11 @@ Main.Logo = styled.a`
   z-index: 100;
   cursor: pointer;
   max-width: 14rem;
-  width: ${props => props.navStatus === true ? '10rem' : '14rem'};
+  width: ${ props => props.navStatus ? '10rem' : '14rem' };
   transition: .3s ease;
   
   ${media.smallDesktop`
-    width: ${props => props.navStatus === true ? '6.7rem' : '14rem'};
+    width: ${ props => props.navStatus ? '6.7rem' : '14rem' };
   `}
   
   ${media.mobile`

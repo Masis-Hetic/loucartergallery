@@ -10,38 +10,37 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-
+  
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(cors());
   server.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
   });
-
+  
   server.get('/campagnes/:slug', (req, res) => app.render(req, res, '/campagnes',
-    Object.assign({ slug: req.params.slug })));
-
+                                                          Object.assign({ slug: req.params.slug })));
+  
   server.get('/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice'));
-
+  
   server.get('/artistes/:page', (req, res) => app.render(req, res, '/artistes/page-[page]',
-    Object.assign({ page: req.params.page })));
-
+                                                         Object.assign({ page: req.params.page })));
+  
   server.get('/artiste/:name', (req, res) => app.render(req, res, '/artiste/[name]',
-    Object.assign({ name: req.params.name })));
-
-  server.get( '/collections/:collection', ( req, res ) => app.render( req, res, '/collections/[collection]',
-    Object.assign( { collection: req.params.collection } ) ) );
-
+                                                        Object.assign({ name: req.params.name })));
+  
+  server.get('/collections/:collection', (req, res) => app.render(req, res, '/collections/[collection]',
+                                                                  Object.assign({ collection: req.params.collection })));
+  
   server.get('*', (req, res) => handle(req, res));
-
+  
   server.listen(port, err => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`)
-  })
+    console.log(`> Ready on http://localhost:${ port }`);
+  });
 });
-
 
 // const next = require('next');
 // const routes = require('./routes');

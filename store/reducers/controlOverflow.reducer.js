@@ -1,11 +1,11 @@
-import { OVERFLOW_STATUS } from "../actions/controlOverflow.action";
+import { OVERFLOW_STATUS } from '../actions/controlOverflow.action';
 
-const setOverflow = ( state, action ) => ( { ...state, ...{ data: action.payload } } );
+const initialState = { data: false };
 
-const overflowReducer = ( state = {}, action ) => {
-  if (action.type === OVERFLOW_STATUS) {
-    return setOverflow(state, action);
-  }
+const setOverflow = (state, action) => ({ ...state, ...{ data: action.payload } });
+
+const overflowReducer = (state = initialState, action) => {
+  if (action.type === OVERFLOW_STATUS) { return setOverflow(state, action); }
   return state;
 };
 

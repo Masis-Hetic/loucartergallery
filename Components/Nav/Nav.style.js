@@ -18,7 +18,7 @@ const openLinks = keyframes`
  * @property { boolean } open
  */
 const Header = styled.header`
-  position   : ${ props => props.navPos === true ? 'fixed' : 'absolute' };
+  position   : ${ props => props.navPos ? 'fixed' : 'absolute' };
   height     : 100vh;
   width      : 30vw;
   top        : 0;

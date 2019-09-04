@@ -31,7 +31,6 @@ body {
 }
 body * {
   letter-spacing: 4px;
-  
 }
 ::-webkit-scrollbar {
   width: 0;

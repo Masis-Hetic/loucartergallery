@@ -72,10 +72,13 @@ CampaignStyled.Slides = styled.div`
 CampaignStyled.SliderWrapper = styled.div`
   overflow: scroll;
   position: relative;
+  scrollbar-width: none;
+  overflow-y: hidden;
   
   @media (max-width: 768px) {
     top: 80vh;
     overflow: ${ props => props.isOpen ? 'scroll' : 'hidden' };
+    overflow-y: unset;
   }
   
   ${media.mobile`
@@ -85,6 +88,7 @@ CampaignStyled.SliderWrapper = styled.div`
     height: 100vh;
     padding-bottom: 10vh;
     top: 0;
+    overflow-y: unset;
   `}
 `;
 

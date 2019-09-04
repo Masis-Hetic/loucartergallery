@@ -1,21 +1,21 @@
-import React                                      from "react";
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import React                                      from 'react';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet }                       from 'styled-components';
-import GlobalStyle                                from "../helpers/global-styles";
 
+import GlobalStyle from '../helpers/global-styles';
 
 class MyDocument extends Document {
-  static async getInitialProps( ctx ) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
     // const originalRenderPage = ctx.renderPage;
-
-    const page = ctx.renderPage( ( App ) => ( props ) => sheet.collectStyles( <App { ...props } /> ), );
+    
+    const page = ctx.renderPage((App) => (props) => sheet.collectStyles(<App { ...props } />));
     const styleTags = sheet.getStyleElement();
-
-    const initialProps = await Document.getInitialProps( ctx );
-    return { ...initialProps, ...page, styleTags }
+    
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps, ...page, styleTags };
   }
-
+  
   render() {
     const { styleTags } = this.props;
     return (
@@ -31,13 +31,11 @@ class MyDocument extends Document {
         <NextScript/>
         </body>
       </Html>
-    )
+    );
   }
 }
 
 export default MyDocument;
-
-
 
 // TODO NE PAS EFFACER POUR LE MOMENT
 // TODO NE PAS EFFACER POUR LE MOMENT

@@ -3,11 +3,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { parseCookies, setCookie }              from 'nookies';
 import { useDispatch }                          from 'react-redux';
 
-import CookiesBanner from './Cookies.style';
-
 import { storeCookiesDatas }      from '../../store/actions/cookies.action';
 import { disableGA, logPageView } from '../../helpers/analytics';
 import COLORS                     from '../../helpers/colors';
+import CookiesBanner              from './Cookies.style';
 
 const Cookies = () => {
   const dispatch = useDispatch();
@@ -57,7 +56,6 @@ const Cookies = () => {
   
   return (
     <Fragment>
-      {/*{ !isSelected &&*/ }
       <CookiesBanner accepted={ isSelected } showMore={ more }>
         <CookiesBanner.Wrapper>
           <CookiesBanner.Infos>
@@ -124,7 +122,6 @@ const Cookies = () => {
           </CookiesBanner.BigWrapper>
         </CookiesBanner.Wrapper>
       </CookiesBanner>
-      {/*}*/ }
     </Fragment>
   );
 };

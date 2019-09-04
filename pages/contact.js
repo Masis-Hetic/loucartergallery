@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import Head                from 'next/head';
 import Prismic             from 'prismic-javascript';
+import getConfig           from 'next/config';
 
+import ContactPage   from '../Components/Pages/ContactPage';
+import MainComponent from '../Components/Main/Main';
 import '../styles/style.scss';
 
-import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
-import ContactPage     from '../Components/Pages/ContactPage';
-import MainComponent   from '../Components/Main/Main';
 
 const Contact = ({ data }) => (
   <Fragment>

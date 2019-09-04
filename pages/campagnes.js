@@ -13,18 +13,14 @@ const { publicRuntimeConfig } = getConfig();
 
 import { overflowStatus } from "../store/actions/controlOverflow.action";
 
-const mapDispatchToProps = state => {
-  return {
-    overflowStatus: state.overflowStatus,
-  }
-};
+const mapDispatchToProps = state => ({ overflowStatus: state.overflowStatus });
 
 const Campagnes = ({ campaign, imgs }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(overflowStatus('hidden'));
-    return () => dispatch(overflowStatus(null))
+    dispatch(overflowStatus(true));
+    return () => dispatch(overflowStatus(false))
   });
 
   return (

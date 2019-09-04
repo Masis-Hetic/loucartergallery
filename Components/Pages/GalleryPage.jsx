@@ -1,5 +1,6 @@
-import React   from 'react';
-import Gallery from "./Gallery.style";
+import React from 'react';
+
+import Gallery from './Gallery.style';
 
 /**
  * @param result
@@ -8,26 +9,26 @@ import Gallery from "./Gallery.style";
  * @property { string } block_title
  * @property { string } sub_title
  */
-const GalleryPage = ( { result } ) => (
+const GalleryPage = ({ result }) => (
   <Gallery>
     <Gallery.WrapperOne>
       <Gallery.BlockTitle>
-        {result[0].items[0].block_title[0].text}
+        { result[ 0 ].items[ 0 ].block_title[ 0 ].text }
       </Gallery.BlockTitle>
-      <Gallery.SubTitle>{result[0].items[0].sub_title[0].text}</Gallery.SubTitle>
+      <Gallery.SubTitle>{ result[ 0 ].items[ 0 ].sub_title[ 0 ].text }</Gallery.SubTitle>
     </Gallery.WrapperOne>
-
+    
     <Gallery.WrapperTwo>
-      {result[1].items.map(item => item.description.map((p, i) =>
-        <p key={i}>{p.text}</p>
-      ))}
+      { result[ 1 ].items.map(item => item.description.map((p, i) =>
+                                                             <p key={ i }>{ p.text }</p>
+      )) }
     </Gallery.WrapperTwo>
-
+    
     <Gallery.WrapperThree>
       <Gallery.BlockTitle>
-        {result[2].items[0].block_title[0].text}
+        { result[ 2 ].items[ 0 ].block_title[ 0 ].text }
       </Gallery.BlockTitle>
-      <Gallery.SubTitle>{result[2].items[0].sub_title[0].text}</Gallery.SubTitle>
+      <Gallery.SubTitle>{ result[ 2 ].items[ 0 ].sub_title[ 0 ].text }</Gallery.SubTitle>
     </Gallery.WrapperThree>
   </Gallery>
 );

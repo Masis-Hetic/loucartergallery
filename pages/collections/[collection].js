@@ -10,11 +10,7 @@ import { setNavPosition }                               from "../../store/action
 
 const { publicRuntimeConfig } = getConfig();
 
-const mapStateToProps = state => {
-  return {
-    navPosition: state.navPosition
-  }
-};
+const mapStateToProps = state => ({ navPosition: state.navPosition });
 
 /**
  * @property { string } dimensions
@@ -60,7 +56,6 @@ const Collection = ( { collection, res } ) => {
       <Head>
         <title>{res.data.meta_title[0].text}</title>
       </Head>
-      {console.log(res)}
       <MainComponent>
         <SingleCollection>
           <SingleCollection.Ul ref={ ul }>
