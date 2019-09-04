@@ -72,7 +72,7 @@ StyledArtistes.Ul = styled.ul`
 StyledArtistes.Li = styled.li`
   width: 50%;
   height: ${liSmallDesktop}px;
-  font-size: 18px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   
