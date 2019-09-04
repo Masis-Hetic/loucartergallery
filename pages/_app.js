@@ -1,6 +1,6 @@
-import React                       from 'react';
+import React, { Fragment }         from 'react';
 import Prismic                     from 'prismic-javascript';
-import App, { Container }          from 'next/app';
+import App                         from 'next/app';
 import { Provider }                from 'react-redux';
 import getConfig                   from 'next/config';
 import { parseCookies, setCookie } from 'nookies';
@@ -13,13 +13,13 @@ import { initGA }                 from '../helpers/analytics';
 const { publicRuntimeConfig } = getConfig();
 
 class LouCarter extends App {
-
+  
   constructor(props) {
     const cookies = parseCookies({});
     if (!cookies.lou) { setCookie({}, 'lou', 'init', { path: '/' }); }
     super(props);
   }
-
+  
   /**
    *
    * @param Component
@@ -43,18 +43,18 @@ class LouCarter extends App {
     if (Component.getInitialProps) { pageProps = await Component.getInitialProps({ ...ctx }); }
     return { pageProps: { ...pageProps }, myLinks, nav, cookies };
   }
-
+  
   componentDidMount() { initGA(); }
-
+  
   render() {
     const { Component, pageProps, myLinks, nav, reduxStore, cookies } = this.props;
-
+    
     return (
-      <Container>
+      <Fragment>
         <Provider store={ reduxStore }>
           <Component { ...pageProps } { ...myLinks } { ...navStatus } { ...cookies } />
         </Provider>
-      </Container>
+      </Fragment>
     );
   }
 }
