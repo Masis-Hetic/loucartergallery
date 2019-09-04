@@ -66,17 +66,16 @@ class Artiste extends React.Component {
       <Fragment>
         <Head>
           <title>{ artist.meta_title[ 0 ].text }</title>
-          {/*<title>{ artistes.data.title[ 0 ].text }</title>*/}
-          {/*<meta property="og:url" content="https://loucartergallery.com/artistes"/>*/}
+          {/*<meta property="og:url" content="https://loucartergallery.com/artist"/>*/}
           {/*<meta property="og:type" content="website"/>*/}
-          {/*<meta property="og:description" content={ artistes.data.description_google[ 0 ].text }/>*/}
+          {/*<meta property="og:description" content={ artist.data.description_google[ 0 ].text }/>*/}
           {/*<meta*/}
           {/*  property="og:image:secure_url"*/}
-          {/*  content={ artistes.data.og_image.url }*/}
+          {/*  content={ arts[0].photo.data.image.url }*/}
           {/*/>*/}
           {/*<meta*/}
           {/*  property="og:image"*/}
-          {/*  content={ artistes.data.og_image.url }*/}
+          {/*  content={ arts[0].photo.data.image.url }*/}
           {/*/>*/}
           {/*<meta property="og:image:width" content={ 600 }/>*/}
           {/*<meta property="og:image:height" content={ 314 }/>*/}
