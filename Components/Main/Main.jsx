@@ -14,8 +14,8 @@ const mapStateToProps = state => ( {
 const MainComponent = props => (
   <Main overflowStatus={ props.overflow }>
     <Main.LogoWrapper>
-      <Link href={ '/' } as={ '/' }>
-        <Main.Logo navStatus={ props.nav } style={ { position: `${ props.navPosition.data ? 'fixed' : 'absolute'}`, top: 20, left: 20, zIndex: 100 } }>
+      <Link href="/" as="/" passHref={true}>
+        <Main.Logo navStatus={ props.nav } style={ { position: `${ props.navPosition.data ? 'fixed' : 'absolute'}`, top: 20, left: 20, zIndex: 500 } }>
           <Main.Img src="../../static/icons/loucarter_logo_copie.png" alt="" style={ { maxWidth: '14rem' } }/>
         </Main.Logo>
       </Link>

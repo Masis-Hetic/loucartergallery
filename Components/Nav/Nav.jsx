@@ -141,11 +141,9 @@ const Nav = ( { nav, navPosition } ) => {
                                       )
                                       : (
                                         <li key={ i }>
-                                          {/*<Link href={ `${ sublink.primary.link_to_level_two.url }` }>*/}
-                                            <Header.Link href={ `${ sublink.primary.link_to_level_two.url }` } target="_blank">
-                                              <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span>
-                                            </Header.Link>
-                                          {/*</Link>*/}
+                                          <Header.Link href={ `${ sublink.primary.link_to_level_two.url }` } target="_blank">
+                                            <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span>
+                                          </Header.Link>
                                         </li>
                                       )
                                   )
@@ -153,17 +151,10 @@ const Nav = ( { nav, navPosition } ) => {
                                     <Fragment key={ i }>
                                       <Header.NavItem
                                         underline={ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }
-                                        // className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }
                                         onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
                                       >
                                         <span>{ sublink.primary.link_two[ 0 ].text }</span>
                                       </Header.NavItem>
-                                      {/*<p*/}
-                                      {/*  className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }*/}
-                                      {/*  onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }*/}
-                                      {/*>*/}
-                                      {/*  <span>{ sublink.primary.link_two[ 0 ].text }</span>*/}
-                                      {/*</p>*/}
                                       <ul style={{ paddingLeft: 40 }}>
                                         { sublink.items.map( ( thirdLink, i ) =>
                                           <li key={ i } onClick={ toggleMenu }>
