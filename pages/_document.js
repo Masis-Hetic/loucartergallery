@@ -6,16 +6,17 @@ import GlobalStyle from '../helpers/global-styles';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
+  // static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
     // const originalRenderPage = ctx.renderPage;
-    
+
     const page = ctx.renderPage((App) => (props) => sheet.collectStyles(<App { ...props } />));
     const styleTags = sheet.getStyleElement();
-    
+
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps, ...page, styleTags };
   }
-  
+
   render() {
     const { styleTags } = this.props;
     return (

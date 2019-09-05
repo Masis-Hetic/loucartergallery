@@ -1,6 +1,7 @@
 import React                       from 'react';
+import '../styles/styles.scss';
 import Prismic                     from 'prismic-javascript';
-import App, { Container }          from 'next/app';
+import App                         from 'next/app';
 import { Provider }                from 'react-redux';
 import getConfig                   from 'next/config';
 import { parseCookies, setCookie } from 'nookies';
@@ -50,11 +51,9 @@ class LouCarter extends App {
     const { Component, pageProps, myLinks, nav, reduxStore, cookies } = this.props;
 
     return (
-      <Container>
-        <Provider store={ reduxStore }>
-          <Component { ...pageProps } { ...myLinks } { ...navStatus } { ...cookies } />
-        </Provider>
-      </Container>
+      <Provider store={ reduxStore }>
+        <Component { ...pageProps } { ...myLinks } { ...navStatus } { ...cookies } />
+      </Provider>
     );
   }
 }
