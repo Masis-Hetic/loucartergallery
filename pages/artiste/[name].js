@@ -65,11 +65,23 @@ class Artiste extends React.Component {
     return (
       <Fragment>
         <Head>
-          <title>Titre à ajouter dans Prismic</title>
+          <title>{ artist.meta_title[ 0 ].text }</title>
+          {/*<meta property="og:url" content="https://loucartergallery.com/artist"/>*/}
+          {/*<meta property="og:type" content="website"/>*/}
+          {/*<meta property="og:description" content={ artist.data.description_google[ 0 ].text }/>*/}
+          {/*<meta*/}
+          {/*  property="og:image:secure_url"*/}
+          {/*  content={ arts[0].photo.data.image.url }*/}
+          {/*/>*/}
+          {/*<meta*/}
+          {/*  property="og:image"*/}
+          {/*  content={ arts[0].photo.data.image.url }*/}
+          {/*/>*/}
+          {/*<meta property="og:image:width" content={ 600 }/>*/}
+          {/*<meta property="og:image:height" content={ 314 }/>*/}
         </Head>
         <MainComponent>
           <Artist>
-
             <Artist.Carousel>
               { arts.map( ( photo, i ) =>
                 <Artist.CarouselPicture
