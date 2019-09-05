@@ -79,13 +79,13 @@ StyledArtistes.Ul = styled.ul`
 StyledArtistes.Li = styled.li`
   width: 50%;
   height: ${ liSmallDesktop }px;
-  font-size: 15px;
+  font-size: .80rem;
   display: flex;
   align-items: center;
   
   @media(min-width: 1440px) {
     height: ${ liMiddleDesktop }px;
-    font-size: 20px;
+    font-size: 1.2rem;
   }
   
   @media(min-width: 1920px) {
@@ -95,7 +95,7 @@ StyledArtistes.Li = styled.li`
   
   ${ media.mobile`
     width: 100%;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 2.5;
   ` }
 `;
