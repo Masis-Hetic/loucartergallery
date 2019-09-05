@@ -126,12 +126,14 @@ class Artiste extends React.Component {
             </Artist.ImageWrapper>
 
             <Artist.DescriptionWrapper>
-              <div>
-                <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
-                <Artist.Description>
-                  { artist.description.map((description, i) => <p style={{marginBottom: 10}} key={i}>{description.text}</p>) }
-                </Artist.Description>
-              </div>
+              <Artist.InnerWrapper>
+                <div>
+                  <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
+                  <Artist.Description>
+                    { artist.description.map((description, i) => <p style={{marginBottom: 10}} key={i}>{description.text}</p>) }
+                  </Artist.Description>
+                </div>
+              </Artist.InnerWrapper>
 
               <Artist.BtnWrapper>
                 <Link href={ '/artistes/page-[page]' } as={ '/artistes/page-1' }>

@@ -125,6 +125,16 @@ Artist.DescriptionWrapper = styled.div`
   `}
 `;
 
+Artist.InnerWrapper = styled.div`
+  height: 90%;
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar { width: 0 !important; }
+`;
+
 Artist.Name = styled.h2`
   line-height: initial !important;
   margin-bottom: 30px;
