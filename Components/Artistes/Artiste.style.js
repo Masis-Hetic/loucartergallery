@@ -204,6 +204,45 @@ Artist.MobileImage = styled.img`
   margin: 0 auto;
 `;
 
+Artist.ArtsDetails = styled.div`
+  
+`;
+
+Artist.ArtsDetailsUl = styled.ul`
+  display: flex;
+  position: relative;
+  transform: translateX(${props => props.position}%);
+`;
+
+Artist.ArtsDetailsLi = styled.li`
+  flex: 1 0 90vw;
+  position: relative;
+  
+  &:nth-of-type(1) {
+    margin-left: ${ props => props.length === 1 ? '0' : '5%' } !important;
+  }
+`;
+
+Artist.CarouselPosition = styled.ul`
+  margin-top: 15px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+`;
+
+Artist.ActiveSlide = styled.li`
+  width: 10px;
+  height: 10px;
+  opacity: ${ props => props.index ? '1' : '.45' };
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 15px;
+  
+  &:last-of-type {
+    margin-right: 0;
+  }
+`;
+
 Artist.DetailsWrapper = styled.div`
   width: 95%;
   margin: 20px auto;
