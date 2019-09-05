@@ -1,9 +1,18 @@
-import React          from 'react';
-import Link           from 'next/link';
+import React          from "react";
+import Link           from "next/link";
 import StyledArtistes from "./ArtistesList.style";
 import ArrowRight     from "../../static/icons/arrow-right";
 import ArrowLeft      from "../../static/icons/arrow-left";
 
+/**
+ * @property { number } currentPage
+ * @property { number } prevPage
+ * @property { number } nextPage
+ * @property { string } artists
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 const ArtistesList = props => {
   return (
     <StyledArtistes>
