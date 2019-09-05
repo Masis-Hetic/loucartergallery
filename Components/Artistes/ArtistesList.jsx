@@ -23,14 +23,14 @@ const ArtistesList = props => {
       >
         <StyledArtistes.BackBtn
           onClick={ props.prevPage }
-          opacity={ Number(props.currentPage) }
+          opacity={ Number( props.currentPage ) }
         >
-          <ArrowLeft width={44} height={44}/>
+          <ArrowLeft width={ 44 } height={ 44 }/>
         </StyledArtistes.BackBtn>
       </Link>
 
       <StyledArtistes.Wrapper>
-        <StyledArtistes.Ul length={props.artists.length}>
+        <StyledArtistes.Ul length={ props.artists.length }>
           { props.artists.map( ( artiste, i ) =>
             <StyledArtistes.Li key={ i }>
               <Link
@@ -39,7 +39,13 @@ const ArtistesList = props => {
               >
                 <StyledArtistes.ArtistLink>
                   <StyledArtistes.NameWrapper>
-                    <StyledArtistes.ArtistLastName><span style={{ display: 'block', width: '99%', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>{ artiste.data.name[ 0 ].text }</span></StyledArtistes.ArtistLastName>
+                    <StyledArtistes.ArtistLastName><span style={ {
+                      display: 'block',
+                      width: '99%',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden'
+                    } }>{ artiste.data.name[ 0 ].text }</span></StyledArtistes.ArtistLastName>
                     <StyledArtistes.ArtistFirstName> { artiste.data.prenom[ 0 ].text }</StyledArtistes.ArtistFirstName>
                   </StyledArtistes.NameWrapper>
                 </StyledArtistes.ArtistLink>
@@ -54,9 +60,9 @@ const ArtistesList = props => {
       >
         <StyledArtistes.NextBtn
           onClick={ props.nextPage }
-          opacity={ props.currentPage }
+          opacity={ Number( props.currentPage ) }
         >
-          <ArrowRight width={44} height={44}/>
+          <ArrowRight width={ 44 } height={ 44 }/>
         </StyledArtistes.NextBtn>
       </Link>
 

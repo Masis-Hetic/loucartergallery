@@ -121,7 +121,7 @@ const Nav = ( { nav, navPosition } ) => {
                 <Header.FirstStepLi key={ i }>
                   { link.data.link_to.uid
                     ? (
-                      <Link href={ `/${ link.data.link_to.uid }` }>
+                      <Link href={ `/${ link.data.link_to.uid }` } as={ `/${ link.data.link_to.uid }` }>
                         <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ].text }</a>
                       </Link>
                     )
@@ -200,7 +200,8 @@ const Nav = ( { nav, navPosition } ) => {
                                               )
                                               : (
                                                 <Link
-                                                  href={ `/${ thirdLink.link_to_level_three.uid }` }>
+                                                  href={ `/${ thirdLink.link_to_level_three.uid }` }
+                                                  as={ `/${ thirdLink.link_to_level_three.uid }` }>
                                                   <Header.Link
                                                     onClick={ () => dispatch( navStatus( !isOpen ) ) }>
                                                     <span>{ thirdLink.link_three[ 0 ].text }</span>
