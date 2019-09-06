@@ -13,18 +13,9 @@
     - pages artistes 
     - transition navigation
 
-artiste 
+potentiel erreur: -> [HMR] bundle rebuilding
 
 
 [transition navigation]
 
-- Cookies
 - Mention Legal
-
-
-
-
-- La fondatrice ajouter un titre. (prismique && code)
-- tri par nom de famille
-
-

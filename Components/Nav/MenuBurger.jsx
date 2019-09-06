@@ -45,7 +45,7 @@ class MenuBurger extends Component {
             <li>Artistes</li>
             <li>Collections</li>
             <li>
-              <Link href={ { pathname: '/gallery' } }>
+              <Link href={ '/gallery' } as={ '/gallery' }>
                 <a>Gallery</a>
               </Link>
             </li>

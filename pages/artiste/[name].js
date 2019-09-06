@@ -9,15 +9,16 @@ import Artist              from "../../Components/Artistes/Artiste.style";
 
 const { publicRuntimeConfig } = getConfig();
 
+/**
+ * @property { object } photos
+ * @property { object } artist_work
+ */
 class Artiste extends React.Component {
   static async getInitialProps( { query } ) {
     const API = await Prismic.api( publicRuntimeConfig.prismic );
     const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } )
       .then(async res => {
         const idsArray = res.results[0].data.artist_work.map(work => work.oeuvre.id);
-
-        // const idsArray = [];
-        // res.results[0].data.artist_work.map(work => idsArray.push(work.oeuvre.id) );
         const arts = await API.query( Prismic.Predicates.in( 'document.id', idsArray ), { lang: 'fr-FR' } );
 
         return { res, arts };
@@ -60,7 +61,7 @@ class Artiste extends React.Component {
 
   render() {
     const { artist, arts } = this.props;
-    const { activePicture, position } = this.state;
+    const { activePicture, position, currentSlide } = this.state;
 
     return (
       <Fragment>
@@ -104,15 +105,30 @@ class Artiste extends React.Component {
                 { arts.map( ( photo, i ) =>
                   <Artist.MobileImageWrapper key={ i } length={ arts.length }>
                     <Artist.MobileImage src={ arts[ i ].data.image.url } alt=""/>
-                    <Artist.DetailsWrapper>
-                      <p>{ arts && arts[ i ].data.collection_name[ 0 ].text }</p>
-                      <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.name[ 0 ].text } }/>
-                      <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.dimensions[ 0 ].text } }/>
-                      <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.year[ 0 ].text } }/>
-                    </Artist.DetailsWrapper>
                   </Artist.MobileImageWrapper>
                 ) }
               </Artist.MobileCarousel>
+
+              <Artist.CarouselPosition>
+                { arts.map(( photo, i) =>
+                  <Artist.ActiveSlide key={ i } index={ i + 1 === currentSlide && (i + 1) }/>
+                )}
+              </Artist.CarouselPosition>
+
+              <Artist.ArtsDetails>
+                <Artist.ArtsDetailsUl position={position}>
+                  { arts.map( ( photo, i ) =>
+                    <Artist.ArtsDetailsLi key={ i } style={ { flex: '1 0 90vw', margin: '0 auto' } }>
+                      <Artist.DetailsWrapper>
+                        <p>{ arts && arts[ i ].data.collection_name[ 0 ].text }</p>
+                        <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.name[ 0 ].text } }/>
+                        <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.dimensions[ 0 ].text } }/>
+                        <p dangerouslySetInnerHTML={ { __html: arts && arts[ i ].data.year[ 0 ].text } }/>
+                      </Artist.DetailsWrapper>
+                    </Artist.ArtsDetailsLi>
+                  ) }
+                </Artist.ArtsDetailsUl>
+              </Artist.ArtsDetails>
             </Artist.MobileCarouselWrapper>
 
             <Artist.ImageWrapper>
@@ -126,12 +142,14 @@ class Artiste extends React.Component {
             </Artist.ImageWrapper>
 
             <Artist.DescriptionWrapper>
-              <div>
-                <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
-                <Artist.Description>
-                  { artist.description.map((description, i) => <p style={{marginBottom: 10}} key={i}>{description.text}</p>) }
-                </Artist.Description>
-              </div>
+              <Artist.InnerWrapper>
+                <div>
+                  <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
+                  <Artist.Description>
+                    { artist.description.map((description, i) => <p style={{marginBottom: 10}} key={i}>{description.text}</p>) }
+                  </Artist.Description>
+                </div>
+              </Artist.InnerWrapper>
 
               <Artist.BtnWrapper>
                 <Link href={ { pathname: '/artistes/page-[page]' } } as={ '/artistes/page-1' }>

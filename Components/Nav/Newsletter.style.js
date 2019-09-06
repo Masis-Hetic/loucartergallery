@@ -91,6 +91,7 @@ Newsletter.Label = styled.label`
 `;
 
 Newsletter.InputEmail = styled.input`
+  width: 100%;
   line-height        : 4;
   padding-left       : 1rem;
   border             : 0;
@@ -101,6 +102,7 @@ Newsletter.InputEmail = styled.input`
   color: ${ props => props.color };
   border-radius: 2px !important;
   letter-spacing: 2px;
+  color: #000;
 `;
 
 Newsletter.LdsRipple = styled.div`
@@ -125,7 +127,8 @@ Newsletter.LdsRipple = styled.div`
 `;
 
 Newsletter.SubmitBtn = styled.input`
-  margin-top: 1rem;
+  margin: 1rem auto 0;
+  line-height: 3.5;
   padding: 0 1rem;
   display: table;
   background: #080808;

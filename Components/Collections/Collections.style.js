@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const cardSmallHeight = 210;
-const cardMiddleHeight = 230;
-const cardLargeDesktop = 250;
+const cardSmallHeight = 300;
+const cardMiddleHeight = 300;
+const cardLargeDesktop = 350;
 
 const Collections = styled.div`
   height: 100vh;
