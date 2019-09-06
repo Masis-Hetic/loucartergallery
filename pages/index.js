@@ -12,10 +12,6 @@ const { publicRuntimeConfig } = getConfig();
 
 // noinspection JSUnresolvedVariable
 const Index = ({ result, imgs }) => {
-  useEffect(() => {
-    document.body.height = window && window.innerHeight;
-  });
-
   return (
     <Fragment>
       <Head>
