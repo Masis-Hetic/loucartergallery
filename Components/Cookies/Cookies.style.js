@@ -2,6 +2,11 @@ import styled, { keyframes } from "styled-components";
 import media  from "../../helpers/media";
 import COLORS from "../../helpers/colors";
 
+/**
+ * @property { boolean } showMore
+ * @property { boolean } choice
+ * @type {Keyframes}
+ */
 const showCookiesBanner = keyframes`
   from {
     display: none;
