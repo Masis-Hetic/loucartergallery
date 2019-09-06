@@ -45,24 +45,24 @@ const Collections = ( { collections, collectionsList } ) => {
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
 
-        <img
-          srcSet="../static/images/collections/eshop_1080.jpg 1080w,
-          ../static/images/collections/eshop_1280.jpg 1280w,
-          ../static/images/collections/eshop_1366.jpg 1366w,
-          ../static/images/collections/eshop_1920.jpg 1920w,
-          ../static/images/collections/eshop_2560.jpg 2560w,
-          ../static/images/collections/eshop_5120.jpg 5120w"
-          alt=""
-        />
-        <style jsx>{ `
-        img {
-          display: block;
-          width: 100vw;
-          height: 100vh;
-          object-fit: cover;
-          object-position: right;
-        }
-        ` }</style>
+        {/*<img*/}
+        {/*  srcSet="../static/images/collections/eshop_1080.jpg 1080w,*/}
+        {/*  ../static/images/collections/eshop_1280.jpg 1280w,*/}
+        {/*  ../static/images/collections/eshop_1366.jpg 1366w,*/}
+        {/*  ../static/images/collections/eshop_1920.jpg 1920w,*/}
+        {/*  ../static/images/collections/eshop_2560.jpg 2560w,*/}
+        {/*  ../static/images/collections/eshop_5120.jpg 5120w"*/}
+        {/*  alt=""*/}
+        {/*/>*/}
+        {/*<style jsx>{ `*/}
+        {/*img {*/}
+        {/*  display: block;*/}
+        {/*  width: 100vw;*/}
+        {/*  height: 100vh;*/}
+        {/*  object-fit: cover;*/}
+        {/*  object-position: right;*/}
+        {/*}*/}
+        {/*` }</style>*/}
 
         {/* NE PAS EFFACER CE CODE */ }
         {/* NE PAS EFFACER CE CODE */ }
@@ -72,7 +72,7 @@ const Collections = ( { collections, collectionsList } ) => {
         {/* ************************************* */ }
         {/* ************************************* */ }
 
-        {/*<CollectionsList collectionsList={collectionsList}/>*/}
+        <CollectionsList collectionsList={collectionsList}/>
       </MainComponent>
     </Fragment>
   )
