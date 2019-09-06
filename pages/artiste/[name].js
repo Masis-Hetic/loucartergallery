@@ -145,9 +145,15 @@ class Artiste extends React.Component {
               <Artist.InnerWrapper>
                 <div>
                   <Artist.Name>{ artist.prenom[ 0 ].text } { artist.name[ 0 ].text }</Artist.Name>
+                  <Artist.Chapeau>
+                    { artist.chapeau.map((chapeau, i) => <p style={{marginBottom: 10}} key={i}>{chapeau.text}</p>) }
+                  </Artist.Chapeau>
                   <Artist.Description>
                     { artist.description.map((description, i) => <p style={{marginBottom: 10}} key={i}>{description.text}</p>) }
                   </Artist.Description>
+                  <Artist.Bio>
+                    { artist.bio.map((bio, i) => <p style={{marginBottom: 10}} key={i}>{bio.text}</p>) }
+                  </Artist.Bio>
                 </div>
               </Artist.InnerWrapper>
 
