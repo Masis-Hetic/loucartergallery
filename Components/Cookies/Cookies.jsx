@@ -64,7 +64,7 @@ const Cookies = () => {
             qui optimisent votre
             expérience utilisateurs et qui nous permettent d'analyser notre trafic.
             <CookiesBanner.Details showMore={ more }>
-              <p>Cookies de performance</p>
+              <h4>Cookies de performance</h4>
               <p>Ces cookies nous permettent de déterminer le nombre de visites et les sources du trafic sur notre
                 site
                 web, afin d'en mesurer et d'en améliorer les performances. ils nous aident également à identifier les
@@ -73,6 +73,16 @@ const Cookies = () => {
                 cette
                 catégorie de cookies, nous ne pourrons pas savoir quand vous avez réalisé votre visite sur notre site
                 web.</p>
+              <ul>
+                <li>_gat: Utilisé pour controler le débit de demande (1 minute).</li>
+              </ul>
+              <h4>Cookies de fonctionnement</h4>
+              <p>Cookies internes nécessaires au site pour fonctionner.</p>
+              <ul>
+                <li>_ga: Utilisé pour distinguer les utilisateurs (2 ans).</li>
+                <li>_gid: Utilisé pour distinguer les utilisateurs (24 heures).</li>
+                <li>lou: Sauvegarde des  choix en matière de  consentement des cookies (1an).</li>
+              </ul>
             </CookiesBanner.Details>
           </CookiesBanner.Infos>
           <CookiesBanner.BigWrapper showMore={ more }>

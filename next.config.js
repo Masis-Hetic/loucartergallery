@@ -167,12 +167,14 @@ module.exports = withSass( {
         }
       } ) ), {}
     );
-
+  
+    const artistPerPages = 16;
+    
     const artistes = await API.query( Prismic.Predicates.at( 'document.type', 'artists' ), { lang: 'fr-FR' } );
 
     const artisteLength = artistes.results[ 0 ].data.artists.length;
 
-    const pageLength = Math.round( artisteLength / 1 );
+    const pageLength = Math.round( artisteLength / artistPerPages );
 
     const artistList = {};
 
@@ -213,5 +215,6 @@ module.exports = withSass( {
       '/legal-notice': { page: '/legal-notice' }
     } );
   },
+  
   publicRuntimeConfig: { prismic: process.env.PRISMIC_API }
 } );

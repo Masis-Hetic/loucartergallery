@@ -144,8 +144,27 @@ Artist.Name = styled.h2`
   `}
 `;
 
+Artist.Chapeau = styled.div`
+  width: 95%;
+  font-style: italic;
+  
+  ${media.mobile`
+    width: 100%;
+  `}
+`;
+
 Artist.Description = styled.div`
   width: 95%;
+ 
+  ${media.mobile`
+    width: 100%;
+  `}
+`;
+
+Artist.Bio = styled.div`
+  width: 95%;
+  font-style: italic;
+  font-size: 12px;
   
   ${media.mobile`
     width: 100%;

@@ -42,13 +42,13 @@ class Campaign extends Component {
               <CampaignStyled.UlDesktop ulWidth={ (imgs.length * 100) - (imgs.length * 20) }>
                 
                 { imgs.map((img, i) =>
-                             <CampaignStyled.LiDesktop key={ i }>
-                               <Link href={ '/collections' } as={ '/collections' }>
-                                 <CampaignStyled.ImageLink>
-                                   <CampaignStyled.ImgDesktop srcSet={ img } alt=""/>
-                                 </CampaignStyled.ImageLink>
-                               </Link>
-                             </CampaignStyled.LiDesktop>
+                 <CampaignStyled.LiDesktop key={ i }>
+                   <Link href={ { pathname: '/collections' } } as={ '/collections' }>
+                     <CampaignStyled.ImageLink>
+                       <CampaignStyled.ImgDesktop srcSet={ img } alt=""/>
+                     </CampaignStyled.ImageLink>
+                   </Link>
+                 </CampaignStyled.LiDesktop>
                 ) }
               
               </CampaignStyled.UlDesktop>

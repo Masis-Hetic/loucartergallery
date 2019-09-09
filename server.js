@@ -20,17 +20,6 @@ app.prepare().then(() => {
     next();
   });
   
-  // TODO a tester !!!
-  // server.get(/next/, (req, res) => {
-  //   console.log('next');
-  //   return handle(req, res);
-  // });
-  //
-  // server.get(/webpack/, (req, res) => {
-  //   console.log('webpack');
-  //   return handle(req, res);
-  // });
-  
   server.get('/campagnes/:slug', (req, res) => app.render(req, res, '/campagnes',
                                                           Object.assign({ slug: req.params.slug })));
   

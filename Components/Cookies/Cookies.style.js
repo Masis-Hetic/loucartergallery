@@ -33,11 +33,11 @@ const CookiesBanner = styled.div`
   display             : ${ props => props.accepted ? 'none' : 'block' };
   animation-name      : ${ props => props.accepted ? hideCookiesBanner : showCookiesBanner };
   animation-fill-mode : forwards;
-  position            : absolute;
-  z-index             : 100;
+  position            : fixed;
+  z-index             : 1000;
   left                : 0;
   width               : 100%;
-  background          : rgba(0, 0, 0, .7);
+  background          : ${ props => props.showMore ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .7)' };
   transition          : .4s ease-in-out;
   overflow            : hidden;
   bottom              : ${ props => !props.accepted ? '0' : '-100%' };
@@ -71,6 +71,7 @@ CookiesBanner.Infos = styled.div`
   ${media.mobile`
     width: 100%;
     margin-top: 20px;
+    order: ${ props => props.showMore ? '2' : '1' };
   `}
 `;
 
@@ -81,11 +82,11 @@ CookiesBanner.Details = styled.div`
   margin     : ${ props => props.showMore ? '2rem auto' : '0' };
   transition : .3s linear;
 
-  p {
-
-    &:nth-of-type(1) {
-      font-family: 'Aileron-SemiBold', sans-serif;
-      margin-bottom: .5rem;
+  h4 {
+    font-family: 'Aileron-SemiBold', sans-serif;
+    margin-bottom: .5rem;
+    &:nth-of-type(2) {
+      margin-top: 2.5rem;
     }
   }
 `;
@@ -102,6 +103,7 @@ CookiesBanner.BigWrapper = styled.div`
     margin-top: 20px;
     flex-direction: column;
     align-items: center;
+    order: ${ props => props.showMore ? '1' : '2' };
   `}
 `;
 
