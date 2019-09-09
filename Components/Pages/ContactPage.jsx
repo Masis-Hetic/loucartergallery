@@ -21,12 +21,12 @@ const ContactPage = ( { result } ) => (
       ) ) }
     </div>
 
-    <div style={{ width: '90vw', margin: '0 auto', position: 'absolute', bottom: 5, left: '5vw', fontSize: '.65rem', textAlign: 'center' }}>
-      <p style={{fontSize: '.7rem'}}>Crédits : </p>
-      <p style={{fontSize: '.7rem'}}>Photographique et Techniques : Amélie Glab et Gaëlle Salaün</p>
-      <p style={{marginBottom: 20, fontSize: '.7rem'}}>Développement du site : Masis Gulmez et Cédric Salaün</p>
-      <p>SAS Lou Carter Gallery, 22 rue du Cherche-Midi 75006 Paris au capital de 7 500 euros, SIREN 852 869 825 – RCS Paris</p>
-    </div>
+    {/*<div style={{ width: '90vw', margin: '0 auto', position: 'absolute', bottom: 5, left: '5vw', fontSize: '.65rem', textAlign: 'center' }}>*/}
+    {/*  <p style={{fontSize: '.7rem'}}>Crédits : </p>*/}
+    {/*  <p style={{fontSize: '.7rem'}}>Photographique et Techniques : Amélie Glab et Gaëlle Salaün</p>*/}
+    {/*  <p style={{marginBottom: 20, fontSize: '.7rem'}}>Développement du site : Masis Gulmez et Cédric Salaün</p>*/}
+    {/*  <p>SAS Lou Carter Gallery, 22 rue du Cherche-Midi 75006 Paris au capital de 7 500 euros, SIREN 852 869 825 – RCS Paris</p>*/}
+    {/*</div>*/}
   </Fragment>
 );
 
