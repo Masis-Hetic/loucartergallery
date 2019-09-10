@@ -23,7 +23,7 @@ const ThirdPanel = props => {
               <Fragment key={ i }>
                 { link.type === props.type &&
                 <Header.ThirdPanel.P>
-                  { link.link_three_href[ 0 ].text !== 'artistes'
+                  { link.link_three_href[ 0 ].text === 'campagnes'
                     ? ( <Link
                       href={ `/${ link.link_three_href[ 0 ].text }?slug=${ link.link_to_level_three.uid }` }
                       as={ `${ link.link_three_href[ 0 ].text }/${ link.link_to_level_three.uid }` }
@@ -37,7 +37,10 @@ const ThirdPanel = props => {
                         href={ `/${ link.link_to_level_three.uid }` }
                         as={ `/${ link.link_to_level_three.uid }` }
                       >
-                        <a>{ link.link_three[ 0 ].text }</a>
+                        <a>
+                          <Header.ThirdPanelSpan>{ link.link_three[ 0 ].text }</Header.ThirdPanelSpan>
+                          <Header.ThirdPanelImg src="../../static/images/bg-ss19.jpg" alt="" />
+                        </a>
                       </Link>
                     )
                   }

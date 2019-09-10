@@ -22,21 +22,17 @@ const Header = styled.header`
   position: fixed;
   z-index: 80;
   top: 0;
-  left: ${ props => !props.open ? '-30%' : '0%' };
+  left: ${ props => !props.open ? '-33.33%' : '0%' };
   width: 33.33%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: rgba(0, 0, 0, 0.9);
   transition: .3s ease;
-  // box-shadow: rgb(40, 44, 55) 0px 0px 3px 1px;
 `;
 
 Header.MenuBtn = styled.div`
   position   : absolute;
   top        : 50%;
-  left       : calc(30vw + 20px);
+  right      : calc(0px - 50px);
   transform  : translateY(-50%) rotate(90deg);
   z-index    : 199999;
   cursor     : pointer;
@@ -151,7 +147,7 @@ Header.SecondPanelP = styled.p`
 Header.ThirdPanel = styled.div`
   position: fixed;
   top: 0;
-  left: ${ props => props.thirdPanel ? '66.66%' : '33.33%'};
+  left: ${ props => props.thirdPanel === true ? '66.66%' : '33.33%'};
   opacity: ${ props => props.thirdPanel ? '1' : '0' };
   z-index: ${ props => props.thirdPanel ? '1' : '-1' };
   width: 33.33%;
@@ -162,10 +158,16 @@ Header.ThirdPanel = styled.div`
 
 Header.ThirdPanelWrapper = styled.div`
   padding: 20px;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
 Header.ThirdPanel.P = styled.p`
   margin-bottom: 50px;
+  
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 Header.ThirdPanelSpan = styled.span`

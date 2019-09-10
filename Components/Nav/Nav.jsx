@@ -1,33 +1,43 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Header                                   from './Nav.style';
-// import Link                                     from 'next/link';
 import { connect, useDispatch }                 from 'react-redux';
 
 import Newsletter          from './Newsletter.style';
-// import Credits             from './Credits.style';
 import { navStatus }       from '../../store/actions/nav.action';
-// import OutsideAlerter      from '../../helpers/click-outside';
 import COLORS              from '../../helpers/colors';
 import { validateEmail }   from '../../helpers/functions';
 import { subscribeToNews } from '../../helpers/mailchimp';
 
-// import { useSpring, animated, config } from 'react-spring';
-import SecondPanel                     from "./SecondPanel";
-import ThirdPanel                      from "./ThirdPanel";
-import FirstPanel                      from "./FirstPanel";
+import SecondPanel from "./SecondPanel";
+import ThirdPanel  from "./ThirdPanel";
+import FirstPanel  from "./FirstPanel";
 
 const mapStateToProps = state => ( { nav: state.nav.datas, navPosition: state.navPosition } );
 
-const Nav = ( { nav, navPosition } ) => {
+const Nav = ( {
+  nav,
+  // navPosition
+} ) => {
   const dispatch = useDispatch();
 
   const [ newsletter, toggleModal ] = useState( false );
+  const [ email, setEmail ] = useState( '' );
+  const [ success, setSuccess ] = useState( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );
+  const [ successState, setSuccessState ] = useState( false );
+  const [ secondPanel, toggleSecondPanel ] = useState( false );
+  const [ thirdPanel, toggleThirdPanel ] = useState( false );
+  const [ isOpen, openMenu ] = useState( false );
+  const [ index, setIndex ] = useState(0);
+  const [ type, setType ] = useState(null);
+
   const isNewsletter = param => {
     if (param) {
       toggleModal && openMenu( false );
       setEmail( '' );
       setSuccess( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );
       toggleModal( !newsletter );
+      toggleSecondPanel(false);
+      toggleThirdPanel(false);
       stateSubscribe( false );
       if (!newsletter) {
         dispatch( navStatus( !isOpen ) );
@@ -35,13 +45,13 @@ const Nav = ( { nav, navPosition } ) => {
     }
   };
 
-  const [ email, setEmail ] = useState( '' );
+
   const handlerEmail = email => setEmail( email );
 
-  const [ success, setSuccess ] = useState( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );
+
   const message = msg => setSuccess( msg );
 
-  const [ successState, setSuccessState ] = useState( false );
+
   const stateSubscribe = state => setSuccessState( state );
 
   const [ isLoding, setLoding ] = useState( false );
@@ -71,7 +81,7 @@ const Nav = ( { nav, navPosition } ) => {
   };
 
   // const [ isList, openList ] = useState( null );
-  const [ isListOpen, openOrNot ] = useState( false );
+  // const [ isListOpen, openOrNot ] = useState( false );
   // const toggleList = ( id ) => {
   //   openOrNot( true );
   //   openOrNot( false );
@@ -96,28 +106,24 @@ const Nav = ( { nav, navPosition } ) => {
   //   from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
   // } );
 
-  const [ isOpen, openMenu ] = useState( false );
   const toggleMenu = () => {
     openMenu( !isOpen );
     toggleSecondPanel( false );
     toggleThirdPanel( false );
-    openOrNot( false );
+    // openOrNot( false );
     dispatch( navStatus( !isOpen ) );
   };
 
-  const [ index, setIndex ] = useState(0);
 
-  const [ type, setType ] = useState(null);
   const handleType = e => setType(e.target.getAttribute('id'));
 
-  const [ secondPanel, toggleSecondPanel ] = useState( false );
   const handleSecondPanel = i => {
     toggleSecondPanel( true );
     setIndex(i);
   };
 
-  const [ thirdPanel, toggleThirdPanel ] = useState( false );
   const handleThirdPanel = () => toggleThirdPanel( true );
+  const closeThirdPanel = () => toggleThirdPanel( false );
 
   useEffect( () => {
     !secondPanel && toggleThirdPanel( false );
@@ -134,11 +140,11 @@ const Nav = ( { nav, navPosition } ) => {
         </Header.MenuBtn>
 
         <FirstPanel
+          closeThirdPanel={ closeThirdPanel }
           index={ index }
           nav={ nav }
           handleSecondPanel={ handleSecondPanel }
           secondPanel={ secondPanel }
-          handleThirdPanel={ handleThirdPanel }
           isNewsletter={isNewsletter}
           open={ isOpen }
           closePanel={ toggleMenu }
@@ -149,6 +155,7 @@ const Nav = ( { nav, navPosition } ) => {
           secondPanel={ secondPanel }
           handleThirdPanel={ handleThirdPanel }
           handleType={ handleType }
+          closeThirdPanel={ closeThirdPanel }
         />
         <ThirdPanel
           index={ index }
