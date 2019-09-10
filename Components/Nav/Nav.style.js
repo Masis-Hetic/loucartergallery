@@ -124,6 +124,27 @@ Header.SecondPanel = styled.div`
   transition: .5s ease;
 `;
 
+Header.SecondPanelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+`;
+
+Header.SecondPanelLink = styled.a`
+  display: block;
+  padding-left: 20px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+`;
+
+Header.SecondPanelP = styled.p`
+  padding-left: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+`;
+
 /**
  * @property { boolean } thirdPanel
  */
@@ -139,8 +160,25 @@ Header.ThirdPanel = styled.div`
   transition: .5s ease;
 `;
 
+Header.ThirdPanelWrapper = styled.div`
+  padding: 20px;
+`;
 
+Header.ThirdPanel.P = styled.p`
+  margin-bottom: 50px;
+`;
 
+Header.ThirdPanelSpan = styled.span`
+  display: block;
+  margin-bottom: 20px;
+`;
+
+Header.ThirdPanelImg = styled.img`
+  display: block;
+  width: 80%;
+  height: 130px;
+  object-fit: cover;
+`;
 
 
 
