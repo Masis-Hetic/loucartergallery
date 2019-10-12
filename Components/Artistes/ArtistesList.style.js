@@ -70,15 +70,6 @@ StyledArtistes.Wrapper = styled.div`
     height: ${ liLargeDesktop * 8 }px;
     width: 50vw;
   }
-  
-  ${ media.mobile`
-    width: 100%;
-    // height: unset;
-    // position: unset;
-    // top: unset;
-    // left: unset;
-    // transform: unset;
-  ` }
 `;
 
 StyledArtistes.Ul = styled.ul`
