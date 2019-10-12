@@ -28,7 +28,7 @@ const Galerie = ({ body, result }) => (
       <meta property="og:image:width" content={ 600 }/>
       <meta property="og:image:height" content={ 314 }/>
     </Head>
-    
+
     <MainComponent>
       <GalleryPage
         result={ body }
