@@ -17,6 +17,8 @@ const ArtistesList = props => {
   return (
     <StyledArtistes>
 
+      <StyledArtistes.H1>Artistes exposés</StyledArtistes.H1>
+
       <Link
         href={ { pathname: `/artistes/page-[page]`, query: { page: props.currentPage - 1 } } }
         as={ `/artistes/page-${ props.currentPage - 1 }` }

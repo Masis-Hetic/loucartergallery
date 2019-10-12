@@ -31,6 +31,10 @@ Main.LogoWrapper = styled.div`
   @media (min-width: 800px) {
     position: relative;
   }
+  
+  @media (max-width: 500px) {
+    width: 6.7rem;
+  }
 `;
 
 Main.Logo = styled.a`
@@ -41,11 +45,11 @@ Main.Logo = styled.a`
   max-width: 14rem;
   width: ${ props => props.navStatus ? '10rem' : '14rem' };
   transition: .3s ease;
-  
+
   ${media.smallDesktop`
     width: ${ props => props.navStatus ? '6.7rem' : '14rem' };
   `}
-  
+
   ${media.mobile`
     width: 6.7rem;
   `}

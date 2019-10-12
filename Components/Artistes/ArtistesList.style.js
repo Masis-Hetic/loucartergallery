@@ -11,6 +11,21 @@ const StyledArtistes = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  
+  ${media.mobile`
+    margin-top: 100px;
+  `}
+`;
+
+StyledArtistes.H1 = styled.h1`
+  position: relative;
+  text-align: center;
+  align-self: flex-start;
+  top: 10%;
+  
+  ${ media.mobile`
+    top: unset;
+  `}
 `;
 
 StyledArtistes.BackBtn = styled.a`
@@ -58,6 +73,11 @@ StyledArtistes.Wrapper = styled.div`
   
   ${ media.mobile`
     width: 100%;
+    // height: unset;
+    // position: unset;
+    // top: unset;
+    // left: unset;
+    // transform: unset;
   ` }
 `;
 
