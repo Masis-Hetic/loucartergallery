@@ -20,7 +20,7 @@ const Nav = ( { nav, navPosition } ) => {
 
   const [ newsletter, toggleModal ] = useState( false );
   const isNewsletter = param => {
-    if (param) {
+    if (param === 'Newsletter' || param === true) {
       toggleModal && openMenu( false );
       setEmail( '' );
       setSuccess( 'Partagez-nous votre adresse email pour être tenu informé de nos prochains événements' );

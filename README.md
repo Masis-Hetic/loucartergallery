@@ -9,9 +9,6 @@
 5219*2880
 
 - Todo :
-    - partager => logo media + pressroom + (bulle qui donne des docs) 
-    - pages artistes 
-    - transition navigation
 
 potentiel erreur: -> [HMR] bundle rebuilding
 
@@ -22,20 +19,19 @@ potentiel erreur: -> [HMR] bundle rebuilding
 
 - Todo :
     ---------------------------------------------------------------------
-    - Devis
-    - remplissage
-    - trad -> fr / en (param)
-    - artist -> title: "Artistes Exposés"
-    - galerie -> delete life art -> lou carter gallery (right)
-    - add loader
-    // - collections -> title: "Découvrir nos collections"
-    - < ATTENTION >
-        acquerir -> changé en "Actualités" ( prochainement / precedement )
-    // - eshop -> editions -> pdf -> telechargement
-                        -> event ->
-    - Home ajouter une img
-    - Mention Legal
-    - Cookies details
-    - Modal news letter mobile (fix petit écran)  && fix open news
-    - Foir => fw19/20 "PREVIEW CHAMBER OF : WOMENS"
-    - Collection -> "preview chamber of : womens"
+    - [x] Devis
+    - [x] Home ajouter une img
+    - [x] Mention Legal
+    - [ ] Pressroom + (bulle qui donne des docs)
+    - [ ] artist -> title: "Artistes Exposés"
+    - [ ] remplissage
+    - [ ] galerie -> delete life art -> lou carter gallery (right)
+    - [ ] Foir => fw19/20 "PREVIEW CHAMBER OF : WOMENS"
+    - [ ] <ATTENTION> acquerir -> changé en "Actualités" ( prochainement / precedement )
+    - [ ] Collections -> title: "Découvrir nos collections"
+    - [ ] Collection -> "preview chamber of : womens"
+    - [ ] add loader
+    - [ ] trad -> fr / en (param)
+    - [ ] Cookies details
+    - [ ] Modal news letter mobile (fix petit écran)  && fix open news
+    - [ ] eshop -> editions -> pdf -> telechargement -> event ->
