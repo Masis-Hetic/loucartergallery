@@ -19,3 +19,23 @@ potentiel erreur: -> [HMR] bundle rebuilding
 [transition navigation]
 
 - Mention Legal
+
+- Todo :
+    ---------------------------------------------------------------------
+    - Devis
+    - remplissage
+    - trad -> fr / en (param)
+    - artist -> title: "Artistes Exposés"
+    - galerie -> delete life art -> lou carter gallery (right)
+    - add loader
+    // - collections -> title: "Découvrir nos collections"
+    - < ATTENTION >
+        acquerir -> changé en "Actualités" ( prochainement / precedement )
+    // - eshop -> editions -> pdf -> telechargement
+                        -> event ->
+    - Home ajouter une img
+    - Mention Legal
+    - Cookies details
+    - Modal news letter mobile (fix petit écran)  && fix open news
+    - Foir => fw19/20 "PREVIEW CHAMBER OF : WOMENS"
+    - Collection -> "preview chamber of : womens"
