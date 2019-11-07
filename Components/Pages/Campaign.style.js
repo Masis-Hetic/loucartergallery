@@ -201,7 +201,7 @@ CampaignStyled.Text = styled.div`
   display: table;
   height: calc(100vh - 5rem);
   align-self: center;
-  max-width: 25vw;
+  max-width: 35vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -216,15 +216,15 @@ CampaignStyled.Text = styled.div`
   }
   
   @media (max-width: 1024px) {
-    max-width: 30vw;
+    max-width: 35vw;
   }
   
   @media (min-width : 1680px) {
-    width: 20vw;
+    width: 25vw;
   }
   
   @media (min-width : 1920px) {
-    width: 17vw;
+    width: 22vw;
   }
   
   ${media.mobile`

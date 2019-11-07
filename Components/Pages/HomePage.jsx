@@ -72,9 +72,9 @@ class HomePage extends Component {
                   <a href={ bg.primary.link_to.url } target="_blank">
                     { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
                     <h1>
-                          <span>
-                            { bg.primary.title_img[ 0 ].text }
-                          </span>
+                      <span>
+                        { bg.primary.title_img[ 0 ].text }
+                      </span>
                     </h1>
                     <h2>
                       <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
