@@ -23,7 +23,7 @@ class LouCarter extends App {
   }
 
   /**
-   *
+   * @property { string } link_to
    * @param Component
    * @param ctx
    * @param req
@@ -37,6 +37,16 @@ class LouCarter extends App {
     let pageProps = {};
     const API = await Prismic.api( publicRuntimeConfig.prismic );
     const links = await API.query( Prismic.Predicates.at( 'document.type', 'link' ), { orderings: '[my.link.order]' } );
+
+    // const links = await API.query( Prismic.Predicates.at( 'document.type', 'newnav' ), {} )
+    //   .then(async res => {
+    //     const ids = res.results && res.results[0].data.links.map(item => item.link_to.id);
+    //     const newLinks = await API.query( Prismic.Predicates.in('document.id', ids), {} );
+    //
+    //     return { newLinks: newLinks.results[0].data }
+    //   }
+    // );
+
     const myLinks = await ctx.reduxStore.dispatch( getNavDatas( links.results ) );
     const nav = ctx.reduxStore.dispatch( navStatus( false ) );
     const cookies = parseCookies( ctx );
