@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import Header              from "./Nav.style";
+import CloseBtn            from "../../static/icons/close-btn";
 
 /**
  * @property { function } handleSecondPanel
@@ -14,10 +15,10 @@ const FirstPanel = props => {
   return (
     <Fragment>
       <Header.Nav>
-        <Header.FirstPanel open={ props.open } onClick={ props.closePanel }>
-          <span style={{fontSize: 20, cursor: 'pointer'}}>X</span>
+        <Header.FirstPanel open={ props.open } onClick={ props.closePanel } style={{ cursor: 'pointer' }}>
+          <CloseBtn/>
         </Header.FirstPanel>
-        <ul>
+        <ul style={{height: '100vh', display: 'flex', justifyContent: 'center', flexDirection: 'column'}} onMouseEnter={ props.closeThirdPanel }>
           {props.nav.map((item, i) =>
           <Fragment key={ i }>
           { item.uid !== 'partager'

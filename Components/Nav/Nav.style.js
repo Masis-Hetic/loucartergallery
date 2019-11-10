@@ -22,21 +22,17 @@ const Header = styled.header`
   position: fixed;
   z-index: 80;
   top: 0;
-  left: ${ props => !props.open ? '-30%' : '0%' };
+  left: ${ props => !props.open ? '-33.33%' : '0%' };
   width: 33.33%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: rgba(0, 0, 0, 0.9);
   transition: .3s ease;
-  // box-shadow: rgb(40, 44, 55) 0px 0px 3px 1px;
 `;
 
 Header.MenuBtn = styled.div`
   position   : absolute;
   top        : 50%;
-  left       : calc(30vw + 20px);
+  right      : calc(0px - 50px);
   transform  : translateY(-50%) rotate(90deg);
   z-index    : 199999;
   cursor     : pointer;
@@ -124,13 +120,34 @@ Header.SecondPanel = styled.div`
   transition: .5s ease;
 `;
 
+Header.SecondPanelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+`;
+
+Header.SecondPanelLink = styled.a`
+  display: block;
+  padding-left: 20px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+`;
+
+Header.SecondPanelP = styled.p`
+  padding-left: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+`;
+
 /**
  * @property { boolean } thirdPanel
  */
 Header.ThirdPanel = styled.div`
   position: fixed;
   top: 0;
-  left: ${ props => props.thirdPanel ? '66.66%' : '33.33%'};
+  left: ${ props => props.thirdPanel === true ? '66.66%' : '33.33%'};
   opacity: ${ props => props.thirdPanel ? '1' : '0' };
   z-index: ${ props => props.thirdPanel ? '1' : '-1' };
   width: 33.33%;
@@ -139,8 +156,31 @@ Header.ThirdPanel = styled.div`
   transition: .5s ease;
 `;
 
+Header.ThirdPanelWrapper = styled.div`
+  padding: 20px;
+  height: 100%;
+  overflow-y: scroll;
+`;
 
+Header.ThirdPanel.P = styled.p`
+  margin-bottom: 50px;
+  
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`;
 
+Header.ThirdPanelSpan = styled.span`
+  display: block;
+  margin-bottom: 20px;
+`;
+
+Header.ThirdPanelImg = styled.img`
+  display: block;
+  width: 80%;
+  height: 130px;
+  object-fit: cover;
+`;
 
 
 

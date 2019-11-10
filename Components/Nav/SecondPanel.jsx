@@ -5,6 +5,7 @@ import Link   from "next/link";
 /**
  * @property { function } handleThirdPanel
  * @property { function } handleType
+ * @property { function } closeThirdPanel
  * @property { object } primary
  * @property { string } link_two
  * @param props
@@ -15,27 +16,30 @@ const SecondPanel = props => {
 
   return (
     <Header.SecondPanel secondPanel={ props.secondPanel }>
-      { console.log( props.nav[ props.index ] ) }
 
-      <div onClick={ props.handleThirdPanel }>
+      <Header.SecondPanelWrapper onMouseEnter={ props.handleThirdPanel }>
         { props.nav[ props.index ].data.body.map( ( item, i ) =>
           <div key={ i }>
-            { item.primary.link_two_href[0].text.length > 0
-              ? <Link href={ item.primary.link_two_href[ 0 ].text } as={item.primary.link_two_href[ 0 ].text}>
-                <a style={{textAlign: 'center'}}>
+            { item.primary.link_two_href[ 0 ].text.length > 0
+              ? <Link
+                  href={ item.primary.link_two_href[ 0 ].text.toLowerCase() === 'artistes'
+                    ? `${item.primary.link_two_href[ 0 ].text}/page-[page]`
+                    : item.primary.link_two_href[ 0 ].text
+                  }
+                  as={ item.primary.link_two_href[ 0 ].text.toLowerCase() === 'artistes'
+                    ? `${item.primary.link_two_href[ 0 ].text}/page-1`
+                    : item.primary.link_two_href[ 0 ].text
+                  }
+                >
+                  <Header.SecondPanelLink>{ item.primary.link_two[ 0 ].text }</Header.SecondPanelLink>
+                </Link>
+              : <Header.SecondPanelP id={ item.primary.type } onMouseEnter={ e => props.handleType( e ) }>
                   { item.primary.link_two[ 0 ].text }
-                </a>
-              </Link>
-              : <p id={item.primary.type} onClick={ e => props.handleType(e)} style={{textAlign: 'center'}}>
-                { item.primary.link_two[ 0 ].text }
-                <div style={{ width: '80%', height: 100, background: '#ccc'}}>
-                  Une photo ici
-                </div>
-              </p>
+                </Header.SecondPanelP>
             }
           </div>
         ) }
-      </div>
+      </Header.SecondPanelWrapper>
 
     </Header.SecondPanel>
   )

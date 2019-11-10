@@ -49,39 +49,22 @@ class HomePage extends Component {
               className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
               onMouseMove={ this.clearMouseMoving }
             >
-              {bg.primary.link_to.link_type === 'Document'
-                ? (
-                  <Link
-                    href={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }?slug=${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
-                    as={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }/${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
-                  >
-                    <a>
-                      { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
-                      <h1>
-                          <span>
-                            { bg.primary.title_img[ 0 ].text }
-                          </span>
-                      </h1>
-                      <h2>
-                        <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
-                      </h2>
-                    </a>
-                  </Link>
-                )
-                : (
-                  <a href={ bg.primary.link_to.url } target="_blank">
-                    { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
-                    <h1>
+              <Link
+                href={ { pathname: `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }?slug=${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` } }
+                as={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }/${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
+              >
+                <a>
+                  { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
+                  <h1>
                       <span>
                         { bg.primary.title_img[ 0 ].text }
                       </span>
-                    </h1>
-                    <h2>
-                      <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
-                    </h2>
-                  </a>
-                )
-              }
+                  </h1>
+                  <h2>
+                    <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
+                  </h2>
+                </a>
+              </Link>
             </div>
           ) }
 

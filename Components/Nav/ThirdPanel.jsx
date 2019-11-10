@@ -15,37 +15,43 @@ import Link                from "next/link";
 const ThirdPanel = props => {
   return (
     <Header.ThirdPanel thirdPanel={ props.thirdPanel }>
-      <div>
+      <Header.ThirdPanelWrapper>
 
-        { props.nav[props.index].data.body.map((items, i) =>
-          <Fragment key={i}>
-            { items.items.map((link, i) =>
-              <Fragment key={i}>
-                {link.type === props.type &&
-                  <p>
-                    {link.link_three_href[0].text === 'campagnes'
-                    ? (<Link
-                        href={`/${link.link_three_href[0].text}?slug=${link.link_to_level_three.uid}`}
-                        as={`${link.link_three_href[0].text}/${link.link_to_level_three.uid}`}
+        { props.nav[ props.index ].data.body.map( ( items, i ) =>
+          <Fragment key={ i }>
+            { items.items.map( ( link, i ) =>
+              <Fragment key={ i }>
+                { link.type === props.type &&
+                <Header.ThirdPanel.P>
+                  { link.link_three_href[ 0 ].text === 'campagnes'
+                    ? ( <Link
+                      href={ `/${ link.link_three_href[ 0 ].text }?slug=${ link.link_to_level_three.uid }` }
+                      as={ `${ link.link_three_href[ 0 ].text }/${ link.link_to_level_three.uid }` }
+                    >
+                      <a>
+                        <Header.ThirdPanelSpan>{ link.link_three[ 0 ].text }</Header.ThirdPanelSpan>
+                        <Header.ThirdPanelImg src="../../static/images/bg-ss19.jpg" alt="" />
+                      </a>
+                    </Link> )
+                    : ( <Link
+                        href={ `/${ link.link_to_level_three.uid }` }
+                        as={ `/${ link.link_to_level_three.uid }` }
                       >
-                        <a>{ link.link_three[0].text }</a>
-                      </Link>)
-                    : (<Link
-                          href={`/${link.link_to_level_three.uid}`}
-                          as={`/${link.link_to_level_three.uid}`}
-                        >
-                          <a>{link.link_three[0].text}</a>
+                        <a>
+                          <Header.ThirdPanelSpan>{ link.link_three[ 0 ].text }</Header.ThirdPanelSpan>
+                          <Header.ThirdPanelImg src="../../static/images/bg-ss19.jpg" alt="" />
+                        </a>
                       </Link>
-                      )
-                    }
-                  </p>
+                    )
+                  }
+                </Header.ThirdPanel.P>
                 }
               </Fragment>
             ) }
           </Fragment>
         ) }
 
-      </div>
+      </Header.ThirdPanelWrapper>
     </Header.ThirdPanel>
   )
 };
