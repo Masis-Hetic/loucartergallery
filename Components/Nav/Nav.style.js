@@ -68,12 +68,13 @@ Header.FirstStepLi = styled.li`
 Header.MenuBtn = styled.div`
    position   : absolute;
    top        : 50%;
-   left       : calc(30vw + 20px);
+   left       : 20px;
    transform  : translateY(-50%) rotate(90deg);
-   z-index    : 1;
+   z-index    : 100;
    cursor     : pointer;
    padding    : 10px 0;
    transition : .3s ease-in-out;
+   opacity    : ${ props => props.open ? 0 : 1 };
    
    ${media.mobile`
     left: unset;
@@ -100,13 +101,15 @@ Header.Burger = styled.span`
   
   &:before {
   background : ${ COLORS.white };
-  transform  : ${ props => !props.open ? 'rotate(0) translate(0, 0)' : 'rotate(45deg) translate(5px, 6px)' };
+  // transform  : ${ props => !props.open ? 'rotate(0) translate(0, 0)' : 'rotate(45deg) translate(5px, 6px)' };
+  // transform  : rotate(0) translate(0, 0);
   top        : -8px;
   }
-  
+
   &:after {
   background : ${ COLORS.white }; 
-  transform  : ${ props => !props.open ? 'rotate(0) translate(0, 0)' : 'rotate(-45deg) translate(5px, -6px)' };
+  // transform  : ${ props => !props.open ? 'rotate(0) translate(0, 0)' : 'rotate(-45deg) translate(5px, -6px)' };
+  // transform  : rotate(0) translate(0, 0);
   top        : 8px;
   }
 `;

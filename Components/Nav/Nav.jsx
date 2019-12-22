@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import Header                        from './Nav.style';
+import React, { Fragment, useEffect, useState } from 'react';
+import Header                                   from './Nav.style';
 import Link                          from 'next/link';
 import { connect, useDispatch }      from 'react-redux';
 
@@ -11,7 +11,9 @@ import COLORS              from '../../helpers/colors';
 import { validateEmail }   from '../../helpers/functions';
 import { subscribeToNews } from '../../helpers/mailchimp';
 
-import { useSpring, animated, config } from 'react-spring';
+import FirstPanel                      from "./FirstPanel";
+import SecondPanel                     from "./SecondPanel";
+import ThirdPanel                      from "./ThirdPanel";
 
 const mapStateToProps = state => ( { nav: state.nav.datas, navPosition: state.navPosition } );
 
@@ -29,15 +31,6 @@ const Nav = ( { nav, navPosition } ) => {
       if (!newsletter) {
         dispatch( navStatus( !isOpen ) );
       }
-    }
-  };
-
-  const [ credits, toggleModalCredits ] = useState( false );
-  const isCredits = param => {
-    if (param) {
-      // toggleModalCredits && openMenu(false);
-      // toggleModalCredits(!credits);
-      // if (!credits) { dispatch(navStatus(!isOpen)); }
     }
   };
 
@@ -77,161 +70,93 @@ const Nav = ( { nav, navPosition } ) => {
   };
 
   const [ isOpen, openMenu ] = useState( false );
-  const toggleMenu = () => {
-    openMenu( !isOpen );
-    openOrNot( false );
-    dispatch( navStatus( !isOpen ) );
+  // const toggleMenu = () => {
+  //   openMenu( !isOpen );
+  //   openOrNot( false );
+  //   dispatch( navStatus( !isOpen ) );
+  // };
+
+  // const [ isList, openList ] = useState( null );
+  // const [ isListOpen, openOrNot ] = useState( false );
+  // const toggleList = ( id ) => {
+  //   openOrNot( true );
+  //   openOrNot( false );
+  //   setTimeout( () => {
+  //     if (id !== isList) openOrNot( true );
+  //     if (id === isList) openOrNot( !isListOpen );
+  //     openList( id );
+  //   }, 50 );
+  // };
+
+  const [firstPanel, toggleFirstPanel] = useState(false);
+  const closeFirstPanel = () => {
+    toggleFirstPanel(false);
+    dispatch( navStatus( false ) );
+  };
+  const openFirstPanel = () => {
+    toggleFirstPanel(true);
+    dispatch( navStatus( true ) );
   };
 
-  const [ isList, openList ] = useState( null );
-  const [ isListOpen, openOrNot ] = useState( false );
-  const toggleList = ( id ) => {
-    openOrNot( true );
-    openOrNot( false );
-    setTimeout( () => {
-      if (id !== isList) openOrNot( true );
-      if (id === isList) openOrNot( !isListOpen );
-      openList( id );
-    }, 50 );
+  const [secondPanel, toggleSecondPanel] = useState(false);
+  const [secondIndex, getSecondIndex] = useState(0);
+  const openSecondPanel = (secondState, index) => {
+    toggleSecondPanel(secondState);
+    getSecondIndex(index);
   };
 
-  const props = useSpring( {
-    reset: true,
-    reverse: false,
-    immediate: false,
-    config: { duration: 300, ...config.default },
-    to: {
-      height: isListOpen ? 'auto' : 0,
-      lineHeight: isListOpen ? 2.5 : 0,
-      opacity: isListOpen ? 1 : 0,
-      marginBottom: isListOpen ? 15 : 'unset'
-    },
-    from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
-  } );
+  const [thirdPanel, toggleThirdPanel] = useState(false);
+  const [thirdIndex, getThirdIndex] = useState(0);
+  const openThirdPanel = (thirdState, index) => {
+    toggleThirdPanel(thirdState);
+    getThirdIndex(index);
+  };
+
+  const closeAllPan = (secondState, thirdState, index) => {
+    getSecondIndex(index);
+    getThirdIndex(index);
+    toggleSecondPanel(secondState);
+    toggleThirdPanel(thirdState);
+  };
 
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
-      <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <Header open={ isOpen } navPos={ navPosition.data }>
-          <Header.Nav>
+      {/*<OutsideAlerter*/}
+      {/*  method={ toggleMenu }*/}
+      {/*  isActive={ isOpen }*/}
+      {/*>*/}
 
-            <Header.UlWrapper>
-              { nav.map( ( link, i ) =>
-                <Header.FirstStepLi key={ i }>
-                  { link.data.link_to.uid
-                    ? (
-                      <Link href={ `/${ link.data.link_to.uid }` } as={ `/${ link.data.link_to.uid }` }>
-                        <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ].text }</a>
-                      </Link>
-                    )
-                    : (
-                      <Fragment>
-                        <div
-                          id={ i }
-                          onClick={ () => toggleList( i ) }
-                        >
-                          <p>{ link.data.link_one[ 0 ].text }</p>
+        <FirstPanel
+          nav={nav}
+          open={firstPanel}
+          openSecondPanel={openSecondPanel}
+          secondIndex={secondIndex}
+          openThirdPanel={openThirdPanel}
+          thirdIndex={thirdIndex}
+          closePan={closeFirstPanel}
+        />
+        <SecondPanel
+          nav={nav}
+          open={secondPanel}
+          index={secondIndex}
+          openThirdPanel={openThirdPanel}
+          closeAllPan={closeAllPan}
+          isNewsletter={isNewsletter}
+        />
+        <ThirdPanel
+          nav={nav}
+          open={thirdPanel}
+          thirdIndex={thirdIndex}
+          openThirdPanel={openThirdPanel}
+          closeAllPan={closeAllPan}
+        />
 
-                          { isList === i && isListOpen &&
-                          <animated.ul style={ props }>
-                            { link.data.body.map( ( sublink, i ) =>
-                              sublink.primary.link_to_level_two.uid || sublink.primary.link_to_level_two.url ?
-                                (
-                                  sublink.primary.link_to_level_two.uid
-                                    ? (
-                                      <li key={ i }>
-                                        <Link
-                                          href={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-[page]' : sublink.primary.link_to_level_two.uid }` }
-                                          as={ `/${ sublink.primary.link_to_level_two.uid === 'artistes' ? 'artistes/page-1' : sublink.primary.link_to_level_two.uid }` }
-                                        >
-                                          <Header.Link
-                                            onClick={ () => dispatch( navStatus( !isOpen ) ) }>
-                                            <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></Header.Link>
-                                        </Link>
-                                      </li>
-                                    )
-                                    : (
-                                      <li key={ i }>
-                                        {/*<Link href={ `${ sublink.primary.link_to_level_two.url }` }>*/ }
-                                        <Header.Link
-                                          href={ `${ sublink.primary.link_to_level_two.url }` }
-                                          target="_blank">
-                                          <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span>
-                                        </Header.Link>
-                                        {/*</Link>*/ }
-                                      </li>
-                                    )
-                                )
-                                : (
-                                  <Fragment key={ i }>
-                                    <Header.NavItem
-                                      underline={ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }
-                                      // className={ `except ${
-                                      // sublink.primary.link_two[ 0
-                                      // ].text.toLowerCase() === 'newsletter' ?
-                                      // 'underline' : null }` }
-                                      onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
-                                    >
-                                      <span>{ sublink.primary.link_two[ 0 ].text }</span>
-                                    </Header.NavItem>
-                                    {/*<p*/ }
-                                    {/*  className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }*/ }
-                                    {/*  onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }*/ }
-                                    {/*>*/ }
-                                    {/*  <span>{ sublink.primary.link_two[ 0 ].text }</span>*/ }
-                                    {/*</p>*/ }
-                                    <ul style={ { paddingLeft: 40 } }>
-                                      { sublink.items.map( ( thirdLink, i ) =>
-                                        <li key={ i }
-                                            onClick={ toggleMenu }>
-                                          { thirdLink.link_three[ 0 ].text === undefined ? null :
-                                            thirdLink.link_three_href[ 0 ].text !== ''
-                                              ? (
-                                                <Link
-                                                  href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
-                                                  as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
-                                                >
-                                                  <Header.Link
-                                                    onClick={ () => dispatch( navStatus( !isOpen ) ) }>
-                                                    <span>{ thirdLink.link_three[ 0 ].text }</span>
-                                                  </Header.Link>
-                                                </Link>
-                                              )
-                                              : (
-                                                <Link
-                                                  href={ `/${ thirdLink.link_to_level_three.uid }` }
-                                                  as={ `/${ thirdLink.link_to_level_three.uid }` }>
-                                                  <Header.Link
-                                                    onClick={ () => dispatch( navStatus( !isOpen ) ) }>
-                                                    <span>{ thirdLink.link_three[ 0 ].text }</span>
-                                                  </Header.Link>
-                                                </Link>
-                                              )
-                                          }
-                                        </li>
-                                      ) }
-                                    </ul>
-                                  </Fragment>
-                                )
-                            ) }
-                          </animated.ul>
-                          }
-                        </div>
-                      </Fragment>
-                    )
-                  }
-                </Header.FirstStepLi>
-              ) }
-            </Header.UlWrapper>
+        <Header.MenuBtn open={ firstPanel } onClick={ () => openFirstPanel() }>
+          <Header.Burger open={ firstPanel }/>
+        </Header.MenuBtn>
 
-          </Header.Nav>
-
-          <Header.MenuBtn onClick={ toggleMenu }>
-            <Header.Burger open={ isOpen }/>
-          </Header.MenuBtn>
-        </Header>
-      </OutsideAlerter>
+      {/*</OutsideAlerter>*/}
 
       <Newsletter newsletter={ newsletter }>
         <Newsletter.Wrapper>
