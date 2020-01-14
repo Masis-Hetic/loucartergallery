@@ -1,5 +1,6 @@
 import React          from "react";
 import Link           from "next/link";
+
 import StyledArtistes from "./ArtistesList.style";
 import ArrowRight     from "../../static/icons/arrow-right";
 import ArrowLeft      from "../../static/icons/arrow-left";
