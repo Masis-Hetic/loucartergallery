@@ -20,19 +20,27 @@ app.prepare().then(() => {
     next();
   });
   
-  server.get('/campagnes/:slug', (req, res) => app.render(req, res, '/campagnes',
-                                                          Object.assign({ slug: req.params.slug })));
+  server.get(
+    '/campagnes/:slug',
+    (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug }))
+  );
   
   server.get('/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice'));
   
-  server.get('/artistes/:page', (req, res) => app.render(req, res, '/artistes/page-[page]',
-                                                         Object.assign({ page: req.params.page })));
+  server.get(
+    '/artistes/:page',
+    (req, res) => app.render(req, res, '/artistes/page-[page]', Object.assign({ page: req.params.page }))
+  );
   
-  server.get('/artiste/:name', (req, res) => app.render(req, res, '/artiste/[name]',
-                                                        Object.assign({ name: req.params.name })));
+  server.get(
+    '/artiste/:name',
+    (req, res) => app.render(req, res, '/artiste/[name]', Object.assign({ name: req.params.name }))
+  );
   
-  server.get('/collections/:collection', (req, res) => app.render(req, res, '/collections/[collection]',
-                                                                  Object.assign({ collection: req.params.collection })));
+  server.get(
+    '/collections/:collection',
+    (req, res) => app.render(req, res, '/collections/[collection]', Object.assign({ collection: req.params.collection }))
+  );
   
   server.get('*', (req, res) => handle(req, res));
   
@@ -42,20 +50,3 @@ app.prepare().then(() => {
   });
 });
 
-// const next = require('next');
-// const routes = require('./routes');
-//
-// const dev = process.env.NODE_ENV !== 'production';
-// const app = next({ dir: '.', dev });
-// // const handler = routes.getRequestHandler(app);
-// const handler = routes.getRequestHandler( app, ( { req, res, route, query } ) => {
-//   console.log('s', query);
-//   console.log('s', req);
-//   return app.render( req, res, route.page, query );
-// } );
-//
-// const { createServer } = require('http');
-//
-// app.prepare().then(() => {
-//   createServer(handler).listen(3000);
-// });
