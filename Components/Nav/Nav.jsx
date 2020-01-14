@@ -89,10 +89,7 @@ const Nav = ( { nav, navPosition } ) => {
   // };
 
   const [firstPanel, toggleFirstPanel] = useState(false);
-  const closeFirstPanel = () => {
-    toggleFirstPanel(false);
-    dispatch( navStatus( false ) );
-  };
+
   const openFirstPanel = () => {
     toggleFirstPanel(true);
     dispatch( navStatus( true ) );
@@ -100,24 +97,40 @@ const Nav = ( { nav, navPosition } ) => {
 
   const [secondPanel, toggleSecondPanel] = useState(false);
   const [secondIndex, getSecondIndex] = useState(0);
-  const openSecondPanel = (secondState, index) => {
-    toggleSecondPanel(secondState);
+  const openSecondPanel = (AsecondState, index) => {
+    console.log('¨¨¨', thirdPanel);
+    toggleSecondPanel(AsecondState);
     getSecondIndex(index);
   };
 
   const [thirdPanel, toggleThirdPanel] = useState(false);
   const [thirdIndex, getThirdIndex] = useState(0);
   const openThirdPanel = (thirdState, index) => {
+    console.log('££', thirdPanel);
     toggleThirdPanel(thirdState);
     getThirdIndex(index);
   };
 
-  const closeAllPan = (secondState, thirdState, index) => {
-    getSecondIndex(index);
-    getThirdIndex(index);
-    toggleSecondPanel(secondState);
-    toggleThirdPanel(thirdState);
+  const closeAllPan = () => {
+    console.log('**', thirdPanel);
+    debugger;
+    // getSecondIndex(index);
+    // getThirdIndex(index);
+    toggleSecondPanel(false);
+    toggleThirdPanel( false);
   };
+
+  const closeFirstPanel = () => {
+    console.log('_____', thirdPanel);
+    toggleFirstPanel(false);
+    toggleSecondPanel(false);
+    toggleThirdPanel(false);
+    dispatch( navStatus( false ) );
+  };
+
+  console.log('firstPanel', firstPanel);
+  console.log('secondPanel', secondPanel);
+  console.log('thirdPanel', thirdPanel);
 
   // noinspection JSUnresolvedVariable
   return (
@@ -148,8 +161,7 @@ const Nav = ( { nav, navPosition } ) => {
           nav={nav}
           open={thirdPanel}
           thirdIndex={thirdIndex}
-          openThirdPanel={openThirdPanel}
-          closeAllPan={closeAllPan}
+          // openThirdPanel={openThirdPanel}
         />
 
         <Header.MenuBtn open={ firstPanel } onClick={ () => openFirstPanel() }>
