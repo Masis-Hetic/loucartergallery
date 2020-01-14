@@ -37,9 +37,9 @@ const Index = ({ result, imgs }) => {
   );
 };
 
-Index.getInitialProps = async({}) => {
+Index.getInitialProps = async({query}) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
-
+  console.log('tarace', query);
   const result = await API.query(
     Prismic.Predicates.at('document.type', 'homepage'), { lang: 'fr-FR' }
   );

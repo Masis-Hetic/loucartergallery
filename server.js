@@ -10,7 +10,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-  
+
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(cors());
@@ -43,7 +43,7 @@ app.prepare().then(() => {
   );
   
   server.get('*', (req, res) => handle(req, res));
-  
+
   server.listen(port, err => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${ port }`);

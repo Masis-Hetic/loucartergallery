@@ -12,6 +12,7 @@ import { validateEmail }   from '../../helpers/functions';
 import { subscribeToNews } from '../../helpers/mailchimp';
 
 import { useSpring, animated, config } from 'react-spring';
+import Router                          from "next/router";
 
 const mapStateToProps = state => ( { nav: state.nav.datas, navPosition: state.navPosition } );
 
@@ -115,6 +116,19 @@ const Nav = ( { nav, navPosition } ) => {
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
         <Header open={ isOpen } navPos={ navPosition.data }>
           <Header.Nav>
+
+            <ul style={ { position: 'relative', top: -50 } }>
+              <li>
+                <Link href={{ pathname: currentUrl, query: { lang: 'en' } }} as={'/en'}>
+                  <a>en</a>
+                </Link>
+              </li>
+              <li>
+                <Link href={{ pathname: currentUrl, query: { lang: 'fr' } }} as={'/fr'}>
+                  <a>fr</a>
+                </Link>
+              </li>
+            </ul>
 
             <Header.UlWrapper>
               { nav.map( ( link, i ) =>
@@ -274,28 +288,28 @@ const Nav = ( { nav, navPosition } ) => {
         </Newsletter.Wrapper>
       </Newsletter>
 
-      {/*<Credits credits={ credits }>*/}
-      {/*  <Credits.Wrapper>*/}
-      {/*    <Credits.CloseBtn onClick={ () => isCredits( true ) }>*/}
-      {/*      <svg width="12" height="12" viewBox="0 0 10 10" fill="none">*/}
-      {/*        <path fillRule="evenodd"*/}
-      {/*              clipRule="evenodd"*/}
-      {/*              d="M10 0H9L5 4L1 0H0V1L4 5L0 9V10H1L5 6L9 10H10V9L6 5L10 1V0Z"*/}
-      {/*              fill={ COLORS.almostBlack }/>*/}
-      {/*      </svg>*/}
-      {/*    </Credits.CloseBtn>*/}
-      {/*    <Credits.Title>CREDIT</Credits.Title>*/}
-      {/*    <Credits.Subtitle>Development</Credits.Subtitle>*/}
-      {/*    <Credits.Div>*/}
-      {/*      Masis Gulmez*/}
-      {/*      <Credits.Span>masis.profesionnel@gmail.com</Credits.Span>*/}
-      {/*    </Credits.Div>*/}
-      {/*    <Credits.Div>*/}
-      {/*      Cédric Salaün*/}
-      {/*      <Credits.Span>salaun.cedric@gmail.Com</Credits.Span>*/}
-      {/*    </Credits.Div>*/}
-      {/*  </Credits.Wrapper>*/}
-      {/*</Credits>*/}
+      {/*<Credits credits={ credits }>*/ }
+      {/*  <Credits.Wrapper>*/ }
+      {/*    <Credits.CloseBtn onClick={ () => isCredits( true ) }>*/ }
+      {/*      <svg width="12" height="12" viewBox="0 0 10 10" fill="none">*/ }
+      {/*        <path fillRule="evenodd"*/ }
+      {/*              clipRule="evenodd"*/ }
+      {/*              d="M10 0H9L5 4L1 0H0V1L4 5L0 9V10H1L5 6L9 10H10V9L6 5L10 1V0Z"*/ }
+      {/*              fill={ COLORS.almostBlack }/>*/ }
+      {/*      </svg>*/ }
+      {/*    </Credits.CloseBtn>*/ }
+      {/*    <Credits.Title>CREDIT</Credits.Title>*/ }
+      {/*    <Credits.Subtitle>Development</Credits.Subtitle>*/ }
+      {/*    <Credits.Div>*/ }
+      {/*      Masis Gulmez*/ }
+      {/*      <Credits.Span>masis.profesionnel@gmail.com</Credits.Span>*/ }
+      {/*    </Credits.Div>*/ }
+      {/*    <Credits.Div>*/ }
+      {/*      Cédric Salaün*/ }
+      {/*      <Credits.Span>salaun.cedric@gmail.Com</Credits.Span>*/ }
+      {/*    </Credits.Div>*/ }
+      {/*  </Credits.Wrapper>*/ }
+      {/*</Credits>*/ }
 
       {/* TODO NE PAS EFFACER POUR LE MOMENT */ }
       {/*<div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>*/ }
