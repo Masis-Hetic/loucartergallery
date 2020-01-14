@@ -28,6 +28,9 @@ app.prepare().then(() => {
   server.get('/artistes/:page', (req, res) => app.render(req, res, '/artistes/page-[page]',
                                                          Object.assign({ page: req.params.page })));
 
+  server.get('/:lang/artistes/:page', (req, res) => app.render(req, res, '/artistes/page-[page]',
+    Object.assign({ page: req.params.page, lang: req.params.lang })));
+
   server.get('/artiste/:name', (req, res) => app.render(req, res, '/artiste/[name]',
                                                         Object.assign({ name: req.params.name })));
 

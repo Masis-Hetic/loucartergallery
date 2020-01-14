@@ -12,9 +12,12 @@ import { validateEmail }   from '../../helpers/functions';
 import { subscribeToNews } from '../../helpers/mailchimp';
 
 import { useSpring, animated, config } from 'react-spring';
-import Router                          from "next/router";
+import Router, { useRouter }           from "next/router";
+import { func }                        from "prop-types";
 
 const mapStateToProps = state => ( { nav: state.nav.datas, navPosition: state.navPosition } );
+
+
 
 const Nav = ( { nav, navPosition } ) => {
   const dispatch = useDispatch();
@@ -110,6 +113,16 @@ const Nav = ( { nav, navPosition } ) => {
     from: { height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40 }
   } );
 
+  const router = useRouter();
+
+  function cutUrl(url) {
+    return url.pathname.substr(0, url.query.page ? 10 : 9);
+  }
+
+  function monUrl() {
+    return `${router.query.page ? cutUrl(router) : router.pathname}${router.query.slug || router.query.page ||router.query.name || ''}`;
+  }
+
   // noinspection JSUnresolvedVariable
   return (
     <Fragment>
@@ -119,12 +132,12 @@ const Nav = ( { nav, navPosition } ) => {
 
             <ul style={ { position: 'relative', top: -50 } }>
               <li>
-                <Link href={{ pathname: currentUrl, query: { lang: 'en' } }} as={'/en'}>
+                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl()}>
                   <a>en</a>
                 </Link>
               </li>
               <li>
-                <Link href={{ pathname: currentUrl, query: { lang: 'fr' } }} as={'/fr'}>
+                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl()}>
                   <a>fr</a>
                 </Link>
               </li>
