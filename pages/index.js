@@ -30,9 +30,27 @@ const Index = ({ result, imgs }) => {
         <meta property="og:image:width" content={ 600 }/>
         <meta property="og:image:height" content={ 314 }/>
       </Head>
-      <MainComponent>
-        <HomePage result={ result } imgs={ imgs }/>
-      </MainComponent>
+        <div
+          style={{
+            width: '100vw',
+            height: '100vh',
+            background: '#080808',
+          }}
+        >
+          <h1
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            Site en maintenance
+          </h1>
+        </div>
+      {/*<MainComponent>*/}
+        {/*<HomePage result={ result } imgs={ imgs }/>*/}
+      {/*</MainComponent>*/}
     </Fragment>
   );
 };
