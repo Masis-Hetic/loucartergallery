@@ -20,14 +20,11 @@ app.prepare().then(() => {
     next();
   });
 
-  server.get(
-    '/:lang',
-    (req, res) => app.render(req, res, '/', Object.assign({ lang: req.params.lang }))
-  );
+  server.get('/:lang', (req, res) => app.render(req, res, '/', Object.assign({ lang: req.params.lang })));
 
   server.get(
-    '/campagnes/:slug',
-    (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug }))
+    '/:lang/campagnes/:slug',
+    (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug, lang: req.params.lang }))
   );
 
   server.get(
@@ -35,24 +32,21 @@ app.prepare().then(() => {
     (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug, lang: req.params.lang }))
   );
 
-  server.get('/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice'));
-
-  // server.get('/:lang/artistes/:page', (req, res) => app.render(req, res, '/artistes/page-[page]',
-  //   Object.assign({ page: req.params.page, lang: req.params.lang })));
+  server.get('/:lang/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice', Object.assign({ lang: req.params.lang })));
 
   server.get(
-    '/artistes/:page',
-    (req, res) => app.render(req, res, '/artistes/page-[page]', Object.assign({ page: req.params.page }))
+    '/:lang/artistes/:page',
+    (req, res) => app.render(req, res, '/artistes/page-[page]', Object.assign({ page: req.params.page, lang: req.params.lang }))
   );
 
   server.get(
-    '/artiste/:name',
-    (req, res) => app.render(req, res, '/artiste/[name]', Object.assign({ name: req.params.name }))
+    '/:lang/artiste/:name',
+    (req, res) => app.render(req, res, '/artiste/[name]', Object.assign({ name: req.params.name, lang: req.params.lang }))
   );
 
   server.get(
-    '/collections/:collection',
-    (req, res) => app.render(req, res, '/collections/[collection]', Object.assign({ collection: req.params.collection }))
+    '/:lang/collections/:collection',
+    (req, res) => app.render(req, res, '/collections/[collection]', Object.assign({ collection: req.params.collection, lang: req.params.lang }))
   );
 
   server.get('*', (req, res) => handle(req, res));

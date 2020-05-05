@@ -124,12 +124,12 @@ const Nav = ( { nav, navPosition } ) => {
             <ul style={ { position: 'relative', top: -50 } }>
               <li>
                 <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={'/en' + monUrl()}>
-                  <a>en</a>
+                  <a onClick={ toggleMenu }>en</a>
                 </Link>
               </li>
               <li>
                 <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={'/fr' + monUrl()}>
-                  <a>fr</a>
+                  <a onClick={ toggleMenu }>fr</a>
                 </Link>
               </li>
             </ul>

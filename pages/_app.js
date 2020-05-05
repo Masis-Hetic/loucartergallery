@@ -36,7 +36,8 @@ class LouCarter extends App {
   static async getInitialProps( { Component, ctx } ) {
     let pageProps = {};
     const API = await Prismic.api( publicRuntimeConfig.prismic );
-    const links = await API.query( Prismic.Predicates.at( 'document.type', 'link' ), { orderings: '[my.link.order]' } );
+    const lang = ctx.query.lang === 'en' ? 'en-US' : 'fr-FR';
+    const links = await API.query( Prismic.Predicates.at( 'document.type', 'link' ), { orderings: '[my.link.order]', lang } );
     const myLinks = await ctx.reduxStore.dispatch( getNavDatas( links.results ) );
     const nav = ctx.reduxStore.dispatch( navStatus( false ) );
     const cookies = parseCookies( ctx );

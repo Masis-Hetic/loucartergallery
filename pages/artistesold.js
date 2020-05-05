@@ -46,12 +46,14 @@ const Artistes = ({ artistes, artiste }) => {
 
 Artistes.getInitialProps = async() => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
+
+  const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
   const artistes = await API.query(
-    Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' }
+    Prismic.Predicates.at('document.type', 'artists'), { lang }
   );
   
   const artiste = await API.query(
-    Prismic.Predicates.at('document.type', 'artist'), { lang: 'fr-FR', pageSize: 1, page: 1 }
+    Prismic.Predicates.at('document.type', 'artist'), { lang, pageSize: 1, page: 1 }
   );
   
   return { artistes: artistes.results[ 0 ], artiste: artiste.results[ 0 ] };

@@ -95,11 +95,12 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
 
 Artistes.getInitialProps = async({ asPath, query }) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
+  const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
   const page = asPath.substring(15);
   const artistPerPages = 16;
   const artistQueryLength = 100;
 
-  const artistes = await API.query(Prismic.Predicates.at('document.type', 'artists'), { lang: 'fr-FR' });
+  const artistes = await API.query(Prismic.Predicates.at('document.type', 'artists'), { lang });
   const artiste = await iterArtist([], 1);
 
   const listIds = artistes.results[ 0 ].data.artists.map(item => item.artist.id);

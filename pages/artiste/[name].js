@@ -16,10 +16,11 @@ const { publicRuntimeConfig } = getConfig();
 class Artiste extends React.Component {
   static async getInitialProps( { query } ) {
     const API = await Prismic.api( publicRuntimeConfig.prismic );
-    const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang: 'fr-FR' } )
+    const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
+    const artist = await API.query( Prismic.Predicates.at( 'my.artist.uid', query.name ), { lang } )
       .then(async res => {
         const idsArray = res.results[0].data.artist_work.map(work => work.oeuvre.id);
-        const arts = await API.query( Prismic.Predicates.in( 'document.id', idsArray ), { lang: 'fr-FR' } );
+        const arts = await API.query( Prismic.Predicates.in( 'document.id', idsArray ), { lang } );
 
         return { res, arts };
       });

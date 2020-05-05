@@ -101,9 +101,10 @@ const Collection = ( { collection, res } ) => {
 Collection.getInitialProps = async ( { query } ) => {
   const API = await Prismic.api( publicRuntimeConfig.prismic );
 
-  const collection = await API.query( Prismic.Predicates.at( 'my.collection.uid', query.collection ), { lang: 'fr-FR' } )
+  const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
+  const collection = await API.query( Prismic.Predicates.at( 'my.collection.uid', query.collection ), { lang } )
     .then( async res => {
-        const oeuvre = await API.query( Prismic.Predicates.at( 'my.oeuvre.tag', res.results[ 0 ].data.tag ), { lang: 'fr-FR', pageSize: 100 } );
+        const oeuvre = await API.query( Prismic.Predicates.at( 'my.oeuvre.tag', res.results[ 0 ].data.tag ), { lang, pageSize: 100 } );
 
         return { res, oeuvre };
       }
