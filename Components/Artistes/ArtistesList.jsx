@@ -2,8 +2,8 @@ import React          from "react";
 import Link           from "next/link";
 
 import StyledArtistes from "./ArtistesList.style";
-import ArrowRight     from "../../static/icons/arrow-right";
-import ArrowLeft      from "../../static/icons/arrow-left";
+import ArrowRight     from "../../public/static/icons/arrow-right";
+import ArrowLeft      from "../../public/static/icons/arrow-left";
 
 /**
  * @property { number } currentPage

@@ -3,8 +3,8 @@ import Head                from 'next/head';
 import Prismic             from 'prismic-javascript';
 import getConfig           from 'next/config';
 
-import PartagerPage        from '../Components/Pages/PartagerPage';
-import MainComponent       from '../Components/Main/Main';
+import PartagerPage  from '../Components/StylesPages/PartagerPage';
+import MainComponent from '../Components/Main/Main';
 import '../styles/style.scss';
 
 const { publicRuntimeConfig } = getConfig();

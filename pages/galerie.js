@@ -3,7 +3,7 @@ import Head                from 'next/head';
 import Prismic             from 'prismic-javascript';
 import getConfig           from 'next/config';
 
-import GalleryPage   from '../Components/Pages/GalleryPage';
+import GalleryPage   from '../Components/StylesPages/GalleryPage';
 import MainComponent from '../Components/Main/Main';
 import '../styles/style.scss';
 

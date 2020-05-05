@@ -4,7 +4,6 @@ import Link                          from 'next/link';
 import { connect, useDispatch }      from 'react-redux';
 
 import Newsletter          from './Newsletter.style';
-import Credits             from './Credits.style';
 import { navStatus }       from '../../store/actions/nav.action';
 import OutsideAlerter      from '../../helpers/click-outside';
 import COLORS              from '../../helpers/colors';
@@ -12,12 +11,9 @@ import { validateEmail }   from '../../helpers/functions';
 import { subscribeToNews } from '../../helpers/mailchimp';
 
 import { useSpring, animated, config } from 'react-spring';
-import Router, { useRouter }           from "next/router";
-import { func }                        from "prop-types";
+import { useRouter }                   from "next/router";
 
 const mapStateToProps = state => ( { nav: state.nav.datas, navPosition: state.navPosition } );
-
-
 
 const Nav = ( { nav, navPosition } ) => {
   const dispatch = useDispatch();
@@ -33,15 +29,6 @@ const Nav = ( { nav, navPosition } ) => {
       if (!newsletter) {
         dispatch( navStatus( !isOpen ) );
       }
-    }
-  };
-
-  const [ credits, toggleModalCredits ] = useState( false );
-  const isCredits = param => {
-    if (param) {
-      // toggleModalCredits && openMenu(false);
-      // toggleModalCredits(!credits);
-      // if (!credits) { dispatch(navStatus(!isOpen)); }
     }
   };
 
@@ -120,7 +107,11 @@ const Nav = ( { nav, navPosition } ) => {
   }
 
   function monUrl() {
-    return `${router.query.page ? cutUrl(router) : router.pathname}${router.query.slug || router.query.page ||router.query.name || ''}`;
+    return `${router.query.page 
+      ? cutUrl(router) 
+      : router.pathname 
+        ? '/' 
+        : ''}${router.query.slug || router.query.page || router.query.name || ''}`;
   }
 
   // noinspection JSUnresolvedVariable
@@ -132,12 +123,12 @@ const Nav = ( { nav, navPosition } ) => {
 
             <ul style={ { position: 'relative', top: -50 } }>
               <li>
-                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl()}>
+                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={'/en' + monUrl()}>
                   <a>en</a>
                 </Link>
               </li>
               <li>
-                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl()}>
+                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={'/fr' + monUrl()}>
                   <a>fr</a>
                 </Link>
               </li>
@@ -180,13 +171,11 @@ const Nav = ( { nav, navPosition } ) => {
                                     )
                                     : (
                                       <li key={ i }>
-                                        {/*<Link href={ `${ sublink.primary.link_to_level_two.url }` }>*/ }
                                         <Header.Link
                                           href={ `${ sublink.primary.link_to_level_two.url }` }
                                           target="_blank">
                                           <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span>
                                         </Header.Link>
-                                        {/*</Link>*/ }
                                       </li>
                                     )
                                 )
@@ -194,20 +183,11 @@ const Nav = ( { nav, navPosition } ) => {
                                   <Fragment key={ i }>
                                     <Header.NavItem
                                       underline={ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }
-                                      // className={ `except ${
-                                      // sublink.primary.link_two[ 0
-                                      // ].text.toLowerCase() === 'newsletter' ?
-                                      // 'underline' : null }` }
                                       onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
                                     >
                                       <span>{ sublink.primary.link_two[ 0 ].text }</span>
                                     </Header.NavItem>
-                                    {/*<p*/ }
-                                    {/*  className={ `except ${ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }` }*/ }
-                                    {/*  onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }*/ }
-                                    {/*>*/ }
-                                    {/*  <span>{ sublink.primary.link_two[ 0 ].text }</span>*/ }
-                                    {/*</p>*/ }
+
                                     <ul style={ { paddingLeft: 40 } }>
                                       { sublink.items.map( ( thirdLink, i ) =>
                                         <li key={ i }
@@ -300,77 +280,6 @@ const Nav = ( { nav, navPosition } ) => {
           </Newsletter.Form>
         </Newsletter.Wrapper>
       </Newsletter>
-
-      {/*<Credits credits={ credits }>*/ }
-      {/*  <Credits.Wrapper>*/ }
-      {/*    <Credits.CloseBtn onClick={ () => isCredits( true ) }>*/ }
-      {/*      <svg width="12" height="12" viewBox="0 0 10 10" fill="none">*/ }
-      {/*        <path fillRule="evenodd"*/ }
-      {/*              clipRule="evenodd"*/ }
-      {/*              d="M10 0H9L5 4L1 0H0V1L4 5L0 9V10H1L5 6L9 10H10V9L6 5L10 1V0Z"*/ }
-      {/*              fill={ COLORS.almostBlack }/>*/ }
-      {/*      </svg>*/ }
-      {/*    </Credits.CloseBtn>*/ }
-      {/*    <Credits.Title>CREDIT</Credits.Title>*/ }
-      {/*    <Credits.Subtitle>Development</Credits.Subtitle>*/ }
-      {/*    <Credits.Div>*/ }
-      {/*      Masis Gulmez*/ }
-      {/*      <Credits.Span>masis.profesionnel@gmail.com</Credits.Span>*/ }
-      {/*    </Credits.Div>*/ }
-      {/*    <Credits.Div>*/ }
-      {/*      Cédric Salaün*/ }
-      {/*      <Credits.Span>salaun.cedric@gmail.Com</Credits.Span>*/ }
-      {/*    </Credits.Div>*/ }
-      {/*  </Credits.Wrapper>*/ }
-      {/*</Credits>*/ }
-
-      {/* TODO NE PAS EFFACER POUR LE MOMENT */ }
-      {/*<div className={ newsletter ? 'open-newsletter' : 'close-newsletter' }>*/ }
-      {/*  <div className="newsletter-wrapper">*/ }
-      {/*    <p>{ success }</p>*/ }
-      {/*    <div className="close-newsletter-btn" onClick={ () => isNewsletter( 'newsletter' ) }>X</div>*/ }
-      {/*    <form onSubmit={ e => onSubmit( e, email ) }>*/ }
-      {/*      <div className="input-wrapper">*/ }
-      {/*        <label htmlFor="mail">Adresse e-mail :</label>*/ }
-      {/*        <input*/ }
-      {/*          id="mail"*/ }
-      {/*          type="email"*/ }
-      {/*          placeholder="e-mail"*/ }
-      {/*          onChange={ ( e ) => handlerEmail( e.target.value ) } value={ email }*/ }
-      {/*        />*/ }
-      {/*      </div>*/ }
-      {/*      { isLoding ? ( <div className="lds-ripple">*/ }
-      {/*        <div/>*/ }
-      {/*        <div/>*/ }
-      {/*      </div> ) : ( !successState ? (*/ }
-      {/*        <input className="btn-submit" type="submit" value="S'inscrire"/>*/ }
-      {/*      ) : (*/ }
-      {/*        <input className="btn-submit" type="button" value="Fermer"*/ }
-      {/*               onClick={ () => isNewsletter( 'newsletter' ) }/>*/ }
-      {/*      ) ) }*/ }
-      {/*    </form>*/ }
-      {/*  </div>*/ }
-      {/*</div>*/ }
-
-      {/* <style jsx>{ `
-       form input[type="email"] {
-       border: 1px solid ${ COLORS.lightGrey };
-       color: ${ COLORS.lightGrey };
-       border-radius: 2px !important;
-       letter-spacing: 2px;
-       }
-       form input.btn-submit {
-       margin-top: 1rem;
-       padding: 0 1rem;
-       display: table;
-       background: #080808;
-       color: ${ COLORS.lightGrey };
-       border: 1px solid ${ COLORS.lightGrey };
-       cursor: pointer;
-       border-radius: 2px !important;
-       -webkit-appearance: none !important;
-       }
-       ` }</style> */ }
 
       <style jsx global>{ `
       .head-wrapper {

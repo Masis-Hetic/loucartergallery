@@ -3,7 +3,7 @@ import Head                           from 'next/head';
 import Prismic                        from 'prismic-javascript';
 import getConfig                      from 'next/config';
 
-import HomePage      from '../Components/Pages/HomePage';
+import HomePage      from '../Components/StylesPages/HomePage';
 import MainComponent from '../Components/Main/Main';
 import { sliceUrl }  from '../helpers/functions';
 import '../styles/style.scss';
@@ -30,7 +30,7 @@ const Index = ({ result, imgs }) => {
         <meta property="og:image:width" content={ 600 }/>
         <meta property="og:image:height" content={ 314 }/>
       </Head>
-        <div
+        {/*<div
           style={{
             width: '100vw',
             height: '100vh',
@@ -47,17 +47,17 @@ const Index = ({ result, imgs }) => {
           >
             Site en maintenance
           </h1>
-        </div>
-      {/*<MainComponent>*/}
-        {/*<HomePage result={ result } imgs={ imgs }/>*/}
-      {/*</MainComponent>*/}
+        </div>*/}
+      <MainComponent>
+        <HomePage result={ result } imgs={ imgs }/>
+      </MainComponent>
     </Fragment>
   );
 };
 
 Index.getInitialProps = async({query}) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
-  console.log('tarace', query);
+
   const result = await API.query(
     Prismic.Predicates.at('document.type', 'homepage'), { lang: 'fr-FR' }
   );

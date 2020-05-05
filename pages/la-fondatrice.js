@@ -3,7 +3,7 @@ import Head                from 'next/head';
 import Prismic             from 'prismic-javascript';
 import getConfig           from 'next/config';
 
-import FounderPage   from '../Components/Pages/FounderPage';
+import FounderPage   from '../Components/StylesPages/FounderPage';
 import MainComponent from '../Components/Main/Main';
 import '../styles/style.scss';
 

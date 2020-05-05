@@ -4,7 +4,7 @@ import Head                from 'next/head';
 import Prismic             from "prismic-javascript";
 
 import getConfig       from 'next/config';
-import CollectionsList from "../Components/Pages/CollectionsList";
+import CollectionsList from "../Components/StylesPages/CollectionsList";
 
 const { publicRuntimeConfig } = getConfig();
 
