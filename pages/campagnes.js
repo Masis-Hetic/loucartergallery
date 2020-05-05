@@ -51,7 +51,6 @@ Campagnes.getInitialProps = async({ query }) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
 
   const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
-
   const campaign = await API.query(
     Prismic.Predicates.at('my.campaign.uid', query.slug), { lang }
   );

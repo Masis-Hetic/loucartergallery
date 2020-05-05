@@ -3,9 +3,9 @@ import SingleCollection                                 from "../../Components/C
 import Prismic                                          from "prismic-javascript";
 import getConfig                                        from "next/config";
 import MainComponent                                    from "../../Components/Main/Main";
-import Head                                             from "next/head";
-import CloseBtn                                         from "../../static/icons/close-btn";
-import { connect, useDispatch }                         from "react-redux";
+import Head                     from "next/head";
+import CloseBtn                 from "../../public/static/icons/close-btn";
+import { connect, useDispatch } from "react-redux";
 import { setNavPosition }                               from "../../store/actions/navPosition.action";
 
 const { publicRuntimeConfig } = getConfig();

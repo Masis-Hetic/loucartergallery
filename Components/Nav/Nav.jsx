@@ -107,7 +107,7 @@ const Nav = ( { nav, navPosition } ) => {
   }
 
   function monUrl() {
-    return `/${router.query.page ? cutUrl(router) : router.pathname}${router.query.slug || router.query.page || router.query.name || ''}`;
+    return `${router.query.page ? cutUrl(router) : router.pathname ? '/' : ''}${router.query.slug || router.query.page || router.query.name || ''}`;
   }
 
   // noinspection JSUnresolvedVariable
@@ -119,12 +119,12 @@ const Nav = ( { nav, navPosition } ) => {
 
             <ul style={ { position: 'relative', top: -50 } }>
               <li>
-                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl()}>
+                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={'/en' + monUrl()}>
                   <a>en</a>
                 </Link>
               </li>
               <li>
-                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl()}>
+                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={'/fr' + monUrl()}>
                   <a>fr</a>
                 </Link>
               </li>

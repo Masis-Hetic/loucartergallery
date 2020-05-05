@@ -21,8 +21,18 @@ app.prepare().then(() => {
   });
 
   server.get(
+    '/:lang',
+    (req, res) => app.render(req, res, '/', Object.assign({ lang: req.params.lang }))
+  );
+
+  server.get(
     '/campagnes/:slug',
     (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug }))
+  );
+
+  server.get(
+    '/:lang/campagnes/:slug',
+    (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug, lang: req.params.lang }))
   );
 
   server.get('/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice'));
