@@ -107,7 +107,11 @@ const Nav = ( { nav, navPosition } ) => {
   }
 
   function monUrl() {
-    return `${router.query.page ? cutUrl(router) : router.pathname ? '/' : ''}${router.query.slug || router.query.page || router.query.name || ''}`;
+    return `${router.query.page 
+      ? cutUrl(router) 
+      : router.pathname 
+        ? '/' 
+        : ''}${router.query.slug || router.query.page || router.query.name || ''}`;
   }
 
   // noinspection JSUnresolvedVariable
