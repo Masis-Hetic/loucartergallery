@@ -1,21 +1,25 @@
 - https://github.com/fridays/next-routes/blob/master/README.md
 - https://nextjs.org/docs
 - https://github.com/zeit/next.js/issues/4260
-- BreakPoints : 
-  * desktop: 992px
-  * tablet: 768px
-  * phone: 576px
 
-5219*2880
-
-- Todo :
-    - partager => logo media + pressroom + (bulle qui donne des docs) 
-    - pages artistes 
+- Todo : 
     - transition navigation
 
 potentiel erreur: -> [HMR] bundle rebuilding
 
 
-[transition navigation]
+[ transition navigation ]
 
-- Mention Legal
+##### - Campagne --> Catalogue --> contient les PDF
+##### - Menu --> remove actualité
+##### - Menu --> remove artistes
+##### - Menu --> add catalogue liste
+##### - Traduction
+
+( home => collection => (1 photo + artist pitch & link) )
+
+## Devis Lou carter Agency
+
+--> Créer une methode de transition entre les deux sites
+
+deadline Juillet
