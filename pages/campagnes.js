@@ -4,7 +4,7 @@ import Prismic                  from 'prismic-javascript';
 import Head                     from 'next/head';
 
 import MainComponent from '../Components/Main/Main';
-import Campaign      from '../Components/Pages/Campaign';
+import Campaign      from '../Components/StylesPages/Campaign';
 import { sliceUrl }  from '../helpers/functions';
 
 import getConfig from 'next/config';
@@ -50,8 +50,10 @@ const Campagnes = ({ campaign, imgs }) => {
 Campagnes.getInitialProps = async({ query }) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
 
+  const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
+
   const campaign = await API.query(
-    Prismic.Predicates.at('my.campaign.uid', query.slug), { lang: 'fr-FR' }
+    Prismic.Predicates.at('my.campaign.uid', query.slug), { lang }
   );
 
   let imgs = campaign.results[ 0 ].data.body.map(item => item.items.filter(img => img.image.url));
