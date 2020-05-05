@@ -81,12 +81,13 @@ const Collections = ( { collections, collectionsList } ) => {
 Collections.getInitialProps = async () => {
   const API = await Prismic.api( publicRuntimeConfig.prismic );
 
+  const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
   const eshop = await API.query(
-    Prismic.Predicates.at( 'document.type', 'eshop' ), { lang: 'fr-FR' }
+    Prismic.Predicates.at( 'document.type', 'eshop' ), { lang }
   );
 
   const collections = await API.query(
-    Prismic.Predicates.at( 'document.type', 'collection' ), { lang: 'fr-FR' }
+    Prismic.Predicates.at( 'document.type', 'collection' ), { lang }
   );
 
   return { collections: eshop.results[ 0 ], collectionsList: collections.results  }

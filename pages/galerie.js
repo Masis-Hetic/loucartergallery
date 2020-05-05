@@ -39,7 +39,8 @@ const Galerie = ({ body, result }) => (
 
 Galerie.getInitialProps = async({}) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
-  const response = await API.query(Prismic.Predicates.at('document.type', 'gallery'), { lang: 'fr-FR' });
+  const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
+  const response = await API.query(Prismic.Predicates.at('document.type', 'gallery'), { lang });
   const { body } = response.results[ 0 ].data;
   return { body, result: response.results[ 0 ] };
 };
