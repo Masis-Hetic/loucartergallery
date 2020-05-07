@@ -103,7 +103,7 @@ const Nav = ( { nav, navPosition } ) => {
   const router = useRouter();
 
   function monUrl(lang) {
-    return `/${ lang }${ router.pathname.length > 1 ? `${router.pathname}/` : router.pathname }${ router.query.slug || router.query.page || router.query.name || '' }`;
+    return `/${ lang }${router.pathname}${ router.pathname.length > 1 ? '/' : '' }${ router.query.slug || router.query.page || router.query.name || '' }`;
   }
 
   // noinspection JSUnresolvedVariable
