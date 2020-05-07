@@ -44,7 +44,7 @@ const Artistes = ({ artistes, artiste }) => {
   );
 };
 
-Artistes.getInitialProps = async() => {
+Artistes.getInitialProps = async({query}) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
 
   const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';

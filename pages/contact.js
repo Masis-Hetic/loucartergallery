@@ -20,7 +20,7 @@ const Contact = ({ data }) => (
   </Fragment>
 );
 
-Contact.getInitialProps = async({}) => {
+Contact.getInitialProps = async({ query }) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
     const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
     const response = await API.query(Prismic.Predicates.at('document.type', 'contact'), { lang });

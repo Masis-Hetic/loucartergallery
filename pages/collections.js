@@ -78,7 +78,7 @@ const Collections = ( { collections, collectionsList } ) => {
   )
 };
 
-Collections.getInitialProps = async () => {
+Collections.getInitialProps = async ({ query }) => {
   const API = await Prismic.api( publicRuntimeConfig.prismic );
 
   const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
