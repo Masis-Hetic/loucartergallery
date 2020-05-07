@@ -9,6 +9,15 @@ import '../styles/style.scss';
 
 const { publicRuntimeConfig } = getConfig();
 
+/**
+ * @param body
+ * @param result
+ * @property { Array } result.data.meta_title
+ * @property { String } result.data.meta_img
+ * @property { Array } result.data.meta_description
+ * @returns {*}
+ * @constructor
+ */
 const Galerie = ({ body, result }) => (
   <Fragment>
     <Head>
