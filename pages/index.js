@@ -30,24 +30,6 @@ const Index = ({ result, imgs }) => {
         <meta property="og:image:width" content={ 600 }/>
         <meta property="og:image:height" content={ 314 }/>
       </Head>
-        {/*<div
-          style={{
-            width: '100vw',
-            height: '100vh',
-            background: '#080808',
-          }}
-        >
-          <h1
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            Site en maintenance
-          </h1>
-        </div>*/}
       <MainComponent>
         <HomePage result={ result } imgs={ imgs }/>
       </MainComponent>
@@ -57,10 +39,8 @@ const Index = ({ result, imgs }) => {
 
 Index.getInitialProps = async({query}) => {
   const API = await Prismic.api(publicRuntimeConfig.prismic);
-
-  const result = await API.query(
-    Prismic.Predicates.at('document.type', 'homepage'), { lang: 'fr-FR' }
-  );
+  const lang = query.lang === 'en' ? 'en-US' : 'fr-FR';
+  const result = await API.query(Prismic.Predicates.at('document.type', 'homepage'), { lang });
 
   // noinspection JSUnresolvedVariable
   let imgs = result.results[ 0 ].data.body.map(item => item.items.filter(img => img.background_img.url));
