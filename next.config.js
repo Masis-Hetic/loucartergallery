@@ -212,7 +212,6 @@ module.exports = withSass( {
       '/la-fondatrice': { page: '/la-fondatrice' },
       '/partager': { page: '/partager' },
       '/collections': { page: '/collections' },
-      '/legal-notice': { page: '/legal-notice' }
     } );
   },
   
