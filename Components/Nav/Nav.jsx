@@ -111,20 +111,22 @@ const Nav = ( { nav, navPosition } ) => {
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
         <Header open={ isOpen } navPos={ navPosition.data }>
-          <Header.Nav>
 
-            <ul style={ { position: 'relative', top: -50 } }>
-              <li>
-                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>
-                  <a onClick={ toggleMenu }>en</a>
-                </Link>
-              </li>
-              <li>
-                <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>
-                  <a onClick={ toggleMenu }>fr</a>
-                </Link>
-              </li>
-            </ul>
+          <ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>
+            <li style={ { margin: '0 5px' }}>
+              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>
+                <a onClick={ toggleMenu }>en</a>
+              </Link>
+            </li>
+             <li style={ { margin: '0 5px' }}>/</li>
+            <li style={ { margin: '0 5px' }}>
+              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>
+                <a onClick={ toggleMenu }>fr</a>
+              </Link>
+            </li>
+          </ul>
+
+          <Header.Nav>
 
             <Header.UlWrapper>
               { nav.map( ( link, i ) =>
@@ -132,7 +134,7 @@ const Nav = ( { nav, navPosition } ) => {
                   { link.data.link_to.uid
                     ? (
                       <Link href={ `/${ link.data.link_to.uid }` } as={ `/${ link.data.link_to.uid }` }>
-                        <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ]?.text }</a>
+                        <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ].text }</a>
                       </Link>
                     )
                     : (
