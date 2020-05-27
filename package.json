@@ -37,7 +37,7 @@
     "prismic-javascript": "^2.0.3",
     "prismic-reactjs": "^1.1.0",
     "prop-types": "latest",
-    "react": "^16.8.6",
+    "react": "16.13.1",
     "react-cookie": "^4.0.1",
     "react-dom": "16.8.6",
     "react-redux": "^7.1.0-rc.1",

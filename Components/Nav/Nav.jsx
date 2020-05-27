@@ -134,7 +134,7 @@ const Nav = ( { nav, navPosition } ) => {
                   { link.data.link_to.uid
                     ? (
                       <Link href={ `/${ link.data.link_to.uid }` } as={ `/${ link.data.link_to.uid }` }>
-                        <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ].text }</a>
+                        <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ]?.text }</a>
                       </Link>
                     )
                     : (
