@@ -13,22 +13,22 @@ const GalleryPage = ({ result }) => (
   <Gallery>
     <Gallery.WrapperOne>
       <Gallery.BlockTitle>
-        { result[ 0 ]?.items[ 0 ].block_title[ 0 ].text }
+        { result[ 0 ].items[ 0 ].block_title[ 0 ].text }
       </Gallery.BlockTitle>
       <Gallery.SubTitle>{ result[ 0 ].items[ 0 ].sub_title[ 0 ].text }</Gallery.SubTitle>
     </Gallery.WrapperOne>
     
     <Gallery.WrapperTwo>
-      { result[ 1 ]?.items.map(item => item.description.map((p, i) =>
+      { result[ 1 ].items.map(item => item.description.map((p, i) =>
                                                              <p key={ i }>{ p.text }</p>
       )) }
     </Gallery.WrapperTwo>
     
     <Gallery.WrapperThree>
       <Gallery.BlockTitle>
-        { result[ 2 ]?.items[ 0 ].block_title[ 0 ].text }
+        { result[ 2 ].items[ 0 ].block_title[ 0 ].text }
       </Gallery.BlockTitle>
-      <Gallery.SubTitle>{ result[ 2 ]?.items[ 0 ].sub_title[ 0 ].text }</Gallery.SubTitle>
+      <Gallery.SubTitle>{ result[ 2 ].items[ 0 ].sub_title[ 0 ].text }</Gallery.SubTitle>
     </Gallery.WrapperThree>
   </Gallery>
 );
