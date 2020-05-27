@@ -25,7 +25,7 @@ const MainComponent = props => (
         } }
         >
           <Main.Img
-            src="../../static/icons/loucarter_logo_copie.png" alt=""
+            src="/static/icons/loucarter_logo_copie.png" alt=""
             style={ { maxWidth: '14rem' } }
           />
         </Main.Logo>
