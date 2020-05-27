@@ -134,7 +134,7 @@ const Nav = ( { nav, navPosition } ) => {
                   { link.data.link_to.uid
                     ? (
                       <Link href={ `/${ link.data.link_to.uid }` } as={ `/${ link.data.link_to.uid }` }>
-                        <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ]?.text }</a>
+                        <a onClick={ () => dispatch( navStatus( !isOpen ) ) }>{ link.data.link_one[ 0 ].text }</a>
                       </Link>
                     )
                     : (
@@ -143,7 +143,7 @@ const Nav = ( { nav, navPosition } ) => {
                           id={ i }
                           onClick={ () => toggleList( i ) }
                         >
-                          <p>{ link.data.link_one[ 0 ]?.text }</p>
+                          <p>{ link.data.link_one[ 0 ].text }</p>
 
                           { isList === i && isListOpen &&
                           <animated.ul style={ props }>
@@ -159,7 +159,7 @@ const Nav = ( { nav, navPosition } ) => {
                                         >
                                           <Header.Link
                                             onClick={ () => dispatch( navStatus( !isOpen ) ) }>
-                                            <span>{ sublink.primary.link_two[ 0 ]?.text !== undefined && sublink.primary.link_two[ 0 ]?.text }</span></Header.Link>
+                                            <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span></Header.Link>
                                         </Link>
                                       </li>
                                     )
@@ -168,7 +168,7 @@ const Nav = ( { nav, navPosition } ) => {
                                         <Header.Link
                                           href={ `${ sublink.primary.link_to_level_two.url }` }
                                           target="_blank">
-                                          <span>{ sublink.primary.link_two[ 0 ]?.text !== undefined && sublink.primary.link_two[ 0 ]?.text }</span>
+                                          <span>{ sublink.primary.link_two[ 0 ].text !== undefined && sublink.primary.link_two[ 0 ].text }</span>
                                         </Header.Link>
                                       </li>
                                     )
@@ -176,26 +176,26 @@ const Nav = ( { nav, navPosition } ) => {
                                 : (
                                   <Fragment key={ i }>
                                     <Header.NavItem
-                                      underline={ sublink.primary.link_two[ 0 ]?.text.toLowerCase() === 'newsletter' ? 'underline' : null }
-                                      onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ]?.text ) }
+                                      underline={ sublink.primary.link_two[ 0 ].text.toLowerCase() === 'newsletter' ? 'underline' : null }
+                                      onClick={ () => isNewsletter( sublink.primary.link_two[ 0 ].text ) }
                                     >
-                                      <span>{ sublink.primary.link_two[ 0 ]?.text }</span>
+                                      <span>{ sublink.primary.link_two[ 0 ].text }</span>
                                     </Header.NavItem>
 
                                     <ul style={ { paddingLeft: 40 } }>
                                       { sublink.items.map( ( thirdLink, i ) =>
                                         <li key={ i }
                                             onClick={ toggleMenu }>
-                                          { thirdLink.link_three[ 0 ]?.text === undefined ? null :
-                                            thirdLink.link_three_href[ 0 ]?.text !== ''
+                                          { thirdLink.link_three[ 0 ].text === undefined ? null :
+                                            thirdLink.link_three_href[ 0 ].text !== ''
                                               ? (
                                                 <Link
-                                                  href={ `/${ thirdLink.link_three_href[ 0 ]?.text }?slug=${ thirdLink.link_to_level_three.uid }` }
-                                                  as={ `/${ thirdLink.link_three_href[ 0 ]?.text }/${ thirdLink.link_to_level_three.uid }` }
+                                                  href={ `/${ thirdLink.link_three_href[ 0 ].text }?slug=${ thirdLink.link_to_level_three.uid }` }
+                                                  as={ `/${ thirdLink.link_three_href[ 0 ].text }/${ thirdLink.link_to_level_three.uid }` }
                                                 >
                                                   <Header.Link
                                                     onClick={ () => dispatch( navStatus( !isOpen ) ) }>
-                                                    <span>{ thirdLink.link_three[ 0 ]?.text }</span>
+                                                    <span>{ thirdLink.link_three[ 0 ].text }</span>
                                                   </Header.Link>
                                                 </Link>
                                               )
@@ -205,7 +205,7 @@ const Nav = ( { nav, navPosition } ) => {
                                                   as={ `/${ thirdLink.link_to_level_three.uid }` }>
                                                   <Header.Link
                                                     onClick={ () => dispatch( navStatus( !isOpen ) ) }>
-                                                    <span>{ thirdLink.link_three[ 0 ]?.text }</span>
+                                                    <span>{ thirdLink.link_three[ 0 ].text }</span>
                                                   </Header.Link>
                                                 </Link>
                                               )
