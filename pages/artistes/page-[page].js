@@ -39,40 +39,6 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
         <meta property="og:image:height" content={ 314 }/>
       </Head>
       <MainComponent>
-        {/* ************************************* */ }
-        {/* ************************************* */ }
-
-        {/* NE PAS EFFACER CE CODE */ }
-        {/* NE PAS EFFACER CE CODE */ }
-        {/* NE PAS EFFACER CE CODE */ }
-        {/* NE PAS EFFACER CE CODE */ }
-
-        {/*<img*/}
-        {/*  srcSet="../../static/images/coming_soon/1080_artistes.jpg 1080w,*/}
-        {/*  ../../static/images/coming_soon/1280_artistes.jpg 1280w,*/}
-        {/*  ../../static/images/coming_soon/1366_artistes.jpg 1366w,*/}
-        {/*  ../../static/images/coming_soon/1920_artistes.jpg 1920w,*/}
-        {/*  ../../static/images/coming_soon/2560_artistes.jpg 2560w,*/}
-        {/*  ../../static/images/coming_soon/5120_artistes.jpg 5120w"*/}
-        {/*  alt=""*/}
-        {/*/>*/}
-        {/*<style jsx>{ `*/}
-        {/*img {*/}
-        {/*  display: block;*/}
-        {/*  width: 100vw;*/}
-        {/*  height: 100vh;*/}
-        {/*  object-fit: cover;*/}
-        {/*  object-position: right;*/}
-        {/*}*/}
-        {/*` }</style>*/}
-
-        {/* NE PAS EFFACER CE CODE */ }
-        {/* NE PAS EFFACER CE CODE */ }
-        {/* NE PAS EFFACER CE CODE */ }
-        {/* NE PAS EFFACER CE CODE */ }
-
-        {/* ************************************* */ }
-        {/* ************************************* */ }
 
         { artistes && artiste &&
           <ArtistesList
@@ -84,10 +50,6 @@ const Artistes = ({ artistes, artiste, maxPage, query }) => {
           />
         }
 
-        {/* TODO renvoyer vers la page 1 des artistes, depuis le getInitialProps */ }
-        {/*{ !artiste &&*/ }
-        {/*  <h1>PAS ARTISTES</h1>*/ }
-        {/*}*/ }
       </MainComponent>
     </Fragment>
   );

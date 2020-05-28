@@ -8,8 +8,8 @@ potentiel erreur: -> [HMR] bundle rebuilding
 
 - [ ] Page d'acceuil retirer les liens actuelle et remplacer par les rdv masqués
 - [ ] Menu --> link artistes  --> envoi sur catalogue
-- [ ] Menu --> remove actualité
-- [ ] Campagne --> Catalogue --> contient les PDF
+___
+- [x] Menu --> remove actualité
 - [x] le nom collections devient expositions 
 - [x] menu S19 le nom devient room 44
 - [x] F19 ca devient silence in dinner of:
