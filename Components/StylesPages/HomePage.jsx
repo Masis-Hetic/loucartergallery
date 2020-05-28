@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Link                 from 'next/link';
 import SanitizedHTML        from 'react-sanitized-html';
+import { get } from "lodash/fp";
 
 class HomePage extends Component {
   state = {
@@ -59,7 +60,7 @@ class HomePage extends Component {
                       { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
                       <h1>
                           <span>
-                            { bg.primary.title_img[ 0 ].text }
+                            { get('primary.title_img[0].text', bg) }
                           </span>
                       </h1>
                       <h2>
