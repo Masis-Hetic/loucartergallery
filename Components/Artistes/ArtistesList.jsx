@@ -1,5 +1,6 @@
 import React          from "react";
 import Link           from "next/link";
+import { get }        from "lodash/fp"
 
 import StyledArtistes from "./ArtistesList.style";
 import ArrowRight     from "../../public/static/icons/arrow-right";
@@ -48,8 +49,8 @@ const ArtistesList = props => {
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden'
-                    } }>{ artiste.data.name[ 0 ].text }</span></StyledArtistes.ArtistLastName>
-                    <StyledArtistes.ArtistFirstName> { artiste.data.prenom[ 0 ].text }</StyledArtistes.ArtistFirstName>
+                    } }>{ get('data.name[ 0 ].text', artiste) }</span></StyledArtistes.ArtistLastName>
+                    <StyledArtistes.ArtistFirstName> { get('data.prenom[ 0 ].text', artiste) }</StyledArtistes.ArtistFirstName>
                   </StyledArtistes.NameWrapper>
                 </StyledArtistes.ArtistLink>
               </Link>

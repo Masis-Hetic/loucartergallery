@@ -25,11 +25,6 @@ app.prepare().then(() => {
     (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug, lang: req.params.lang }))
   );
 
-  server.get(
-    '/:lang/campagnes/:slug',
-    (req, res) => app.render(req, res, '/campagnes', Object.assign({ slug: req.params.slug, lang: req.params.lang }))
-  );
-
   server.get('/:lang/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice', Object.assign({ lang: req.params.lang })));
 
   server.get(

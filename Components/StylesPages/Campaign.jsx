@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect }          from 'react-redux';
 import CampaignStyled       from './Campaign.style';
 import Link                 from 'next/link';
+import { get }              from 'lodash/fp';
 
 import ArrowUp            from '../../public/static/icons/arrow-up';
 import { overflowStatus } from '../../store/actions/controlOverflow.action';
@@ -60,12 +61,12 @@ class Campaign extends Component {
         <CampaignStyled.TextWrapper isOpen={ isOpen }>
           
           <CampaignStyled.Text>
-            <CampaignStyled.CampaignTitle dangerouslySetInnerHTML={ { __html: campaign.data.title[ 0 ].text } }/>
-            <p>{ campaign.data.chapeau[ 0 ].text && campaign.data.chapeau[ 0 ].text }</p>
+            <CampaignStyled.CampaignTitle dangerouslySetInnerHTML={ { __html: get('data.title[ 0 ].text', campaign) } }/>
+            <p>{ get('data.chapeau[ 0 ].text', campaign) && get('data.chapeau[ 0 ].text', campaign) }</p>
             <CampaignStyled.CampaignDescription
               dangerouslySetInnerHTML={ { __html: campaign.data.description.map(p => p.text) } }
             />
-            <p>{ campaign.data.fin_de_description[ 0 ].text && campaign.data.fin_de_description[ 0 ].text }</p>
+            <p>{ get('data.fin_de_description[ 0 ].text', campaign) }</p>
           </CampaignStyled.Text
           >
         </CampaignStyled.TextWrapper>
