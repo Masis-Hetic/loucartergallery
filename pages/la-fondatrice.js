@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Head                from 'next/head';
 import Prismic             from 'prismic-javascript';
 import getConfig           from 'next/config';
+import { get }             from "lodash/fp"
 
 import FounderPage   from '../Components/StylesPages/FounderPage';
 import MainComponent from '../Components/Main/Main';
@@ -13,17 +14,17 @@ const { publicRuntimeConfig } = getConfig();
 const LaFondatrice = ({ body, meta }) => (
   <Fragment>
     <Head>
-      <title>{ meta.data.title[ 0 ].text }</title>
+      <title>{ get('data.title[ 0 ].text', meta) }</title>
       <meta property="og:url" content="https://loucartergallery.com/la-fondatrice"/>
       <meta property="og:type" content="website"/>
-      <meta property="og:description" content={ meta.data.description_google[ 0 ].text }/>
+      <meta property="og:description" content={ get('data.description_google[ 0 ].text', meta) }/>
       <meta
         property="og:image:secure_url"
-        content={ meta.data.og_image.url }
+        content={ get('data.og_image.url', meta) }
       />
       <meta
         property="og:image"
-        content={ meta.data.og_image.url }
+        content={ get('data.og_image.url', meta) }
       />
       <meta property="og:image:width" content={ 600 }/>
       <meta property="og:image:height" content={ 314 }/>

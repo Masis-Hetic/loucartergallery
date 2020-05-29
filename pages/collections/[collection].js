@@ -105,7 +105,6 @@ Collection.getInitialProps = async ( { query } ) => {
   const collection = await API.query( Prismic.Predicates.at( 'my.collection.uid', query.collection ), { lang } )
     .then( async res => {
         const oeuvre = await API.query( Prismic.Predicates.at( 'my.oeuvre.tag', res.results[ 0 ].data.tag ), { lang, pageSize: 100 } );
-
         return { res, oeuvre };
       }
     );

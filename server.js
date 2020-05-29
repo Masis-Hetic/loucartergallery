@@ -49,6 +49,12 @@ app.prepare().then(() => {
     (req, res) => app.render(req, res, '/artiste/[name]', Object.assign({ name: req.params.name, lang: req.params.lang }))
   );
 
+
+  server.get(
+    '/collections',
+    (req, res) => app.render(req, res, '/collections', Object.assign({ lang: req.params.lang }))
+  )
+
   server.get(
     '/:lang/collections/:collection',
     (req, res) => app.render(req, res, '/collections/[collection]', Object.assign({ collection: req.params.collection, lang: req.params.lang }))

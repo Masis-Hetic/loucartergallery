@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Collections          from "../Collections/Collections.style";
 import Link                 from 'next/link';
+import { get }              from "lodash/fp"
+
+import Collections          from "../Collections/Collections.style";
 
 /**
  * @property { string } collection_name
@@ -17,12 +19,12 @@ class CollectionsList extends Component {
         <Collections.Ul length={collectionsList.length}>
           {collectionsList.map(( collection, i ) =>
             <Collections.Li key={i}>
-              <Link href={ { pathname: `/collections/[collection]`} } as={ `/collections/${collection.uid}` }>
-                <Collections.A>
-                  <Collections.Img src={collection.data.image.url} alt=""/>
-                  <Collections.P>{collection.data.collection_name[0].text}</Collections.P>
+              {/*<Link href={ { pathname: `/collections/[collection]`} } as={ `/collections/${collection.uid}` }>*/}
+                <Collections.A href={get('data.pdf.url', collection)} target="_blank">
+                  <Collections.Img src={get('data.image.url', collection)} alt=""/>
+                  <Collections.P>{get('data.collection_name[0].text', collection)}</Collections.P>
                 </Collections.A>
-              </Link>
+              {/*</Link>*/}
             </Collections.Li>
           )}
         </Collections.Ul>
