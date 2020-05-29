@@ -194,18 +194,7 @@ module.exports = withSass( {
       } )
     ), {} );
 
-    const collections = await API.query( Prismic.Predicates.at( 'document.type', 'collection' ), { lang: 'fr-FR' } );
-
-    const collectionsList = collections.results.reduce( ( base, current ) => (
-      Object.assign( {}, base, {
-        [ `/collections/${ current.uid }` ]: {
-          page: '/collections/[collection]',
-          query: { collection: current.uid }
-        }
-      } )
-    ), {} );
-
-    return Object.assign( {}, campaigns, artistList, artists, collectionsList, {
+    return Object.assign( {}, campaigns, artistList, artists, {
       '/': { page: '/' },
       '/galerie': { page: '/galerie' },
       '/contact': { page: '/contact' },
