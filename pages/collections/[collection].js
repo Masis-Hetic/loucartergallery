@@ -1,3 +1,4 @@
+/*
 import React, { Fragment, useState, useRef, useEffect } from 'react';
 import SingleCollection                                 from "../../Components/Collections/Collection.style";
 import Prismic                                          from "prismic-javascript";
@@ -12,7 +13,7 @@ const { publicRuntimeConfig } = getConfig();
 
 const mapStateToProps = state => ({ navPosition: state.navPosition });
 
-/**
+/!**
  * @property { string } dimensions
  * @property { string } artist_name
  * @property { string } meta_title
@@ -20,7 +21,7 @@ const mapStateToProps = state => ({ navPosition: state.navPosition });
  * @param collection
  * @returns {*}
  * @constructor
- */
+ *!/
 const Collection = ( { collection, res } ) => {
   const dispatch = useDispatch();
 
@@ -117,3 +118,4 @@ Collection.getInitialProps = async ( { query } ) => {
 };
 
 export default connect(mapStateToProps, null) (Collection);
+*/
