@@ -3,8 +3,8 @@ import Link           from "next/link";
 import { get }        from "lodash/fp"
 
 import StyledArtistes from "./ArtistesList.style";
-import ArrowRight     from "../../public/static/icons/arrow-right";
-import ArrowLeft      from "../../public/static/icons/arrow-left";
+import ArrowRight     from "../../static/icons/arrow-right";
+import ArrowLeft      from "../../static/icons/arrow-left";
 
 /**
  * @property { number } currentPage
