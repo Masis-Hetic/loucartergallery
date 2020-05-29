@@ -1,4 +1,5 @@
-import React from 'react';
+import React   from 'react';
+import { get } from "lodash/fp";
 
 import Gallery from './Gallery.style';
 
@@ -13,9 +14,9 @@ const GalleryPage = ({ result }) => (
   <Gallery>
     <Gallery.WrapperOne>
       <Gallery.BlockTitle>
-        { result[ 0 ].items[ 0 ].block_title[ 0 ].text }
+        { get('items[ 0 ].block_title[ 0 ].text', result[ 0 ]) }
       </Gallery.BlockTitle>
-      <Gallery.SubTitle>{ result[ 0 ].items[ 0 ].sub_title[ 0 ].text }</Gallery.SubTitle>
+      <Gallery.SubTitle>{ get('items[ 0 ].sub_title[ 0 ].text', result[ 0 ]) }</Gallery.SubTitle>
     </Gallery.WrapperOne>
     
     <Gallery.WrapperTwo>
@@ -26,29 +27,11 @@ const GalleryPage = ({ result }) => (
     
     <Gallery.WrapperThree>
       <Gallery.BlockTitle>
-        { result[ 2 ].items[ 0 ].block_title[ 0 ].text }
+        { get('items[ 0 ].block_title[ 0 ].text', result[ 2 ]) }
       </Gallery.BlockTitle>
-      <Gallery.SubTitle>{ result[ 2 ].items[ 0 ].sub_title[ 0 ].text }</Gallery.SubTitle>
+      <Gallery.SubTitle>{ get('items[ 0 ].sub_title[ 0 ].text', result[ 2 ]) }</Gallery.SubTitle>
     </Gallery.WrapperThree>
   </Gallery>
 );
-
-{/*<div className="gallery-container">*/}
-{/*  <div className="gallery-wrapper">*/}
-{/*    { result.map((datas, i) => (*/}
-{/*      <div key={ i } className="gallery-block">*/}
-{/*        <div className={ `${ datas.items.length < 2 ? 'major' : 'minor' } ${ datas.slice_type } gallery-item-parent` }>*/}
-{/*          { datas.items.map((item, j) => (*/}
-{/*            <div key={ j } className="gallery-item-block">*/}
-{/*              { item.block_title && item.block_title[ 0 ] && <h2>{ item.block_title[ 0 ].text }</h2> }*/}
-{/*              { item.sub_title && item.sub_title[ 0 ] && <h3>{ item.sub_title[ 0 ].text }</h3> }*/}
-{/*              { item.description && item.description[ 0 ] && <p>{ item.description[ 0 ].text }</p> }*/}
-{/*            </div>*/}
-{/*          )) }*/}
-{/*        </div>*/}
-{/*      </div>*/}
-{/*    )) }*/}
-{/*  </div>*/}
-{/*</div>*/}
 
 export default GalleryPage;

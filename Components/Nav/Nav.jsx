@@ -112,19 +112,19 @@ const Nav = ( { nav, navPosition } ) => {
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
         <Header open={ isOpen } navPos={ navPosition.data }>
 
-          <ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>
-            <li style={ { margin: '0 5px' }}>
-              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>
-                <a onClick={ toggleMenu }>en</a>
-              </Link>
-            </li>
-             <li style={ { margin: '0 5px' }}>/</li>
-            <li style={ { margin: '0 5px' }}>
-              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>
-                <a onClick={ toggleMenu }>fr</a>
-              </Link>
-            </li>
-          </ul>
+          {/*<ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>*/}
+          {/*  <li style={ { margin: '0 5px' }}>*/}
+          {/*    <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>*/}
+          {/*      <a onClick={ toggleMenu }>en</a>*/}
+          {/*    </Link>*/}
+          {/*  </li>*/}
+          {/*   <li style={ { margin: '0 5px' }}>/</li>*/}
+          {/*  <li style={ { margin: '0 5px' }}>*/}
+          {/*    <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>*/}
+          {/*      <a onClick={ toggleMenu }>fr</a>*/}
+          {/*    </Link>*/}
+          {/*  </li>*/}
+          {/*</ul>*/}
 
           <Header.Nav>
 

@@ -37,7 +37,11 @@ class LouCarter extends App {
     let pageProps = {};
     const API = await Prismic.api( publicRuntimeConfig.prismic );
     const lang = ctx.query.lang === 'en' ? 'en-US' : 'fr-FR';
-    const links = await API.query( Prismic.Predicates.at( 'document.type', 'link' ), { orderings: '[my.link.order]', lang } );
+    let links;
+    links = await API.query( Prismic.Predicates.at( 'document.type', 'link' ), { orderings: '[my.link.order]', lang } );
+    if (!links.length) {
+      links = await API.query( Prismic.Predicates.at( 'document.type', 'link' ), { orderings: '[my.link.order]', lang: 'fr-FR' } );
+    }
     const myLinks = await ctx.reduxStore.dispatch( getNavDatas( links.results ) );
     const nav = ctx.reduxStore.dispatch( navStatus( false ) );
     const cookies = parseCookies( ctx );

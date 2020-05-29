@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Head                from 'next/head';
 import Prismic             from 'prismic-javascript';
 import getConfig           from 'next/config';
+import { get }             from "lodash/fp";
 
 import GalleryPage   from '../Components/StylesPages/GalleryPage';
 import MainComponent from '../Components/Main/Main';
@@ -21,18 +22,18 @@ const { publicRuntimeConfig } = getConfig();
 const Galerie = ({ body, result }) => (
   <Fragment>
     <Head>
-      <title>{ result.data.meta_title[ 0 ].text }</title>
-      <meta property="og:title" content={ result.data.meta_title[ 0 ].text }/>
+      <title>{ get('data.meta_title[ 0 ].text', result) }</title>
+      <meta property="og:title" content={ get('data.meta_title[ 0 ].text', result) }/>
       <meta property="og:url" content="https://loucartergallery.com/galerie"/>
       <meta property="og:type" content="website"/>
-      <meta property="og:description" content={ result.data.meta_description[ 0 ].text }/>
+      <meta property="og:description" content={ get('data.meta_description[ 0 ].text', result) }/>
       <meta
         property="og:image:secure_url"
-        content={ result.data.meta_img.url }
+        content={ get('data.meta_img.url', result) }
       />
       <meta
         property="og:image"
-        content={ result.data.meta_img.url }
+        content={ get('data.meta_img.url', result) }
       />
       <meta property="og:image:width" content={ 600 }/>
       <meta property="og:image:height" content={ 314 }/>

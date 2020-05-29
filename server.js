@@ -27,6 +27,8 @@ app.prepare().then(() => {
 
   server.get('/:lang/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice', Object.assign({ lang: req.params.lang })));
 
+  server.get('/la-fondatrice', (req, res) => app.render(req, res, '/la-fondatrice', Object.assign({ lang: req.params.lang })));
+
   server.get(
     '/:lang/artistes/:page',
     (req, res) => app.render(req, res, '/artistes/page-[page]', Object.assign({ page: req.params.page, lang: req.params.lang }))
