@@ -169,6 +169,7 @@ Header.Link = styled.a`
   flex-direction  : row;
   align-items     : center;
   cursor          : pointer;
+  font-size       : 13px;
   
   &::before {
    content                   : "";

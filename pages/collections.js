@@ -91,7 +91,13 @@ Collections.getInitialProps = async ({ query }) => {
     Prismic.Predicates.at( 'document.type', 'collection' ), { lang }
   );
 
-  return { collections: eshop.results[ 0 ], collectionsList: collections.results  }
+  return {
+    collections: eshop.results[ 0 ],
+    collectionsList: collections.results
+        .sort((a, b) =>
+            Date.parse(a.first_publication_date) - Date.parse(b.first_publication_date)
+        )
+  }
 };
 
 export default Collections;
