@@ -16,7 +16,7 @@ const Index = ({ result, imgs }) => {
     <Fragment>
       <Head>
         <title>{ result.data.title[ 0 ].text }</title>
-        <meta meta="description" content={ result.data.description[ 0 ].text }/>
+        <meta name="description" content={ result.data.description[ 0 ].text }/>
         <meta property="og:url" content="https://loucartergallery.com"/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content={ result.data.description[ 0 ].text }/>
