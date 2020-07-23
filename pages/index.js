@@ -3,7 +3,7 @@ import Head                           from 'next/head';
 import Prismic                        from 'prismic-javascript';
 import getConfig                      from 'next/config';
 
-import HomePage      from '../Components/StylesPages/HomePage';
+import HomePage      from '../Components/StylesPages/HomePage/HomePage';
 import MainComponent from '../Components/Main/Main';
 import { sliceUrl }  from '../helpers/functions';
 import '../styles/style.scss';

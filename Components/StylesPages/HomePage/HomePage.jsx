@@ -1,3 +1,72 @@
+import React, { useEffect, useState } from 'react';
+import Link                           from 'next/link';
+import { get }              from "lodash/fp";
+import SanitizedHTML        from 'react-sanitized-html';
+import StyledHome           from "./StyledHomePage";
+
+function HomePage({ result, imgs }) {
+
+  const [ visible, setVisible ] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (visible >= imgs.length -1) return setVisible(0);
+      setVisible(visible + 1);
+    }, 3500);
+  });
+
+  return (
+    <StyledHome>
+
+      { result.data.body.map( ( bg, i ) =>
+        <React.Fragment key={i}>
+        <h1 className={`${ visible === i ? 'visible' : '' }`}>
+          <span>
+            { get('primary.title_img[0].text', bg) }
+          </span>
+        </h1>
+        <div
+          key={ i }
+          className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
+        >
+          {bg.primary.link_to.link_type === 'Document'
+            ? (
+              <Link
+                href={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }?slug=${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
+                as={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }/${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
+              >
+                <a>
+                  { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
+                  {/*<h2>
+                    <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
+                  </h2>*/}
+                </a>
+              </Link>
+            )
+            : (
+              <a href={ bg.primary.link_to.url } target="_blank">
+                { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
+                {/*<h2>
+                  <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
+                </h2>*/}
+              </a>
+            )
+          }
+        </div>
+        </React.Fragment>
+      ) }
+    </StyledHome>
+  )
+}
+
+export default HomePage;
+
+
+
+
+
+
+/*
 import React, { Component } from 'react';
 import Link                 from 'next/link';
 import SanitizedHTML        from 'react-sanitized-html';
@@ -11,10 +80,10 @@ class HomePage extends Component {
     mouseMoving: 0
   };
 
-  /**
+  /!**
    * When component did mount, play first slide after 3500ms
    * and then, play slider every 3500ms
-   */
+   *!/
   componentDidMount() {
     const firstSlide = setTimeout( () => this.handleMouseMoving(), 3700 );
     const interval = setInterval( this.handleMouseMoving, 3700 );
@@ -93,3 +162,4 @@ class HomePage extends Component {
 }
 
 export default HomePage;
+*/
