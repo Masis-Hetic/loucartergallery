@@ -78,6 +78,7 @@ Header.MenuBtn = styled.div`
    ${media.mobile`
     left: unset;
     right: calc(85vw + 20px);
+    top: 40px;
    `}
 `;
 
