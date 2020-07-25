@@ -5,7 +5,7 @@ const StyledHome = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
-  
+
   h1 {
     background: #000;
     top: 50%;
@@ -18,7 +18,7 @@ const StyledHome = styled.div`
     -moz-transform: translateY(-50%) rotate(180deg);
     -ms-transform: translateY(-50%) rotate(180deg);
     -o-transform: translateY(-50%) rotate(180deg);
-    opacity: 0;
+    opacity: 1;
     padding: 0.6rem 0;
     display: table;
     font-weight: 300;
@@ -30,12 +30,9 @@ const StyledHome = styled.div`
       letter-spacing: 4px;
     }
   }
-  
-  h1.visible {
-    opacity: 1;
-  }
-  
+
   .swipe-wrapper {
+    display: none;
     width: 60vw;
     height: 50vh;
     position: absolute;
@@ -43,6 +40,7 @@ const StyledHome = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: -1;
 
     img, a {
       display: block;
@@ -54,9 +52,11 @@ const StyledHome = styled.div`
       object-fit: contain;
     }
   }
-  
+
   .swipe-wrapper.visible {
     opacity: 1;
+    display: block;
+    z-index: 10;
   }
 `;
 

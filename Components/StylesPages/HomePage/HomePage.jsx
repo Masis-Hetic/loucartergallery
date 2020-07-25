@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link                           from 'next/link';
 import { get }              from "lodash/fp";
-import SanitizedHTML        from 'react-sanitized-html';
 import StyledHome           from "./StyledHomePage";
 
 function HomePage({ result, imgs }) {
@@ -18,41 +17,41 @@ function HomePage({ result, imgs }) {
   return (
     <StyledHome>
 
+      <h1>
+        <span>
+          { get(`data.body[${visible}].primary.title_img[0].text`, result) }
+        </span>
+      </h1>
       { result.data.body.map( ( bg, i ) =>
         <React.Fragment key={i}>
-        <h1 className={`${ visible === i ? 'visible' : '' }`}>
-          <span>
-            { get('primary.title_img[0].text', bg) }
-          </span>
-        </h1>
-        <div
-          key={ i }
-          className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
-        >
-          {bg.primary.link_to.link_type === 'Document'
-            ? (
-              <Link
-                href={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }?slug=${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
-                as={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }/${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
-              >
-                <a>
-                  { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
+          <div
+            key={ i }
+            className={ `swipe-wrapper ${ visible === i ? 'visible' : '' }` }
+          >
+            {bg.primary.link_to.link_type === 'Document'
+              ? (
+                <Link
+                  href={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }?slug=${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
+                  as={ `${ bg.primary.page_category.type === 'category' ? `/${ bg.primary.page_category.slug }/${ bg.primary.link_to.uid }` : bg.primary.link_to.uid }` }
+                >
+                  <a>
+                    { imgs[ i ].length > 0 && <img srcSet={ imgs[ visible ] } alt=""/> }
+                    {/*<h2>
+                      <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
+                    </h2>*/}
+                  </a>
+                </Link>
+              )
+              : (
+                <a href={ bg.primary.link_to.url } target="_blank">
+                  { imgs[ i ].length > 0 && <img srcSet={ imgs[ visible ] } alt=""/> }
                   {/*<h2>
                     <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
                   </h2>*/}
                 </a>
-              </Link>
-            )
-            : (
-              <a href={ bg.primary.link_to.url } target="_blank">
-                { imgs[ i ].length > 0 && <img srcSet={ imgs[ i ] } alt=""/> }
-                {/*<h2>
-                  <SanitizedHTML html={ bg.primary.text[ 0 ] && bg.primary.text[ 0 ].text }/>
-                </h2>*/}
-              </a>
-            )
-          }
-        </div>
+              )
+            }
+          </div>
         </React.Fragment>
       ) }
     </StyledHome>
