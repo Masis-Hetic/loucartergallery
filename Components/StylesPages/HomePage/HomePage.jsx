@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link                           from 'next/link';
 import { get }              from "lodash/fp";
 import StyledHome           from "./StyledHomePage";
+import ItemIndicator                  from "../../ItemIndicator/ItemIndicator";
 
 function HomePage({ result, imgs }) {
 
@@ -54,6 +55,8 @@ function HomePage({ result, imgs }) {
           </div>
         </React.Fragment>
       ) }
+
+      <ItemIndicator />
     </StyledHome>
   )
 }
