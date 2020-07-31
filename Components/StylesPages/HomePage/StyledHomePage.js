@@ -31,16 +31,13 @@ const StyledHome = styled.div`
     }
   }
 
-  .swipe-wrapper {
-    display: none;
+  .current-image {
     width: 60vw;
     height: 50vh;
     position: absolute;
-    opacity: 0;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
 
     img, a {
       display: block;
@@ -51,12 +48,6 @@ const StyledHome = styled.div`
     img {
       object-fit: contain;
     }
-  }
-
-  .swipe-wrapper.visible {
-    opacity: 1;
-    display: block;
-    z-index: 10;
   }
 `;
 
