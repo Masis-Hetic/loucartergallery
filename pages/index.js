@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import Head                           from 'next/head';
 import Prismic                        from 'prismic-javascript';
 import getConfig                      from 'next/config';

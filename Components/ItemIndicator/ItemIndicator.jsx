@@ -3,18 +3,31 @@ import PropTypes       from 'prop-types';
 import StyledIndicator from "./StyledItemIndicator";
 
 const ItemIndicator = props => {
+
   return (
     <StyledIndicator>
-      <ul style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <li style={{ width: 50, height: 3, background: 'white', marginRight: 10 }} />
-        <li style={{ width: 50, height: 3, background: 'white' }} />
-      </ul>
+      <StyledIndicator.Ul>
+
+        {props.imgs.map((indicator, i) =>
+          <StyledIndicator.Li key={i}>
+            <StyledIndicator.Div>
+              <StyledIndicator.InnerDiv current={props.current} index={i} />
+            </StyledIndicator.Div>
+          </StyledIndicator.Li>
+        )}
+
+      </StyledIndicator.Ul>
     </StyledIndicator>
   );
 };
 
 ItemIndicator.propTypes = {
-  
+  imgs: PropTypes.array,
+  current: PropTypes.number,
+};
+
+ItemIndicator.defaultProps = {
+  imgs: [],
 };
 
 export default ItemIndicator;
