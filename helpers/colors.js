@@ -3,6 +3,7 @@ const COLORS = {
   lightGrey  : '#d9e1e8',
   white      : '#FFF',
   almostBlack: '#080808',
+  mediumGrey: '#bdbdbd',
 };
 
 export default COLORS;

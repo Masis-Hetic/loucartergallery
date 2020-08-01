@@ -1,265 +1,158 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import media  from "../../helpers/media";
+import COLORS from "../../helpers/colors";
+
+const animatedOpeningImage = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const animatedClosingImage = keyframes`
+  from { opacity: 1; }
+  to { opacity: 0; }
+`;
+
+const animatedArrow = keyframes`
+  from { transform: rotate(180deg) translateY(0); }
+  to { transform: rotate(180deg) translateY(-8px); }
+`;
 
 const CampaignStyled = styled.div`
   width: 100vw;
+  text-align: center;
+  height: calc(100vh - 15rem);
+  position: absolute;
+  bottom: 0;
+
+  ${media.mobile`
+    height: initial;
+    position: relative;
+    top: 10rem;
+    bottom: initial;
+  `}
+`;
+
+CampaignStyled.P = styled.p`
+  margin: 0 auto;
+  min-width: 400px;
+  max-width: 450px;
+  line-height: 2;
+  
+  ${media.mobile`
+    min-width: initial;
+    max-width: initial;
+    width: 90%;
+  `}
+`;
+
+CampaignStyled.ItemIndicatorStyled = styled.div`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  width: 50vw;
+  
+  ${media.mobile`
+    display: none;
+  `}
+`;
+
+CampaignStyled.Slider = styled.div`
+  position: absolute;
+  top: 0;
+  right: -75%;
   height: 100vh;
-  position: relative;
-  overflow: hidden;
-  
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar { width: 0 !important; }
-  
-  @media (max-width: 768px) {
-    overflow-y: scroll;
-  }
-  
-  ${media.mobile`
-    margin-top: 7rem;
-    overflow: hidden;
-  `}
-`;
-
-CampaignStyled.SlidesWrapper = styled.div`
-  position: relative;
-  z-index: 29;
-  height: 100%;
-  
-  ${media.mobile`
-    height: ${ props => props.isOpen ? '100vh' : 'unset' };
-    z-index: ${ props => props.isOpen ? '130' : '110' };
-    position: ${ props => props.isOpen ? 'fixed' : 'relative' };
-  `}
-`;
-
-CampaignStyled.Slides = styled.div`
-  overflow       : hidden;
-  display        : flex;
-  flex-direction : row;
-  width          : auto;
-  position       : relative;
-  z-index        : 19;
-  top            : 50%;
-  transform      : translateY(-50%);
-  height         : 100vh;
-  
-  @media (max-width: 768px) {
-    overflow       : unset;
-    display        : unset;
-    flex-direction : unset;
-    width          : unset;
-    position       : unset;
-    z-index        : unset;
-    top            : unset;
-    transform      : unset;
-    height         : unset;
-  }
-  
-  ${media.mobile`
-    display: block;
-    height: ${ props => props.isOpen ? '100vh' : 'unset' };
-    width: 100vw;
-    position: ${ props => props.isOpen ? 'fixed' : 'relative' };
-    top: 0;
-    z-index: 130;
-    transition: .3s ease;
-    top: ${ props => props.isOpen ? '0' : '55vh' };
-  `}
-`;
-
-CampaignStyled.SliderWrapper = styled.div`
-  overflow: scroll;
-  position: relative;
-  scrollbar-width: none;
-  overflow-y: hidden;
-  
-  @media (max-width: 768px) {
-    top: 80vh;
-    overflow: ${ props => props.isOpen ? 'scroll' : 'hidden' };
-    overflow-y: unset;
-  }
-  
-  ${media.mobile`
-    background: #080808;
-    transition: .3s ease;
-    z-index: 999;
-    height: 100vh;
-    padding-bottom: 10vh;
-    top: 0;
-    overflow-y: unset;
-  `}
-`;
-
-CampaignStyled.UpBtn = styled.div`
-  display: none;
-  
-  ${media.mobile`
-    display: table;
-    padding: 15px;
-    margin-top: 15px;
-    width: 30px;
-    height: 30px;
-    transition: .3s ease;
-    margin: 0 auto;
-    transform: rotate(${ props => props.isOpen ? '180deg' : '0deg'});
-  `}
-`;
-
-CampaignStyled.UlDesktop = styled.ul`
-  display    : flex;
-  background : #080808; 
-  height: 100vh;
-  width: ${ props => props.ulWidth }vw;
-  position: relative;
-  left: 80vw;
-  
-  &::-webkit-scrollbar {
-    display : none;
-  }
-  
-  @media (max-width: 768px) {
-    display    : flex;
-    flex-direction: column; 
-    height: unset;
-    width: 100vw;
-    position: unset;
-    left: unset;
-  }
-  
-  ${media.mobile`
-    top: 0;
-  `}
-`;
-
-CampaignStyled.LiDesktop = styled.li`
   width: 100vw;
-  
-  @media (max-width: 768px) {
-    width: unset;
-    margin-bottom: 15vh;
-  }
-`;
-
-CampaignStyled.ImageLink = styled.a`
   display: flex;
   justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  
-  @media (max-width: 768px) {
+  align-items: center;
+
+  img {
     display: block;
-    justify-content: unset;
-    width: unset;
-    height: unset;
-    position: unset;
-  }
+    object-fit: contain;
+    height: 100vh;
+    cursor: pointer;
+  } 
+  
+  ${media.mobile`
+    display: none;
+  `}
 `;
 
-CampaignStyled.ImgDesktop = styled.img`
-  display: table;
-  object-fit: contain;
-  max-width: 60vw;
+CampaignStyled.Slide = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: ${COLORS.almostBlack};
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  max-height: 100vh;
-  
-  @media (max-width: 768px) {
-    display: block;
-    max-width: unset;
-    width: 85%;
-    margin: 0 auto;
-    position: unset;
-    top: unset;
-    left: unset;
-    transform: unset;
-    max-height: unset;
-  }
-`;
-
-CampaignStyled.TextWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width 100vw;
-  height: 100vh;
   display: flex;
-  
-  ${media.mobile`
-    overflow-y: scroll;
-    height: 55%;
-    top: 7rem;
-    z-index: ${ props => !props.isOpen ? '110' : '120'};
-  `}
-`;
-
-CampaignStyled.Text = styled.div`
-  display: table;
-  height: calc(100vh - 5rem);
-  align-self: center;
-  max-width: 35vw;
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  text-align: center;
-  
-  @media (max-width: 768px) {
-    max-width: 85vw;
-    width: 80vw;
-    justify-content: flex-start;
-    height: calc(100vh - 25rem);
-  }
-  
-  @media (max-width: 1024px) {
-    max-width: 35vw;
-  }
-  
-  @media (min-width : 1680px) {
-    width: 25vw;
-  }
-  
-  @media (min-width : 1920px) {
-    width: 22vw;
-  }
+  z-index: ${props => props.slide >= 0 ? 90 : -1};
+  opacity: ${props => props.slide >= 0 ? 1 : 0};
   
   ${media.mobile`
-    max-width: 85vw;
-    // height: calc(100vh - 15rem);
-    height: 100%;
+    display: none;
   `}
 `;
 
-CampaignStyled.CampaignTitle = styled.h1`
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  
-  @media (max-width: 1024px) {
-    font-size: 1rem;
-  }
+CampaignStyled.SlideLink = styled.a`
+  width: 100vw;
+  height: 100vh;
+  display block;
+`;
+
+CampaignStyled.SlideImg = styled.img`
+  height: 90%;
+  width: 90%;
+  display: block;
+  object-fit: contain;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: ${props => props.index === props.slide ? animatedOpeningImage : animatedClosingImage};
+  animation-duration: .3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+`;
+
+CampaignStyled.CloseSlider = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+`;
+
+CampaignStyled.MobileGalery = styled.div`
+  display: none;
   
   ${media.mobile`
-    line-height: 2 !important;
+    display: block;
+    margin-top: 30px;
   `}
-`;
-
-CampaignStyled.CampaignDescription = styled.p`
-  margin: 1rem 0;
-  font-size: .8rem;
-  line-height: 2.4 !important;
   
-  @media (max-width: 1024px) {
-    line-height: 2 !important;
-    font-size: .7rem;
+  > div {
+    margin-bottom: 30px;
+    position: relative;
+    transform: rotate(180deg) translateY(0);
+    animation-name: ${animatedArrow};
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
   }
 `;
 
-CampaignStyled.SliderMobile = styled.div`
-  
+CampaignStyled.MobileImg = styled.img`
+  display: block;
+  width: 100vw;
+  height: auto;
+  object-fit: content;
+  margin-bottom: 20px;
 `;
 
 export default CampaignStyled;

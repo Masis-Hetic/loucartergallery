@@ -18,10 +18,10 @@ const mapDispatchToProps = state => ({ overflowStatus: state.overflowStatus });
 const Campagnes = ({ campaign, imgs }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(overflowStatus(true));
     return () => dispatch(overflowStatus(false))
-  });
+  });*/
 
   return (
     <MainComponent>
@@ -61,4 +61,5 @@ Campagnes.getInitialProps = async({ query }) => {
   return { campaign: campaign.results[ 0 ], imgs, slug: query.slug };
 };
 
-export default connect(null, mapDispatchToProps) (Campagnes);
+// export default connect(null, mapDispatchToProps) (Campagnes);
+export default Campagnes;

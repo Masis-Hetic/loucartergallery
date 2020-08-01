@@ -70,7 +70,7 @@ SingleCollection.SelectedImage = styled.div`
     top: unset;
     transform: unset;
     bottom: 0;
-    background: #080808;
+    background: ${ COLORS.almostBlack };
     overflow-y: scroll;
     flex-direction: column;
     z-index: 100;

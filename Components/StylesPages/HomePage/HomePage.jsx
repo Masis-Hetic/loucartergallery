@@ -52,7 +52,9 @@ function HomePage({ result, imgs }) {
           )
         }
 
-        <ItemIndicator length={result.data.body.length} current={visible} imgs={imgs} />
+        <div className="item-indicator">
+            <ItemIndicator length={result.data.body.length} current={visible} imgs={imgs} />
+        </div>
       </div>
 
     </StyledHome>
