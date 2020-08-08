@@ -1,5 +1,4 @@
-import React, { useEffect }     from 'react';
-import { connect, useDispatch } from "react-redux";
+import React                    from 'react';
 import Prismic                  from 'prismic-javascript';
 import Head                     from 'next/head';
 
@@ -11,17 +10,7 @@ import getConfig from 'next/config';
 
 const { publicRuntimeConfig } = getConfig();
 
-import { overflowStatus } from "../store/actions/controlOverflow.action";
-
-const mapDispatchToProps = state => ({ overflowStatus: state.overflowStatus });
-
 const Campagnes = ({ campaign, imgs }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(overflowStatus(true));
-    return () => dispatch(overflowStatus(false))
-  });
 
   return (
     <MainComponent>
@@ -61,4 +50,4 @@ Campagnes.getInitialProps = async({ query }) => {
   return { campaign: campaign.results[ 0 ], imgs, slug: query.slug };
 };
 
-export default connect(null, mapDispatchToProps) (Campagnes);
+export default Campagnes;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import COLORS from "../../../helpers/colors";
+import media from "../../../helpers/media";
 
 const StyledHome = styled.div`
   width: 100vw;
@@ -48,6 +49,22 @@ const StyledHome = styled.div`
     img {
       object-fit: contain;
     }
+  }
+  
+  .item-indicator {
+    width: 50vw;
+    height: 5px;
+    position: relative;
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    ${media.mobile`
+      margin-top: 20px;
+    `}
   }
 `;
 

@@ -9,9 +9,9 @@ const ItemIndicator = props => {
       <StyledIndicator.Ul>
 
         {props.imgs.map((indicator, i) =>
-          <StyledIndicator.Li key={i}>
+          <StyledIndicator.Li key={i} width={props.width}>
             <StyledIndicator.Div>
-              <StyledIndicator.InnerDiv current={props.current} index={i} />
+              <StyledIndicator.InnerDiv current={props.current} index={i} withAnimation={props.withAnimation} />
             </StyledIndicator.Div>
           </StyledIndicator.Li>
         )}
@@ -24,10 +24,14 @@ const ItemIndicator = props => {
 ItemIndicator.propTypes = {
   imgs: PropTypes.array,
   current: PropTypes.number,
+  withAnimation: PropTypes.bool,
+  width: PropTypes.string,
 };
 
 ItemIndicator.defaultProps = {
   imgs: [],
+  withAnimation: true,
+  width: '80px',
 };
 
 export default ItemIndicator;

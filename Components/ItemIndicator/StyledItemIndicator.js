@@ -11,20 +11,7 @@ const loadIndicator = keyframes`
   }
 `;
 
-const StyledIndicator = styled.div`
-  width: 50vw;
-  height: 5px;
-  position: absolute;
-  margin-top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-content: center;
-  
-  ${media.mobile`
-    margin-top: 20px;
-  `}
-`;
+const StyledIndicator = styled.div``;
 
 StyledIndicator.Ul = styled.ul`
   width: inherit;
@@ -36,10 +23,13 @@ StyledIndicator.Ul = styled.ul`
 
 StyledIndicator.Li = styled.li`
   display: flex;
-  width: 80px;
+  width: ${props => props.width};
+  max-width: 80px;
   height: 3px;
   align-items: center;
   margin-right: 10px;
+  flex-shrink: 1;
+
   &:last-child {
     margin-right: 0;
   }
@@ -50,6 +40,7 @@ StyledIndicator.Div = styled.div`
   display: flex;
   align-items: center;
   background: ${ COLORS.white };
+  background: ${ COLORS.mediumGrey };
   width: inherit;
   height: 1px;
 `;
@@ -58,11 +49,12 @@ StyledIndicator.InnerDiv = styled.div`
   background: ${ COLORS.white };
   height: 3px;
   width: ${ props => {
+      if (!props.withAnimation && props.current === props.index) return '100';
       if (props.current > props.index) return '100';
       if (props.current < props.index) return '0';
   } }%;
   animation-name: ${ props => {
-    if (props.current === props.index) return loadIndicator;
+    if (props.withAnimation && props.current === props.index) return loadIndicator;
   } };
   transition: .3s ease-in-out;
   animation-fill-mode: forwards;
