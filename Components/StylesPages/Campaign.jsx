@@ -69,7 +69,7 @@ function Campaign(props) {
       </CampaignStyled.CloseSlider>
 
       <div onClick={prevSlide} style={{ position: 'absolute', left: 20, zIndex: 200, cursor: 'pointer' }}>
-        <ArrowLeft />
+        <ArrowLeft width={30} height={30} />
       </div>
 
       {props.imgs.map((img, i) =>
@@ -79,7 +79,7 @@ function Campaign(props) {
       )}
 
       <div onClick={openSlider} style={{ position: 'absolute', right: 20, zIndex: 200, cursor: 'pointer' }}>
-        <ArrowRight />
+        <ArrowRight width={30} height={30}/>
       </div>
     </CampaignStyled.Slide>
   </>
