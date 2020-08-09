@@ -30,6 +30,10 @@ const StyledHome = styled.div`
     span {
       letter-spacing: 4px;
     }
+    
+    ${media.mobile`
+      display: none;
+    `}
   }
 
   .current-image {
@@ -49,6 +53,13 @@ const StyledHome = styled.div`
     img {
       object-fit: contain;
     }
+    
+    ${media.mobile`
+      top: 15vh;
+      transform: translate(-50%, 0);
+      width: 90vw;
+      height: initial;
+    `}
   }
   
   .item-indicator {

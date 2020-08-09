@@ -84,7 +84,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif)$/i,
         use: [
           {
             loader: 'url-loader',
@@ -97,13 +97,45 @@ module.exports = {
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         exclude: '/node_modules/',
-        use: [ {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            ouputPath: 'fonts/'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              ouputPath: 'fonts/'
+            }
+          },
+          {
+            test: /\.(gif|png|jpe?g|svg)$/i,
+            use: [
+              'file-loader',
+              {
+                loader: 'image-webpack-loader',
+                options: {
+                  mozjpeg: {
+                    progressive: true,
+                    quality: 65
+                  },
+                  // optipng.enabled: false will disable optipng
+                  optipng: {
+                    enabled: false,
+                  },
+                  pngquant: {
+                    quality: [0.65, 0.90],
+                    speed: 4
+                  },
+                  gifsicle: {
+                    interlaced: false,
+                  },
+                  // the webp option will enable WEBP
+                  webp: {
+                    quality: 75
+                  }
+                }
+              },
+            ],
           }
-        } ]
+        ]
       },
       {
         test: /\.(css|scss)/,
