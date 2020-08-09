@@ -17,12 +17,18 @@ const MainComponent = props => (
     <Main.LogoWrapper>
       <Link href={ { pathname: '/' } } as={ '/' }>
         <Main.Logo navStatus={ props.nav }
-         style={ {
+         /*style={ {
           position: `${ props.navPosition.data ? 'fixed' : 'absolute' }`,
           top     : 20,
           left    : 20,
           zIndex  : 100
-        } }
+        } }*/
+        style={{
+          position: 'fixed',
+          top     : 20,
+          left    : 20,
+          zIndex  : 100,
+        }}
         >
           <Main.Img
             src="/static/icons/loucarter_logo_copie.png" alt=""

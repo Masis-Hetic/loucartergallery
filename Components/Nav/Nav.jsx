@@ -110,7 +110,7 @@ const Nav = ( { nav, navPosition } ) => {
   return (
     <Fragment>
       <OutsideAlerter method={ toggleMenu } isActive={ isOpen }>
-        <Header open={ isOpen } navPos={ navPosition.data }>
+        <Header style={{ position: 'fixed' }} open={ isOpen } navPos={ navPosition.data }>
 
           {/*<ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>*/}
           {/*  <li style={ { margin: '0 5px' }}>*/}
