@@ -1,12 +1,16 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import Link from "next/link";
+
 import StyledMainLink from "./MainLink.style";
 
 const MainLink = props => {
+  const [isOpen, openGroup] = useState(false);
+  const toggleGroup = () => openGroup(!isOpen);
+
   return (
     <Fragment>
-      <p onClick={props.onClick}>{props.data.title_group[0]?.text}</p>
-      <StyledMainLink idGroup={props.idGroup} index={props.index}>
+      <p onClick={toggleGroup}>{props.data.title_group[0]?.text}</p>
+      <StyledMainLink isOpen={isOpen}>
         {props.data.group_link.map((link, i) =>
           <li key={i}>
             {link.data ?

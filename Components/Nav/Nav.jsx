@@ -85,14 +85,6 @@ const Nav = ({nav, navPosition}) => {
     }, 50);
   };
 
-  const [idGroup, setIdGroup] = useState(null);
-  let [isOpenGroup, openGroup] = useState([]);
-  const toggleGroup = (index) => {
-    setIdGroup(index);
-    // isOpenGroup = index;
-    idGroup === index ? openGroup(!isOpenGroup) : openGroup(false)
-  };
-
   const props = useSpring({
     reset: true,
     reverse: false,
@@ -137,12 +129,7 @@ const Nav = ({nav, navPosition}) => {
 
             <Header.UlWrapper>
               {nav.map((link, i) =>
-                <MainLink key={i}
-                          index={i}
-                          data={link.data}
-                          isOpenGroup={isOpenGroup}
-                          setIdGroup={setIdGroup}
-                          toggleGroup={toggleGroup}/>
+                <MainLink key={i} data={link.data}/>
               )}
             </Header.UlWrapper>
 
