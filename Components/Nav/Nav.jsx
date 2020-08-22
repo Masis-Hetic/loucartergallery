@@ -1,7 +1,6 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import Header from './Nav.style';
 import {connect, useDispatch} from 'react-redux';
-import {config, useSpring} from 'react-spring';
 import {useRouter} from "next/router";
 
 import Newsletter from './Newsletter.style';
@@ -10,7 +9,9 @@ import OutsideAlerter from '../../helpers/click-outside';
 import COLORS from '../../helpers/colors';
 import {validateEmail} from '../../helpers/functions';
 import {subscribeToNews} from '../../helpers/mailchimp';
-import MainLink from "./MainLink/MainLink";
+
+import { getOr } from 'lodash/fp';
+import NavItems from "./navItems/NavItems";
 
 const mapStateToProps = state => ({nav: state.nav.datas, navPosition: state.navPosition});
 
@@ -69,40 +70,38 @@ const Nav = ({nav, navPosition}) => {
   const [isOpen, openMenu] = useState(false);
   const toggleMenu = () => {
     openMenu(!isOpen);
-    openOrNot(false);
     dispatch(navStatus(!isOpen));
   };
 
-  const [isList, openList] = useState(null);
-  const [isListOpen, openOrNot] = useState(false);
-  const toggleList = (id) => {
-    openOrNot(true);
-    openOrNot(false);
-    setTimeout(() => {
-      if (id !== isList) openOrNot(true);
-      if (id === isList) openOrNot(!isListOpen);
-      openList(id);
-    }, 50);
-  };
-
-  const props = useSpring({
-    reset: true,
-    reverse: false,
-    immediate: false,
-    config: {duration: 300, ...config.default},
-    to: {
-      height: isListOpen ? 'auto' : 0,
-      lineHeight: isListOpen ? 2.5 : 0,
-      opacity: isListOpen ? 1 : 0,
-      marginBottom: isListOpen ? 15 : 'unset'
-    },
-    from: {height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40}
-  });
-
-  const router = useRouter();
+  /*const router = useRouter();
 
   function monUrl(lang) {
     return `/${lang}${router.pathname}${router.pathname.length > 1 ? '/' : ''}${router.query.slug || router.query.page || router.query.name || ''}`;
+  }*/
+
+  const menu = nav.reduce((acc, link) => {
+    acc.push({
+      title: link.data.title_group[0].text,
+      links: link.data.group_link,
+      subLinks: getOr([], 'data.group_link', link).find(subLink => subLink.data),
+      order: link.data.order[0].text
+    });
+
+    return acc.sort((a, b) => a.order - b.order);
+  }, []);
+
+  const [ open, toggleList ] = useState(false);
+  const [ index, setIndex ] = useState(null);
+  const [ isSubListOpen, setSubListStatus ] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => toggleList(true));
+  }, [ index ])
+
+  const toggle = clickedItem => {
+    setIndex(Number(clickedItem));
+    toggleList(!open);
+    setSubListStatus(false);
   }
 
   // noinspection JSUnresolvedVariable
@@ -111,27 +110,34 @@ const Nav = ({nav, navPosition}) => {
       <OutsideAlerter method={toggleMenu} isActive={isOpen}>
         <Header style={{position: 'fixed'}} open={isOpen} navPos={navPosition.data}>
 
-          {/*<ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>*/}
-          {/*  <li style={ { margin: '0 5px' }}>*/}
-          {/*    <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>*/}
-          {/*      <a onClick={ toggleMenu }>en</a>*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*   <li style={ { margin: '0 5px' }}>/</li>*/}
-          {/*  <li style={ { margin: '0 5px' }}>*/}
-          {/*    <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>*/}
-          {/*      <a onClick={ toggleMenu }>fr</a>*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*</ul>*/}
+          {/*<ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>
+            <li style={ { margin: '0 5px' }}>
+              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>
+                <a onClick={ toggleMenu }>en</a>
+              </Link>
+            </li>
+             <li style={ { margin: '0 5px' }}>/</li>
+            <li style={ { margin: '0 5px' }}>
+              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>
+                <a onClick={ toggleMenu }>fr</a>
+              </Link>
+            </li>
+          </ul>*/}
 
           <Header.Nav>
 
-            <Header.UlWrapper>
-              {nav.map((link, i) =>
-                <MainLink key={i} data={link.data}/>
-              )}
-            </Header.UlWrapper>
+            {menu.map((links, i) =>
+              <NavItems
+                key={i}
+                links={links}
+                index={i}
+                selectedIndex={index}
+                onClick={toggle}
+                open={open}
+                isSubListOpen={isSubListOpen}
+                setSubListStatus={setSubListStatus}
+              />
+            )}
 
           </Header.Nav>
 
