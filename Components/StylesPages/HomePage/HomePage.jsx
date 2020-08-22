@@ -15,6 +15,10 @@ function HomePage({ result, imgs }) {
     }, 4000);
   });
 
+  useEffect(() => {
+    return () => {};
+  }, [ visible ]);
+
   const currentImage = get(`data.body[${visible}]`, result);
   const externalURL = get(`primary.link_to.url`, currentImage);
 

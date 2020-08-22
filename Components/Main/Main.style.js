@@ -52,6 +52,7 @@ Main.Logo = styled.a`
 
   ${media.mobile`
     width: 6.7rem;
+    z-index: ${ props => props.navStatus ? '200' : '100' };
   `}
 `;
 

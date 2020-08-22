@@ -1,8 +1,7 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import Header from './Nav.style';
 import {connect, useDispatch} from 'react-redux';
-import {config, useSpring} from 'react-spring';
-import {useRouter} from "next/router";
+// import {useRouter} from "next/router";
 
 import Newsletter from './Newsletter.style';
 import {navStatus} from '../../store/actions/nav.action';
@@ -10,7 +9,9 @@ import OutsideAlerter from '../../helpers/click-outside';
 import COLORS from '../../helpers/colors';
 import {validateEmail} from '../../helpers/functions';
 import {subscribeToNews} from '../../helpers/mailchimp';
-import MainLink from "./MainLink/MainLink";
+
+import { getOr } from 'lodash/fp';
+import NavItems from "./navItems/NavItems";
 
 const mapStateToProps = state => ({nav: state.nav.datas, navPosition: state.navPosition});
 
@@ -69,40 +70,42 @@ const Nav = ({nav, navPosition}) => {
   const [isOpen, openMenu] = useState(false);
   const toggleMenu = () => {
     openMenu(!isOpen);
-    openOrNot(false);
+    toggleList(false);
     dispatch(navStatus(!isOpen));
   };
 
-  const [isList, openList] = useState(null);
-  const [isListOpen, openOrNot] = useState(false);
-  const toggleList = (id) => {
-    openOrNot(true);
-    openOrNot(false);
-    setTimeout(() => {
-      if (id !== isList) openOrNot(true);
-      if (id === isList) openOrNot(!isListOpen);
-      openList(id);
-    }, 50);
-  };
-
-  const props = useSpring({
-    reset: true,
-    reverse: false,
-    immediate: false,
-    config: {duration: 300, ...config.default},
-    to: {
-      height: isListOpen ? 'auto' : 0,
-      lineHeight: isListOpen ? 2.5 : 0,
-      opacity: isListOpen ? 1 : 0,
-      marginBottom: isListOpen ? 15 : 'unset'
-    },
-    from: {height: 0, lineHeight: 0, opacity: 0, paddingLeft: 40}
-  });
-
-  const router = useRouter();
+  /**
+   * for now, we keep this code commented. use for translation
+   */
+  /*const router = useRouter();
 
   function monUrl(lang) {
     return `/${lang}${router.pathname}${router.pathname.length > 1 ? '/' : ''}${router.query.slug || router.query.page || router.query.name || ''}`;
+  }*/
+
+  const menu = nav.reduce((acc, link) => {
+    acc.push({
+      title: link.data.title_group[0].text,
+      links: link.data.group_link,
+      subLinks: getOr([], 'data.group_link', link).find(subLink => subLink.data),
+      order: link.data.order[0].text
+    });
+
+    return acc.sort((a, b) => a.order - b.order);
+  }, []);
+
+  const [ open, toggleList ] = useState(false);
+  const [ index, setIndex ] = useState(null);
+
+  useEffect(() => {
+    setTimeout(() => toggleList(true));
+
+    return () => toggleList(false);
+  }, [ index ])
+
+  const toggle = clickedItem => {
+    setIndex(Number(clickedItem));
+    toggleList(!open);
   }
 
   // noinspection JSUnresolvedVariable
@@ -111,31 +114,50 @@ const Nav = ({nav, navPosition}) => {
       <OutsideAlerter method={toggleMenu} isActive={isOpen}>
         <Header style={{position: 'fixed'}} open={isOpen} navPos={navPosition.data}>
 
-          {/*<ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>*/}
-          {/*  <li style={ { margin: '0 5px' }}>*/}
-          {/*    <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>*/}
-          {/*      <a onClick={ toggleMenu }>en</a>*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*   <li style={ { margin: '0 5px' }}>/</li>*/}
-          {/*  <li style={ { margin: '0 5px' }}>*/}
-          {/*    <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>*/}
-          {/*      <a onClick={ toggleMenu }>fr</a>*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*</ul>*/}
+          {/* UED FOR TRANSLATION */ }
+          {/*<ul style={ { position: 'absolute', bottom: 50, display: 'flex', left: '50%',  transform: 'translateX(-50%)' } }>
+            <li style={ { margin: '0 5px' }}>
+              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'en' } }} as={monUrl('en')}>
+                <a onClick={ toggleMenu }>en</a>
+              </Link>
+            </li>
+             <li style={ { margin: '0 5px' }}>/</li>
+            <li style={ { margin: '0 5px' }}>
+              <Link href={{ pathname: router.pathname, query: { ...router.query, lang: 'fr' } }} as={monUrl('fr')}>
+                <a onClick={ toggleMenu }>fr</a>
+              </Link>
+            </li>
+          </ul>*/}
 
           <Header.Nav>
 
-            <Header.UlWrapper>
-              {nav.map((link, i) =>
-                <MainLink key={i} data={link.data}/>
-              )}
-            </Header.UlWrapper>
+            {menu.map((links, i) =>
+              <NavItems
+                key={i}
+                links={links}
+                index={i}
+                selectedIndex={index} // index used to defined which list should be opened
+                onClick={toggle} // action to toggle list of links (take boolan as param)
+                open={open} // boolean which is used to toggle list of links
+                openMenu={openMenu} // action to close the menu when we navigate between pages (take a boolean as param)
+                toggleModal={toggleModal} // action to open / close newsletter modal
+              />
+            )}
 
           </Header.Nav>
 
-          <Header.MenuBtn onClick={toggleMenu}>
+          <Header.Instagram href="https://www.instagram.com/loucartergallery/" target="_blank">
+            <div className="img-logo">
+              <img src="/static/icons/loucarter_logo_mobile.png" alt="" />
+            </div>
+            <div className="instagram-logo">
+              <svg style={{ width: 24, height: 24 }} viewBox="0 0 24 24">
+                <path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+              </svg>
+            </div>
+          </Header.Instagram>
+
+          <Header.MenuBtn onClick={toggleMenu} open={isOpen}>
             <Header.Burger open={isOpen}/>
           </Header.MenuBtn>
         </Header>

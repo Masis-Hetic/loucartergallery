@@ -20,9 +20,9 @@ const openLinks = keyframes`
 const Header = styled.header`
   position   : ${props => props.navPos ? 'fixed' : 'absolute'};
   height     : 100vh;
-  width      : 30vw;
+  width      : 450px;
   top        : 0;
-  left       : ${props => !props.open ? '-30vw' : '0'};
+  left       : ${props => !props.open ? '-450px' : '0'};
   z-index    : 51;
   background : ${props => !props.open ? 'transparent' : 'rgba(0, 0, 0, .9)'};
   transition : .3s ease-in-out;
@@ -30,19 +30,20 @@ const Header = styled.header`
   
   ${media.mobile`
     z-index: 150;
-    width: 85vw;
+    width: 100vw;
     left: unset;
-    right: ${props => !props.open ? '-85vw' : '0'};
+    right: ${props => !props.open ? '-100vw' : '0'};
+    background: ${ COLORS.almostBlack };
   `}
 `;
 
 Header.Nav = styled.nav`
-  position   : absolute;
-  top        : 50%;
-  width      : 100%;
-  transform  : translateY(-50%);
-  left       : 20px;
-  text-align : left;
+  position     : absolute;
+  top          : 50%;
+  width        : 100%;
+  transform    : translateY(-50%);
+  padding-left : 20px;
+  text-align   : left;
   
   ${media.mobile`
     font-size  : 13px;
@@ -68,7 +69,7 @@ Header.FirstStepLi = styled.li`
 Header.MenuBtn = styled.div`
    position   : absolute;
    top        : 50%;
-   left       : calc(30vw + 20px);
+   right      : ${ props => !props.open ? 'calc(-26px + -20px)' : '20px'};
    transform  : translateY(-50%) rotate(90deg);
    z-index    : 1;
    cursor     : pointer;
@@ -76,8 +77,7 @@ Header.MenuBtn = styled.div`
    transition : .3s ease-in-out;
    
    ${media.mobile`
-    left: unset;
-    right: calc(85vw + 20px);
+    right: ${ props => props.open ? '20px' : 'calc(100vw + 20px)' };
     top: 40px;
    `}
 `;
@@ -200,6 +200,38 @@ Header.Link = styled.a`
      }
    }
   }
+`;
+
+Header.Instagram = styled.a`
+  display: none;
+
+  ${media.mobile`
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    .img-logo {
+      border: 1px solid ${ COLORS.white };
+      border-radius: 50px;
+      
+      img{
+        width: 90px;
+        height: 90px;
+        border-radius: 50px;
+        display: block;
+        object-fit: cover;
+      }
+    }
+    
+    .instagram-logo {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+  `}
+
 `;
 
 export default Header;
