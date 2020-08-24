@@ -31,7 +31,7 @@ ItemIndicator.propTypes = {
 ItemIndicator.defaultProps = {
   imgs: [],
   withAnimation: true,
-  width: '80px',
+  width: '1cm',
 };
 
 export default ItemIndicator;

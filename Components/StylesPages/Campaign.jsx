@@ -54,7 +54,6 @@ function Campaign(props) {
           current={slide}
           length={props.imgs.length}
           withAnimation={false}
-          width={`${50 / props.imgs.length}vw`}
         />
       </CampaignStyled.ItemIndicatorStyled>
     </CampaignStyled>

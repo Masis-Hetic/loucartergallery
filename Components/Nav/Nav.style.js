@@ -47,6 +47,7 @@ Header.Nav = styled.nav`
   
   ${media.mobile`
     font-size  : 13px;
+    top        : 40%;
   `}
 `;
 
@@ -208,7 +209,7 @@ Header.Instagram = styled.a`
   ${media.mobile`
     display: block;
     position: absolute;
-    bottom: 10px;
+    bottom: 110px;
     left: 50%;
     transform: translateX(-50%);
     
