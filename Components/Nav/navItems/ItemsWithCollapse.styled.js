@@ -103,8 +103,9 @@ ListWithCollapse.List = styled.ul`
 `;
 
 ListWithCollapse.Item = styled.li`
-  font-size: 0.8rem;
-  font-family: WorkSans-Medium;
+  font-size: 13px;
+  font-family: WorkSans-Light;
+  text-transform: uppercase;
   line-height: 0;
   opacity: 0;
   animation-name: ${ props => props.open ? openLi : closeLi };
