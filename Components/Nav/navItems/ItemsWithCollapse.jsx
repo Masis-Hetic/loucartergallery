@@ -4,7 +4,7 @@ import { get } from "lodash/fp";
 import ListWithCollapse from "./ItemsWithCollapse.styled";
 import Link from "next/link";
 
-function linkResolver(link, action = null) {
+function linkResolver(link, action = null, newsletter = null) {
   if (link.lien.type === 'campaign') {
     return <Link href={`/campagnes?slug=${link.lien.uid}`} as={`/campagnes/${link.lien.uid}`}>
       <a onClick={() => action(false)}>{link.nom_du_lien[0].text}</a>
@@ -13,7 +13,7 @@ function linkResolver(link, action = null) {
 
   if (link.lien.link_type === 'Web') return <a onClick={() => action(false)} href={link.lien.url} target="_blank">{link.nom_du_lien[0].text}</a>;
 
-  if (link.nom_du_lien[0].text === 'NEWSLETTER') return <p>{link.nom_du_lien[0].text}</p>;
+  if (link.nom_du_lien[0].text.toLocaleLowerCase() === 'newsletter') return <p onClick={e => { e.preventDefault(); newsletter(true); }}>{link.nom_du_lien[0].text}</p>;
 
   return <Link href={`/${link.lien.uid}`} as={`/${link.lien.uid}`}>
     <a onClick={() => action(false)}>{link.nom_du_lien[0].text}</a>
@@ -47,7 +47,7 @@ const ItemsWithCollapse = props => {
           onClick={() => get('nom_du_lien[0].text', link) === 'NEWSLETTER' && props.toggleModal(true)}
         >
           <span />
-          {linkResolver(link, props.openMenu)}
+          {linkResolver(link, props.openMenu, props.toggleModal)}
         </ListWithCollapse.Item>
       )}
     </ListWithCollapse.List>
