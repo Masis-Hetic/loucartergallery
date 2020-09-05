@@ -21,6 +21,7 @@ function HomePage({ result, imgs }) {
 
   const currentImage = get(`data.body[${visible}]`, result);
   const externalURL = get(`primary.link_to.url`, currentImage);
+  const internalLink = get(`primary.link_to.uid`, currentImage);
 
   return (
     <StyledHome>
@@ -30,7 +31,7 @@ function HomePage({ result, imgs }) {
       </h1>
 
       <div className="current-image">
-        {!externalURL
+        {!externalURL && internalLink
           ? (
             <Link
               href={`${ get('primary.page_category.type', currentImage) === 'category' 
