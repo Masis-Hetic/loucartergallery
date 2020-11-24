@@ -23,6 +23,7 @@ const CampaignStyled = styled.div`
   height: calc(100vh - 15rem);
   position: absolute;
   bottom: 0;
+  overflow-y: scroll;
 
   ${media.mobile`
     height: initial;
@@ -37,7 +38,19 @@ CampaignStyled.P = styled.p`
   min-width: 400px;
   max-width: 450px;
   line-height: 2;
-  
+  height: calc(100% - 50px);
+  overflow-y: scroll;
+  padding-right: 5px;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  };
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${COLORS.white};
+    outline: 1px solid ${COLORS.white};
+  }
+
   ${media.mobile`
     min-width: initial;
     max-width: initial;
@@ -46,7 +59,7 @@ CampaignStyled.P = styled.p`
 `;
 
 CampaignStyled.ItemIndicatorStyled = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -102,7 +115,7 @@ CampaignStyled.Slide = styled.div`
 CampaignStyled.SlideLink = styled.a`
   width: 100vw;
   height: 100vh;
-  display block;
+  display: block;
 `;
 
 CampaignStyled.SlideImg = styled.img`
