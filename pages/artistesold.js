@@ -37,8 +37,6 @@ const Artistes = ({ artistes, artiste }) => {
       
       <MainComponent>
         <ArtistesList page={ changePage } currentPage={ page }/>
-        {/*{ console.log( artistes ) }*/ }
-        {/*{ console.log( artiste ) }*/ }
       </MainComponent>
     </Fragment>
   );
